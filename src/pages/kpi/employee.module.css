@@ -1,0 +1,345 @@
+.container {
+  padding: 24px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.backButton {
+  background: #996f29;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background: #7a5a21;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.subtitle {
+  color: #64748b;
+  margin: 8px 0 0 0;
+}
+
+/* Branch Selection */
+.branchGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.branchCard {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.branchCard:hover {
+  border-color: #996f29;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(153, 111, 41, 0.15);
+}
+
+.branchIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.branchName {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+}
+
+.employeeCount {
+  color: #64748b;
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Employee Profile Header */
+.profileHeader {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e2e8f0;
+}
+
+.employeeInfo {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: #996f29;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: white;
+}
+
+.details h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+}
+
+.details p {
+  color: #64748b;
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.kpiSummary {
+  display: flex;
+  gap: 24px;
+}
+
+.summaryCard {
+  text-align: center;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 8px;
+  min-width: 100px;
+}
+
+.cardValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: #996f29;
+  margin-bottom: 4px;
+}
+
+.cardLabel {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.filterSelect {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: #996f29;
+  box-shadow: 0 0 0 3px rgba(153, 111, 41, 0.1);
+}
+
+/* KPI Table */
+.tableContainer {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 32px;
+}
+
+.kpiTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.kpiTable th {
+  background: #f8fafc;
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.kpiTable td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: top;
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+.kpiTable tr:hover {
+  background: #f8fafc;
+}
+
+.statusBadge {
+  background: #dbeafe;
+  color: #1e40af;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.weightBadge {
+  background: #996f29;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.ratingContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rating {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.comparison {
+  font-size: 12px;
+}
+
+.positive {
+  color: #059669;
+}
+
+.negative {
+  color: #dc2626;
+}
+
+/* Analytics Panel */
+.analyticsPanel {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.chartContainer {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+}
+
+.chartContainer h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 16px 0;
+}
+
+.trendChart {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chartPlaceholder {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.topKPIs,
+.weakKPIs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kpiItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .analyticsPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .profileHeader {
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .kpiSummary {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .branchGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .tableContainer {
+    overflow-x: auto;
+  }
+
+  .kpiTable {
+    min-width: 1200px;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .filterSelect {
+    width: 100%;
+  }
+}

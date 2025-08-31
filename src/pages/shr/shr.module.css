@@ -1,0 +1,665 @@
+.container {
+  padding: 24px;
+  min-height: 100vh;
+  font-family: Geist,
+    sans-serif;
+}
+
+/* Updated action buttons container to include stats on the right */
+.actionButtonsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 24px;
+}
+
+/* Action Buttons */
+.actionButtons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #475569;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.actionButton:hover {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.actionButton:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Added compact overview stats styles */
+.overviewStatsCompact {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.compactStatItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.compactStatValue {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.compactStatLabel {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+  max-width: 120px;
+  line-height: 1.2;
+}
+
+/* Added compact section styles */
+.sectionCompact {
+  background-color: white;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.sectionTitleCompact {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Sections */
+.section {
+  background-color: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Stats Grid - removed since we're not using the overview section anymore */
+
+/* Mini Chart */
+.miniChart {
+  display: flex;
+  align-items: end;
+  gap: 2px;
+  height: 24px;
+  width: 60px;
+}
+
+.chartBar {
+  flex: 1;
+  min-height: 4px;
+  border-radius: 1px;
+  opacity: 0.8;
+}
+
+/* Section Header with Year Filter */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.yearFilter {
+  padding: 6px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background-color: white;
+  font-size: 14px;
+  color: #475569;
+  cursor: pointer;
+}
+
+.yearFilter:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Added filter group styles for branch and department filters */
+.filterGroup {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.branchFilter,
+.departmentFilter {
+  padding: 6px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background-color: white;
+  font-size: 14px;
+  color: #475569;
+  cursor: pointer;
+  min-width: 100px;
+}
+
+.branchFilter:focus,
+.departmentFilter:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Replaced two-column layout with three-column layout for new sections */
+.threeColumnLayout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* Added styles for attendance section */
+.attendanceList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.attendanceItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.attendanceMonth {
+  font-size: 14px;
+  font-weight: 500;
+  color: #475569;
+  min-width: 60px;
+}
+
+.attendanceBar {
+  flex: 1;
+  height: 8px;
+  background-color: #f1f5f9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.attendanceFill {
+  height: 100%;
+  background-color: #10b981;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.attendanceFill.belowTarget {
+  background-color: #ef4444;
+}
+
+.attendancePercentage {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  min-width: 60px;
+  text-align: right;
+}
+
+.belowTargetText {
+  color: #ef4444;
+}
+
+.targetComparison {
+  font-weight: 400;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.attendanceSummary {
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: #f8fafc;
+  border-radius: 6px;
+}
+
+.summaryStats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.summaryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.summaryLabel {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.summaryValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.trendLine {
+  height: 40px;
+  margin-top: 8px;
+}
+
+.monthHighlights {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.bestMonth,
+.worstMonth {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.highlightLabel {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.highlightValue {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.bestMonth .highlightValue {
+  color: #10b981;
+}
+
+.worstMonth .highlightValue {
+  color: #ef4444;
+}
+
+/* Disciplinary Violations Styles */
+.violationSummary {
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: #fef2f2;
+  border-radius: 6px;
+  border-left: 4px solid #ef4444;
+}
+
+.summaryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.summaryHeader h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.totalViolations {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ef4444;
+}
+
+.severityBreakdown {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.severityItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.severityDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.severityDot.high {
+  background-color: #ef4444;
+}
+
+.severityDot.medium {
+  background-color: #f59e0b;
+}
+
+.severityDot.low {
+  background-color: #10b981;
+}
+
+.violationTrend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.trendLabel {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.topViolators {
+  margin-top: 12px;
+}
+
+.topViolatorsTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+}
+
+.topViolatorItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.topViolatorItem:last-child {
+  border-bottom: none;
+}
+
+.violatorName {
+  font-size: 13px;
+  color: #475569;
+}
+
+.violatorCount {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ef4444;
+}
+
+/* Best Employees Styles */
+.bestEmployeeList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bestEmployeeItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  background-color: #f8fafc;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.employeeProfileContainer {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.employeeProfileImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
+}
+
+.rankingBadge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+  border: 2px solid white;
+}
+
+.employeeInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.employeeName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 2px;
+}
+
+.employeeLocation {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.employeeBranch {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.employeeDepartment {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.employeeScore {
+  font-size: 16px;
+  font-weight: 700;
+  color: #10b981;
+}
+
+/* Branch Grid */
+.branchGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.branchCard {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.2s ease;
+}
+
+.branchCard:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.branchHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.branchName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.menuButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+.menuButton:hover {
+  background-color: #e2e8f0;
+  color: #475569;
+}
+
+.branchStats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.statItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statLabel {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.statValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.branchPerformance {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progressBar {
+  flex: 1;
+  height: 6px;
+  background-color: #e2e8f0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.performanceText {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  min-width: 32px;
+  text-align: right;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .actionButtonsContainer {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+  }
+
+  .actionButton {
+    justify-content: center;
+  }
+
+  .overviewStatsCompact {
+    justify-content: space-around;
+  }
+
+  .threeColumnLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .branchGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .branchCard {
+    padding: 16px;
+  }
+
+  .branchName {
+    font-size: 14px;
+  }
+
+  .statLabel,
+  .statValue {
+    font-size: 13px;
+  }
+
+  .sectionCompact {
+    padding: 12px;
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .yearFilter {
+    align-self: stretch;
+  }
+}

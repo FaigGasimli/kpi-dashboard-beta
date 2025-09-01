@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 import {
   XAxis,
   YAxis,
@@ -12,9 +12,10 @@ import {
   PieChart,
   Pie,
   Cell,
-} from "recharts"
-import styles from "./kpi.module.css"
-import KPICreationModal from "./kpimodal"
+} from "recharts";
+import styles from "./kpi.module.css";
+import KPICreationModal from "./kpimodal";
+import EmployeeKPIProfile from "./EmployeeKPIProfile";
 
 // Mock data
 const summaryData = {
@@ -26,7 +27,7 @@ const summaryData = {
   deviation: 2.5,
   riskiestModule: "AML",
   bestBranch: "Mərkəzi Filial",
-}
+};
 
 const trendData = [
   { month: "Yan", fakt: 82, target: 85 },
@@ -41,14 +42,14 @@ const trendData = [
   { month: "Okt", fakt: 88, target: 85 },
   { month: "Noy", fakt: 92, target: 85 },
   { month: "Dek", fakt: 87, target: 85 },
-]
+];
 
 const moduleData = [
   { name: "CE", value: 35, color: "#0088FE" },
   { name: "MH", value: 28, color: "#00C49F" },
   { name: "AML", value: 22, color: "#FFBB28" },
   { name: "AU", value: 15, color: "#FF8042" },
-]
+];
 
 const criticalKPIs = [
   {
@@ -74,7 +75,7 @@ const criticalKPIs = [
   },
   {
     code: "AU-002",
-    name: "Daxili audit tapıntıları",
+    name: "Nəzarət departamenti tapıntıları",
     execution: 75,
     target: 82,
     responsible: "S.Quliyeva",
@@ -86,7 +87,7 @@ const criticalKPIs = [
     target: 85,
     responsible: "E.Babayev",
   },
-]
+];
 
 const topKPIs = [
   {
@@ -124,15 +125,15 @@ const topKPIs = [
     target: 82,
     weight: 10,
   },
-]
+];
 
 const leaderboard = [
   { name: "A.Məmmədov", delays: 2, department: "Müştəri Xidmətləri" },
   { name: "N.Həsənova", delays: 3, department: "AML Şöbəsi" },
   { name: "R.Əliyev", delays: 1, department: "Maliyyə Həkimiyyəti" },
-  { name: "S.Quliyeva", delays: 4, department: "Daxili Audit" },
+  { name: "S.Quliyeva", delays: 4, department: "Nəzarət departamenti" },
   { name: "E.Babayev", delays: 2, department: "IT Şöbəsi" },
-]
+];
 
 const heatmapData = [
   { branch: "Mərkəzi", jan: 92, feb: 88, mar: 95, apr: 87, may: 91 },
@@ -140,11 +141,11 @@ const heatmapData = [
   { branch: "Yasamal", jan: 78, feb: 81, mar: 79, apr: 83, may: 80 },
   { branch: "Səbail", jan: 89, feb: 91, mar: 87, apr: 90, may: 88 },
   { branch: "Nizami", jan: 83, feb: 85, mar: 82, apr: 86, may: 84 },
-]
+];
 
 const branchesData = [
   {
-    name: "Yeni ofis",
+    name: "Yeni Filial",
     departments: 3,
     divisions: 3,
     employees: 16,
@@ -175,17 +176,37 @@ const branchesData = [
     performance: 49,
     color: "#92400e",
   },
-]
+];
 
 const departmentsData = {
-  "Yeni ofis": [
-    { name: "Komplayens Departamenti", divisions: 3, employees: 8, performance: 85 },
-    { name: "Risk İdarəetməsi", divisions: 2, employees: 5, performance: 78 },
-    { name: "Daxili Audit", divisions: 1, employees: 3, performance: 92 },
+  "Yeni Filial": [
+    {
+      name: "Komplayens Departamenti",
+      divisions: 3,
+      employees: 8,
+      performance: 85,
+    },
+    {
+      name: "Risklərin idarə edilməsi",
+      divisions: 2,
+      employees: 5,
+      performance: 78,
+    },
+    {
+      name: "Nəzarət departamenti",
+      divisions: 1,
+      employees: 3,
+      performance: 92,
+    },
   ],
   "Filial 1": [
     { name: "Müştəri Xidmətləri", divisions: 2, employees: 6, performance: 72 },
-    { name: "Maliyyə Departamenti", divisions: 2, employees: 7, performance: 68 },
+    {
+      name: "Maliyyə Departamenti",
+      divisions: 2,
+      employees: 7,
+      performance: 68,
+    },
     { name: "IT Departamenti", divisions: 1, employees: 3, performance: 88 },
   ],
   "Filial 2": [
@@ -194,23 +215,30 @@ const departmentsData = {
     { name: "HR Departamenti", divisions: 1, employees: 3, performance: 89 },
   ],
   "Filial 3": [
-    { name: "Əməliyyat Departamenti", divisions: 2, employees: 8, performance: 52 },
+    {
+      name: "Əməliyyat Departamenti",
+      divisions: 2,
+      employees: 8,
+      performance: 52,
+    },
     { name: "Texniki Dəstək", divisions: 1, employees: 5, performance: 45 },
     { name: "Təhlükəsizlik", divisions: 1, employees: 3, performance: 58 },
   ],
-}
+};
 
 const divisionsData = {
   "Komplayens Departamenti": [
     { name: "ƏL/TMM Şöbəsi", employees: 3, performance: 88 },
-    { name: "Risk İdarəetməsi Şöbəsi", employees: 3, performance: 82 },
-    { name: "Daxili Audit Şöbəsi", employees: 2, performance: 85 },
+    { name: "MEŞ / Hesabatlıq şöbəsi", employees: 3, performance: 82 },
+    { name: "Komplayens Monitorinq Şöbəsi", employees: 2, performance: 85 },
   ],
-  "Risk İdarəetməsi": [
+  "Risklərin idarə edilməsi": [
     { name: "Kredit Risk Şöbəsi", employees: 3, performance: 75 },
     { name: "Əməliyyat Risk Şöbəsi", employees: 2, performance: 81 },
   ],
-  "Daxili Audit": [{ name: "Audit Şöbəsi", employees: 3, performance: 92 }],
+  "Nəzarət departamenti": [
+    { name: "Audit Şöbəsi", employees: 3, performance: 92 },
+  ],
   "Müştəri Xidmətləri": [
     { name: "Müştəri Dəstəyi", employees: 3, performance: 70 },
     { name: "Şikayət İdarəetməsi", employees: 3, performance: 74 },
@@ -219,66 +247,114 @@ const divisionsData = {
     { name: "Maliyyə Planlaşdırması", employees: 4, performance: 65 },
     { name: "Uçot Şöbəsi", employees: 3, performance: 71 },
   ],
-  "IT Departamenti": [{ name: "Sistem İdarəetməsi", employees: 3, performance: 88 }],
+  "IT Departamenti": [
+    { name: "Sistem İdarəetməsi", employees: 3, performance: 88 },
+  ],
   "Satış Departamenti": [
     { name: "Korporativ Satış", employees: 4, performance: 95 },
     { name: "Fərdi Satış", employees: 3, performance: 93 },
     { name: "Onlayn Satış", employees: 2, performance: 94 },
   ],
   Marketing: [{ name: "Rəqəmsal Marketing", employees: 4, performance: 96 }],
-  "HR Departamenti": [{ name: "İnsan Resursları", employees: 3, performance: 89 }],
+  "HR Departamenti": [
+    { name: "İnsan Resursları", employees: 3, performance: 89 },
+  ],
   "Əməliyyat Departamenti": [
     { name: "Gündəlik Əməliyyatlar", employees: 5, performance: 50 },
     { name: "Proses İdarəetməsi", employees: 3, performance: 54 },
   ],
   "Texniki Dəstək": [{ name: "Texniki Yardım", employees: 5, performance: 45 }],
-  Təhlükəsizlik: [{ name: "Fiziki Təhlükəsizlik", employees: 3, performance: 58 }],
-}
+  Təhlükəsizlik: [
+    { name: "Fiziki Təhlükəsizlik", employees: 3, performance: 58 },
+  ],
+};
 
 const TrendingUpIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <polyline points="22,7 13.5,15.5 8.5,10.5 2,17"></polyline>
     <polyline points="16,7 22,7 22,13"></polyline>
   </svg>
-)
+);
 
 const AlertTriangleIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
     <path d="M12 9v4"></path>
     <path d="m12 17 .01 0"></path>
   </svg>
-)
+);
 
 const TrophyIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
     <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
     <path d="M4 22h16"></path>
-    <path d="M10 14.66V17c0 .55.47.98.97 1.21C12.04 18.75 14 20 14 20s1.96-1.25 3.03-1.79c.5-.23.97-.66.97-1.21v-2.34"></path>
+    <path d="M10 14.66V17c0 .55.47.98.97 1.21C12.04 18.75 14 20 14 20s1.96-1.25 3.03-1.79c.5-.23.97-.66.97-.21v-2.34"></path>
     <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
   </svg>
-)
+);
 
 const UsersIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
     <circle cx="9" cy="7" r="4"></circle>
     <path d="m22 21-2-2"></path>
     <path d="M16 11l2 2 4-4"></path>
   </svg>
-)
+);
 
 const TargetIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <circle cx="12" cy="12" r="10"></circle>
     <circle cx="12" cy="12" r="6"></circle>
     <circle cx="12" cy="12" r="2"></circle>
   </svg>
-)
+);
 
 const BuildingIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect>
     <path d="M9 22v-4h6v4"></path>
     <path d="M8 6h.01"></path>
@@ -291,28 +367,49 @@ const BuildingIcon = () => (
     <path d="M8 10h.01"></path>
     <path d="M8 14h.01"></path>
   </svg>
-)
+);
 
 const FilterIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46"></polygon>
   </svg>
-)
+);
 
 const SearchIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <circle cx="11" cy="11" r="8"></circle>
     <path d="m21 21-4.35-4.35"></path>
   </svg>
-)
+);
 
 const DownloadIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
     <polyline points="7,10 12,15 17,10"></polyline>
     <line x1="12" x2="12" y1="15" y2="3"></line>
   </svg>
-)
+);
 
 const organizationalStructure = {
   name: "Yeni Filial",
@@ -357,7 +454,7 @@ const organizationalStructure = {
               ],
             },
             {
-              name: "Risk İdarəetməsi Şöbəsi",
+              name: "MEŞ / Hesabatlıq şöbəsi",
               type: "division",
               children: [
                 {
@@ -387,7 +484,7 @@ const organizationalStructure = {
               ],
             },
             {
-              name: "Daxili Audit Şöbəsi",
+              name: "Komplayens Monitorinq Şöbəsi",
               type: "division",
               children: [
                 {
@@ -421,40 +518,75 @@ const organizationalStructure = {
       ],
     },
   ],
-}
+};
 
 const ChevronDownIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <polyline points="6,9 12,15 18,9"></polyline>
   </svg>
-)
+);
 
 const ChevronRightIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <polyline points="9,18 15,12 9,6"></polyline>
   </svg>
-)
+);
 
 const UserIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
     <circle cx="12" cy="7" r="4"></circle>
   </svg>
-)
+);
 
 const ArrowDownIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width="12"
+    height="12"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <polyline points="7,13 12,18 17,13"></polyline>
     <polyline points="12,18 12,6"></polyline>
   </svg>
-)
+);
 
 const EyeIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
     <circle cx="12" cy="12" r="3"></circle>
   </svg>
-)
+);
 
 const kpiCatalogData = [
   {
@@ -463,7 +595,8 @@ const kpiCatalogData = [
     purpose: "Pozuntular hallarının azaldılması",
     method: "Say",
     period: "Rüblük",
-    formula: "(Əvvəlki dövr ərzində sayı - Cari dövr ərzində sayı) ÷ Əvvəlki dövr ərzində sayı × 100",
+    formula:
+      "(Əvvəlki dövr ərzində sayı - Cari dövr ərzində sayı) ÷ Əvvəlki dövr ərzində sayı × 100",
     weight: "15%",
     department: "Komplayens Monitoring şöbəsi",
     dataSource: "MB qərar məktubları, daxili protokollar",
@@ -477,7 +610,8 @@ const kpiCatalogData = [
     purpose: "Maliyyə yükünün azaldılması",
     method: "Məbləğ (AZN)",
     period: "Rüblük",
-    formula: "(Əvvəlki dövr ərzində məbləği - Cari dövr ərzində məbləği) ÷ Əvvəlki dövr ərzində məbləği × 100",
+    formula:
+      "(Əvvəlki dövr ərzində məbləği - Cari dövr ərzində məbləği) ÷ Əvvəlki dövr ərzində məbləği × 100",
     weight: "20%",
     department: "Maliyyə və Komplayens",
     dataSource: "MB qərarları, maliyyə uçotu",
@@ -491,7 +625,8 @@ const kpiCatalogData = [
     purpose: "MB tərəfindən pozuntuların sayının minimuma endirilməsi",
     method: "Say",
     period: "Rüblük",
-    formula: "Cari dövrdə Mərkəzi bank tərəfindən verilmiş cərimə qərarlarının sayı",
+    formula:
+      "Cari dövrdə Mərkəzi bank tərəfindən verilmiş cərimə qərarlarının sayı",
     weight: "15%",
     department: "Komplayens",
     dataSource: "MB qərarları",
@@ -505,10 +640,11 @@ const kpiCatalogData = [
     purpose: "Eyni səbəbdən təkrar pozuntuların qarşısının alınması",
     method: "Say",
     period: "İllik",
-    formula: "Təkrar hallar (%) = Təkrar halların sayı ÷ Ümumi pozuntu sayı × 100",
+    formula:
+      "Təkrar hallar (%) = Təkrar halların sayı ÷ Ümumi pozuntu sayı × 100",
     weight: "15%",
     department: "Komplayens",
-    dataSource: "Daxili Audit hesabatına əsasən protokollar",
+    dataSource: "Nəzarət departamenti hesabatına əsasən protokollar",
     status: "Aktiv",
     actual: 88,
     target: 90,
@@ -519,7 +655,8 @@ const kpiCatalogData = [
     purpose: "Risklərin aradan qaldırılması",
     method: "Faiz",
     period: "Rüblük",
-    formula: "İcra olunmuş tədbirlərin sayı ÷ Planlaşdırılan tədbirlərin sayı × 100",
+    formula:
+      "İcra olunmuş tədbirlərin sayı ÷ Planlaşdırılan tədbirlərin sayı × 100",
     weight: "20%",
     department: "Komplayens + Aşkaryat Şöbə",
     dataSource: "Tədbir planı, daxili aktlar",
@@ -533,7 +670,8 @@ const kpiCatalogData = [
     purpose: "Əskalasiya prosesinin sürətini ölçmək",
     method: "Gün / Saat",
     period: "Rüblük",
-    formula: "SLA 24h (%) = 24 saat ərzində əskalasiya olunan hallar ÷ Ümumi hallar × 100",
+    formula:
+      "SLA 24h (%) = 24 saat ərzində əskalasiya olunan hallar ÷ Ümumi hallar × 100",
     weight: "15%",
     department: "Komplayens",
     dataSource: "Əskalasiya jurnalları",
@@ -544,10 +682,12 @@ const kpiCatalogData = [
   {
     code: "MH-01",
     name: "Planli monitorinqlərin icra faizi",
-    purpose: "Planlı nəzarətdə tutulmuş monitorinqlərin keyfiyyətlə icrasını təmin etmək",
+    purpose:
+      "Planlı nəzarətdə tutulmuş monitorinqlərin keyfiyyətlə icrasını təmin etmək",
     method: "Faiz",
     period: "Rüblük",
-    formula: "İcra olunmuş monitorinq sayı ÷ Planlaşdırılmış monitorinq sayı × 100",
+    formula:
+      "İcra olunmuş monitorinq sayı ÷ Planlaşdırılmış monitorinq sayı × 100",
     weight: "20%",
     department: "Komplayens Monitoring",
     dataSource: "Monitoring planı, daxili aktlar",
@@ -575,7 +715,8 @@ const kpiCatalogData = [
     purpose: "MB və daxili rəhbərliyə hesabların vaxtında təmin olunması",
     method: "Faiz",
     period: "Rüblük",
-    formula: "Vaxtında təqdim olunmuş hesabatların sayı ÷ Ümumi hesabatların sayı × 100",
+    formula:
+      "Vaxtında təqdim olunmuş hesabatların sayı ÷ Ümumi hesabatların sayı × 100",
     weight: "20%",
     department: "Komplayens",
     dataSource: "MB hesabat sistemi",
@@ -603,9 +744,10 @@ const kpiCatalogData = [
     purpose: "Yüksək riskli halların dərhal reaksiya təmin olunması",
     method: "Gün / Saat",
     period: "Aylıq",
-    formula: "Pozuntu aşkarlandığı tarix - Reaksiyaya çatdırılma tarixi ÷ Orta müddət (gün/saat)",
+    formula:
+      "Pozuntu aşkarlandığı tarix - Reaksiyaya çatdırılma tarixi ÷ Orta müddət (gün/saat)",
     weight: "20%",
-    department: "Komplayens + Risk İdarəetməsi",
+    department: "Komplayens + Risklərin idarə edilməsi",
     dataSource: "Əskalasiya jurnalı, risk reyestri",
     status: "Aktiv",
     actual: 76,
@@ -631,7 +773,8 @@ const kpiCatalogData = [
     purpose: "MB təşəbbüslərinə uyğun vaxtında icra",
     method: "Say",
     period: "Aylıq",
-    formula: "Vaxtında təqdim olunmuş STR tarixi sayı ÷ Ümumi STR-lərin sayı × 100",
+    formula:
+      "Vaxtında təqdim olunmuş STR tarixi sayı ÷ Ümumi STR-lərin sayı × 100",
     weight: "20%",
     department: "ƏL/TMM Şöbə",
     dataSource: "STR təqdimati reyestri",
@@ -645,7 +788,8 @@ const kpiCatalogData = [
     purpose: "Müştəri məlumatlarının AML tələblərinə uyğun yoxlanması",
     method: "Say",
     period: "Aylıq",
-    formula: "Tam icra olunmuş KYC yoxlamaları ÷ Planlaşdırılan yoxlamalar × 100",
+    formula:
+      "Tam icra olunmuş KYC yoxlamaları ÷ Planlaşdırılan yoxlamalar × 100",
     weight: "20%",
     department: "Data Əməli Şöbəsi + ƏL/TMM",
     dataSource: "KYC sistemləri, daxili aktlar",
@@ -659,7 +803,8 @@ const kpiCatalogData = [
     purpose: "PEP və yüksək risk qruplarının izlənməsi",
     method: "Say",
     period: "Aylıq",
-    formula: "İzlənmiş yüksək riskli müştəri sayı ÷ Ümumi yüksək riskli müştəri sayı × 100",
+    formula:
+      "İzlənmiş yüksək riskli müştəri sayı ÷ Ümumi yüksək riskli müştəri sayı × 100",
     weight: "15%",
     department: "ƏL/TMM Şöbə",
     dataSource: "Risk reyestri, PEP bazası",
@@ -673,7 +818,8 @@ const kpiCatalogData = [
     purpose: "AML üzrə əməkdaşların maarifləndirməsi",
     method: "Say",
     period: "6 Ay / İllik",
-    formula: "Təlimə iştirak edən əməkdaşların sayı ÷ Ümumi əməkdaşların sayı × 100",
+    formula:
+      "Təlimə iştirak edən əməkdaşların sayı ÷ Ümumi əməkdaşların sayı × 100",
     weight: "20%",
     department: "HR + ƏL/TMM",
     dataSource: "Təlim protokolları",
@@ -689,7 +835,7 @@ const kpiCatalogData = [
     period: "Rüblük",
     formula: "Cari dövrdə qeydə alınan audit tapıntılarının sayı",
     weight: "15%",
-    department: "Daxili Audit + Komplayens",
+    department: "Nəzarət departamenti + Komplayens",
     dataSource: "Audit hesabatları",
     status: "Aktiv",
     actual: 87,
@@ -703,7 +849,7 @@ const kpiCatalogData = [
     period: "Rüblük",
     formula: "Yüksək riskli tapıntıların sayı",
     weight: "20%",
-    department: "Daxili Audit",
+    department: "Nəzarət departamenti",
     dataSource: "Audit hesabatları",
     status: "Aktiv",
     actual: 92,
@@ -717,7 +863,7 @@ const kpiCatalogData = [
     period: "Rüblük",
     formula: "Orta riskli tapıntıların sayı",
     weight: "10%",
-    department: "Daxili Audit",
+    department: "Nəzarət departamenti",
     dataSource: "Audit hesabatları",
     status: "Aktiv",
     actual: 84,
@@ -731,7 +877,7 @@ const kpiCatalogData = [
     period: "Rüblük",
     formula: "(Aradan qaldırılmış tapıntılar ÷ Ümumi tapıntılar) × 100",
     weight: "25%",
-    department: "Komplayens + Daxili Audit",
+    department: "Komplayens + Nəzarət departamenti",
     dataSource: "Tədbir planları, icra aktları",
     status: "Aktiv",
     actual: 79,
@@ -751,101 +897,135 @@ const kpiCatalogData = [
     actual: 86,
     target: 88,
   },
-]
+];
 
 const getHeatmapColor = (value) => {
-  if (value >= 90) return "#22c55e"
-  if (value >= 80) return "#eab308"
-  if (value >= 70) return "#f97316"
-  return "#ef4444"
-}
+  if (value >= 90) return "#22c55e";
+  if (value >= 80) return "#eab308";
+  if (value >= 70) return "#f97316";
+  return "#ef4444";
+};
 
 const ThreeDotsIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <circle cx="12" cy="12" r="1" />
     <circle cx="12" cy="5" r="1" />
     <circle cx="12" cy="19" r="1" />
   </svg>
-)
+);
 
 export default function KPIHomePage() {
-  const [activeTab, setActiveTab] = useState("overview")
-  const [expandedNodes, setExpandedNodes] = useState({})
-  const [isKPIModalOpen, setIsKPIModalOpen] = useState(false)
-  const [selectedBranch, setSelectedBranch] = useState(null)
-  const [selectedDepartment, setSelectedDepartment] = useState(null)
-  const [navigationLevel, setNavigationLevel] = useState("branches")
+  const [activeTab, setActiveTab] = useState("overview");
+  const [expandedNodes, setExpandedNodes] = useState({});
+  const [isKPIModalOpen, setIsKPIModalOpen] = useState(false);
+  const [selectedBranch, setSelectedBranch] = useState(null);
+  const [selectedDepartment, setSelectedDepartment] = useState(null);
+  const [selectedDivision, setSelectedDivision] = useState(null);
+  const [navigationLevel, setNavigationLevel] = useState("branches");
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   const toggleNode = (nodeId) => {
     setExpandedNodes((prev) => ({
       ...prev,
       [nodeId]: !prev[nodeId],
-    }))
-  }
+    }));
+  };
 
   const handleBranchClick = (branch) => {
-    setSelectedBranch(branch)
-    setNavigationLevel("departments")
-    setSelectedDepartment(null)
-  }
+    setSelectedBranch(branch);
+    setNavigationLevel("departments");
+    setSelectedDepartment(null);
+  };
 
   const handleDepartmentClick = (department) => {
-    setSelectedDepartment(department)
-    setNavigationLevel("divisions")
-  }
+    setSelectedDepartment(department);
+    setNavigationLevel("divisions");
+  };
+
+  const handleDivisionClick = (division) => {
+    setSelectedDivision(division);
+    setNavigationLevel("employees");
+  };
 
   const handleBackClick = () => {
-    if (navigationLevel === "divisions") {
-      setNavigationLevel("departments")
-      setSelectedDepartment(null)
+    if (navigationLevel === "employees") {
+      setNavigationLevel("divisions");
+      setSelectedDivision(null);
+    } else if (navigationLevel === "divisions") {
+      setNavigationLevel("departments");
+      setSelectedDepartment(null);
     } else if (navigationLevel === "departments") {
-      setNavigationLevel("branches")
-      setSelectedBranch(null)
+      setNavigationLevel("branches");
+      setSelectedBranch(null);
     }
-  }
+  };
+
+  const handleEmployeeProfileClick = (employee) => {
+    setSelectedEmployee(employee);
+  };
+
+  const handleBackFromEmployeeProfile = () => {
+    setSelectedEmployee(null);
+  };
+
+  const getStatusBadge = (status) => {
+    const statusConfig = {
+      "On-track": { color: "#22c55e", emoji: "🟢", text: "On-track" },
+      Risk: { color: "#eab308", emoji: "🟡", text: "Risk" },
+      Off: { color: "#ef4444", emoji: "🔴", text: "Off" },
+    };
+    return statusConfig[status] || statusConfig["Off"];
+  };
 
   const renderOrgNode = (node, level = 0, parentId = "", index = 0) => {
-    const nodeId = `${parentId}-${index}`
-    const isExpanded = expandedNodes[nodeId]
-    const hasChildren = node.children && node.children.length > 0
+    const nodeId = `${parentId}-${index}`;
+    const isExpanded = expandedNodes[nodeId];
+    const hasChildren = node.children && node.children.length > 0;
 
     const getNodeIcon = (type) => {
       switch (type) {
         case "branch":
-          return <BuildingIcon />
+          return <BuildingIcon />;
         case "management":
-          return <UsersIcon />
+          return <UsersIcon />;
         case "department":
-          return <BuildingIcon />
+          return <BuildingIcon />;
         case "division":
-          return <BuildingIcon />
+          return <BuildingIcon />;
         default:
-          return <UserIcon />
+          return <UserIcon />;
       }
-    }
+    };
 
     const getNodeClass = (type) => {
       switch (type) {
         case "branch":
-          return styles.branchNode
+          return styles.branchNode;
         case "management":
-          return styles.managementNode
+          return styles.managementNode;
         case "department":
-          return styles.departmentNode
+          return styles.departmentNode;
         case "division":
-          return styles.divisionNode
+          return styles.divisionNode;
         case "head":
-          return styles.headNode
+          return styles.headNode;
         case "chief":
-          return styles.chiefNode
+          return styles.chiefNode;
         case "leading":
-          return styles.leadingNode
+          return styles.leadingNode;
         case "intern":
-          return styles.internNode
+          return styles.internNode;
         default:
-          return styles.defaultNode
+          return styles.defaultNode;
       }
-    }
+    };
 
     return (
       <div key={nodeId} className={styles.orgNodeContainer}>
@@ -856,11 +1036,17 @@ export default function KPIHomePage() {
         >
           <div className={styles.nodeContent}>
             {hasChildren && (
-              <span className={styles.expandIcon}>{isExpanded ? <ChevronDownIcon /> : <ChevronRightIcon />}</span>
+              <span className={styles.expandIcon}>
+                {isExpanded ? <ChevronDownIcon /> : <ChevronRightIcon />}
+              </span>
             )}
             <span className={styles.nodeIcon}>{getNodeIcon(node.type)}</span>
             <span className={styles.nodeName}>{node.name}</span>
-            {node.canAssign && <span className={styles.permissionBadge}>Tapşırıq verə bilər</span>}
+            {node.canAssign && (
+              <span className={styles.permissionBadge}>
+                Tapşırıq verə bilər
+              </span>
+            )}
             {node.canControl && node.canControl.length > 0 && (
               <span className={styles.controlBadge}>Nəzarət edə bilər</span>
             )}
@@ -874,514 +1060,611 @@ export default function KPIHomePage() {
 
         {hasChildren && isExpanded && (
           <div className={styles.childNodes}>
-            {node.children.map((child, childIndex) => renderOrgNode(child, level + 1, nodeId, childIndex))}
+            {node.children.map((child, childIndex) =>
+              renderOrgNode(child, level + 1, nodeId, childIndex)
+            )}
           </div>
         )}
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>KPI İdarəetmə Sistemi</h1>
-        <div className={styles.headerActions}>
-          <button className={styles.exportButton}>
-            <DownloadIcon />
-            Export
-          </button>
-        </div>
-      </div>
+      {selectedEmployee ? (
+        <EmployeeKPIProfile
+          employee={selectedEmployee}
+          onBack={handleBackFromEmployeeProfile}
+        />
+      ) : (
+        <>
+          <div className={styles.header}>
+            <h1 className={styles.title}>KPI İdarəetmə Sistemi</h1>
+            <div className={styles.headerActions}>
+              <button className={styles.exportButton}>
+                <DownloadIcon />
+                Export
+              </button>
+            </div>
+          </div>
 
-      <div className={styles.tabs}>
-        <div className={styles.tabsList}>
-          <button
-            className={`${styles.tabsTrigger} ${activeTab === "overview" ? styles.active : ""}`}
-            onClick={() => setActiveTab("overview")}
-          >
-            Ümumi Baxış
-          </button>
-          <button
-            className={`${styles.tabsTrigger} ${activeTab === "catalog" ? styles.active : ""}`}
-            onClick={() => setActiveTab("catalog")}
-          >
-            KPI Kataloqu
-          </button>
-          <button
-            className={`${styles.tabsTrigger} ${activeTab === "structure" ? styles.active : ""}`}
-            onClick={() => setActiveTab("structure")}
-          >
-            Struktur Görünüşü
-          </button>
-          <button
-            className={`${styles.tabsTrigger} ${activeTab === "employee" ? styles.active : ""}`}
-            onClick={() => setActiveTab("employee")}
-          >
-            İşçi Görünüşü
-          </button>
-        </div>
-
-        {activeTab === "overview" && (
-          <div className={styles.tabContent}>
-            {/* Filters */}
-            <div className={styles.filters}>
-              <div className={styles.filterGroup}>
-                <FilterIcon />
-                <span>Filtrlər:</span>
-              </div>
-              <select className={styles.filterSelect}>
-                <option value="monthly">Aylıq</option>
-                <option value="quarterly">Rüblük</option>
-                <option value="yearly">İllik</option>
-              </select>
-              <select className={styles.filterSelect}>
-                <option value="all">Bütün Struktur</option>
-                <option value="branch">Filial</option>
-                <option value="department">Departament</option>
-                <option value="division">Şöbə</option>
-              </select>
-              <select className={styles.filterSelect}>
-                <option value="all">Bütün Modullar</option>
-                <option value="CE">CE</option>
-                <option value="MH">MH</option>
-                <option value="AML">AML</option>
-                <option value="AU">AU</option>
-              </select>
+          <div className={styles.tabs}>
+            <div className={styles.tabsList}>
+              <button
+                className={`${styles.tabsTrigger} ${
+                  activeTab === "overview" ? styles.active : ""
+                }`}
+                onClick={() => setActiveTab("overview")}
+              >
+                Ümumi Baxış
+              </button>
+              <button
+                className={`${styles.tabsTrigger} ${
+                  activeTab === "catalog" ? styles.active : ""
+                }`}
+                onClick={() => setActiveTab("catalog")}
+              >
+                KPI Siyahısı
+              </button>
+              <button
+                className={`${styles.tabsTrigger} ${
+                  activeTab === "structure" ? styles.active : ""
+                }`}
+                onClick={() => setActiveTab("structure")}
+              >
+                Struktur
+              </button>
+              <button
+                className={`${styles.tabsTrigger} ${
+                  activeTab === "employee" ? styles.active : ""
+                }`}
+                onClick={() => setActiveTab("employee")}
+              >
+                KPI Nəticələri
+              </button>
             </div>
 
-            {/* Summary Cards */}
-            <div className={styles.summaryCards}>
-              <div className={styles.summaryCard}>
-                <div className={styles.cardHeader}>
-                  <h3 className={styles.cardTitle}>Ümumi KPI</h3>
-                  <div className={styles.cardIcon}>
-                    <TargetIcon />
+            {activeTab === "overview" && (
+              <div className={styles.tabContent}>
+                {/* Filters */}
+                <div className={styles.filters}>
+                  <div className={styles.filterGroup}>
+                    <FilterIcon />
+                    <span>Filtrlər:</span>
                   </div>
+                  <select className={styles.filterSelect}>
+                    <option value="monthly">Aylıq</option>
+                    <option value="quarterly">Rüblük</option>
+                    <option value="yearly">İllik</option>
+                  </select>
+                  <select className={styles.filterSelect}>
+                    <option value="all">Bütün Struktur</option>
+                    <option value="branch">Filial</option>
+                    <option value="department">Departament</option>
+                    <option value="division">Şöbə</option>
+                  </select>
+                  <select className={styles.filterSelect}>
+                    <option value="all">Bütün Modullar</option>
+                    <option value="CE">CE</option>
+                    <option value="MH">MH</option>
+                    <option value="AML">AML</option>
+                    <option value="AU">AU</option>
+                  </select>
                 </div>
-                <div className={styles.cardContent}>
-                  <div className={styles.cardValue}>{summaryData.totalKPIs}</div>
-                  <div className={styles.cardSubtext}>Aktiv: {summaryData.activeKPIs}</div>
-                </div>
-              </div>
 
-              <div className={styles.summaryCard}>
-                <div className={styles.cardHeader}>
-                  <h3 className={styles.cardTitle}>SLA Gecikməsi</h3>
-                  <div className={styles.cardIcon}>
-                    <AlertTriangleIcon />
+                {/* Summary Cards */}
+                <div className={styles.summaryCards}>
+                  <div className={styles.summaryCard}>
+                    <div className={styles.cardHeader}>
+                      <h3 className={styles.cardTitle}>Ümumi KPI</h3>
+                      <div className={styles.cardIcon}>
+                        <TargetIcon />
+                      </div>
+                    </div>
+                    <div className={styles.cardContent}>
+                      <div className={styles.cardValue}>
+                        {summaryData.totalKPIs}
+                      </div>
+                      <div className={styles.cardSubtext}>
+                        Aktiv: {summaryData.activeKPIs}
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className={styles.cardContent}>
-                  <div className={styles.cardValue}>{summaryData.slaOverdue}</div>
-                  <div className={styles.cardSubtext}>KPI gecikib</div>
-                </div>
-              </div>
 
-              <div className={styles.summaryCard}>
-                <div className={styles.cardHeader}>
-                  <h3 className={styles.cardTitle}>Orta İcra %</h3>
-                  <div className={styles.cardIcon}>
-                    <TrendingUpIcon />
+                  <div className={styles.summaryCard}>
+                    <div className={styles.cardHeader}>
+                      <h3 className={styles.cardTitle}>SLA Gecikməsi</h3>
+                      <div className={styles.cardIcon}>
+                        <AlertTriangleIcon />
+                      </div>
+                    </div>
+                    <div className={styles.cardContent}>
+                      <div className={styles.cardValue}>
+                        {summaryData.slaOverdue}
+                      </div>
+                      <div className={styles.cardSubtext}>KPI gecikib</div>
+                    </div>
                   </div>
-                </div>
-                <div className={styles.cardContent}>
-                  <div className={styles.cardValue}>{summaryData.avgExecution}%</div>
-                  <div className={styles.cardSubtext}>Hədəf: {summaryData.targetAverage}%</div>
-                </div>
-              </div>
 
-              <div className={styles.summaryCard}>
-                <div className={styles.cardHeader}>
-                  <h3 className={styles.cardTitle}>Müqayisə</h3>
-                  <div className={styles.cardIcon}>
-                    <TrendingUpIcon />
+                  <div className={styles.summaryCard}>
+                    <div className={styles.cardHeader}>
+                      <h3 className={styles.cardTitle}>Orta İcra %</h3>
+                      <div className={styles.cardIcon}>
+                        <TrendingUpIcon />
+                      </div>
+                    </div>
+                    <div className={styles.cardContent}>
+                      <div className={styles.cardValue}>
+                        {summaryData.avgExecution}%
+                      </div>
+                      <div className={styles.cardSubtext}>
+                        Hədəf: {summaryData.targetAverage}%
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className={styles.cardContent}>
-                  <div className={styles.cardValue}>+{summaryData.deviation}%</div>
-                  <div className={styles.cardSubtext}>Hədəfdən yuxarı</div>
-                </div>
-              </div>
 
-              <div className={styles.summaryCard}>
-                <div className={styles.cardHeader}>
-                  <h3 className={styles.cardTitle}>Ən Riskli Modul</h3>
-                  <div className={styles.cardIcon}>
-                    <AlertTriangleIcon />
+                  <div className={styles.summaryCard}>
+                    <div className={styles.cardHeader}>
+                      <h3 className={styles.cardTitle}>Müqayisə</h3>
+                      <div className={styles.cardIcon}>
+                        <TrendingUpIcon />
+                      </div>
+                    </div>
+                    <div className={styles.cardContent}>
+                      <div className={styles.cardValue}>
+                        +{summaryData.deviation}%
+                      </div>
+                      <div className={styles.cardSubtext}>Hədəfdən yuxarı</div>
+                    </div>
                   </div>
                 </div>
-                <div className={styles.cardContent}>
-                  <div className={styles.cardValue}>{summaryData.riskiestModule}</div>
-                  <div className={styles.cardSubtext}>Diqqət tələb edir</div>
-                </div>
-              </div>
-            </div>
 
-            {/* Charts Section */}
-            <div className={styles.chartsSection}>
-              <div className={styles.chartContainer}>
-                <div className={styles.card}>
-                  <div className={styles.cardHeader}>
-                    <h3 className={styles.cardTitle}>Son 12 Ayda KPI Trend Xətti</h3>
+                {/* Charts Section */}
+                <div className={styles.chartsSection}>
+                  <div className={styles.chartContainer}>
+                    <div className={styles.card}>
+                      <div className={styles.cardHeader}>
+                        <h3 className={styles.cardTitle}>
+                          Son 12 Ayda KPI Trend Xətti
+                        </h3>
+                      </div>
+                      <div className={styles.cardContent}>
+                        <ResponsiveContainer width="100%" height={300}>
+                          <LineChart data={trendData}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="month" />
+                            <YAxis />
+                            <Tooltip />
+                            <Line
+                              type="monotone"
+                              dataKey="fakt"
+                              stroke="#0088FE"
+                              strokeWidth={2}
+                              name="Fakt"
+                            />
+                            <Line
+                              type="monotone"
+                              dataKey="target"
+                              stroke="#FF8042"
+                              strokeWidth={2}
+                              strokeDasharray="5 5"
+                              name="Hədəf"
+                            />
+                          </LineChart>
+                        </ResponsiveContainer>
+                      </div>
+                    </div>
                   </div>
-                  <div className={styles.cardContent}>
-                    <ResponsiveContainer width="100%" height={300}>
-                      <LineChart data={trendData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="month" />
-                        <YAxis />
-                        <Tooltip />
-                        <Line type="monotone" dataKey="fakt" stroke="#0088FE" strokeWidth={2} name="Fakt" />
-                        <Line
-                          type="monotone"
-                          dataKey="target"
-                          stroke="#FF8042"
-                          strokeWidth={2}
-                          strokeDasharray="5 5"
-                          name="Hədəf"
-                        />
-                      </LineChart>
-                    </ResponsiveContainer>
-                  </div>
-                </div>
-              </div>
 
-              <div className={styles.chartContainer}>
-                <div className={styles.card}>
-                  <div className={styles.cardHeader}>
-                    <h3 className={styles.cardTitle}>Modul Payı (Çəkiyə görə)</h3>
-                  </div>
-                  <div className={styles.cardContent}>
-                    <ResponsiveContainer width="100%" height={300}>
-                      <PieChart>
-                        <Pie
-                          data={moduleData}
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={60}
-                          outerRadius={100}
-                          paddingAngle={5}
-                          dataKey="value"
-                        >
-                          {moduleData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} />
+                  <div className={styles.chartContainer}>
+                    <div className={styles.card}>
+                      <div className={styles.cardHeader}>
+                        <h3 className={styles.cardTitle}>
+                          Modul Payı (Çəkiyə görə)
+                        </h3>
+                      </div>
+                      <div className={styles.cardContent}>
+                        <ResponsiveContainer width="100%" height={300}>
+                          <PieChart>
+                            <Pie
+                              data={moduleData}
+                              cx="50%"
+                              cy="50%"
+                              innerRadius={60}
+                              outerRadius={100}
+                              paddingAngle={5}
+                              dataKey="value"
+                            >
+                              {moduleData.map((entry, index) => (
+                                <Cell
+                                  key={`cell-${index}`}
+                                  fill={entry.color}
+                                />
+                              ))}
+                            </Pie>
+                            <Tooltip />
+                          </PieChart>
+                        </ResponsiveContainer>
+                        <div className={styles.pieChartLegend}>
+                          {moduleData.map((item, index) => (
+                            <div key={index} className={styles.legendItem}>
+                              <div
+                                className={styles.legendColor}
+                                style={{ backgroundColor: item.color }}
+                              ></div>
+                              <span>
+                                {item.name}: {item.value}%
+                              </span>
+                            </div>
                           ))}
-                        </Pie>
-                        <Tooltip />
-                      </PieChart>
-                    </ResponsiveContainer>
-                    <div className={styles.pieChartLegend}>
-                      {moduleData.map((item, index) => (
-                        <div key={index} className={styles.legendItem}>
-                          <div className={styles.legendColor} style={{ backgroundColor: item.color }}></div>
-                          <span>
-                            {item.name}: {item.value}%
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Heatmap */}
-            <div className={styles.heatmapSection}>
-              <div className={styles.card}>
-                <div className={styles.cardHeader}>
-                  <h3 className={styles.cardTitle}>Filial × Ay üzrə İcra Faizi (Heatmap)</h3>
-                </div>
-                <div className={styles.cardContent}>
-                  <div className={styles.heatmap}>
-                    <div className={styles.heatmapHeader}>
-                      <div className={styles.heatmapCell}>Filial</div>
-                      <div className={styles.heatmapCell}>Yanvar</div>
-                      <div className={styles.heatmapCell}>Fevral</div>
-                      <div className={styles.heatmapCell}>Mart</div>
-                      <div className={styles.heatmapCell}>Aprel</div>
-                      <div className={styles.heatmapCell}>May</div>
-                    </div>
-                    {heatmapData.map((row, index) => (
-                      <div key={index} className={styles.heatmapRow}>
-                        <div className={styles.heatmapCell}>{row.branch}</div>
-                        <div
-                          className={styles.heatmapCell}
-                          style={{ backgroundColor: getHeatmapColor(row.jan), color: "white" }}
-                        >
-                          {row.jan}%
-                        </div>
-                        <div
-                          className={styles.heatmapCell}
-                          style={{ backgroundColor: getHeatmapColor(row.feb), color: "white" }}
-                        >
-                          {row.feb}%
-                        </div>
-                        <div
-                          className={styles.heatmapCell}
-                          style={{ backgroundColor: getHeatmapColor(row.mar), color: "white" }}
-                        >
-                          {row.mar}%
-                        </div>
-                        <div
-                          className={styles.heatmapCell}
-                          style={{ backgroundColor: getHeatmapColor(row.apr), color: "white" }}
-                        >
-                          {row.apr}%
-                        </div>
-                        <div
-                          className={styles.heatmapCell}
-                          style={{ backgroundColor: getHeatmapColor(row.may), color: "white" }}
-                        >
-                          {row.may}%
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Lists */}
-            <div className={styles.bottomLists}>
-              <div className={styles.listCard}>
-                <div className={styles.cardHeader}>
-                  <h3 className={styles.listTitle}>
-                    <AlertTriangleIcon />
-                    Kritik KPI-lar
-                  </h3>
-                </div>
-                <div className={styles.cardContent}>
-                  <div className={styles.listContainer}>
-                    {criticalKPIs.map((kpi, index) => (
-                      <div key={index} className={styles.listItem}>
-                        <div className={styles.listItemHeader}>
-                          <span className={styles.badgeDestructive}>{kpi.code}</span>
-                          <span className={styles.executionBadge}>
-                            {kpi.execution}% / {kpi.target}%
-                          </span>
-                        </div>
-                        <div className={styles.listItemContent}>
-                          <div className={styles.kpiName}>{kpi.name}</div>
-                          <div className={styles.responsible}>Məsul: {kpi.responsible}</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles.listCard}>
-                <div className={styles.cardHeader}>
-                  <h3 className={styles.listTitle}>
-                    <TrophyIcon />
-                    Top KPI-lar
-                  </h3>
-                </div>
-                <div className={styles.cardContent}>
-                  <div className={styles.listContainer}>
-                    {topKPIs.map((kpi, index) => (
-                      <div key={index} className={styles.listItem}>
-                        <div className={styles.listItemHeader}>
-                          <span className={styles.badgeSecondary}>{kpi.code}</span>
-                          <span className={styles.executionBadge}>
-                            {kpi.execution}% / {kpi.target}%
-                          </span>
-                        </div>
-                        <div className={styles.listItemContent}>
-                          <div className={styles.kpiName}>{kpi.name}</div>
-                          <div className={styles.weight}>Çəki: {kpi.weight}%</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles.listCard}>
-                <div className={styles.cardHeader}>
-                  <h3 className={styles.listTitle}>
-                    <UsersIcon />
-                    Məsul Şəxslər Leaderboard
-                  </h3>
-                </div>
-                <div className={styles.cardContent}>
-                  <div className={styles.listContainer}>
-                    {leaderboard.map((person, index) => (
-                      <div key={index} className={styles.listItem}>
-                        <div className={styles.listItemHeader}>
-                          <span className={styles.personName}>{person.name}</span>
-                          <span
-                            className={`${styles.badge} ${person.delays > 3 ? styles.badgeDestructive : person.delays > 1 ? styles.badgeSecondary : styles.badgeDefault}`}
-                          >
-                            {person.delays} gecikme
-                          </span>
-                        </div>
-                        <div className={styles.listItemContent}>
-                          <div className={styles.department}>{person.department}</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {activeTab === "catalog" && (
-          <div className={styles.tabContent}>
-            <div className={styles.card}>
-              <div className={styles.cardHeader}>
-                <h3 className={styles.cardTitle}>KPI Kataloqu</h3>
-                <div className={styles.catalogActions}>
-                  <div className={styles.searchContainer}>
-                    <SearchIcon />
-                    <input placeholder="KPI kodu və ya adı ilə axtarın..." className={styles.searchInput} />
-                  </div>
-                  <button className={styles.primaryButton} onClick={() => setIsKPIModalOpen(true)}>
-                    Yeni KPI
-                  </button>
-                  <button className={styles.outlineButton}>
-                    <DownloadIcon />
-                    Export
-                  </button>
-                </div>
-              </div>
-              <div className={styles.cardContent}>
-                <div className={styles.cleanTableContainer}>
-                  <table className={styles.cleanTable}>
-                    <thead>
-                      <tr>
-                        <th>KPI Kodu</th>
-                        <th>KPI Adı</th>
-                        <th>Məqsəd</th>
-                        <th>Ölçü Metodu</th>
-                        <th>Müddət</th>
-                        <th>Hesablama Formulası</th>
-                        <th>Çəki (%)</th>
-                        <th>Məsul Şöbə</th>
-                        <th>Data Mənbə</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {kpiCatalogData.map((kpi, index) => (
-                        <tr key={index}>
-                          <td>{kpi.code}</td>
-                          <td>{kpi.name}</td>
-                          <td>{kpi.purpose}</td>
-                          <td>{kpi.method}</td>
-                          <td>{kpi.period}</td>
-                          <td>{kpi.formula}</td>
-                          <td>{kpi.weight}</td>
-                          <td>{kpi.department}</td>
-                          <td>{kpi.dataSource}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {activeTab === "structure" && (
-          <div className={styles.tabContent}>
-            <div className={styles.card}>
-              <div className={styles.cardHeader}>
-                <h3 className={styles.cardTitle}>Təşkilati Struktur</h3>
-                <p className={styles.cardDescription}>Hierarkik təşkilat strukturu və səlahiyyət axını</p>
-              </div>
-              <div className={styles.cardContent}>
-                <div className={styles.simpleOrgChart}>
-                  <div className={styles.orgLevel}>
-                    <div className={styles.orgNode}>
-                      <span>Yeni Filial</span>
                     </div>
-                    <div className={styles.orgConnector}>↓</div>
                   </div>
+                </div>
 
-                  <div className={styles.orgLevel}>
-                    <div className={styles.orgNode}>
-                      <span>İdarə Heyyəti</span>
+                {/* Heatmap */}
+                <div className={styles.heatmapSection}>
+                  <div className={styles.card}>
+                    <div className={styles.cardHeader}>
+                      <h3 className={styles.cardTitle}>
+                        Filial × Ay üzrə İcra Faizi (Heatmap)
+                      </h3>
                     </div>
-                    <div className={styles.orgConnector}>↓</div>
-                  </div>
-
-                  <div className={styles.orgLevel}>
-                    <div className={styles.orgNode}>
-                      <span>Komplayens Departamenti</span>
+                    <div className={styles.cardContent}>
+                      <div className={styles.heatmap}>
+                        <div className={styles.heatmapHeader}>
+                          <div className={styles.heatmapCell}>Filial</div>
+                          <div className={styles.heatmapCell}>Yanvar</div>
+                          <div className={styles.heatmapCell}>Fevral</div>
+                          <div className={styles.heatmapCell}>Mart</div>
+                          <div className={styles.heatmapCell}>Aprel</div>
+                          <div className={styles.heatmapCell}>May</div>
+                        </div>
+                        {heatmapData.map((row, index) => (
+                          <div key={index} className={styles.heatmapRow}>
+                            <div className={styles.heatmapCell}>
+                              {row.branch}
+                            </div>
+                            <div
+                              className={styles.heatmapCell}
+                              style={{
+                                backgroundColor: getHeatmapColor(row.jan),
+                                color: "white",
+                              }}
+                            >
+                              {row.jan}%
+                            </div>
+                            <div
+                              className={styles.heatmapCell}
+                              style={{
+                                backgroundColor: getHeatmapColor(row.feb),
+                                color: "white",
+                              }}
+                            >
+                              {row.feb}%
+                            </div>
+                            <div
+                              className={styles.heatmapCell}
+                              style={{
+                                backgroundColor: getHeatmapColor(row.mar),
+                                color: "white",
+                              }}
+                            >
+                              {row.mar}%
+                            </div>
+                            <div
+                              className={styles.heatmapCell}
+                              style={{
+                                backgroundColor: getHeatmapColor(row.apr),
+                                color: "white",
+                              }}
+                            >
+                              {row.apr}%
+                            </div>
+                            <div
+                              className={styles.heatmapCell}
+                              style={{
+                                backgroundColor: getHeatmapColor(row.may),
+                                color: "white",
+                              }}
+                            >
+                              {row.may}%
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className={styles.orgConnector}>↓</div>
+                  </div>
+                </div>
+
+                {/* Bottom Lists */}
+                <div className={styles.bottomLists}>
+                  <div className={styles.listCard}>
+                    <div className={styles.cardHeader}>
+                      <h3 className={styles.listTitle}>
+                        <AlertTriangleIcon />
+                        Kritik KPI-lar
+                      </h3>
+                    </div>
+                    <div className={styles.cardContent}>
+                      <div className={styles.listContainer}>
+                        {criticalKPIs.map((kpi, index) => (
+                          <div key={index} className={styles.listItem}>
+                            <div className={styles.listItemHeader}>
+                              <span className={styles.badgeDestructive}>
+                                {kpi.code}
+                              </span>
+                              <span className={styles.executionBadge}>
+                                {kpi.execution}% / {kpi.target}%
+                              </span>
+                            </div>
+                            <div className={styles.listItemContent}>
+                              <div className={styles.kpiName}>{kpi.name}</div>
+                              <div className={styles.responsible}>
+                                Məsul: {kpi.responsible}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
 
-                  <div className={styles.orgLevel}>
-                    <div className={styles.orgBranches}>
-                      <div className={styles.orgBranch}>
+                  <div className={styles.listCard}>
+                    <div className={styles.cardHeader}>
+                      <h3 className={styles.listTitle}>
+                        <TrophyIcon />
+                        Top KPI-lar
+                      </h3>
+                    </div>
+                    <div className={styles.cardContent}>
+                      <div className={styles.listContainer}>
+                        {topKPIs.map((kpi, index) => (
+                          <div key={index} className={styles.listItem}>
+                            <div className={styles.listItemHeader}>
+                              <span className={styles.badgeSecondary}>
+                                {kpi.code}
+                              </span>
+                              <span className={styles.executionBadge}>
+                                {kpi.execution}% / {kpi.target}%
+                              </span>
+                            </div>
+                            <div className={styles.listItemContent}>
+                              <div className={styles.kpiName}>{kpi.name}</div>
+                              <div className={styles.weight}>
+                                Çəki: {kpi.weight}%
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className={styles.listCard}>
+                    <div className={styles.cardHeader}>
+                      <h3 className={styles.listTitle}>
+                        <UsersIcon />
+                        Məsul Şəxslər Leaderboard
+                      </h3>
+                    </div>
+                    <div className={styles.cardContent}>
+                      <div className={styles.listContainer}>
+                        {leaderboard.map((person, index) => (
+                          <div key={index} className={styles.listItem}>
+                            <div className={styles.listItemHeader}>
+                              <span className={styles.personName}>
+                                {person.name}
+                              </span>
+                              <span
+                                className={`${styles.badge} ${
+                                  person.delays > 3
+                                    ? styles.badgeDestructive
+                                    : person.delays > 1
+                                    ? styles.badgeSecondary
+                                    : styles.badgeDefault
+                                }`}
+                              >
+                                {person.delays} gecikme
+                              </span>
+                            </div>
+                            <div className={styles.listItemContent}>
+                              <div className={styles.department}>
+                                {person.department}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === "catalog" && (
+              <div className={styles.tabContent}>
+                <div className={styles.card}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={styles.cardTitle}>KPI Kataloqu</h3>
+                    <div className={styles.catalogActions}>
+                      <div className={styles.searchContainer}>
+                        <SearchIcon />
+                        <input
+                          placeholder="KPI kodu və ya adı ilə axtarın..."
+                          className={styles.searchInput}
+                        />
+                      </div>
+                      <button
+                        className={styles.primaryButton}
+                        onClick={() => setIsKPIModalOpen(true)}
+                      >
+                        Yeni KPI
+                      </button>
+                      <button className={styles.outlineButton}>
+                        <DownloadIcon />
+                        Export
+                      </button>
+                    </div>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <div className={styles.cleanTableContainer}>
+                      <table className={styles.cleanTable}>
+                        <thead>
+                          <tr>
+                            <th>KPI Kodu</th>
+                            <th>KPI Adı</th>
+                            <th>Məqsəd</th>
+                            <th>Ölçü Metodu</th>
+                            <th>Müddət</th>
+                            <th>Hesablama Formulası</th>
+                            <th>Çəki (%)</th>
+                            <th>Məsul Şöbə</th>
+                            <th>Data Mənbə</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {kpiCatalogData.map((kpi, index) => (
+                            <tr key={index}>
+                              <td>{kpi.code}</td>
+                              <td>{kpi.name}</td>
+                              <td>{kpi.purpose}</td>
+                              <td>{kpi.method}</td>
+                              <td>{kpi.period}</td>
+                              <td>{kpi.formula}</td>
+                              <td>{kpi.weight}</td>
+                              <td>{kpi.department}</td>
+                              <td>{kpi.dataSource}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === "structure" && (
+              <div className={styles.tabContent}>
+                <div className={styles.card}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={styles.cardTitle}>Təşkilati Struktur</h3>
+                    <p className={styles.cardDescription}>
+                      Hierarkik təşkilat strukturu və səlahiyyət axını
+                    </p>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <div className={styles.simpleOrgChart}>
+                      <div className={styles.orgLevel}>
                         <div className={styles.orgNode}>
-                          <span>ƏL/TMM Şöbəsi</span>
+                          <span>Yeni Filial</span>
                         </div>
-                        <div className={styles.orgHierarchy}>
-                          <div className={styles.hierarchyItem}>
-                            <span>Şöbə Rəisi</span>
-                            <div className={styles.hierarchyConnector}>↓</div>
-                          </div>
-                          <div className={styles.hierarchyItem}>
-                            <span>Baş Mütəxəssis</span>
-                            <div className={styles.hierarchyConnector}>↓</div>
-                          </div>
-                          <div className={styles.hierarchyItem}>
-                            <span>Aparıcı Mütəxəssis</span>
-                            <div className={styles.hierarchyConnector}>↓</div>
-                          </div>
-                          <div className={styles.hierarchyItem}>
-                            <span>İntern</span>
-                          </div>
-                        </div>
+                        <div className={styles.orgConnector}>↓</div>
                       </div>
 
-                      <div className={styles.orgBranch}>
+                      <div className={styles.orgLevel}>
                         <div className={styles.orgNode}>
-                          <span>Risk İdarəetməsi Şöbəsi</span>
+                          <span>İdarə Heyyəti</span>
                         </div>
-                        <div className={styles.orgHierarchy}>
-                          <div className={styles.hierarchyItem}>
-                            <span>Şöbə Rəisi</span>
-                            <div className={styles.hierarchyConnector}>↓</div>
-                          </div>
-                          <div className={styles.hierarchyItem}>
-                            <span>Baş Mütəxəssis</span>
-                            <div className={styles.hierarchyConnector}>↓</div>
-                          </div>
-                          <div className={styles.hierarchyItem}>
-                            <span>Aparıcı Mütəxəssis</span>
-                            <div className={styles.hierarchyConnector}>↓</div>
-                          </div>
-                          <div className={styles.hierarchyItem}>
-                            <span>İntern</span>
-                          </div>
-                        </div>
+                        <div className={styles.orgConnector}>↓</div>
                       </div>
 
-                      <div className={styles.orgBranch}>
+                      <div className={styles.orgLevel}>
                         <div className={styles.orgNode}>
-                          <span>Daxili Audit Şöbəsi</span>
+                          <span>Komplayens Departamenti</span>
                         </div>
-                        <div className={styles.orgHierarchy}>
-                          <div className={styles.hierarchyItem}>
-                            <span>Şöbə Rəisi</span>
-                            <div className={styles.hierarchyConnector}>↓</div>
+                        <div className={styles.orgConnector}>↓</div>
+                      </div>
+
+                      <div className={styles.orgLevel}>
+                        <div className={styles.orgBranches}>
+                          <div className={styles.orgBranch}>
+                            <div className={styles.orgNode}>
+                              <span>ƏL/TMM Şöbəsi</span>
+                            </div>
+                            <div className={styles.orgHierarchy}>
+                              <div className={styles.hierarchyItem}>
+                                <span>Şöbə Rəisi</span>
+                                <div className={styles.hierarchyConnector}>
+                                  ↓
+                                </div>
+                              </div>
+                              <div className={styles.hierarchyItem}>
+                                <span>Baş Mütəxəssis</span>
+                                <div className={styles.hierarchyConnector}>
+                                  ↓
+                                </div>
+                              </div>
+                              <div className={styles.hierarchyItem}>
+                                <span>Aparıcı Mütəxəssis</span>
+                                <div className={styles.hierarchyConnector}>
+                                  ↓
+                                </div>
+                              </div>
+                              <div className={styles.hierarchyItem}>
+                                <span>İntern</span>
+                              </div>
+                            </div>
                           </div>
-                          <div className={styles.hierarchyItem}>
-                            <span>Baş Mütəxəssis</span>
-                            <div className={styles.hierarchyConnector}>↓</div>
+
+                          <div className={styles.orgBranch}>
+                            <div className={styles.orgNode}>
+                              <span>MEŞ / Hesabatlıq şöbəsi</span>
+                            </div>
+                            <div className={styles.orgHierarchy}>
+                              <div className={styles.hierarchyItem}>
+                                <span>Şöbə Rəisi</span>
+                                <div className={styles.hierarchyConnector}>
+                                  ↓
+                                </div>
+                              </div>
+                              <div className={styles.hierarchyItem}>
+                                <span>Baş Mütəxəssis</span>
+                                <div className={styles.hierarchyConnector}>
+                                  ↓
+                                </div>
+                              </div>
+                              <div className={styles.hierarchyItem}>
+                                <span>Aparıcı Mütəxəssis</span>
+                                <div className={styles.hierarchyConnector}>
+                                  ↓
+                                </div>
+                              </div>
+                              <div className={styles.hierarchyItem}>
+                                <span>İntern</span>
+                              </div>
+                            </div>
                           </div>
-                          <div className={styles.hierarchyItem}>
-                            <span>Aparıcı Mütəxəssis</span>
-                            <div className={styles.hierarchyConnector}>↓</div>
-                          </div>
-                          <div className={styles.hierarchyItem}>
-                            <span>İntern</span>
+
+                          <div className={styles.orgBranch}>
+                            <div className={styles.orgNode}>
+                              <span>Komplayens Monitorinq Şöbəsi</span>
+                            </div>
+                            <div className={styles.orgHierarchy}>
+                              <div className={styles.hierarchyItem}>
+                                <span>Şöbə Rəisi</span>
+                                <div className={styles.hierarchyConnector}>
+                                  ↓
+                                </div>
+                              </div>
+                              <div className={styles.hierarchyItem}>
+                                <span>Baş Mütəxəssis</span>
+                                <div className={styles.hierarchyConnector}>
+                                  ↓
+                                </div>
+                              </div>
+                              <div className={styles.hierarchyItem}>
+                                <span>Aparıcı Mütəxəssis</span>
+                                <div className={styles.hierarchyConnector}>
+                                  ↓
+                                </div>
+                              </div>
+                              <div className={styles.hierarchyItem}>
+                                <span>İntern</span>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1389,197 +1672,581 @@ export default function KPIHomePage() {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        )}
+            )}
 
-        {activeTab === "employee" && (
-          <div className={styles.tabContent}>
-            <div className={styles.branchesSection}>
-              {/* Navigation breadcrumb */}
-              <div className={styles.breadcrumb}>
-                <button
-                  className={styles.breadcrumbItem}
-                  onClick={() => {
-                    setNavigationLevel("branches")
-                    setSelectedBranch(null)
-                    setSelectedDepartment(null)
-                  }}
-                >
-                  Filiallar
-                </button>
-                {selectedBranch && (
-                  <>
-                    <span className={styles.breadcrumbSeparator}>›</span>
+            {activeTab === "employee" && (
+              <div className={styles.tabContent}>
+                <div className={styles.branchesSection}>
+                  {/* Navigation breadcrumb */}
+                  <div className={styles.breadcrumb}>
                     <button
                       className={styles.breadcrumbItem}
                       onClick={() => {
-                        setNavigationLevel("departments")
-                        setSelectedDepartment(null)
+                        setNavigationLevel("branches");
+                        setSelectedBranch(null);
+                        setSelectedDepartment(null);
+                        setSelectedDivision(null);
                       }}
                     >
-                      {selectedBranch.name}
+                      Filiallar
                     </button>
-                  </>
-                )}
-                {selectedDepartment && (
-                  <>
-                    <span className={styles.breadcrumbSeparator}>›</span>
-                    <span className={styles.breadcrumbCurrent}>{selectedDepartment.name}</span>
-                  </>
-                )}
-              </div>
-
-              {/* Branches List */}
-              {navigationLevel === "branches" && (
-                <div className={styles.card}>
-                  <div className={styles.cardHeader}>
-                    <h3 className={styles.cardTitle}>Filiallar Siyahısı</h3>
-                  </div>
-                  <div className={styles.cardContent}>
-                    <div className={styles.branchGrid}>
-                      {branchesData.map((branch, index) => (
-                        <div key={index} className={styles.branchCard} onClick={() => handleBranchClick(branch)}>
-                          <div className={styles.branchHeader}>
-                            <h3 className={styles.branchName}>{branch.name}</h3>
-                            <button className={styles.menuButton}>
-                              <ThreeDotsIcon />
-                            </button>
-                          </div>
-                          <div className={styles.branchStats}>
-                            <div className={styles.statItem}>
-                              <span className={styles.statLabel}>Departament sayı:</span>
-                              <span className={styles.statValue}>{branch.departments}</span>
-                            </div>
-                            <div className={styles.statItem}>
-                              <span className={styles.statLabel}>Şöbə sayı:</span>
-                              <span className={styles.statValue}>{branch.divisions}</span>
-                            </div>
-                            <div className={styles.statItem}>
-                              <span className={styles.statLabel}>İşçi sayı:</span>
-                              <span className={styles.statValue}>{branch.employees}</span>
-                            </div>
-                          </div>
-                          <div className={styles.branchPerformance}>
-                            <div className={styles.progressBar}>
-                              <div
-                                className={styles.progressFill}
-                                style={{
-                                  width: `${branch.performance}%`,
-                                  backgroundColor: branch.color,
-                                }}
-                              ></div>
-                            </div>
-                            <span className={styles.performanceText}>{branch.performance}%</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Departments List */}
-              {navigationLevel === "departments" && selectedBranch && (
-                <div className={styles.card}>
-                  <div className={styles.cardHeader}>
-                    <h3 className={styles.cardTitle}>{selectedBranch.name} - Departamentlər</h3>
-                    <button className={styles.backButton} onClick={handleBackClick}>
-                      ← Geri
-                    </button>
-                  </div>
-                  <div className={styles.cardContent}>
-                    <div className={styles.branchGrid}>
-                      {departmentsData[selectedBranch.name]?.map((department, index) => (
-                        <div
-                          key={index}
-                          className={styles.branchCard}
-                          onClick={() => handleDepartmentClick(department)}
+                    {selectedBranch && (
+                      <>
+                        <span className={styles.breadcrumbSeparator}>›</span>
+                        <button
+                          className={styles.breadcrumbItem}
+                          onClick={() => {
+                            setNavigationLevel("departments");
+                            setSelectedDepartment(null);
+                            setSelectedDivision(null);
+                          }}
                         >
-                          <div className={styles.branchHeader}>
-                            <h3 className={styles.branchName}>{department.name}</h3>
-                            <button className={styles.menuButton}>
-                              <ThreeDotsIcon />
-                            </button>
-                          </div>
-                          <div className={styles.branchStats}>
-                            <div className={styles.statItem}>
-                              <span className={styles.statLabel}>Şöbə sayı:</span>
-                              <span className={styles.statValue}>{department.divisions}</span>
-                            </div>
-                            <div className={styles.statItem}>
-                              <span className={styles.statLabel}>İşçi sayı:</span>
-                              <span className={styles.statValue}>{department.employees}</span>
-                            </div>
-                          </div>
-                          <div className={styles.branchPerformance}>
-                            <div className={styles.progressBar}>
-                              <div
-                                className={styles.progressFill}
-                                style={{
-                                  width: `${department.performance}%`,
-                                  backgroundColor: "#996f29",
-                                }}
-                              ></div>
-                            </div>
-                            <span className={styles.performanceText}>{department.performance}%</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                          {selectedBranch.name}
+                        </button>
+                      </>
+                    )}
+                    {selectedDepartment && (
+                      <>
+                        <span className={styles.breadcrumbSeparator}>›</span>
+                        <button
+                          className={styles.breadcrumbItem}
+                          onClick={() => {
+                            setNavigationLevel("divisions");
+                            setSelectedDivision(null);
+                          }}
+                        >
+                          {selectedDepartment.name}
+                        </button>
+                      </>
+                    )}
+                    {selectedDivision && (
+                      <>
+                        <span className={styles.breadcrumbSeparator}>›</span>
+                        <span className={styles.breadcrumbCurrent}>
+                          {selectedDivision.name}
+                        </span>
+                      </>
+                    )}
                   </div>
-                </div>
-              )}
 
-              {/* Divisions List */}
-              {navigationLevel === "divisions" && selectedDepartment && (
-                <div className={styles.card}>
-                  <div className={styles.cardHeader}>
-                    <h3 className={styles.cardTitle}>{selectedDepartment.name} - Şöbələr</h3>
-                    <button className={styles.backButton} onClick={handleBackClick}>
-                      ← Geri
-                    </button>
-                  </div>
-                  <div className={styles.cardContent}>
-                    <div className={styles.branchGrid}>
-                      {divisionsData[selectedDepartment.name]?.map((division, index) => (
-                        <div key={index} className={styles.branchCard}>
-                          <div className={styles.branchHeader}>
-                            <h3 className={styles.branchName}>{division.name}</h3>
-                            <button className={styles.menuButton}>
-                              <ThreeDotsIcon />
-                            </button>
-                          </div>
-                          <div className={styles.branchStats}>
-                            <div className={styles.statItem}>
-                              <span className={styles.statLabel}>İşçi sayı:</span>
-                              <span className={styles.statValue}>{division.employees}</span>
+                  {/* Branches List */}
+                  {navigationLevel === "branches" && (
+                    <div className={styles.card}>
+                      <div className={styles.cardHeader}>
+                        <h3 className={styles.cardTitle}>Filiallar Siyahısı</h3>
+                      </div>
+                      <div className={styles.cardContent}>
+                        <div className={styles.branchGrid}>
+                          {branchesData.map((branch, index) => (
+                            <div
+                              key={index}
+                              className={styles.branchCard}
+                              onClick={() => handleBranchClick(branch)}
+                            >
+                              <div className={styles.branchHeader}>
+                                <h3 className={styles.branchName}>
+                                  {branch.name}
+                                </h3>
+                                <button className={styles.menuButton}>
+                                  <ThreeDotsIcon />
+                                </button>
+                              </div>
+                              <div className={styles.branchStats}>
+                                <div className={styles.statItem}>
+                                  <span className={styles.statLabel}>
+                                    Departament sayı:
+                                  </span>
+                                  <span className={styles.statValue}>
+                                    {branch.departments}
+                                  </span>
+                                </div>
+                                <div className={styles.statItem}>
+                                  <span className={styles.statLabel}>
+                                    Şöbə sayı:
+                                  </span>
+                                  <span className={styles.statValue}>
+                                    {branch.divisions}
+                                  </span>
+                                </div>
+                                <div className={styles.statItem}>
+                                  <span className={styles.statLabel}>
+                                    İşçi sayı:
+                                  </span>
+                                  <span className={styles.statValue}>
+                                    {branch.employees}
+                                  </span>
+                                </div>
+                              </div>
+                              <div className={styles.branchPerformance}>
+                                <div className={styles.progressBar}>
+                                  <div
+                                    className={styles.progressFill}
+                                    style={{
+                                      width: `${branch.performance}%`,
+                                      backgroundColor: branch.color,
+                                    }}
+                                  ></div>
+                                </div>
+                                <span className={styles.performanceText}>
+                                  {branch.performance}%
+                                </span>
+                              </div>
                             </div>
-                          </div>
-                          <div className={styles.branchPerformance}>
-                            <div className={styles.progressBar}>
-                              <div
-                                className={styles.progressFill}
-                                style={{
-                                  width: `${division.performance}%`,
-                                  backgroundColor: "#996f29",
-                                }}
-                              ></div>
-                            </div>
-                            <span className={styles.performanceText}>{division.performance}%</span>
-                          </div>
+                          ))}
                         </div>
-                      ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
+
+                  {/* Departments List */}
+                  {navigationLevel === "departments" && selectedBranch && (
+                    <div className={styles.card}>
+                      <div className={styles.cardHeader}>
+                        <h3 className={styles.cardTitle}>
+                          {selectedBranch.name} - Departamentlər
+                        </h3>
+                        <button
+                          className={styles.backButton}
+                          onClick={handleBackClick}
+                        >
+                          ← Geri
+                        </button>
+                      </div>
+                      <div className={styles.cardContent}>
+                        <div className={styles.branchGrid}>
+                          {departmentsData[selectedBranch.name]?.map(
+                            (department, index) => (
+                              <div
+                                key={index}
+                                className={styles.branchCard}
+                                onClick={() =>
+                                  handleDepartmentClick(department)
+                                }
+                              >
+                                <div className={styles.branchHeader}>
+                                  <h3 className={styles.branchName}>
+                                    {department.name}
+                                  </h3>
+                                  <button className={styles.menuButton}>
+                                    <ThreeDotsIcon />
+                                  </button>
+                                </div>
+                                <div className={styles.branchStats}>
+                                  <div className={styles.statItem}>
+                                    <span className={styles.statLabel}>
+                                      Şöbə sayı:
+                                    </span>
+                                    <span className={styles.statValue}>
+                                      {department.divisions}
+                                    </span>
+                                  </div>
+                                  <div className={styles.statItem}>
+                                    <span className={styles.statLabel}>
+                                      İşçi sayı:
+                                    </span>
+                                    <span className={styles.statValue}>
+                                      {department.employees}
+                                    </span>
+                                  </div>
+                                </div>
+                                <div className={styles.branchPerformance}>
+                                  <div className={styles.progressBar}>
+                                    <div
+                                      className={styles.progressFill}
+                                      style={{
+                                        width: `${department.performance}%`,
+                                        backgroundColor: "#996f29",
+                                      }}
+                                    ></div>
+                                  </div>
+                                  <span className={styles.performanceText}>
+                                    {department.performance}%
+                                  </span>
+                                </div>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Divisions List */}
+                  {navigationLevel === "divisions" && selectedDepartment && (
+                    <div className={styles.card}>
+                      <div className={styles.cardHeader}>
+                        <h3 className={styles.cardTitle}>
+                          {selectedDepartment.name} - Şöbələr
+                        </h3>
+                        <button
+                          className={styles.backButton}
+                          onClick={handleBackClick}
+                        >
+                          ← Geri
+                        </button>
+                      </div>
+                      <div className={styles.cardContent}>
+                        <div className={styles.branchGrid}>
+                          {divisionsData[selectedDepartment.name]?.map(
+                            (division, index) => (
+                              <div
+                                key={index}
+                                className={styles.branchCard}
+                                onClick={() => handleDivisionClick(division)}
+                              >
+                                <div className={styles.branchHeader}>
+                                  <h3 className={styles.branchName}>
+                                    {division.name}
+                                  </h3>
+                                  <button className={styles.menuButton}>
+                                    <ThreeDotsIcon />
+                                  </button>
+                                </div>
+                                <div className={styles.branchStats}>
+                                  <div className={styles.statItem}>
+                                    <span className={styles.statLabel}>
+                                      İşçi sayı:
+                                    </span>
+                                    <span className={styles.statValue}>
+                                      {division.employees}
+                                    </span>
+                                  </div>
+                                </div>
+                                <div className={styles.branchPerformance}>
+                                  <div className={styles.progressBar}>
+                                    <div
+                                      className={styles.progressFill}
+                                      style={{
+                                        width: `${division.performance}%`,
+                                        backgroundColor: "#996f29",
+                                      }}
+                                    ></div>
+                                  </div>
+                                  <span className={styles.performanceText}>
+                                    {division.performance}%
+                                  </span>
+                                </div>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {navigationLevel === "employees" && selectedDivision && (
+                    <div className={styles.card}>
+                      <div className={styles.cardHeader}>
+                        <h3 className={styles.cardTitle}>
+                          {selectedDivision.name} - İşçi Siyahısı
+                        </h3>
+                        <button
+                          className={styles.backButton}
+                          onClick={handleBackClick}
+                        >
+                          ← Geri
+                        </button>
+                      </div>
+                      <div className={styles.cardContent}>
+                        <div className={styles.employeeTable}>
+                          <div className={styles.employeeTableHeader}>
+                            <div className={styles.employeeHeaderCell}>
+                              İşçi
+                            </div>
+                            <div className={styles.employeeHeaderCell}>
+                              Struktur
+                            </div>
+                            <div className={styles.employeeHeaderCell}>
+                              KPI Nəticəsi
+                            </div>
+                            <div className={styles.employeeHeaderCell}>
+                              Status
+                            </div>
+                            <div className={styles.employeeHeaderCell}>
+                              Benchmark
+                            </div>
+                            <div className={styles.employeeHeaderCell}>
+                              Əməliyyat
+                            </div>
+                          </div>
+                          {employeesData[selectedDivision.name]?.map(
+                            (employee, index) => {
+                              const statusBadge = getStatusBadge(
+                                employee.status
+                              );
+                              return (
+                                <div key={index} className={styles.employeeRow}>
+                                  <div className={styles.employeeCell}>
+                                    <div className={styles.employeeInfo}>
+                                      <div className={styles.employeeAvatar}>
+                                        <img
+                                          src={
+                                            employee.photo || "/placeholder.svg"
+                                          }
+                                          alt={employee.name}
+                                        />
+                                      </div>
+                                      <button
+                                        className={styles.employeeName}
+                                        onClick={() =>
+                                          handleEmployeeProfileClick(employee)
+                                        }
+                                      >
+                                        {employee.name}
+                                      </button>
+                                    </div>
+                                  </div>
+                                  <div className={styles.employeeCell}>
+                                    <div className={styles.employeeStructure}>
+                                      <div className={styles.structureBranch}>
+                                        {employee.branch}
+                                      </div>
+                                      <div className={styles.structureDept}>
+                                        {employee.department} /{" "}
+                                        {employee.division}
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div className={styles.employeeCell}>
+                                    <div className={styles.kpiResult}>
+                                      <div className={styles.kpiProgress}>
+                                        <div className={styles.kpiProgressBar}>
+                                          <div
+                                            className={styles.kpiProgressFill}
+                                            style={{
+                                              width: `${employee.kpiResult}%`,
+                                            }}
+                                          ></div>
+                                        </div>
+                                        <span className={styles.kpiPercentage}>
+                                          {employee.kpiResult}%
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div className={styles.employeeCell}>
+                                    <div
+                                      className={styles.statusBadge}
+                                      style={{
+                                        backgroundColor: statusBadge.color,
+                                      }}
+                                    >
+                                      <span className={styles.statusEmoji}>
+                                        {statusBadge.emoji}
+                                      </span>
+                                      <span className={styles.statusText}>
+                                        {statusBadge.text}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div className={styles.employeeCell}>
+                                    <div className={styles.benchmark}>
+                                      <span className={styles.benchmarkIcon}>
+                                        {employee.benchmark > 0 ? "↑" : "↓"}
+                                      </span>
+                                      <span className={styles.benchmarkValue}>
+                                        {Math.abs(employee.benchmark)}%
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div className={styles.employeeCell}>
+                                    <button
+                                      className={styles.detailButton}
+                                      onClick={() =>
+                                        handleEmployeeProfileClick(employee)
+                                      }
+                                    >
+                                      Detallı bax
+                                    </button>
+                                  </div>
+                                </div>
+                              );
+                            }
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
-        )}
-      </div>
 
-      <KPICreationModal open={isKPIModalOpen} onOpenChange={setIsKPIModalOpen} />
+          <KPICreationModal
+            open={isKPIModalOpen}
+            onOpenChange={setIsKPIModalOpen}
+          />
+        </>
+      )}
     </div>
-  )
+  );
 }
+
+const employeesData = {
+  "Komplayens Monitorinq Şöbəsi": [
+    {
+      name: "Nigar Əhmədova",
+      photo: "/professional-female-avatar.png",
+      position: "Baş Mütəxəssis",
+      branch: "Yeni Filial",
+      department: "Komplayens Departamenti",
+      division: "ƏL/TMM Şöbəsi",
+      kpiResult: 91,
+      kpiScore: 91,
+      status: "On-track",
+      benchmark: 6,
+    },
+    {
+      name: "Tural Məmmədov",
+      photo: "/professional-male-avatar.png",
+      position: "Aparıcı Mütəxəssis",
+      branch: "Yeni Filial",
+      department: "Komplayens Departamenti",
+      division: "ƏL/TMM Şöbəsi",
+      kpiResult: 85,
+      kpiScore: 85,
+      status: "On-track",
+      benchmark: 3,
+    },
+    {
+      name: "Səbinə Qasımova",
+      photo: "/professional-female-avatar-2.png",
+      position: "Mütəxəssis",
+      branch: "Yeni Filial",
+      department: "Komplayens Departamenti",
+      division: "ƏL/TMM Şöbəsi",
+      kpiResult: 88,
+      kpiScore: 88,
+      status: "On-track",
+      benchmark: 4,
+    },
+  ],
+  "MEŞ / Hesabatlıq şöbəsi": [
+    {
+      name: "Orxan Həsənov",
+      photo: "/professional-male-avatar-2.png",
+      position: "Şöbə Rəisi",
+      branch: "Yeni Filial",
+      department: "Komplayens Departamenti",
+      division: "MEŞ / Hesabatlıq şöbəsi",
+      kpiResult: 82,
+      kpiScore: 82,
+      status: "On-track",
+      benchmark: 2,
+    },
+    {
+      name: "Aynur Rəhimova",
+      photo: "/professional-female-avatar.png",
+      position: "Baş Mütəxəssis",
+      branch: "Yeni Filial",
+      department: "Komplayens Departamenti",
+      division: "MEŞ / Hesabatlıq şöbəsi",
+      kpiResult: 79,
+      kpiScore: 79,
+      status: "Risk",
+      benchmark: -1,
+    },
+    {
+      name: "Fərid Əliyev",
+      photo: "/professional-male-avatar-3.png",
+      position: "Aparıcı Mütəxəssis",
+      branch: "Yeni Filial",
+      department: "Komplayens Departamenti",
+      division: "MEŞ / Hesabatlıq şöbəsi",
+      kpiResult: 84,
+      kpiScore: 84,
+      status: "On-track",
+      benchmark: 3,
+    },
+  ],
+  "Komplayens Monitorinq Şöbəsi": [
+    {
+      name: "Məryəm Nəsirova",
+      photo: "/professional-female-avatar-2.png",
+      position: "Baş Mütəxəssis",
+      branch: "Yeni Filial",
+      department: "Komplayens Departamenti",
+      division: "Komplayens Monitorinq Şöbəsi",
+      kpiResult: 94,
+      kpiScore: 94,
+      status: "On-track",
+      benchmark: 8,
+    },
+    {
+      name: "Kamran Babayev",
+      photo: "/professional-male-avatar.png",
+      position: "Mütəxəssis",
+      branch: "Yeni Filial",
+      department: "Komplayens Departamenti",
+      division: "Komplayens Monitorinq Şöbəsi",
+      kpiResult: 90,
+      kpiScore: 90,
+      status: "On-track",
+      benchmark: 5,
+    },
+  ],
+  "Satış Şöbəsi": [
+    {
+      name: "Əli Məmmədov",
+      photo: "/professional-male-avatar.png",
+      position: "Satış Mütəxəssisi",
+      branch: "Bakı Filialı",
+      department: "Satış Departamenti",
+      division: "Satış Şöbəsi",
+      kpiResult: 87,
+      kpiScore: 87,
+      status: "On-track",
+      benchmark: 5,
+    },
+    {
+      name: "Leyla Həsənova",
+      photo: "/professional-female-avatar.png",
+      position: "Satış Mütəxəssisi",
+      branch: "Bakı Filialı",
+      department: "Satış Departamenti",
+      division: "Satış Şöbəsi",
+      kpiResult: 72,
+      kpiScore: 72,
+      status: "Risk",
+      benchmark: -3,
+    },
+    {
+      name: "Rəşad Quliyev",
+      photo: "/professional-male-avatar-2.png",
+      position: "Satış Mütəxəssisi",
+      branch: "Bakı Filialı",
+      department: "Satış Departamenti",
+      division: "Satış Şöbəsi",
+      kpiResult: 45,
+      kpiScore: 45,
+      status: "Off",
+      benchmark: -12,
+    },
+  ],
+  "Müştəri Xidmətləri": [
+    {
+      name: "Günel Əliyeva",
+      photo: "/professional-female-avatar-2.png",
+      position: "Müştəri Xidmətləri Mütəxəssisi",
+      branch: "Bakı Filialı",
+      department: "Satış Departamenti",
+      division: "Müştəri Xidmətləri",
+      kpiResult: 92,
+      kpiScore: 92,
+      status: "On-track",
+      benchmark: 8,
+    },
+    {
+      name: "Elvin Nərimanov",
+      photo: "/professional-male-avatar-3.png",
+      position: "Müştəri Xidmətləri Mütəxəssisi",
+      branch: "Bakı Filialı",
+      department: "Satış Departamenti",
+      division: "Müştəri Xidmətləri",
+      kpiResult: 78,
+      kpiScore: 78,
+      status: "Risk",
+      benchmark: 2,
+    },
+  ],
+};

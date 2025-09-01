@@ -232,13 +232,14 @@
 .employeeInfo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 5px;
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width:35px;
+  height: 35px;
   border-radius: 50%;
+  display: block;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -257,7 +258,7 @@
 }
 
 .employeeName {
-  font-size: 14px;
+  font-size: 13px;
   color: #1a1a1a;
   font-weight: 500;
 }

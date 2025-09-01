@@ -590,7 +590,7 @@ const Dashboard = () => {
                 <Target size={18} color="#996f29" />
               </div>
               <div className={styles.cardContent}>
-                <div className={styles.chartContainer}>
+                <div className={styles.chartSection}>
                   <ResponsiveContainer width="100%" height={200}>
                     <PieChart>
                       <Pie
@@ -629,8 +629,8 @@ const Dashboard = () => {
                 <CheckCircle size={18} color="#10b981" />
               </div>
               <div className={styles.cardContent}>
-                <div className={styles.chartContainer}>
-                  <ResponsiveContainer width="100%" height={150}>
+                <div className={styles.chartSection}>
+                  <ResponsiveContainer width="100%" height={200}>
                     <PieChart>
                       <Pie
                         data={taskPerformanceData}

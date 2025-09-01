@@ -12,7 +12,7 @@ const EmployeeProfile = () => {
   const [searchTerm, setSearchTerm] = useState("")
 
   const employee = {
-    name: "Jalə Hüseynova Namiq qızı",
+    name: "Vəfa Vahabova Namiq qızı",
     age: 29,
     photo: "../",
     department: "Komplayens departamenti",

@@ -3,7 +3,7 @@
   margin: 0 auto;
   font-family: Geist;
   min-height: 100vh;
-  background-color: transparent !important;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
 }
 
 .header {
@@ -1929,4 +1929,166 @@
     flex-direction: column;
     gap: 20px;
   }
+}
+/* Added styles for branches navigation */
+.branchesSection {
+  padding: 0;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 12px 16px;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.breadcrumbItem {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.breadcrumbItem:hover {
+  background-color: #e0f2fe;
+}
+
+.breadcrumbSeparator {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.breadcrumbCurrent {
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.backButton {
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  color: #475569;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  background-color: #e2e8f0;
+  border-color: #cbd5e1;
+}
+
+.branchGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.branchCard {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.branchCard:hover {
+  border-color: #996f29;
+  box-shadow: 0 4px 12px rgba(153, 111, 41, 0.1);
+  transform: translateY(-2px);
+}
+
+.branchHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.branchName {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.menuButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+.menuButton:hover {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+.branchStats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.statItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statLabel {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.statValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.branchPerformance {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progressBar {
+  flex: 1;
+  height: 8px;
+  background-color: #f1f5f9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.performanceText {
+  font-size: 16px;
+  font-weight: 600;
+  color: #475569;
+  min-width: 40px;
+  text-align: right;
 }

@@ -15,7 +15,6 @@ import {
 } from "recharts"
 import styles from "./kpi.module.css"
 import KPICreationModal from "./kpimodal"
-import EmployeeView from "./employee"
 
 // Mock data
 const summaryData = {
@@ -142,6 +141,99 @@ const heatmapData = [
   { branch: "Səbail", jan: 89, feb: 91, mar: 87, apr: 90, may: 88 },
   { branch: "Nizami", jan: 83, feb: 85, mar: 82, apr: 86, may: 84 },
 ]
+
+const branchesData = [
+  {
+    name: "Yeni ofis",
+    departments: 3,
+    divisions: 3,
+    employees: 16,
+    performance: 77,
+    color: "#92400e",
+  },
+  {
+    name: "Filial 1",
+    departments: 3,
+    divisions: 3,
+    employees: 16,
+    performance: 64,
+    color: "#92400e",
+  },
+  {
+    name: "Filial 2",
+    departments: 3,
+    divisions: 3,
+    employees: 16,
+    performance: 96,
+    color: "#92400e",
+  },
+  {
+    name: "Filial 3",
+    departments: 3,
+    divisions: 3,
+    employees: 16,
+    performance: 49,
+    color: "#92400e",
+  },
+]
+
+const departmentsData = {
+  "Yeni ofis": [
+    { name: "Komplayens Departamenti", divisions: 3, employees: 8, performance: 85 },
+    { name: "Risk İdarəetməsi", divisions: 2, employees: 5, performance: 78 },
+    { name: "Daxili Audit", divisions: 1, employees: 3, performance: 92 },
+  ],
+  "Filial 1": [
+    { name: "Müştəri Xidmətləri", divisions: 2, employees: 6, performance: 72 },
+    { name: "Maliyyə Departamenti", divisions: 2, employees: 7, performance: 68 },
+    { name: "IT Departamenti", divisions: 1, employees: 3, performance: 88 },
+  ],
+  "Filial 2": [
+    { name: "Satış Departamenti", divisions: 3, employees: 9, performance: 94 },
+    { name: "Marketing", divisions: 1, employees: 4, performance: 96 },
+    { name: "HR Departamenti", divisions: 1, employees: 3, performance: 89 },
+  ],
+  "Filial 3": [
+    { name: "Əməliyyat Departamenti", divisions: 2, employees: 8, performance: 52 },
+    { name: "Texniki Dəstək", divisions: 1, employees: 5, performance: 45 },
+    { name: "Təhlükəsizlik", divisions: 1, employees: 3, performance: 58 },
+  ],
+}
+
+const divisionsData = {
+  "Komplayens Departamenti": [
+    { name: "ƏL/TMM Şöbəsi", employees: 3, performance: 88 },
+    { name: "Risk İdarəetməsi Şöbəsi", employees: 3, performance: 82 },
+    { name: "Daxili Audit Şöbəsi", employees: 2, performance: 85 },
+  ],
+  "Risk İdarəetməsi": [
+    { name: "Kredit Risk Şöbəsi", employees: 3, performance: 75 },
+    { name: "Əməliyyat Risk Şöbəsi", employees: 2, performance: 81 },
+  ],
+  "Daxili Audit": [{ name: "Audit Şöbəsi", employees: 3, performance: 92 }],
+  "Müştəri Xidmətləri": [
+    { name: "Müştəri Dəstəyi", employees: 3, performance: 70 },
+    { name: "Şikayət İdarəetməsi", employees: 3, performance: 74 },
+  ],
+  "Maliyyə Departamenti": [
+    { name: "Maliyyə Planlaşdırması", employees: 4, performance: 65 },
+    { name: "Uçot Şöbəsi", employees: 3, performance: 71 },
+  ],
+  "IT Departamenti": [{ name: "Sistem İdarəetməsi", employees: 3, performance: 88 }],
+  "Satış Departamenti": [
+    { name: "Korporativ Satış", employees: 4, performance: 95 },
+    { name: "Fərdi Satış", employees: 3, performance: 93 },
+    { name: "Onlayn Satış", employees: 2, performance: 94 },
+  ],
+  Marketing: [{ name: "Rəqəmsal Marketing", employees: 4, performance: 96 }],
+  "HR Departamenti": [{ name: "İnsan Resursları", employees: 3, performance: 89 }],
+  "Əməliyyat Departamenti": [
+    { name: "Gündəlik Əməliyyatlar", employees: 5, performance: 50 },
+    { name: "Proses İdarəetməsi", employees: 3, performance: 54 },
+  ],
+  "Texniki Dəstək": [{ name: "Texniki Yardım", employees: 5, performance: 45 }],
+  Təhlükəsizlik: [{ name: "Fiziki Təhlükəsizlik", employees: 3, performance: 58 }],
+}
 
 const TrendingUpIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -668,16 +760,48 @@ const getHeatmapColor = (value) => {
   return "#ef4444"
 }
 
+const ThreeDotsIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <circle cx="12" cy="12" r="1" />
+    <circle cx="12" cy="5" r="1" />
+    <circle cx="12" cy="19" r="1" />
+  </svg>
+)
+
 export default function KPIHomePage() {
   const [activeTab, setActiveTab] = useState("overview")
   const [expandedNodes, setExpandedNodes] = useState({})
   const [isKPIModalOpen, setIsKPIModalOpen] = useState(false)
+  const [selectedBranch, setSelectedBranch] = useState(null)
+  const [selectedDepartment, setSelectedDepartment] = useState(null)
+  const [navigationLevel, setNavigationLevel] = useState("branches")
 
   const toggleNode = (nodeId) => {
     setExpandedNodes((prev) => ({
       ...prev,
       [nodeId]: !prev[nodeId],
     }))
+  }
+
+  const handleBranchClick = (branch) => {
+    setSelectedBranch(branch)
+    setNavigationLevel("departments")
+    setSelectedDepartment(null)
+  }
+
+  const handleDepartmentClick = (department) => {
+    setSelectedDepartment(department)
+    setNavigationLevel("divisions")
+  }
+
+  const handleBackClick = () => {
+    if (navigationLevel === "divisions") {
+      setNavigationLevel("departments")
+      setSelectedDepartment(null)
+    } else if (navigationLevel === "departments") {
+      setNavigationLevel("branches")
+      setSelectedBranch(null)
+    }
   }
 
   const renderOrgNode = (node, level = 0, parentId = "", index = 0) => {
@@ -1271,7 +1395,186 @@ export default function KPIHomePage() {
 
         {activeTab === "employee" && (
           <div className={styles.tabContent}>
-            <EmployeeView />
+            <div className={styles.branchesSection}>
+              {/* Navigation breadcrumb */}
+              <div className={styles.breadcrumb}>
+                <button
+                  className={styles.breadcrumbItem}
+                  onClick={() => {
+                    setNavigationLevel("branches")
+                    setSelectedBranch(null)
+                    setSelectedDepartment(null)
+                  }}
+                >
+                  Filiallar
+                </button>
+                {selectedBranch && (
+                  <>
+                    <span className={styles.breadcrumbSeparator}>›</span>
+                    <button
+                      className={styles.breadcrumbItem}
+                      onClick={() => {
+                        setNavigationLevel("departments")
+                        setSelectedDepartment(null)
+                      }}
+                    >
+                      {selectedBranch.name}
+                    </button>
+                  </>
+                )}
+                {selectedDepartment && (
+                  <>
+                    <span className={styles.breadcrumbSeparator}>›</span>
+                    <span className={styles.breadcrumbCurrent}>{selectedDepartment.name}</span>
+                  </>
+                )}
+              </div>
+
+              {/* Branches List */}
+              {navigationLevel === "branches" && (
+                <div className={styles.card}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={styles.cardTitle}>Filiallar Siyahısı</h3>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <div className={styles.branchGrid}>
+                      {branchesData.map((branch, index) => (
+                        <div key={index} className={styles.branchCard} onClick={() => handleBranchClick(branch)}>
+                          <div className={styles.branchHeader}>
+                            <h3 className={styles.branchName}>{branch.name}</h3>
+                            <button className={styles.menuButton}>
+                              <ThreeDotsIcon />
+                            </button>
+                          </div>
+                          <div className={styles.branchStats}>
+                            <div className={styles.statItem}>
+                              <span className={styles.statLabel}>Departament sayı:</span>
+                              <span className={styles.statValue}>{branch.departments}</span>
+                            </div>
+                            <div className={styles.statItem}>
+                              <span className={styles.statLabel}>Şöbə sayı:</span>
+                              <span className={styles.statValue}>{branch.divisions}</span>
+                            </div>
+                            <div className={styles.statItem}>
+                              <span className={styles.statLabel}>İşçi sayı:</span>
+                              <span className={styles.statValue}>{branch.employees}</span>
+                            </div>
+                          </div>
+                          <div className={styles.branchPerformance}>
+                            <div className={styles.progressBar}>
+                              <div
+                                className={styles.progressFill}
+                                style={{
+                                  width: `${branch.performance}%`,
+                                  backgroundColor: branch.color,
+                                }}
+                              ></div>
+                            </div>
+                            <span className={styles.performanceText}>{branch.performance}%</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Departments List */}
+              {navigationLevel === "departments" && selectedBranch && (
+                <div className={styles.card}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={styles.cardTitle}>{selectedBranch.name} - Departamentlər</h3>
+                    <button className={styles.backButton} onClick={handleBackClick}>
+                      ← Geri
+                    </button>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <div className={styles.branchGrid}>
+                      {departmentsData[selectedBranch.name]?.map((department, index) => (
+                        <div
+                          key={index}
+                          className={styles.branchCard}
+                          onClick={() => handleDepartmentClick(department)}
+                        >
+                          <div className={styles.branchHeader}>
+                            <h3 className={styles.branchName}>{department.name}</h3>
+                            <button className={styles.menuButton}>
+                              <ThreeDotsIcon />
+                            </button>
+                          </div>
+                          <div className={styles.branchStats}>
+                            <div className={styles.statItem}>
+                              <span className={styles.statLabel}>Şöbə sayı:</span>
+                              <span className={styles.statValue}>{department.divisions}</span>
+                            </div>
+                            <div className={styles.statItem}>
+                              <span className={styles.statLabel}>İşçi sayı:</span>
+                              <span className={styles.statValue}>{department.employees}</span>
+                            </div>
+                          </div>
+                          <div className={styles.branchPerformance}>
+                            <div className={styles.progressBar}>
+                              <div
+                                className={styles.progressFill}
+                                style={{
+                                  width: `${department.performance}%`,
+                                  backgroundColor: "#996f29",
+                                }}
+                              ></div>
+                            </div>
+                            <span className={styles.performanceText}>{department.performance}%</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Divisions List */}
+              {navigationLevel === "divisions" && selectedDepartment && (
+                <div className={styles.card}>
+                  <div className={styles.cardHeader}>
+                    <h3 className={styles.cardTitle}>{selectedDepartment.name} - Şöbələr</h3>
+                    <button className={styles.backButton} onClick={handleBackClick}>
+                      ← Geri
+                    </button>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <div className={styles.branchGrid}>
+                      {divisionsData[selectedDepartment.name]?.map((division, index) => (
+                        <div key={index} className={styles.branchCard}>
+                          <div className={styles.branchHeader}>
+                            <h3 className={styles.branchName}>{division.name}</h3>
+                            <button className={styles.menuButton}>
+                              <ThreeDotsIcon />
+                            </button>
+                          </div>
+                          <div className={styles.branchStats}>
+                            <div className={styles.statItem}>
+                              <span className={styles.statLabel}>İşçi sayı:</span>
+                              <span className={styles.statValue}>{division.employees}</span>
+                            </div>
+                          </div>
+                          <div className={styles.branchPerformance}>
+                            <div className={styles.progressBar}>
+                              <div
+                                className={styles.progressFill}
+                                style={{
+                                  width: `${division.performance}%`,
+                                  backgroundColor: "#996f29",
+                                }}
+                              ></div>
+                            </div>
+                            <span className={styles.performanceText}>{division.performance}%</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>

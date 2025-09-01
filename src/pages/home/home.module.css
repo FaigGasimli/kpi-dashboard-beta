@@ -1,384 +1,824 @@
 .dashboard {
   padding: 20px;
-  background-color: #f5f5f5;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: Geist;
 }
 
-.navTabs {
+/* More compact filter section */
+.filterSection {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
   display: flex;
-  gap: 0;
-  margin-bottom: 20px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filterLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.filterSelect {
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
   border-radius: 8px;
-  padding: 4px;
-}
-
-.tab {
-  padding: 12px 24px;
-  border: none;
-  background: transparent;
+  font-size: 13px;
+  background: white;
   cursor: pointer;
-  border-radius: 6px;
-  font-size: 14px;
-  color: #666;
-  transition: all 0.2s;
-}
-
-.tab.active {
-  background: #9970291f;;
-  color: #996F29;;
+  min-width: 120px;
+  transition: all 0.2s ease;
   font-weight: 500;
 }
 
-.tab:hover:not(.active) {
-  background: #f8f9fa;
+.filterSelect:hover {
+  border-color: #cbd5e1;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: #996f29;
+  box-shadow: 0 0 0 2px rgba(153, 111, 41, 0.1);
+}
+
+/* Reduced heading sizes and more compact overview section */
+.overviewSection {
+  margin-bottom: 32px;
+}
+
+.overviewSection h2 {
+  margin: 0 0 20px 0;
+  font-size: 22px;
+  color: #1e293b;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.overviewCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+/* Redesigned overview cards to be more compact and fix text overflow */
+.overviewCard {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.overviewCard:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.cardIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardValue {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1;
+}
+
+.cardContent {
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+  margin-bottom: 12px;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.cardTrend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.miniChart {
+  flex: 1;
+  height: 30px;
+  max-width: 60px;
+}
+
+.trendValue {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 6px;
+  border-radius: 6px;
+  background: rgba(16, 185, 129, 0.1);
+  white-space: nowrap;
+}
+
+/* More compact analytics section */
+.analyticsSection {
+  margin-bottom: 32px;
+}
+
+.analyticsSection h2 {
+  margin: 0 0 20px 0;
+  font-size: 22px;
+  color: #1e293b;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.analyticsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.sectionHeader h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.trendSection,
+.riskyKpiSection,
+.moduleSection,
+.departmentChart {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f1f5f9;
+}
+
+/* Enhanced attendance section with creative design */
+.attendanceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.attendanceChart {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.attendanceStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 12px;
+}
+
+.attendanceItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.attendanceIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attendanceInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.attendanceValue {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.attendanceText {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Added chart container styling and trend summary for KPI Trend Analysis */
+.chartContainer {
+  margin-top: 12px;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.trendSummary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.summaryItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.summaryLabel {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.summaryValue {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* Compact risky KPI styling */
+.riskyKpiList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.riskyKpiItem {
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.riskyKpiItem:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.kpiInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.kpiName {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 14px;
+}
+
+.kpiProgress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progressBar {
+  flex: 1;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.progressText {
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  min-width: 70px;
+}
+
+.riskBadge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  align-self: flex-start;
+}
+
+.riskBadge.high {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.riskBadge.medium {
+  background: #fffbeb;
+  color: #d97706;
+  border: 1px solid #fed7aa;
+}
+
+.riskBadge.low {
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+/* Enhanced module section with legend */
+.moduleChart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.moduleLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.legendText {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Compact HR section */
+.hrSection {
+  margin-bottom: 32px;
+}
+
+.hrSection h2 {
+  margin: 0 0 20px 0;
+  font-size: 22px;
+  color: #1e293b;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.hrGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.attendanceSection,
+.disciplinarySection,
+.topPerformersSection {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f1f5f9;
+}
+
+.disciplinaryList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.disciplinaryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.disciplinaryInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.disciplinaryType {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 13px;
+}
+
+.disciplinaryCount {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.levelBadge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.levelBadge.low {
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+.levelBadge.medium {
+  background: #fffbeb;
+  color: #d97706;
+  border: 1px solid #fed7aa;
+}
+
+.levelBadge.high {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.performersList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.performerItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.performerInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.performerAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #996f29, #b8832f);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.performerDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.performerName {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 13px;
+}
+
+.performerDept {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.performerScore {
+  font-weight: 700;
+  color: #996f29;
+  font-size: 16px;
+}
+
+/* Compact task section */
+.taskSection {
+  margin-bottom: 32px;
+}
+
+.taskSection h2 {
+  margin: 0 0 20px 0;
+  font-size: 22px;
+  color: #1e293b;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.taskGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.taskDistribution,
+.overdueSection {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f1f5f9;
+}
+
+.taskStatusGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.taskStatusCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.taskStatusCard:hover {
+  background: #f1f5f9;
+  transform: translateY(-1px);
+}
+
+.taskStatusIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taskStatusInfo {
+  flex: 1;
+}
+
+.taskStatusCount {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2px;
+}
+
+.taskStatusName {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.overdueList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.overdueItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #fef2f2;
+  border-radius: 10px;
+  border: 1px solid #fecaca;
+  border-left: 3px solid #ef4444;
+}
+
+.taskInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.taskName {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 13px;
+}
+
+.taskResponsible {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.overdueBadge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: #dc2626;
+  color: white;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Compact KPI performance section */
+.kpiPerformanceSection {
+  margin-bottom: 32px;
+}
+
+.kpiPerformanceSection h2 {
+  margin: 0 0 20px 0;
+  font-size: 22px;
+  color: #1e293b;
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }
 
 .kpiCards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
 }
 
 .kpiCard {
   background: white;
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f1f5f9;
 }
 
 .cardHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .cardHeader h3 {
   margin: 0;
   font-size: 16px;
-  color: #333;
-  font-weight: 500;
-}
-
-.moreBtn {
-  background: none;
-  border: none;
-  font-size: 18px;
-  color: #999;
-  cursor: pointer;
-  padding: 4px;
+  color: #1e293b;
+  font-weight: 600;
 }
 
 .cardContent {
   display: flex;
   align-items: center;
-  gap: 30px;
-}
-
-.legend {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.legendItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  color: #666;
-}
-
-.legendColor {
-  width: 12px;
-  height: 12px;
-  border-radius: 2px;
-}
-
-.tableSection {
-  background: white;
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 30px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.tableSection h2 {
-  margin: 0 0 20px 0;
-  font-size: 18px;
-  color: #333;
-  font-weight: 500;
-}
-
-.tableContainer {
-  overflow-x: auto;
-}
-
-.kpiTable {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.kpiTable th {
-  text-align: left;
-  padding: 12px;
-  font-weight: 500;
-  color: #666;
-  border-bottom: 2px solid #f0f0f0;
-  font-size: 14px;
-}
-
-.kpiTable td {
-  padding: 16px 12px;
-  border-bottom: 1px solid #f0f0f0;
-  font-size: 14px;
-  color: #333;
-}
-
-.performanceBar {
-  position: relative;
-  width: 200px;
-  height: 8px;
-  background: #f0f0f0;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.performanceFill {
-  height: 100%;
-  border-radius: 4px;
-  transition: width 0.3s ease;
-}
-
-.performanceText {
-  position: absolute;
-  right: -40px;
-  top: -8px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #333;
-}
-
-.bottomSection {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
-.employeeSection,
 .chartSection {
-  background: white;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
 }
 
-.employeeSection h3,
-.chartSection h3 {
-  margin: 0 0 20px 0;
-  font-size: 16px;
-  color: #333;
-  font-weight: 500;
-}
-
-.employeeHeader {
+.kpiStats {
   display: flex;
-  justify-content: space-between;
-  padding: 12px 0;
-  border-bottom: 2px solid #f0f0f0;
-  font-weight: 500;
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 16px;
-}
-
-.employeeItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid #f8f9fa;
-}
-
-.employeeInfo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-}
-
-.employeePerformance {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.employeePerformance .performanceBar {
-  width: 120px;
-}
-
-.employeePerformance .performanceText {
-  position: static;
-  font-size: 14px;
-  min-width: 35px;
-}
-
-.chartHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.chartControls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 14px;
-  color: #666;
-}
-
-.chartSelect {
-  padding: 6px 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 14px;
-  background: white;
-  cursor: pointer;
-}
-
-/* Added CircularProgress styles */
-.circularProgress {
-  position: relative;
-  display: inline-block;
-}
-
-.progressSvg {
-  transform: rotate(-90deg);
-}
-
-.progressCircle {
-  transition: stroke-dashoffset 0.5s ease-in-out;
-}
-
-.percentageText {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.percentage {
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-}
-
-/* Added BarChart styles */
-.barChart {
-  position: relative;
-  height: 200px;
-  padding: 20px 0 30px 40px;
-}
-
-.chartContainer {
-  display: flex;
-  align-items: flex-end;
-  height: 100%;
+  flex-direction: column;
   gap: 8px;
-  padding-left: 20px;
 }
 
-.barColumn {
-  flex: 1;
+.statItem {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  height: 100%;
-}
-
-.barWrapper {
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
-  width: 100%;
-  position: relative;
-}
-
-.bar {
-  width: 100%;
-  min-height: 4px;
-  border-radius: 2px 2px 0 0;
-  position: relative;
-  transition: height 0.3s ease;
-}
-
-.barValue {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 10px;
-  color: #666;
+  gap: 6px;
+  font-size: 13px;
+  color: #64748b;
   font-weight: 500;
 }
 
-.barLabel {
-  margin-top: 8px;
-  font-size: 12px;
-  color: #666;
-  text-align: center;
+.statDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
 }
 
-.yAxis {
-  position: absolute;
-  left: 0;
-  top: 20px;
-  height: calc(100% - 50px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+/* Responsive improvements for compact design */
+@media (max-width: 1024px) {
+  .analyticsGrid {
+    grid-template-columns: 1fr;
+  }
 
-.yAxisLabel {
-  font-size: 12px;
-  color: #999;
-  text-align: right;
-  width: 30px;
+  .taskGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .taskStatusGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .attendanceChart {
+    margin-bottom: 12px;
+  }
+
+  .attendanceStats {
+    grid-template-columns: 1fr;
+  }
+
+  .attendanceMain {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 }
 
 @media (max-width: 768px) {
   .dashboard {
-    padding: 16px;
+    padding: 12px;
+  }
+
+  .overviewCards {
+    grid-template-columns: 1fr;
+  }
+
+  .hrGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .filterSection {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cardContent {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
   }
 
   .kpiCards {
     grid-template-columns: 1fr;
   }
 
-  .bottomSection {
-    grid-template-columns: 1fr;
-  }
-
-  .cardContent {
+  .trendSummary {
     flex-direction: column;
-    gap: 20px;
+    gap: 8px;
   }
 
-  .performanceBar {
-    width: 150px;
+  .summaryItem {
+    flex-direction: row;
+    gap: 8px;
   }
 }

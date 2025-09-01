@@ -3,6 +3,7 @@
 import { useState } from "react"
 import "./employees.css"
 import Photo from "../../../assests/qız.jpg"
+import Header from "../../../components/header";
 
 const EmployeeProfile = () => {
   const [activeTab, setActiveTab] = useState("tasks")
@@ -618,6 +619,7 @@ const EmployeeProfile = () => {
   )
 
   return (
+   <> <Header title="Strategic Human Resources - Strateji İnsan Resursları" />
     <div className="employee-profile">
       {/* Header Section */}
       <div className="profile-header">
@@ -728,7 +730,7 @@ const EmployeeProfile = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div></>
   )
 }
 

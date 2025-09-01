@@ -3,7 +3,7 @@
 import { useState } from "react";
 import styles from "./branch.module.css";
 import Header from "../../../components/header";
-import { Link } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const NewBranch = () => {
   const [selectedDepartment, setSelectedDepartment] = useState(
@@ -572,7 +572,11 @@ const NewBranch = () => {
                 {employees.map((employee, index) => {
                   const avatar = getEmployeeAvatar(employee.name, index);
                   return (
-                    <div key={index} className={styles.tableRow}>
+                    <Link
+                      key={index}
+                      to="/employees"
+                      className={styles.tableRow}
+                    >
                       <div className={styles.employeeInfo}>
                         <div
                           className={styles.avatar}
@@ -586,7 +590,7 @@ const NewBranch = () => {
                       </div>
                       <div className={styles.position}>{employee.position}</div>
                       <div className={styles.kpi}>{employee.kpi}</div>
-                    </div>
+                    </Link>
                   );
                 })}
               </div>

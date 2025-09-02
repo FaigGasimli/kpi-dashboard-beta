@@ -1353,7 +1353,7 @@
 
 .filterSelect:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: #996f29;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
@@ -1387,7 +1387,7 @@
 }
 
 .cardIcon {
-  color: #3b82f6;
+  color: #996f29;
 }
 
 .cardContent {
@@ -1625,13 +1625,13 @@
 
 .searchInput:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: #996f29;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .primaryButton {
   padding: 8px 16px;
-  background-color: #3b82f6;
+  background-color: #996f29;
   color: white;
   border: none;
   border-radius: 6px;
@@ -1807,7 +1807,7 @@
 }
 
 .nodeIcon {
-  color: #3b82f6;
+  color: #996f29;
 }
 
 .nodeName {
@@ -1851,7 +1851,7 @@
 
 .managementNode {
   background-color: #dbeafe;
-  border-color: #3b82f6;
+  border-color: #996f29;
 }
 
 .departmentNode {
@@ -1949,7 +1949,7 @@
 .breadcrumbItem {
   background: none;
   border: none;
-  color: #3b82f6;
+  color: #996f29;
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
@@ -2111,7 +2111,7 @@
 .breadcrumbItem {
   background: none;
   border: none;
-  color: #3b82f6;
+  color: #996f29;
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
@@ -2329,7 +2329,7 @@
 .employeeName {
   background: none;
   border: none;
-  color: #3b82f6;
+  color: #996f29;
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;

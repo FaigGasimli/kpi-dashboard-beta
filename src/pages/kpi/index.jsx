@@ -16,6 +16,7 @@ import {
 import styles from "./kpi.module.css";
 import KPICreationModal from "./kpimodal";
 import EmployeeKPIProfile from "./EmployeeKPIProfile";
+import Header from "../../components/header";
 
 // Mock data
 const summaryData = {
@@ -900,9 +901,9 @@ const kpiCatalogData = [
 ];
 
 const getHeatmapColor = (value) => {
-  if (value >= 90) return "#22c55e";
-  if (value >= 80) return "#eab308";
-  if (value >= 70) return "#f97316";
+  if (value >= 90) return "#6cf38273";
+  if (value >= 80) return "#fde3acff";
+  if (value >= 70) return "#ffc6b3ff";
   return "#ef4444";
 };
 
@@ -1070,774 +1071,695 @@ export default function KPIHomePage() {
   };
 
   return (
-    <div className={styles.container}>
-      {selectedEmployee ? (
-        <EmployeeKPIProfile
-          employee={selectedEmployee}
-          onBack={handleBackFromEmployeeProfile}
-        />
-      ) : (
-        <>
-          <div className={styles.header}>
-            <h1 className={styles.title}>KPI İdarəetmə Sistemi</h1>
-            <div className={styles.headerActions}>
-              <button className={styles.exportButton}>
-                <DownloadIcon />
-                Export
-              </button>
-            </div>
-          </div>
+    <>
+      {" "}
+      <Header title="KPI İdarəetmə Sistemi" />
+      <div className={styles.container}>
+        {selectedEmployee ? (
+          <EmployeeKPIProfile
+            employee={selectedEmployee}
+            onBack={handleBackFromEmployeeProfile}
+          />
+        ) : (
+          <>
+            <div className={styles.tabs}>
+              <div className={styles.tabsList}>
+                <button
+                  className={`${styles.tabsTrigger} ${
+                    activeTab === "overview" ? styles.active : ""
+                  }`}
+                  onClick={() => setActiveTab("overview")}
+                >
+                  Ümumi Baxış
+                </button>
+                <button
+                  className={`${styles.tabsTrigger} ${
+                    activeTab === "catalog" ? styles.active : ""
+                  }`}
+                  onClick={() => setActiveTab("catalog")}
+                >
+                  KPI Siyahısı
+                </button>
+                <button
+                  className={`${styles.tabsTrigger} ${
+                    activeTab === "structure" ? styles.active : ""
+                  }`}
+                  onClick={() => setActiveTab("structure")}
+                >
+                  Struktur
+                </button>
+                <button
+                  className={`${styles.tabsTrigger} ${
+                    activeTab === "employee" ? styles.active : ""
+                  }`}
+                  onClick={() => setActiveTab("employee")}
+                >
+                  KPI Nəticələri
+                </button>
+              </div>
 
-          <div className={styles.tabs}>
-            <div className={styles.tabsList}>
-              <button
-                className={`${styles.tabsTrigger} ${
-                  activeTab === "overview" ? styles.active : ""
-                }`}
-                onClick={() => setActiveTab("overview")}
-              >
-                Ümumi Baxış
-              </button>
-              <button
-                className={`${styles.tabsTrigger} ${
-                  activeTab === "catalog" ? styles.active : ""
-                }`}
-                onClick={() => setActiveTab("catalog")}
-              >
-                KPI Siyahısı
-              </button>
-              <button
-                className={`${styles.tabsTrigger} ${
-                  activeTab === "structure" ? styles.active : ""
-                }`}
-                onClick={() => setActiveTab("structure")}
-              >
-                Struktur
-              </button>
-              <button
-                className={`${styles.tabsTrigger} ${
-                  activeTab === "employee" ? styles.active : ""
-                }`}
-                onClick={() => setActiveTab("employee")}
-              >
-                KPI Nəticələri
-              </button>
-            </div>
-
-            {activeTab === "overview" && (
-              <div className={styles.tabContent}>
-                {/* Filters */}
-                <div className={styles.filters}>
-                  <div className={styles.filterGroup}>
-                    <FilterIcon />
-                    <span>Filtrlər:</span>
-                  </div>
-                  <select className={styles.filterSelect}>
-                    <option value="monthly">Aylıq</option>
-                    <option value="quarterly">Rüblük</option>
-                    <option value="yearly">İllik</option>
-                  </select>
-                  <select className={styles.filterSelect}>
-                    <option value="all">Bütün Struktur</option>
-                    <option value="branch">Filial</option>
-                    <option value="department">Departament</option>
-                    <option value="division">Şöbə</option>
-                  </select>
-                  <select className={styles.filterSelect}>
-                    <option value="all">Bütün Modullar</option>
-                    <option value="CE">CE</option>
-                    <option value="MH">MH</option>
-                    <option value="AML">AML</option>
-                    <option value="AU">AU</option>
-                  </select>
-                </div>
-
-                {/* Summary Cards */}
-                <div className={styles.summaryCards}>
-                  <div className={styles.summaryCard}>
-                    <div className={styles.cardHeader}>
-                      <h3 className={styles.cardTitle}>Ümumi KPI</h3>
-                      <div className={styles.cardIcon}>
-                        <TargetIcon />
-                      </div>
+              {activeTab === "overview" && (
+                <div className={styles.tabContent}>
+                  {/* Filters */}
+                  <div className={styles.filters}>
+                    <div className={styles.filterGroup}>
+                      <FilterIcon />
+                      <span>Filtrlər:</span>
                     </div>
-                    <div className={styles.cardContent}>
-                      <div className={styles.cardValue}>
-                        {summaryData.totalKPIs}
-                      </div>
-                      <div className={styles.cardSubtext}>
-                        Aktiv: {summaryData.activeKPIs}
-                      </div>
-                    </div>
+                    <select className={styles.filterSelect}>
+                      <option value="monthly">Aylıq</option>
+                      <option value="quarterly">Rüblük</option>
+                      <option value="yearly">İllik</option>
+                    </select>
+                    <select className={styles.filterSelect}>
+                      <option value="all">Bütün Struktur</option>
+                      <option value="branch">Filial</option>
+                      <option value="department">Departament</option>
+                      <option value="division">Şöbə</option>
+                    </select>
+                    <select className={styles.filterSelect}>
+                      <option value="all">Bütün Modullar</option>
+                      <option value="CE">CE</option>
+                      <option value="MH">MH</option>
+                      <option value="AML">AML</option>
+                      <option value="AU">AU</option>
+                    </select>
                   </div>
 
-                  <div className={styles.summaryCard}>
-                    <div className={styles.cardHeader}>
-                      <h3 className={styles.cardTitle}>SLA Gecikməsi</h3>
-                      <div className={styles.cardIcon}>
-                        <AlertTriangleIcon />
-                      </div>
-                    </div>
-                    <div className={styles.cardContent}>
-                      <div className={styles.cardValue}>
-                        {summaryData.slaOverdue}
-                      </div>
-                      <div className={styles.cardSubtext}>KPI gecikib</div>
-                    </div>
-                  </div>
-
-                  <div className={styles.summaryCard}>
-                    <div className={styles.cardHeader}>
-                      <h3 className={styles.cardTitle}>Orta İcra %</h3>
-                      <div className={styles.cardIcon}>
-                        <TrendingUpIcon />
-                      </div>
-                    </div>
-                    <div className={styles.cardContent}>
-                      <div className={styles.cardValue}>
-                        {summaryData.avgExecution}%
-                      </div>
-                      <div className={styles.cardSubtext}>
-                        Hədəf: {summaryData.targetAverage}%
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className={styles.summaryCard}>
-                    <div className={styles.cardHeader}>
-                      <h3 className={styles.cardTitle}>Müqayisə</h3>
-                      <div className={styles.cardIcon}>
-                        <TrendingUpIcon />
-                      </div>
-                    </div>
-                    <div className={styles.cardContent}>
-                      <div className={styles.cardValue}>
-                        +{summaryData.deviation}%
-                      </div>
-                      <div className={styles.cardSubtext}>Hədəfdən yuxarı</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Charts Section */}
-                <div className={styles.chartsSection}>
-                  <div className={styles.chartContainer}>
-                    <div className={styles.card}>
+                  {/* Summary Cards */}
+                  <div className={styles.summaryCards}>
+                    <div className={styles.summaryCard}>
                       <div className={styles.cardHeader}>
-                        <h3 className={styles.cardTitle}>
-                          Son 12 Ayda KPI Trend Xətti
-                        </h3>
+                        <h3 className={styles.cardTitle}>Ümumi KPI</h3>
+                        <div className={styles.cardIcon}>
+                          <TargetIcon />
+                        </div>
                       </div>
                       <div className={styles.cardContent}>
-                        <ResponsiveContainer width="100%" height={300}>
-                          <LineChart data={trendData}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="month" />
-                            <YAxis />
-                            <Tooltip />
-                            <Line
-                              type="monotone"
-                              dataKey="fakt"
-                              stroke="#0088FE"
-                              strokeWidth={2}
-                              name="Fakt"
-                            />
-                            <Line
-                              type="monotone"
-                              dataKey="target"
-                              stroke="#FF8042"
-                              strokeWidth={2}
-                              strokeDasharray="5 5"
-                              name="Hədəf"
-                            />
-                          </LineChart>
-                        </ResponsiveContainer>
+                        <div className={styles.cardValue}>
+                          {summaryData.totalKPIs}
+                        </div>
+                        <div className={styles.cardSubtext}>
+                          Aktiv: {summaryData.activeKPIs}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className={styles.chartContainer}>
-                    <div className={styles.card}>
+                    <div className={styles.summaryCard}>
                       <div className={styles.cardHeader}>
-                        <h3 className={styles.cardTitle}>
-                          Modul Payı (Çəkiyə görə)
-                        </h3>
+                        <h3 className={styles.cardTitle}>SLA Gecikməsi</h3>
+                        <div className={styles.cardIcon}>
+                          <AlertTriangleIcon />
+                        </div>
                       </div>
                       <div className={styles.cardContent}>
-                        <ResponsiveContainer width="100%" height={300}>
-                          <PieChart>
-                            <Pie
-                              data={moduleData}
-                              cx="50%"
-                              cy="50%"
-                              innerRadius={60}
-                              outerRadius={100}
-                              paddingAngle={5}
-                              dataKey="value"
-                            >
-                              {moduleData.map((entry, index) => (
-                                <Cell
-                                  key={`cell-${index}`}
-                                  fill={entry.color}
-                                />
-                              ))}
-                            </Pie>
-                            <Tooltip />
-                          </PieChart>
-                        </ResponsiveContainer>
-                        <div className={styles.pieChartLegend}>
-                          {moduleData.map((item, index) => (
-                            <div key={index} className={styles.legendItem}>
-                              <div
-                                className={styles.legendColor}
-                                style={{ backgroundColor: item.color }}
-                              ></div>
-                              <span>
-                                {item.name}: {item.value}%
-                              </span>
-                            </div>
-                          ))}
+                        <div className={styles.cardValue}>
+                          {summaryData.slaOverdue}
+                        </div>
+                        <div className={styles.cardSubtext}>KPI gecikib</div>
+                      </div>
+                    </div>
+
+                    <div className={styles.summaryCard}>
+                      <div className={styles.cardHeader}>
+                        <h3 className={styles.cardTitle}>Orta İcra %</h3>
+                        <div className={styles.cardIcon}>
+                          <TrendingUpIcon />
+                        </div>
+                      </div>
+                      <div className={styles.cardContent}>
+                        <div className={styles.cardValue}>
+                          {summaryData.avgExecution}%
+                        </div>
+                        <div className={styles.cardSubtext}>
+                          Hədəf: {summaryData.targetAverage}%
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className={styles.summaryCard}>
+                      <div className={styles.cardHeader}>
+                        <h3 className={styles.cardTitle}>Müqayisə</h3>
+                        <div className={styles.cardIcon}>
+                          <TrendingUpIcon />
+                        </div>
+                      </div>
+                      <div className={styles.cardContent}>
+                        <div className={styles.cardValue}>
+                          +{summaryData.deviation}%
+                        </div>
+                        <div className={styles.cardSubtext}>
+                          Hədəfdən yuxarı
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Heatmap */}
-                <div className={styles.heatmapSection}>
-                  <div className={styles.card}>
-                    <div className={styles.cardHeader}>
-                      <h3 className={styles.cardTitle}>
-                        Filial × Ay üzrə İcra Faizi (Heatmap)
-                      </h3>
-                    </div>
-                    <div className={styles.cardContent}>
-                      <div className={styles.heatmap}>
-                        <div className={styles.heatmapHeader}>
-                          <div className={styles.heatmapCell}>Filial</div>
-                          <div className={styles.heatmapCell}>Yanvar</div>
-                          <div className={styles.heatmapCell}>Fevral</div>
-                          <div className={styles.heatmapCell}>Mart</div>
-                          <div className={styles.heatmapCell}>Aprel</div>
-                          <div className={styles.heatmapCell}>May</div>
+                  {/* Charts Section */}
+                  <div className={styles.chartsSection}>
+                    <div className={styles.chartContainer}>
+                      <div className={styles.card}>
+                        <div className={styles.cardHeader}>
+                          <h3 className={styles.cardTitle}>
+                            Son 12 Ayda KPI Trend Xətti
+                          </h3>
                         </div>
-                        {heatmapData.map((row, index) => (
-                          <div key={index} className={styles.heatmapRow}>
-                            <div className={styles.heatmapCell}>
-                              {row.branch}
-                            </div>
-                            <div
-                              className={styles.heatmapCell}
-                              style={{
-                                backgroundColor: getHeatmapColor(row.jan),
-                                color: "white",
-                              }}
-                            >
-                              {row.jan}%
-                            </div>
-                            <div
-                              className={styles.heatmapCell}
-                              style={{
-                                backgroundColor: getHeatmapColor(row.feb),
-                                color: "white",
-                              }}
-                            >
-                              {row.feb}%
-                            </div>
-                            <div
-                              className={styles.heatmapCell}
-                              style={{
-                                backgroundColor: getHeatmapColor(row.mar),
-                                color: "white",
-                              }}
-                            >
-                              {row.mar}%
-                            </div>
-                            <div
-                              className={styles.heatmapCell}
-                              style={{
-                                backgroundColor: getHeatmapColor(row.apr),
-                                color: "white",
-                              }}
-                            >
-                              {row.apr}%
-                            </div>
-                            <div
-                              className={styles.heatmapCell}
-                              style={{
-                                backgroundColor: getHeatmapColor(row.may),
-                                color: "white",
-                              }}
-                            >
-                              {row.may}%
-                            </div>
-                          </div>
-                        ))}
+                        <div className={styles.cardContent}>
+                          <ResponsiveContainer width="100%" height={300}>
+                            <LineChart data={trendData}>
+                              <CartesianGrid strokeDasharray="3 3" />
+                              <XAxis dataKey="month" />
+                              <YAxis />
+                              <Tooltip />
+                              <Line
+                                type="monotone"
+                                dataKey="fakt"
+                                stroke="#0088FE"
+                                strokeWidth={2}
+                                name="Fakt"
+                              />
+                              <Line
+                                type="monotone"
+                                dataKey="target"
+                                stroke="#FF8042"
+                                strokeWidth={2}
+                                strokeDasharray="5 5"
+                                name="Hədəf"
+                              />
+                            </LineChart>
+                          </ResponsiveContainer>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
 
-                {/* Bottom Lists */}
-                <div className={styles.bottomLists}>
-                  <div className={styles.listCard}>
-                    <div className={styles.cardHeader}>
-                      <h3 className={styles.listTitle}>
-                        <AlertTriangleIcon />
-                        Kritik KPI-lar
-                      </h3>
-                    </div>
-                    <div className={styles.cardContent}>
-                      <div className={styles.listContainer}>
-                        {criticalKPIs.map((kpi, index) => (
-                          <div key={index} className={styles.listItem}>
-                            <div className={styles.listItemHeader}>
-                              <span className={styles.badgeDestructive}>
-                                {kpi.code}
-                              </span>
-                              <span className={styles.executionBadge}>
-                                {kpi.execution}% / {kpi.target}%
-                              </span>
-                            </div>
-                            <div className={styles.listItemContent}>
-                              <div className={styles.kpiName}>{kpi.name}</div>
-                              <div className={styles.responsible}>
-                                Məsul: {kpi.responsible}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className={styles.listCard}>
-                    <div className={styles.cardHeader}>
-                      <h3 className={styles.listTitle}>
-                        <TrophyIcon />
-                        Top KPI-lar
-                      </h3>
-                    </div>
-                    <div className={styles.cardContent}>
-                      <div className={styles.listContainer}>
-                        {topKPIs.map((kpi, index) => (
-                          <div key={index} className={styles.listItem}>
-                            <div className={styles.listItemHeader}>
-                              <span className={styles.badgeSecondary}>
-                                {kpi.code}
-                              </span>
-                              <span className={styles.executionBadge}>
-                                {kpi.execution}% / {kpi.target}%
-                              </span>
-                            </div>
-                            <div className={styles.listItemContent}>
-                              <div className={styles.kpiName}>{kpi.name}</div>
-                              <div className={styles.weight}>
-                                Çəki: {kpi.weight}%
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className={styles.listCard}>
-                    <div className={styles.cardHeader}>
-                      <h3 className={styles.listTitle}>
-                        <UsersIcon />
-                        Məsul Şəxslər Leaderboard
-                      </h3>
-                    </div>
-                    <div className={styles.cardContent}>
-                      <div className={styles.listContainer}>
-                        {leaderboard.map((person, index) => (
-                          <div key={index} className={styles.listItem}>
-                            <div className={styles.listItemHeader}>
-                              <span className={styles.personName}>
-                                {person.name}
-                              </span>
-                              <span
-                                className={`${styles.badge} ${
-                                  person.delays > 3
-                                    ? styles.badgeDestructive
-                                    : person.delays > 1
-                                    ? styles.badgeSecondary
-                                    : styles.badgeDefault
-                                }`}
+                    <div className={styles.chartContainer}>
+                      <div className={styles.card}>
+                        <div className={styles.cardHeader}>
+                          <h3 className={styles.cardTitle}>
+                            Modul Payı (Çəkiyə görə)
+                          </h3>
+                        </div>
+                        <div className={styles.cardContent}>
+                          <ResponsiveContainer width="100%" height={300}>
+                            <PieChart>
+                              <Pie
+                                data={moduleData}
+                                cx="50%"
+                                cy="50%"
+                                innerRadius={60}
+                                outerRadius={100}
+                                paddingAngle={5}
+                                dataKey="value"
                               >
-                                {person.delays} gecikme
-                              </span>
-                            </div>
-                            <div className={styles.listItemContent}>
-                              <div className={styles.department}>
-                                {person.department}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === "catalog" && (
-              <div className={styles.tabContent}>
-                <div className={styles.card}>
-                  <div className={styles.cardHeader}>
-                    <h3 className={styles.cardTitle}>KPI Kataloqu</h3>
-                    <div className={styles.catalogActions}>
-                      <div className={styles.searchContainer}>
-                        <SearchIcon />
-                        <input
-                          placeholder="KPI kodu və ya adı ilə axtarın..."
-                          className={styles.searchInput}
-                        />
-                      </div>
-                      <button
-                        className={styles.primaryButton}
-                        onClick={() => setIsKPIModalOpen(true)}
-                      >
-                        Yeni KPI
-                      </button>
-                      <button className={styles.outlineButton}>
-                        <DownloadIcon />
-                        Export
-                      </button>
-                    </div>
-                  </div>
-                  <div className={styles.cardContent}>
-                    <div className={styles.cleanTableContainer}>
-                      <table className={styles.cleanTable}>
-                        <thead>
-                          <tr>
-                            <th>KPI Kodu</th>
-                            <th>KPI Adı</th>
-                            <th>Məqsəd</th>
-                            <th>Ölçü Metodu</th>
-                            <th>Müddət</th>
-                            <th>Hesablama Formulası</th>
-                            <th>Çəki (%)</th>
-                            <th>Məsul Şöbə</th>
-                            <th>Data Mənbə</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {kpiCatalogData.map((kpi, index) => (
-                            <tr key={index}>
-                              <td>{kpi.code}</td>
-                              <td>{kpi.name}</td>
-                              <td>{kpi.purpose}</td>
-                              <td>{kpi.method}</td>
-                              <td>{kpi.period}</td>
-                              <td>{kpi.formula}</td>
-                              <td>{kpi.weight}</td>
-                              <td>{kpi.department}</td>
-                              <td>{kpi.dataSource}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === "structure" && (
-              <div className={styles.tabContent}>
-                <div className={styles.card}>
-                  <div className={styles.cardHeader}>
-                    <h3 className={styles.cardTitle}>Təşkilati Struktur</h3>
-                    <p className={styles.cardDescription}>
-                      Hierarkik təşkilat strukturu və səlahiyyət axını
-                    </p>
-                  </div>
-                  <div className={styles.cardContent}>
-                    <div className={styles.simpleOrgChart}>
-                      <div className={styles.orgLevel}>
-                        <div className={styles.orgNode}>
-                          <span>Yeni Filial</span>
-                        </div>
-                        <div className={styles.orgConnector}>↓</div>
-                      </div>
-
-                      <div className={styles.orgLevel}>
-                        <div className={styles.orgNode}>
-                          <span>İdarə Heyyəti</span>
-                        </div>
-                        <div className={styles.orgConnector}>↓</div>
-                      </div>
-
-                      <div className={styles.orgLevel}>
-                        <div className={styles.orgNode}>
-                          <span>Komplayens Departamenti</span>
-                        </div>
-                        <div className={styles.orgConnector}>↓</div>
-                      </div>
-
-                      <div className={styles.orgLevel}>
-                        <div className={styles.orgBranches}>
-                          <div className={styles.orgBranch}>
-                            <div className={styles.orgNode}>
-                              <span>ƏL/TMM Şöbəsi</span>
-                            </div>
-                            <div className={styles.orgHierarchy}>
-                              <div className={styles.hierarchyItem}>
-                                <span>Şöbə Rəisi</span>
-                                <div className={styles.hierarchyConnector}>
-                                  ↓
-                                </div>
-                              </div>
-                              <div className={styles.hierarchyItem}>
-                                <span>Baş Mütəxəssis</span>
-                                <div className={styles.hierarchyConnector}>
-                                  ↓
-                                </div>
-                              </div>
-                              <div className={styles.hierarchyItem}>
-                                <span>Aparıcı Mütəxəssis</span>
-                                <div className={styles.hierarchyConnector}>
-                                  ↓
-                                </div>
-                              </div>
-                              <div className={styles.hierarchyItem}>
-                                <span>İntern</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className={styles.orgBranch}>
-                            <div className={styles.orgNode}>
-                              <span>MEŞ / Hesabatlıq şöbəsi</span>
-                            </div>
-                            <div className={styles.orgHierarchy}>
-                              <div className={styles.hierarchyItem}>
-                                <span>Şöbə Rəisi</span>
-                                <div className={styles.hierarchyConnector}>
-                                  ↓
-                                </div>
-                              </div>
-                              <div className={styles.hierarchyItem}>
-                                <span>Baş Mütəxəssis</span>
-                                <div className={styles.hierarchyConnector}>
-                                  ↓
-                                </div>
-                              </div>
-                              <div className={styles.hierarchyItem}>
-                                <span>Aparıcı Mütəxəssis</span>
-                                <div className={styles.hierarchyConnector}>
-                                  ↓
-                                </div>
-                              </div>
-                              <div className={styles.hierarchyItem}>
-                                <span>İntern</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className={styles.orgBranch}>
-                            <div className={styles.orgNode}>
-                              <span>Komplayens Monitorinq Şöbəsi</span>
-                            </div>
-                            <div className={styles.orgHierarchy}>
-                              <div className={styles.hierarchyItem}>
-                                <span>Şöbə Rəisi</span>
-                                <div className={styles.hierarchyConnector}>
-                                  ↓
-                                </div>
-                              </div>
-                              <div className={styles.hierarchyItem}>
-                                <span>Baş Mütəxəssis</span>
-                                <div className={styles.hierarchyConnector}>
-                                  ↓
-                                </div>
-                              </div>
-                              <div className={styles.hierarchyItem}>
-                                <span>Aparıcı Mütəxəssis</span>
-                                <div className={styles.hierarchyConnector}>
-                                  ↓
-                                </div>
-                              </div>
-                              <div className={styles.hierarchyItem}>
-                                <span>İntern</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === "employee" && (
-              <div className={styles.tabContent}>
-                <div className={styles.branchesSection}>
-                  {/* Navigation breadcrumb */}
-                  <div className={styles.breadcrumb}>
-                    <button
-                      className={styles.breadcrumbItem}
-                      onClick={() => {
-                        setNavigationLevel("branches");
-                        setSelectedBranch(null);
-                        setSelectedDepartment(null);
-                        setSelectedDivision(null);
-                      }}
-                    >
-                      Filiallar
-                    </button>
-                    {selectedBranch && (
-                      <>
-                        <span className={styles.breadcrumbSeparator}>›</span>
-                        <button
-                          className={styles.breadcrumbItem}
-                          onClick={() => {
-                            setNavigationLevel("departments");
-                            setSelectedDepartment(null);
-                            setSelectedDivision(null);
-                          }}
-                        >
-                          {selectedBranch.name}
-                        </button>
-                      </>
-                    )}
-                    {selectedDepartment && (
-                      <>
-                        <span className={styles.breadcrumbSeparator}>›</span>
-                        <button
-                          className={styles.breadcrumbItem}
-                          onClick={() => {
-                            setNavigationLevel("divisions");
-                            setSelectedDivision(null);
-                          }}
-                        >
-                          {selectedDepartment.name}
-                        </button>
-                      </>
-                    )}
-                    {selectedDivision && (
-                      <>
-                        <span className={styles.breadcrumbSeparator}>›</span>
-                        <span className={styles.breadcrumbCurrent}>
-                          {selectedDivision.name}
-                        </span>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Branches List */}
-                  {navigationLevel === "branches" && (
-                    <div className={styles.card}>
-                      <div className={styles.cardHeader}>
-                        <h3 className={styles.cardTitle}>Filiallar Siyahısı</h3>
-                      </div>
-                      <div className={styles.cardContent}>
-                        <div className={styles.branchGrid}>
-                          {branchesData.map((branch, index) => (
-                            <div
-                              key={index}
-                              className={styles.branchCard}
-                              onClick={() => handleBranchClick(branch)}
-                            >
-                              <div className={styles.branchHeader}>
-                                <h3 className={styles.branchName}>
-                                  {branch.name}
-                                </h3>
-                                <button className={styles.menuButton}>
-                                  <ThreeDotsIcon />
-                                </button>
-                              </div>
-                              <div className={styles.branchStats}>
-                                <div className={styles.statItem}>
-                                  <span className={styles.statLabel}>
-                                    Departament sayı:
-                                  </span>
-                                  <span className={styles.statValue}>
-                                    {branch.departments}
-                                  </span>
-                                </div>
-                                <div className={styles.statItem}>
-                                  <span className={styles.statLabel}>
-                                    Şöbə sayı:
-                                  </span>
-                                  <span className={styles.statValue}>
-                                    {branch.divisions}
-                                  </span>
-                                </div>
-                                <div className={styles.statItem}>
-                                  <span className={styles.statLabel}>
-                                    İşçi sayı:
-                                  </span>
-                                  <span className={styles.statValue}>
-                                    {branch.employees}
-                                  </span>
-                                </div>
-                              </div>
-                              <div className={styles.branchPerformance}>
-                                <div className={styles.progressBar}>
-                                  <div
-                                    className={styles.progressFill}
-                                    style={{
-                                      width: `${branch.performance}%`,
-                                      backgroundColor: branch.color,
-                                    }}
-                                  ></div>
-                                </div>
-                                <span className={styles.performanceText}>
-                                  {branch.performance}%
+                                {moduleData.map((entry, index) => (
+                                  <Cell
+                                    key={`cell-${index}`}
+                                    fill={entry.color}
+                                  />
+                                ))}
+                              </Pie>
+                              <Tooltip />
+                            </PieChart>
+                          </ResponsiveContainer>
+                          <div className={styles.pieChartLegend}>
+                            {moduleData.map((item, index) => (
+                              <div key={index} className={styles.legendItem}>
+                                <div
+                                  className={styles.legendColor}
+                                  style={{ backgroundColor: item.color }}
+                                ></div>
+                                <span>
+                                  {item.name}: {item.value}%
                                 </span>
                               </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Heatmap */}
+                  <div className={styles.heatmapSection}>
+                    <div className={styles.card}>
+                      <div className={styles.cardHeader}>
+                        <h3 className={styles.cardTitle}>
+                          Filial × Ay üzrə İcra Faizi (Heatmap)
+                        </h3>
+                      </div>
+                      <div className={styles.cardContent}>
+                        <div className={styles.heatmap}>
+                          <div className={styles.heatmapHeader}>
+                            <div className={styles.heatmapCell}>Filial</div>
+                            <div className={styles.heatmapCell}>Yanvar</div>
+                            <div className={styles.heatmapCell}>Fevral</div>
+                            <div className={styles.heatmapCell}>Mart</div>
+                            <div className={styles.heatmapCell}>Aprel</div>
+                            <div className={styles.heatmapCell}>May</div>
+                          </div>
+                          {heatmapData.map((row, index) => (
+                            <div key={index} className={styles.heatmapRow}>
+                              <div className={styles.heatmapCell}>
+                                {row.branch}
+                              </div>
+                              <div
+                                className={styles.heatmapCell}
+                                style={{
+                                  backgroundColor: getHeatmapColor(row.jan),
+                                  color: "black",
+                                }}
+                              >
+                                {row.jan}%
+                              </div>
+                              <div
+                                className={styles.heatmapCell}
+                                style={{
+                                  backgroundColor: getHeatmapColor(row.feb),
+                                  color: "black",
+                                }}
+                              >
+                                {row.feb}%
+                              </div>
+                              <div
+                                className={styles.heatmapCell}
+                                style={{
+                                  backgroundColor: getHeatmapColor(row.mar),
+                                  color: "black",
+                                }}
+                              >
+                                {row.mar}%
+                              </div>
+                              <div
+                                className={styles.heatmapCell}
+                                style={{
+                                  backgroundColor: getHeatmapColor(row.apr),
+                                  color: "black",
+                                }}
+                              >
+                                {row.apr}%
+                              </div>
+                              <div
+                                className={styles.heatmapCell}
+                                style={{
+                                  backgroundColor: getHeatmapColor(row.may),
+                                  color: "black",
+                                }}
+                              >
+                                {row.may}%
+                              </div>
                             </div>
                           ))}
                         </div>
                       </div>
                     </div>
-                  )}
+                  </div>
 
-                  {/* Departments List */}
-                  {navigationLevel === "departments" && selectedBranch && (
-                    <div className={styles.card}>
+                  {/* Bottom Lists */}
+                  <div className={styles.bottomLists}>
+                    <div className={styles.listCard}>
                       <div className={styles.cardHeader}>
-                        <h3 className={styles.cardTitle}>
-                          {selectedBranch.name} - Departamentlər
+                        <h3 className={styles.listTitle}>
+                          <AlertTriangleIcon />
+                          Kritik KPI-lar
                         </h3>
-                        <button
-                          className={styles.backButton}
-                          onClick={handleBackClick}
-                        >
-                          ← Geri
-                        </button>
                       </div>
                       <div className={styles.cardContent}>
-                        <div className={styles.branchGrid}>
-                          {departmentsData[selectedBranch.name]?.map(
-                            (department, index) => (
+                        <div className={styles.listContainer}>
+                          {criticalKPIs.map((kpi, index) => (
+                            <div key={index} className={styles.listItem}>
+                              <div className={styles.listItemHeader}>
+                                <span className={styles.badgeDestructive}>
+                                  {kpi.code}
+                                </span>
+                                <span className={styles.executionBadge}>
+                                  {kpi.execution}% / {kpi.target}%
+                                </span>
+                              </div>
+                              <div className={styles.listItemContent}>
+                                <div className={styles.kpiName}>{kpi.name}</div>
+                                <div className={styles.responsible}>
+                                  Məsul: {kpi.responsible}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className={styles.listCard}>
+                      <div className={styles.cardHeader}>
+                        <h3 className={styles.listTitle}>
+                          <TrophyIcon />
+                          Top KPI-lar
+                        </h3>
+                      </div>
+                      <div className={styles.cardContent}>
+                        <div className={styles.listContainer}>
+                          {topKPIs.map((kpi, index) => (
+                            <div key={index} className={styles.listItem}>
+                              <div className={styles.listItemHeader}>
+                                <span className={styles.badgeSecondary}>
+                                  {kpi.code}
+                                </span>
+                                <span className={styles.executionBadge}>
+                                  {kpi.execution}% / {kpi.target}%
+                                </span>
+                              </div>
+                              <div className={styles.listItemContent}>
+                                <div className={styles.kpiName}>{kpi.name}</div>
+                                <div className={styles.weight}>
+                                  Çəki: {kpi.weight}%
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className={styles.listCard}>
+                      <div className={styles.cardHeader}>
+                        <h3 className={styles.listTitle}>
+                          <UsersIcon />
+                          Məsul Şəxslər Leaderboard
+                        </h3>
+                      </div>
+                      <div className={styles.cardContent}>
+                        <div className={styles.listContainer}>
+                          {leaderboard.map((person, index) => (
+                            <div key={index} className={styles.listItem}>
+                              <div className={styles.listItemHeader}>
+                                <span className={styles.personName}>
+                                  {person.name}
+                                </span>
+                                <span
+                                  className={`${styles.badge} ${
+                                    person.delays > 3
+                                      ? styles.badgeDestructive
+                                      : person.delays > 1
+                                      ? styles.badgeSecondary
+                                      : styles.badgeDefault
+                                  }`}
+                                >
+                                  {person.delays} gecikmə
+                                </span>
+                              </div>
+                              <div className={styles.listItemContent}>
+                                <div className={styles.department}>
+                                  {person.department}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "catalog" && (
+                <div className={styles.tabContent}>
+                  <div className={styles.card}>
+                    <div className={styles.cardHeader}>
+                      <h3 className={styles.cardTitle}>KPI Kataloqu</h3>
+                      <div className={styles.catalogActions}>
+                        <div className={styles.searchContainer}>
+                          <SearchIcon />
+                          <input
+                            placeholder="KPI kodu və ya adı ilə axtarın..."
+                            className={styles.searchInput}
+                          />
+                        </div>
+                        <button
+                          className={styles.primaryButton}
+                          onClick={() => setIsKPIModalOpen(true)}
+                        >
+                          Yeni KPI
+                        </button>
+                      </div>
+                    </div>
+                    <div className={styles.cardContent}>
+                      <div className={styles.cleanTableContainer}>
+                        <table className={styles.cleanTable}>
+                          <thead>
+                            <tr>
+                              <th>KPI Kodu</th>
+                              <th>KPI Adı</th>
+                              <th>Məqsəd</th>
+                              <th>Ölçü Metodu</th>
+                              <th>Müddət</th>
+                              <th>Hesablama Formulası</th>
+                              <th>Çəki (%)</th>
+                              <th>Məsul Şöbə</th>
+                              <th>Data Mənbə</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {kpiCatalogData.map((kpi, index) => (
+                              <tr key={index}>
+                                <td>{kpi.code}</td>
+                                <td>{kpi.name}</td>
+                                <td>{kpi.purpose}</td>
+                                <td>{kpi.method}</td>
+                                <td>{kpi.period}</td>
+                                <td>{kpi.formula}</td>
+                                <td>{kpi.weight}</td>
+                                <td>{kpi.department}</td>
+                                <td>{kpi.dataSource}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "structure" && (
+                <div className={styles.tabContent}>
+                  <div className={styles.card}>
+                    <div className={styles.cardHeader}>
+                      <h3 className={styles.cardTitle}>Təşkilati Struktur</h3>
+                      <p className={styles.cardDescription}>
+                        Hierarkik təşkilat strukturu və səlahiyyət axını
+                      </p>
+                    </div>
+                    <div className={styles.cardContent}>
+                      <div className={styles.simpleOrgChart}>
+                        <div className={styles.orgLevel}>
+                          <div className={styles.orgNode}>
+                            <span>Yeni Filial</span>
+                          </div>
+                          <div className={styles.orgConnector}>↓</div>
+                        </div>
+
+                        <div className={styles.orgLevel}>
+                          <div className={styles.orgNode}>
+                            <span>İdarə Heyyəti</span>
+                          </div>
+                          <div className={styles.orgConnector}>↓</div>
+                        </div>
+
+                        <div className={styles.orgLevel}>
+                          <div className={styles.orgNode}>
+                            <span>Komplayens Departamenti</span>
+                          </div>
+                          <div className={styles.orgConnector}>↓</div>
+                        </div>
+
+                        <div className={styles.orgLevel}>
+                          <div className={styles.orgBranches}>
+                            <div className={styles.orgBranch}>
+                              <div className={styles.orgNode}>
+                                <span>ƏL/TMM Şöbəsi</span>
+                              </div>
+                              <div className={styles.orgHierarchy}>
+                                <div className={styles.hierarchyItem}>
+                                  <span>Şöbə Rəisi</span>
+                                  <div className={styles.hierarchyConnector}>
+                                    ↓
+                                  </div>
+                                </div>
+                                <div className={styles.hierarchyItem}>
+                                  <span>Baş Mütəxəssis</span>
+                                  <div className={styles.hierarchyConnector}>
+                                    ↓
+                                  </div>
+                                </div>
+                                <div className={styles.hierarchyItem}>
+                                  <span>Aparıcı Mütəxəssis</span>
+                                  <div className={styles.hierarchyConnector}>
+                                    ↓
+                                  </div>
+                                </div>
+                                <div className={styles.hierarchyItem}>
+                                  <span>İntern</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className={styles.orgBranch}>
+                              <div className={styles.orgNode}>
+                                <span>MEŞ / Hesabatlıq şöbəsi</span>
+                              </div>
+                              <div className={styles.orgHierarchy}>
+                                <div className={styles.hierarchyItem}>
+                                  <span>Şöbə Rəisi</span>
+                                  <div className={styles.hierarchyConnector}>
+                                    ↓
+                                  </div>
+                                </div>
+                                <div className={styles.hierarchyItem}>
+                                  <span>Baş Mütəxəssis</span>
+                                  <div className={styles.hierarchyConnector}>
+                                    ↓
+                                  </div>
+                                </div>
+                                <div className={styles.hierarchyItem}>
+                                  <span>Aparıcı Mütəxəssis</span>
+                                  <div className={styles.hierarchyConnector}>
+                                    ↓
+                                  </div>
+                                </div>
+                                <div className={styles.hierarchyItem}>
+                                  <span>İntern</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className={styles.orgBranch}>
+                              <div className={styles.orgNode}>
+                                <span>Komplayens Monitorinq Şöbəsi</span>
+                              </div>
+                              <div className={styles.orgHierarchy}>
+                                <div className={styles.hierarchyItem}>
+                                  <span>Şöbə Rəisi</span>
+                                  <div className={styles.hierarchyConnector}>
+                                    ↓
+                                  </div>
+                                </div>
+                                <div className={styles.hierarchyItem}>
+                                  <span>Baş Mütəxəssis</span>
+                                  <div className={styles.hierarchyConnector}>
+                                    ↓
+                                  </div>
+                                </div>
+                                <div className={styles.hierarchyItem}>
+                                  <span>Aparıcı Mütəxəssis</span>
+                                  <div className={styles.hierarchyConnector}>
+                                    ↓
+                                  </div>
+                                </div>
+                                <div className={styles.hierarchyItem}>
+                                  <span>İntern</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "employee" && (
+                <div className={styles.tabContent}>
+                  <div className={styles.branchesSection}>
+                    {/* Navigation breadcrumb */}
+                    <div className={styles.breadcrumb}>
+                      <button
+                        className={styles.breadcrumbItem}
+                        onClick={() => {
+                          setNavigationLevel("branches");
+                          setSelectedBranch(null);
+                          setSelectedDepartment(null);
+                          setSelectedDivision(null);
+                        }}
+                      >
+                        Filiallar
+                      </button>
+                      {selectedBranch && (
+                        <>
+                          <span className={styles.breadcrumbSeparator}>›</span>
+                          <button
+                            className={styles.breadcrumbItem}
+                            onClick={() => {
+                              setNavigationLevel("departments");
+                              setSelectedDepartment(null);
+                              setSelectedDivision(null);
+                            }}
+                          >
+                            {selectedBranch.name}
+                          </button>
+                        </>
+                      )}
+                      {selectedDepartment && (
+                        <>
+                          <span className={styles.breadcrumbSeparator}>›</span>
+                          <button
+                            className={styles.breadcrumbItem}
+                            onClick={() => {
+                              setNavigationLevel("divisions");
+                              setSelectedDivision(null);
+                            }}
+                          >
+                            {selectedDepartment.name}
+                          </button>
+                        </>
+                      )}
+                      {selectedDivision && (
+                        <>
+                          <span className={styles.breadcrumbSeparator}>›</span>
+                          <span className={styles.breadcrumbCurrent}>
+                            {selectedDivision.name}
+                          </span>
+                        </>
+                      )}
+                    </div>
+
+                    {/* Branches List */}
+                    {navigationLevel === "branches" && (
+                      <div className={styles.card}>
+                        <div className={styles.cardHeader}>
+                          <h3 className={styles.cardTitle}>
+                            Filiallar Siyahısı
+                          </h3>
+                        </div>
+                        <div className={styles.cardContent}>
+                          <div className={styles.branchGrid}>
+                            {branchesData.map((branch, index) => (
                               <div
                                 key={index}
                                 className={styles.branchCard}
-                                onClick={() =>
-                                  handleDepartmentClick(department)
-                                }
+                                onClick={() => handleBranchClick(branch)}
                               >
                                 <div className={styles.branchHeader}>
                                   <h3 className={styles.branchName}>
-                                    {department.name}
+                                    {branch.name}
                                   </h3>
                                   <button className={styles.menuButton}>
                                     <ThreeDotsIcon />
                                   </button>
                                 </div>
                                 <div className={styles.branchStats}>
+                                  <div className={styles.statItem}>
+                                    <span className={styles.statLabel}>
+                                      Departament sayı:
+                                    </span>
+                                    <span className={styles.statValue}>
+                                      {branch.departments}
+                                    </span>
+                                  </div>
                                   <div className={styles.statItem}>
                                     <span className={styles.statLabel}>
                                       Şöbə sayı:
                                     </span>
                                     <span className={styles.statValue}>
-                                      {department.divisions}
+                                      {branch.divisions}
                                     </span>
                                   </div>
                                   <div className={styles.statItem}>
@@ -1845,7 +1767,7 @@ export default function KPIHomePage() {
                                       İşçi sayı:
                                     </span>
                                     <span className={styles.statValue}>
-                                      {department.employees}
+                                      {branch.employees}
                                     </span>
                                   </div>
                                 </div>
@@ -1854,231 +1776,312 @@ export default function KPIHomePage() {
                                     <div
                                       className={styles.progressFill}
                                       style={{
-                                        width: `${department.performance}%`,
-                                        backgroundColor: "#996f29",
+                                        width: `${branch.performance}%`,
+                                        backgroundColor: branch.color,
                                       }}
                                     ></div>
                                   </div>
                                   <span className={styles.performanceText}>
-                                    {department.performance}%
+                                    {branch.performance}%
                                   </span>
                                 </div>
                               </div>
-                            )
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Divisions List */}
-                  {navigationLevel === "divisions" && selectedDepartment && (
-                    <div className={styles.card}>
-                      <div className={styles.cardHeader}>
-                        <h3 className={styles.cardTitle}>
-                          {selectedDepartment.name} - Şöbələr
-                        </h3>
-                        <button
-                          className={styles.backButton}
-                          onClick={handleBackClick}
-                        >
-                          ← Geri
-                        </button>
-                      </div>
-                      <div className={styles.cardContent}>
-                        <div className={styles.branchGrid}>
-                          {divisionsData[selectedDepartment.name]?.map(
-                            (division, index) => (
-                              <div
-                                key={index}
-                                className={styles.branchCard}
-                                onClick={() => handleDivisionClick(division)}
-                              >
-                                <div className={styles.branchHeader}>
-                                  <h3 className={styles.branchName}>
-                                    {division.name}
-                                  </h3>
-                                  <button className={styles.menuButton}>
-                                    <ThreeDotsIcon />
-                                  </button>
-                                </div>
-                                <div className={styles.branchStats}>
-                                  <div className={styles.statItem}>
-                                    <span className={styles.statLabel}>
-                                      İşçi sayı:
-                                    </span>
-                                    <span className={styles.statValue}>
-                                      {division.employees}
-                                    </span>
-                                  </div>
-                                </div>
-                                <div className={styles.branchPerformance}>
-                                  <div className={styles.progressBar}>
-                                    <div
-                                      className={styles.progressFill}
-                                      style={{
-                                        width: `${division.performance}%`,
-                                        backgroundColor: "#996f29",
-                                      }}
-                                    ></div>
-                                  </div>
-                                  <span className={styles.performanceText}>
-                                    {division.performance}%
-                                  </span>
-                                </div>
-                              </div>
-                            )
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {navigationLevel === "employees" && selectedDivision && (
-                    <div className={styles.card}>
-                      <div className={styles.cardHeader}>
-                        <h3 className={styles.cardTitle}>
-                          {selectedDivision.name} - İşçi Siyahısı
-                        </h3>
-                        <button
-                          className={styles.backButton}
-                          onClick={handleBackClick}
-                        >
-                          ← Geri
-                        </button>
-                      </div>
-                      <div className={styles.cardContent}>
-                        <div className={styles.employeeTable}>
-                          <div className={styles.employeeTableHeader}>
-                            <div className={styles.employeeHeaderCell}>
-                              İşçi
-                            </div>
-                            <div className={styles.employeeHeaderCell}>
-                              Struktur
-                            </div>
-                            <div className={styles.employeeHeaderCell}>
-                              KPI Nəticəsi
-                            </div>
-                            <div className={styles.employeeHeaderCell}>
-                              Status
-                            </div>
-                            <div className={styles.employeeHeaderCell}>
-                              Benchmark
-                            </div>
-                            <div className={styles.employeeHeaderCell}>
-                              Əməliyyat
-                            </div>
+                            ))}
                           </div>
-                          {employeesData[selectedDivision.name]?.map(
-                            (employee, index) => {
-                              const statusBadge = getStatusBadge(
-                                employee.status
-                              );
-                              return (
-                                <div key={index} className={styles.employeeRow}>
-                                  <div className={styles.employeeCell}>
-                                    <div className={styles.employeeInfo}>
-                                      <div className={styles.employeeAvatar}>
-                                        <img
-                                          src={
-                                            employee.photo || "/placeholder.svg"
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Departments List */}
+                    {navigationLevel === "departments" && selectedBranch && (
+                      <div className={styles.card}>
+                        <div className={styles.cardHeader}>
+                          <h3 className={styles.cardTitle}>
+                            {selectedBranch.name} - Departamentlər
+                          </h3>
+                          <button
+                            className={styles.backButton}
+                            onClick={handleBackClick}
+                          >
+                            ← Geri
+                          </button>
+                        </div>
+                        <div className={styles.cardContent}>
+                          <div className={styles.branchGrid}>
+                            {departmentsData[selectedBranch.name]?.map(
+                              (department, index) => (
+                                <div
+                                  key={index}
+                                  className={styles.branchCard}
+                                  onClick={() =>
+                                    handleDepartmentClick(department)
+                                  }
+                                >
+                                  <div className={styles.branchHeader}>
+                                    <h3 className={styles.branchName}>
+                                      {department.name}
+                                    </h3>
+                                    <button className={styles.menuButton}>
+                                      <ThreeDotsIcon />
+                                    </button>
+                                  </div>
+                                  <div className={styles.branchStats}>
+                                    <div className={styles.statItem}>
+                                      <span className={styles.statLabel}>
+                                        Şöbə sayı:
+                                      </span>
+                                      <span className={styles.statValue}>
+                                        {department.divisions}
+                                      </span>
+                                    </div>
+                                    <div className={styles.statItem}>
+                                      <span className={styles.statLabel}>
+                                        İşçi sayı:
+                                      </span>
+                                      <span className={styles.statValue}>
+                                        {department.employees}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div className={styles.branchPerformance}>
+                                    <div className={styles.progressBar}>
+                                      <div
+                                        className={styles.progressFill}
+                                        style={{
+                                          width: `${department.performance}%`,
+                                          backgroundColor: "#996f29",
+                                        }}
+                                      ></div>
+                                    </div>
+                                    <span className={styles.performanceText}>
+                                      {department.performance}%
+                                    </span>
+                                  </div>
+                                </div>
+                              )
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Divisions List */}
+                    {navigationLevel === "divisions" && selectedDepartment && (
+                      <div className={styles.card}>
+                        <div className={styles.cardHeader}>
+                          <h3 className={styles.cardTitle}>
+                            {selectedDepartment.name} - Şöbələr
+                          </h3>
+                          <button
+                            className={styles.backButton}
+                            onClick={handleBackClick}
+                          >
+                            ← Geri
+                          </button>
+                        </div>
+                        <div className={styles.cardContent}>
+                          <div className={styles.branchGrid}>
+                            {divisionsData[selectedDepartment.name]?.map(
+                              (division, index) => (
+                                <div
+                                  key={index}
+                                  className={styles.branchCard}
+                                  onClick={() => handleDivisionClick(division)}
+                                >
+                                  <div className={styles.branchHeader}>
+                                    <h3 className={styles.branchName}>
+                                      {division.name}
+                                    </h3>
+                                    <button className={styles.menuButton}>
+                                      <ThreeDotsIcon />
+                                    </button>
+                                  </div>
+                                  <div className={styles.branchStats}>
+                                    <div className={styles.statItem}>
+                                      <span className={styles.statLabel}>
+                                        İşçi sayı:
+                                      </span>
+                                      <span className={styles.statValue}>
+                                        {division.employees}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div className={styles.branchPerformance}>
+                                    <div className={styles.progressBar}>
+                                      <div
+                                        className={styles.progressFill}
+                                        style={{
+                                          width: `${division.performance}%`,
+                                          backgroundColor: "#996f29",
+                                        }}
+                                      ></div>
+                                    </div>
+                                    <span className={styles.performanceText}>
+                                      {division.performance}%
+                                    </span>
+                                  </div>
+                                </div>
+                              )
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {navigationLevel === "employees" && selectedDivision && (
+                      <div className={styles.card}>
+                        <div className={styles.cardHeader}>
+                          <h3 className={styles.cardTitle}>
+                            {selectedDivision.name} - İşçi Siyahısı
+                          </h3>
+                          <button
+                            className={styles.backButton}
+                            onClick={handleBackClick}
+                          >
+                            ← Geri
+                          </button>
+                        </div>
+                        <div className={styles.cardContent}>
+                          <div className={styles.employeeTable}>
+                            <div className={styles.employeeTableHeader}>
+                              <div className={styles.employeeHeaderCell}>
+                                İşçi
+                              </div>
+                              <div className={styles.employeeHeaderCell}>
+                                Struktur
+                              </div>
+                              <div className={styles.employeeHeaderCell}>
+                                KPI Nəticəsi
+                              </div>
+                              <div className={styles.employeeHeaderCell}>
+                                Status
+                              </div>
+                              <div className={styles.employeeHeaderCell}>
+                                Benchmark
+                              </div>
+                              <div className={styles.employeeHeaderCell}>
+                                Əməliyyat
+                              </div>
+                            </div>
+                            {employeesData[selectedDivision.name]?.map(
+                              (employee, index) => {
+                                const statusBadge = getStatusBadge(
+                                  employee.status
+                                );
+                                return (
+                                  <div
+                                    key={index}
+                                    className={styles.employeeRow}
+                                  >
+                                    <div className={styles.employeeCell}>
+                                      <div className={styles.employeeInfo}>
+                                        <div className={styles.employeeAvatar}>
+                                          <img
+                                            src={
+                                              employee.photo ||
+                                              "/placeholder.svg"
+                                            }
+                                            alt={employee.name}
+                                          />
+                                        </div>
+                                        <button
+                                          className={styles.employeeName}
+                                          onClick={() =>
+                                            handleEmployeeProfileClick(employee)
                                           }
-                                          alt={employee.name}
-                                        />
+                                        >
+                                          {employee.name}
+                                        </button>
                                       </div>
+                                    </div>
+                                    <div className={styles.employeeCell}>
+                                      <div className={styles.employeeStructure}>
+                                        <div className={styles.structureBranch}>
+                                          {employee.branch}
+                                        </div>
+                                        <div className={styles.structureDept}>
+                                          {employee.department} /{" "}
+                                          {employee.division}
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div className={styles.employeeCell}>
+                                      <div className={styles.kpiResult}>
+                                        <div className={styles.kpiProgress}>
+                                          <div
+                                            className={styles.kpiProgressBar}
+                                          >
+                                            <div
+                                              className={styles.kpiProgressFill}
+                                              style={{
+                                                width: `${employee.kpiResult}%`,
+                                              }}
+                                            ></div>
+                                          </div>
+                                          <span
+                                            className={styles.kpiPercentage}
+                                          >
+                                            {employee.kpiResult}%
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div className={styles.employeeCell}>
+                                      <div
+                                        className={styles.statusBadge}
+                                        style={{
+                                          backgroundColor: statusBadge.color,
+                                        }}
+                                      >
+                                        <span className={styles.statusEmoji}>
+                                          {statusBadge.emoji}
+                                        </span>
+                                        <span className={styles.statusText}>
+                                          {statusBadge.text}
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div className={styles.employeeCell}>
+                                      <div className={styles.benchmark}>
+                                        <span className={styles.benchmarkIcon}>
+                                          {employee.benchmark > 0 ? "↑" : "↓"}
+                                        </span>
+                                        <span className={styles.benchmarkValue}>
+                                          {Math.abs(employee.benchmark)}%
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <div className={styles.employeeCell}>
                                       <button
-                                        className={styles.employeeName}
+                                        className={styles.detailButton}
                                         onClick={() =>
                                           handleEmployeeProfileClick(employee)
                                         }
                                       >
-                                        {employee.name}
+                                        Detallı bax
                                       </button>
                                     </div>
                                   </div>
-                                  <div className={styles.employeeCell}>
-                                    <div className={styles.employeeStructure}>
-                                      <div className={styles.structureBranch}>
-                                        {employee.branch}
-                                      </div>
-                                      <div className={styles.structureDept}>
-                                        {employee.department} /{" "}
-                                        {employee.division}
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className={styles.employeeCell}>
-                                    <div className={styles.kpiResult}>
-                                      <div className={styles.kpiProgress}>
-                                        <div className={styles.kpiProgressBar}>
-                                          <div
-                                            className={styles.kpiProgressFill}
-                                            style={{
-                                              width: `${employee.kpiResult}%`,
-                                            }}
-                                          ></div>
-                                        </div>
-                                        <span className={styles.kpiPercentage}>
-                                          {employee.kpiResult}%
-                                        </span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className={styles.employeeCell}>
-                                    <div
-                                      className={styles.statusBadge}
-                                      style={{
-                                        backgroundColor: statusBadge.color,
-                                      }}
-                                    >
-                                      <span className={styles.statusEmoji}>
-                                        {statusBadge.emoji}
-                                      </span>
-                                      <span className={styles.statusText}>
-                                        {statusBadge.text}
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <div className={styles.employeeCell}>
-                                    <div className={styles.benchmark}>
-                                      <span className={styles.benchmarkIcon}>
-                                        {employee.benchmark > 0 ? "↑" : "↓"}
-                                      </span>
-                                      <span className={styles.benchmarkValue}>
-                                        {Math.abs(employee.benchmark)}%
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <div className={styles.employeeCell}>
-                                    <button
-                                      className={styles.detailButton}
-                                      onClick={() =>
-                                        handleEmployeeProfileClick(employee)
-                                      }
-                                    >
-                                      Detallı bax
-                                    </button>
-                                  </div>
-                                </div>
-                              );
-                            }
-                          )}
+                                );
+                              }
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
 
-          <KPICreationModal
-            open={isKPIModalOpen}
-            onOpenChange={setIsKPIModalOpen}
-          />
-        </>
-      )}
-    </div>
+            <KPICreationModal
+              open={isKPIModalOpen}
+              onOpenChange={setIsKPIModalOpen}
+            />
+          </>
+        )}
+      </div>
+    </>
   );
 }
 

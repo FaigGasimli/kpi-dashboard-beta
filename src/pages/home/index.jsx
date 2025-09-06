@@ -1,5 +1,5 @@
-import styles from "./home.module.css"
-import Header from "../../components/header"
+import styles from "./home.module.css";
+import Header from "../../components/header";
 import {
   BarChart3,
   TrendingUp,
@@ -15,7 +15,7 @@ import {
   Award,
   ListTodo,
   Timer,
-} from "lucide-react"
+} from "lucide-react";
 import {
   BarChart,
   Bar,
@@ -29,18 +29,21 @@ import {
   PieChart,
   Pie,
   Cell,
-} from "recharts"
+} from "recharts";
 
 const CircularProgress = ({ percentage, color = "#4f46e5", size = 80 }) => {
-  const radius = 30
-  const strokeWidth = 6
-  const normalizedRadius = radius - strokeWidth * 2
-  const circumference = normalizedRadius * 2 * Math.PI
-  const strokeDasharray = `${circumference} ${circumference}`
-  const strokeDashoffset = circumference - (percentage / 100) * circumference
+  const radius = 30;
+  const strokeWidth = 6;
+  const normalizedRadius = radius - strokeWidth * 2;
+  const circumference = normalizedRadius * 2 * Math.PI;
+  const strokeDasharray = `${circumference} ${circumference}`;
+  const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
   return (
-    <div className={styles.circularProgress} style={{ width: size, height: size }}>
+    <div
+      className={styles.circularProgress}
+      style={{ width: size, height: size }}
+    >
       <svg height={size} width={size} className={styles.progressSvg}>
         <circle
           stroke="#f1f5f9"
@@ -67,22 +70,28 @@ const CircularProgress = ({ percentage, color = "#4f46e5", size = 80 }) => {
         <span className={styles.percentage}>{percentage}%</span>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const MiniChart = ({ data, color = "#4f46e5" }) => {
-  const chartData = data.map((value, index) => ({ value, index }))
+  const chartData = data.map((value, index) => ({ value, index }));
 
   return (
     <div className={styles.miniChart}>
       <ResponsiveContainer width="100%" height={30}>
         <LineChart data={chartData}>
-          <Line type="monotone" dataKey="value" stroke={color} strokeWidth={2} dot={false} />
+          <Line
+            type="monotone"
+            dataKey="value"
+            stroke={color}
+            strokeWidth={2}
+            dot={false}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>
-  )
-}
+  );
+};
 
 const Dashboard = () => {
   const overviewCards = [
@@ -134,14 +143,14 @@ const Dashboard = () => {
       trend: [15, 14, 13, 12, 13, 12],
       change: "-20%",
     },
-  ]
+  ];
 
   const moduleChartData = [
-    { name: "CE", value: 35, color: "#996f29" },
-    { name: "MH", value: 25, color: "#10b981" },
-    { name: "AML", value: 20, color: "#f59e0b" },
-    { name: "AU", value: 20, color: "#ef4444" },
-  ]
+    { name: "Cərimə və Eskalasiya", value: 35, color: "#996f29" },
+    { name: "Monitorinq və Hesabatlılıq", value: 25, color: "#10b981" },
+    { name: "AML/ƏL/TMM", value: 20, color: "#f59e0b" },
+    { name: "Audit və Uyğunsuzluqlar", value: 20, color: "#ef4444" },
+  ];
 
   const trendChartData = [
     { month: "Yan", value: 80 },
@@ -150,27 +159,61 @@ const Dashboard = () => {
     { month: "Apr", value: 83 },
     { month: "May", value: 87 },
     { month: "İyn", value: 85 },
-  ]
+  ];
 
   const riskyKPIs = [
-    { name: "Müştəri məmnuniyyəti", current: 65, target: 85, risk: "Yüksək", riskLevel: "high" },
-    { name: "Kredit portfeli keyfiyyəti", current: 72, target: 90, risk: "Orta", riskLevel: "medium" },
-    { name: "Əməliyyat səmərəliliyi", current: 78, target: 95, risk: "Orta", riskLevel: "medium" },
-    { name: "Rəqəmsal xidmət istifadəsi", current: 45, target: 70, risk: "Yüksək", riskLevel: "high" },
-  ]
+    {
+      name: "Müştəri məmnuniyyəti",
+      current: 65,
+      target: 85,
+      risk: "Yüksək",
+      riskLevel: "high",
+    },
+    {
+      name: "Kredit portfeli keyfiyyəti",
+      current: 72,
+      target: 90,
+      risk: "Orta",
+      riskLevel: "medium",
+    },
+    {
+      name: "Əməliyyat səmərəliliyi",
+      current: 78,
+      target: 95,
+      risk: "Orta",
+      riskLevel: "medium",
+    },
+    {
+      name: "Rəqəmsal xidmət istifadəsi",
+      current: 45,
+      target: 70,
+      risk: "Yüksək",
+      riskLevel: "high",
+    },
+  ];
 
   const hrData = {
     disciplinary: [
       { type: "Gecikmə", count: 8, level: "Aşağı", levelClass: "low" },
-      { type: "İcazəsiz yoxluq", count: 3, level: "Orta", levelClass: "medium" },
-      { type: "Qaydaların pozulması", count: 1, level: "Yüksək", levelClass: "high" },
+      {
+        type: "İcazəsiz yoxluq",
+        count: 3,
+        level: "Orta",
+        levelClass: "medium",
+      },
+      {
+        type: "Qaydaların pozulması",
+        count: 1,
+        level: "Yüksək",
+        levelClass: "high",
+      },
     ],
     topPerformers: [
       { name: "Ayan Hüseynli", department: "ƏL/TMM", score: 98, avatar: "AH" },
       { name: "Şaiq Muradzadə", department: "ME", score: 95, avatar: "ŞM" },
       { name: "Sənan Hüseynli", department: "KM", score: 92, avatar: "SH" },
     ],
-  }
+  };
 
   const taskData = {
     distribution: [
@@ -184,83 +227,74 @@ const Dashboard = () => {
       { task: "Sistem yeniləməsi", responsible: "Ş.Muradzadə", days: 3 },
       { task: "Müştəri sorğusu", responsible: "S.Hüseynli", days: 2 },
     ],
-  }
+  };
 
   const departmentData = [
-    { name: "ƏL / TMM", current: 2586, target: 2586, performance: 98, trend: "up" },
-    { name: "Məlumatlar Emalı", current: 2500, target: 2500, performance: 80, trend: "stable" },
-    { name: "Komplyens Monitoring", current: 1854, target: 1854, performance: 78, trend: "down" },
-    { name: "Müştəri Xidmətləri", current: 1589, target: 1589, performance: 65, trend: "up" },
-  ]
+    {
+      name: "ƏL / TMM",
+      current: 2586,
+      target: 2586,
+      performance: 98,
+      trend: "up",
+    },
+    {
+      name: "Məlumatlar Emalı",
+      current: 2500,
+      target: 2500,
+      performance: 80,
+      trend: "stable",
+    },
+    {
+      name: "Komplyens Monitoring",
+      current: 1854,
+      target: 1854,
+      performance: 78,
+      trend: "down",
+    },
+    {
+      name: "Müştəri Xidmətləri",
+      current: 1589,
+      target: 1589,
+      performance: 65,
+      trend: "up",
+    },
+  ];
 
   const kpiPerformanceData = [
     { name: "Hədəf", value: 18, fill: "#10b981" },
     { name: "Risk", value: 6, fill: "#ef4444" },
-  ]
+  ];
 
   const taskPerformanceData = [
     { name: "Tamamlanmış", value: 128, fill: "#4f46e5" },
     { name: "Gecikmiş", value: 12, fill: "#ef4444" },
-  ]
+  ];
 
   const attendanceChartData = [
     { name: "İştirakçı", value: 156, fill: "#10b981" },
     { name: "Yoxluq", value: 12, fill: "#ef4444" },
     { name: "Gecikmə", value: 8, fill: "#f59e0b" },
-  ]
+  ];
 
   return (
     <>
       <Header title="KPI Dashboard - Ana səhifə" />
       <div className={styles.dashboard}>
-        <div className={styles.filterSection}>
-          <div className={styles.filterGroup}>
-            <div className={styles.filterLabel}>
-              <Calendar size={14} />
-              <span>Dövr</span>
-            </div>
-            <select className={styles.filterSelect}>
-              <option>Aylıq</option>
-              <option>Rüblük</option>
-              <option>İllik</option>
-            </select>
-          </div>
-          <div className={styles.filterGroup}>
-            <div className={styles.filterLabel}>
-              <Filter size={14} />
-              <span>Modul</span>
-            </div>
-            <select className={styles.filterSelect}>
-              <option>Hamısı</option>
-              <option>CE</option>
-              <option>MH</option>
-              <option>AML</option>
-              <option>AU</option>
-            </select>
-          </div>
-          <div className={styles.filterGroup}>
-            <div className={styles.filterLabel}>
-              <Building size={14} />
-              <span>Struktur</span>
-            </div>
-            <select className={styles.filterSelect}>
-              <option>Hamısı</option>
-              <option>Filial</option>
-              <option>Departament</option>
-              <option>Şöbə</option>
-            </select>
-          </div>
-        </div>
-
         <div className={styles.overviewSection}>
           <h2>Ümumi Xülasə</h2>
           <div className={styles.overviewCards}>
             {overviewCards.map((card, index) => {
-              const IconComponent = card.icon
+              const IconComponent = card.icon;
               return (
                 <div key={index} className={styles.overviewCard}>
                   <div className={styles.cardHeader}>
-                    <div className={styles.cardIcon} style={{ backgroundColor: `${card.color}15`, color: card.color }}>
+                    <div
+                      className={styles.cardIcon}
+                      style={{
+                        backgroundColor: `${card.color}15`,
+                        color: card.color,
+                      }}
+                    >
                       <IconComponent size={20} />
                     </div>
                     <div className={styles.cardValue}>{card.value}</div>
@@ -271,14 +305,18 @@ const Dashboard = () => {
                       <MiniChart data={card.trend} color={card.color} />
                       <span
                         className={styles.trendValue}
-                        style={{ color: card.change.startsWith("+") ? "#10b981" : "#ef4444" }}
+                        style={{
+                          color: card.change.startsWith("+")
+                            ? "#10b981"
+                            : "#ef4444",
+                        }}
                       >
                         {card.change}
                       </span>
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
@@ -314,7 +352,10 @@ const Dashboard = () => {
                   </div>
                   <div className={styles.summaryItem}>
                     <span className={styles.summaryLabel}>Trend:</span>
-                    <span className={styles.summaryValue} style={{ color: "#10b981" }}>
+                    <span
+                      className={styles.summaryValue}
+                      style={{ color: "#10b981" }}
+                    >
                       ↗ +2.4%
                     </span>
                   </div>
@@ -329,7 +370,7 @@ const Dashboard = () => {
             <div className={styles.riskyKpiSection}>
               <div className={styles.sectionHeader}>
                 <AlertTriangle size={18} color="#ef4444" />
-                <h3>Riskli KPI-lar</h3>
+                <h3>Riskli / Hədəfə çatmayan</h3>
               </div>
               <div className={styles.riskyKpiList}>
                 {riskyKPIs.map((kpi, index) => (
@@ -346,8 +387,8 @@ const Dashboard = () => {
                                 kpi.riskLevel === "high"
                                   ? "#ef4444"
                                   : kpi.riskLevel === "medium"
-                                    ? "#f59e0b"
-                                    : "#10b981",
+                                  ? "#f59e0b"
+                                  : "#10b981",
                             }}
                           />
                         </div>
@@ -356,7 +397,11 @@ const Dashboard = () => {
                         </span>
                       </div>
                     </div>
-                    <span className={`${styles.riskBadge} ${styles[kpi.riskLevel]}`}>{kpi.risk}</span>
+                    <span
+                      className={`${styles.riskBadge} ${styles[kpi.riskLevel]}`}
+                    >
+                      {kpi.risk}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -365,7 +410,7 @@ const Dashboard = () => {
             <div className={styles.moduleSection}>
               <div className={styles.sectionHeader}>
                 <BarChart3 size={18} color="#4f46e5" />
-                <h3>Modul Payı</h3>
+                <h3>Modullar üzrə KPI</h3>
               </div>
               <div className={styles.moduleChart}>
                 <ResponsiveContainer width="100%" height={180}>
@@ -389,7 +434,10 @@ const Dashboard = () => {
                 <div className={styles.moduleLegend}>
                   {moduleChartData.map((module, index) => (
                     <div key={index} className={styles.legendItem}>
-                      <span className={styles.legendDot} style={{ backgroundColor: module.color }}></span>
+                      <span
+                        className={styles.legendDot}
+                        style={{ backgroundColor: module.color }}
+                      ></span>
                       <span className={styles.legendText}>
                         {module.name}: {module.value}%
                       </span>
@@ -411,7 +459,11 @@ const Dashboard = () => {
                     <XAxis dataKey="name" fontSize={11} />
                     <YAxis fontSize={12} />
                     <Tooltip />
-                    <Bar dataKey="performance" fill="#996f29" radius={[4, 4, 0, 0]} />
+                    <Bar
+                      dataKey="performance"
+                      fill="#996f29"
+                      radius={[4, 4, 0, 0]}
+                    />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -450,7 +502,10 @@ const Dashboard = () => {
                 </div>
                 <div className={styles.attendanceStats}>
                   <div className={styles.attendanceItem}>
-                    <div className={styles.attendanceIcon} style={{ backgroundColor: "#10b98115", color: "#10b981" }}>
+                    <div
+                      className={styles.attendanceIcon}
+                      style={{ backgroundColor: "#10b98115", color: "#10b981" }}
+                    >
                       <UserCheck size={16} />
                     </div>
                     <div className={styles.attendanceInfo}>
@@ -459,7 +514,10 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <div className={styles.attendanceItem}>
-                    <div className={styles.attendanceIcon} style={{ backgroundColor: "#ef444415", color: "#ef4444" }}>
+                    <div
+                      className={styles.attendanceIcon}
+                      style={{ backgroundColor: "#ef444415", color: "#ef4444" }}
+                    >
                       <Clock size={16} />
                     </div>
                     <div className={styles.attendanceInfo}>
@@ -468,7 +526,10 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <div className={styles.attendanceItem}>
-                    <div className={styles.attendanceIcon} style={{ backgroundColor: "#f59e0b15", color: "#f59e0b" }}>
+                    <div
+                      className={styles.attendanceIcon}
+                      style={{ backgroundColor: "#f59e0b15", color: "#f59e0b" }}
+                    >
                       <AlertTriangle size={16} />
                     </div>
                     <div className={styles.attendanceInfo}>
@@ -489,10 +550,20 @@ const Dashboard = () => {
                 {hrData.disciplinary.map((item, index) => (
                   <div key={index} className={styles.disciplinaryItem}>
                     <div className={styles.disciplinaryInfo}>
-                      <span className={styles.disciplinaryType}>{item.type}</span>
-                      <span className={styles.disciplinaryCount}>{item.count} hal</span>
+                      <span className={styles.disciplinaryType}>
+                        {item.type}
+                      </span>
+                      <span className={styles.disciplinaryCount}>
+                        {item.count} hal
+                      </span>
                     </div>
-                    <span className={`${styles.levelBadge} ${styles[item.levelClass]}`}>{item.level}</span>
+                    <span
+                      className={`${styles.levelBadge} ${
+                        styles[item.levelClass]
+                      }`}
+                    >
+                      {item.level}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -507,13 +578,21 @@ const Dashboard = () => {
                 {hrData.topPerformers.map((performer, index) => (
                   <div key={index} className={styles.performerItem}>
                     <div className={styles.performerInfo}>
-                      <div className={styles.performerAvatar}>{performer.avatar}</div>
+                      <div className={styles.performerAvatar}>
+                        {performer.avatar}
+                      </div>
                       <div className={styles.performerDetails}>
-                        <span className={styles.performerName}>{performer.name}</span>
-                        <span className={styles.performerDept}>{performer.department}</span>
+                        <span className={styles.performerName}>
+                          {performer.name}
+                        </span>
+                        <span className={styles.performerDept}>
+                          {performer.department}
+                        </span>
                       </div>
                     </div>
-                    <div className={styles.performerScore}>{performer.score}%</div>
+                    <div className={styles.performerScore}>
+                      {performer.score}%
+                    </div>
                   </div>
                 ))}
               </div>
@@ -531,29 +610,34 @@ const Dashboard = () => {
               </div>
               <div className={styles.taskStatusGrid}>
                 {taskData.distribution.map((status, index) => {
-                  const IconComponent = status.icon
+                  const IconComponent = status.icon;
                   return (
                     <div key={index} className={styles.taskStatusCard}>
                       <div
                         className={styles.taskStatusIcon}
-                        style={{ backgroundColor: `${status.color}15`, color: status.color }}
+                        style={{
+                          backgroundColor: `${status.color}15`,
+                          color: status.color,
+                        }}
                       >
                         <IconComponent size={18} />
                       </div>
                       <div className={styles.taskStatusInfo}>
-                        <div className={styles.taskStatusCount}>{status.count}</div>
+                        <div className={styles.taskStatusCount}>
+                          {status.count}
+                        </div>
                         <div className={styles.taskStatusName}>
                           {status.status === "To Do"
                             ? "Gözləyən"
                             : status.status === "In Progress"
-                              ? "Davam edən"
-                              : status.status === "Completed"
-                                ? "Tamamlanmış"
-                                : "Gecikmiş"}
+                            ? "Davam edən"
+                            : status.status === "Completed"
+                            ? "Tamamlanmış"
+                            : "Gecikmiş"}
                         </div>
                       </div>
                     </div>
-                  )
+                  );
                 })}
               </div>
             </div>
@@ -568,7 +652,9 @@ const Dashboard = () => {
                   <div key={index} className={styles.overdueItem}>
                     <div className={styles.taskInfo}>
                       <span className={styles.taskName}>{task.task}</span>
-                      <span className={styles.taskResponsible}>{task.responsible}</span>
+                      <span className={styles.taskResponsible}>
+                        {task.responsible}
+                      </span>
                     </div>
                     <div className={styles.overdueBadge}>
                       <Clock size={12} />
@@ -612,11 +698,17 @@ const Dashboard = () => {
                 </div>
                 <div className={styles.kpiStats}>
                   <div className={styles.statItem}>
-                    <span className={styles.statDot} style={{ backgroundColor: "#10b981" }}></span>
+                    <span
+                      className={styles.statDot}
+                      style={{ backgroundColor: "#10b981" }}
+                    ></span>
                     <span>Hədəf: 18</span>
                   </div>
                   <div className={styles.statItem}>
-                    <span className={styles.statDot} style={{ backgroundColor: "#ef4444" }}></span>
+                    <span
+                      className={styles.statDot}
+                      style={{ backgroundColor: "#ef4444" }}
+                    ></span>
                     <span>Risk: 6</span>
                   </div>
                 </div>
@@ -651,11 +743,17 @@ const Dashboard = () => {
                 </div>
                 <div className={styles.kpiStats}>
                   <div className={styles.statItem}>
-                    <span className={styles.statDot} style={{ backgroundColor: "#4f46e5" }}></span>
+                    <span
+                      className={styles.statDot}
+                      style={{ backgroundColor: "#4f46e5" }}
+                    ></span>
                     <span>Tamamlanmış: 128</span>
                   </div>
                   <div className={styles.statItem}>
-                    <span className={styles.statDot} style={{ backgroundColor: "#ef4444" }}></span>
+                    <span
+                      className={styles.statDot}
+                      style={{ backgroundColor: "#ef4444" }}
+                    ></span>
                     <span>Gecikmiş: 12</span>
                   </div>
                 </div>
@@ -665,7 +763,7 @@ const Dashboard = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

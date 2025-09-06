@@ -27,7 +27,7 @@ const summaryData = {
   targetAverage: 85.0,
   deviation: 2.5,
   riskiestModule: "AML",
-  bestBranch: "Mərkəzi Filial",
+  bestBranch: "Yeni Filial",
 };
 
 const trendData = [
@@ -46,10 +46,10 @@ const trendData = [
 ];
 
 const moduleData = [
-  { name: "CE", value: 35, color: "#0088FE" },
-  { name: "MH", value: 28, color: "#00C49F" },
-  { name: "AML", value: 22, color: "#FFBB28" },
-  { name: "AU", value: 15, color: "#FF8042" },
+  { name: "Cərimə və Eskalasiya", value: 35, color: "#0088FE" },
+  { name: "Monitorinq və Hesabatlılıq", value: 28, color: "#00C49F" },
+  { name: "AML/ƏL/TMM", value: 22, color: "#FFBB28" },
+  { name: "Audit və Uyğunsuzluqlar", value: 15, color: "#FF8042" },
 ];
 
 const criticalKPIs = [
@@ -137,11 +137,11 @@ const leaderboard = [
 ];
 
 const heatmapData = [
-  { branch: "Mərkəzi", jan: 92, feb: 88, mar: 95, apr: 87, may: 91 },
-  { branch: "Nəsimi", jan: 85, feb: 82, mar: 88, apr: 84, may: 86 },
-  { branch: "Yasamal", jan: 78, feb: 81, mar: 79, apr: 83, may: 80 },
-  { branch: "Səbail", jan: 89, feb: 91, mar: 87, apr: 90, may: 88 },
-  { branch: "Nizami", jan: 83, feb: 85, mar: 82, apr: 86, may: 84 },
+  { branch: "Yeni Filial", jan: 92, feb: 88, mar: 95, apr: 87, may: 91 },
+  { branch: "Filial 2", jan: 85, feb: 82, mar: 88, apr: 84, may: 86 },
+  { branch: "Filial 3", jan: 78, feb: 81, mar: 79, apr: 83, may: 80 },
+  { branch: "Filial 4", jan: 89, feb: 91, mar: 87, apr: 90, may: 88 },
+  { branch: "Filial 5", jan: 83, feb: 85, mar: 82, apr: 86, may: 84 },
 ];
 
 const branchesData = [
@@ -931,6 +931,81 @@ export default function KPIHomePage() {
   const [selectedDivision, setSelectedDivision] = useState(null);
   const [navigationLevel, setNavigationLevel] = useState("branches");
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [heatmapFilter, setHeatmapFilter] = useState("");
+  const [periodFilter, setPeriodFilter] = useState("monthly");
+  const [yearFilter, setYearFilter] = useState("2024");
+  const [singleMonth, setSingleMonth] = useState("may");
+  const [selectedMonths, setSelectedMonths] = useState(["mar", "apr", "may"]);
+
+  // Month keys and labels for dynamic KPI Statistika table
+  const monthKeys = [
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "may",
+    "jun",
+    "jul",
+    "aug",
+    "sep",
+    "oct",
+    "nov",
+    "dec",
+  ];
+  const monthLabels = {
+    jan: "Yanvar",
+    feb: "Fevral",
+    mar: "Mart",
+    apr: "Aprel",
+    may: "May",
+    jun: "İyun",
+    jul: "İyul",
+    aug: "Avqust",
+    sep: "Sentyabr",
+    oct: "Oktyabr",
+    nov: "Noyabr",
+    dec: "Dekabr",
+  };
+
+  // Determine latest available month key from current data
+  const latestAvailableMonthKey = [
+    "dec",
+    "nov",
+    "oct",
+    "sep",
+    "aug",
+    "jul",
+    "jun",
+    "may",
+    "apr",
+    "mar",
+    "feb",
+    "jan",
+  ].find((key) => heatmapData[0] && heatmapData[0][key] !== undefined) || "jan";
+
+  // Columns to show based on period filter
+  const displayedColumns = (() => {
+    if (periodFilter === "monthly") {
+      return [singleMonth || latestAvailableMonthKey];
+    }
+    if (periodFilter === "quarterly") {
+      const picked = selectedMonths.length > 0 ? selectedMonths : ["mar", "apr", "may"];
+      return picked.slice(-3);
+    }
+    // yearly - always show 12 months
+    return monthKeys;
+  })();
+
+  const handleMultiMonthChange = (event) => {
+    const options = Array.from(event.target.options);
+    const values = options.filter((o) => o.selected).map((o) => o.value);
+    // Limit to last 3 selections for quarterly
+    if (values.length > 3) {
+      setSelectedMonths(values.slice(-3));
+    } else {
+      setSelectedMonths(values);
+    }
+  };
 
   const toggleNode = (nodeId) => {
     setExpandedNodes((prev) => ({
@@ -1121,30 +1196,7 @@ export default function KPIHomePage() {
               {activeTab === "overview" && (
                 <div className={styles.tabContent}>
                   {/* Filters */}
-                  <div className={styles.filters}>
-                    <div className={styles.filterGroup}>
-                      <FilterIcon />
-                      <span>Filtrlər:</span>
-                    </div>
-                    <select className={styles.filterSelect}>
-                      <option value="monthly">Aylıq</option>
-                      <option value="quarterly">Rüblük</option>
-                      <option value="yearly">İllik</option>
-                    </select>
-                    <select className={styles.filterSelect}>
-                      <option value="all">Bütün Struktur</option>
-                      <option value="branch">Filial</option>
-                      <option value="department">Departament</option>
-                      <option value="division">Şöbə</option>
-                    </select>
-                    <select className={styles.filterSelect}>
-                      <option value="all">Bütün Modullar</option>
-                      <option value="CE">CE</option>
-                      <option value="MH">MH</option>
-                      <option value="AML">AML</option>
-                      <option value="AU">AU</option>
-                    </select>
-                  </div>
+                  
 
                   {/* Summary Cards */}
                   <div className={styles.summaryCards}>
@@ -1200,6 +1252,24 @@ export default function KPIHomePage() {
                     <div className={styles.summaryCard}>
                       <div className={styles.cardHeader}>
                         <h3 className={styles.cardTitle}>Müqayisə</h3>
+                        <div className={styles.cardIcon}>
+                          <TrendingUpIcon />
+                        </div>
+                      </div>
+                      <div className={styles.cardContent}>
+                        <div className={styles.cardValue}>
+                          +{summaryData.deviation}%
+                        </div>
+                        <div className={styles.cardSubtext}>
+                          Hədəfdən yuxarı
+                        </div>
+                      </div>
+                    </div>
+                    <div className={styles.summaryCard}>
+                      <div className={styles.cardHeader}>
+                        <h3 className={styles.cardTitle}>
+                          Prioritet və Hesabatlar
+                        </h3>
                         <div className={styles.cardIcon}>
                           <TrendingUpIcon />
                         </div>
@@ -1303,72 +1373,90 @@ export default function KPIHomePage() {
                   <div className={styles.heatmapSection}>
                     <div className={styles.card}>
                       <div className={styles.cardHeader}>
-                        <h3 className={styles.cardTitle}>
-                          Filial × Ay üzrə İcra Faizi (Heatmap)
-                        </h3>
+                        <h3 className={styles.cardTitle}>KPI Statistika</h3>
+                        <div className={styles.catalogActions}>
+                          <select
+                            className={styles.filterSelect}
+                            value={periodFilter}
+                            onChange={(e) => setPeriodFilter(e.target.value)}
+                          >
+                            <option value="monthly">Aylıq</option>
+                            <option value="quarterly">Rüblük</option>
+                            <option value="yearly">İllik</option>
+                          </select>
+                          <select
+                            className={styles.filterSelect}
+                            value={yearFilter}
+                            onChange={(e) => setYearFilter(e.target.value)}
+                          >
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                          </select>
+                          {periodFilter === "monthly" && (
+                            <select
+                              className={styles.filterSelect}
+                              value={singleMonth}
+                              onChange={(e) => setSingleMonth(e.target.value)}
+                            >
+                              {monthKeys.map((key) => (
+                                <option key={key} value={key}>
+                                  {monthLabels[key]}
+                                </option>
+                              ))}
+                            </select>
+                          )}
+                          {periodFilter === "quarterly" && (
+                            <select
+                              multiple
+                              className={styles.filterSelect}
+                              value={selectedMonths}
+                              onChange={handleMultiMonthChange}
+                              size={4}
+                              title="Ayları seçin"
+                            >
+                              {monthKeys.map((key) => (
+                                <option key={key} value={key}>
+                                  {monthLabels[key]}
+                                </option>
+                              ))}
+                            </select>
+                          )}
+                        </div>
                       </div>
                       <div className={styles.cardContent}>
-                        <div className={styles.heatmap}>
-                          <div className={styles.heatmapHeader}>
-                            <div className={styles.heatmapCell}>Filial</div>
-                            <div className={styles.heatmapCell}>Yanvar</div>
-                            <div className={styles.heatmapCell}>Fevral</div>
-                            <div className={styles.heatmapCell}>Mart</div>
-                            <div className={styles.heatmapCell}>Aprel</div>
-                            <div className={styles.heatmapCell}>May</div>
-                          </div>
-                          {heatmapData.map((row, index) => (
-                            <div key={index} className={styles.heatmapRow}>
-                              <div className={styles.heatmapCell}>
-                                {row.branch}
-                              </div>
-                              <div
-                                className={styles.heatmapCell}
-                                style={{
-                                  backgroundColor: getHeatmapColor(row.jan),
-                                  color: "black",
-                                }}
-                              >
-                                {row.jan}%
-                              </div>
-                              <div
-                                className={styles.heatmapCell}
-                                style={{
-                                  backgroundColor: getHeatmapColor(row.feb),
-                                  color: "black",
-                                }}
-                              >
-                                {row.feb}%
-                              </div>
-                              <div
-                                className={styles.heatmapCell}
-                                style={{
-                                  backgroundColor: getHeatmapColor(row.mar),
-                                  color: "black",
-                                }}
-                              >
-                                {row.mar}%
-                              </div>
-                              <div
-                                className={styles.heatmapCell}
-                                style={{
-                                  backgroundColor: getHeatmapColor(row.apr),
-                                  color: "black",
-                                }}
-                              >
-                                {row.apr}%
-                              </div>
-                              <div
-                                className={styles.heatmapCell}
-                                style={{
-                                  backgroundColor: getHeatmapColor(row.may),
-                                  color: "black",
-                                }}
-                              >
-                                {row.may}%
-                              </div>
-                            </div>
-                          ))}
+                        <div className={styles.cleanTableContainer}>
+                          <table className={styles.cleanTable}>
+                            <thead>
+                              <tr>
+                                <th>Filial</th>
+                                {displayedColumns.map((key) => (
+                                  <th key={key}>{monthLabels[key]}</th>
+                                ))}
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {heatmapData.map((row, index) => (
+                                <tr key={index}>
+                                  <td>{row.branch}</td>
+                                  {displayedColumns.map((key) => {
+                                    const value = row[key];
+                                    const hasValue = value !== undefined && value !== null;
+                                    const bg = hasValue ? getHeatmapColor(value) : "transparent";
+                                    const style = {
+                                      backgroundColor: bg,
+                                      color: hasValue ? "black" : "#666",
+                                    };
+                                    return (
+                                      <td key={key} style={style}>
+                                        {hasValue ? `${value}%` : "—"}
+                                      </td>
+                                    );
+                                  })}
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
                         </div>
                       </div>
                     </div>
@@ -1380,7 +1468,7 @@ export default function KPIHomePage() {
                       <div className={styles.cardHeader}>
                         <h3 className={styles.listTitle}>
                           <AlertTriangleIcon />
-                          Kritik KPI-lar
+                          Riskli / Hədəfə çatmayan
                         </h3>
                       </div>
                       <div className={styles.cardContent}>
@@ -1442,36 +1530,31 @@ export default function KPIHomePage() {
                       <div className={styles.cardHeader}>
                         <h3 className={styles.listTitle}>
                           <UsersIcon />
-                          Məsul Şəxslər Leaderboard
+                          Yüksək Prioritetlər
                         </h3>
                       </div>
                       <div className={styles.cardContent}>
                         <div className={styles.listContainer}>
-                          {leaderboard.map((person, index) => (
-                            <div key={index} className={styles.listItem}>
-                              <div className={styles.listItemHeader}>
-                                <span className={styles.personName}>
-                                  {person.name}
-                                </span>
-                                <span
-                                  className={`${styles.badge} ${
-                                    person.delays > 3
-                                      ? styles.badgeDestructive
-                                      : person.delays > 1
-                                      ? styles.badgeSecondary
-                                      : styles.badgeDefault
-                                  }`}
-                                >
-                                  {person.delays} gecikmə
-                                </span>
-                              </div>
-                              <div className={styles.listItemContent}>
-                                <div className={styles.department}>
-                                  {person.department}
+                          {topKPIs.map((kpi, index) => {
+                            const moduleCode = kpi.code.split("-")[0];
+                            return (
+                              <div key={index} className={styles.listItem}>
+                                <div className={styles.listItemHeader}>
+                                  <span className={styles.badgeSecondary}>
+                                    {kpi.code}
+                                  </span>
+                                  <span className={styles.executionBadge}>
+                                    Yüksək prioritet
+                                  </span>
+                                </div>
+                                <div className={styles.listItemContent}>
+                                  <div className={styles.kpiName}>
+                                    {`${kpi.name}`}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          ))}
+                            );
+                          })}
                         </div>
                       </div>
                     </div>
@@ -1541,44 +1624,42 @@ export default function KPIHomePage() {
               {activeTab === "structure" && (
                 <div className={styles.tabContent}>
                   <div className={styles.card}>
-                    <div className={styles.cardHeader}>
-                      <h3 className={styles.cardTitle}>Təşkilati Struktur</h3>
-                      <p className={styles.cardDescription}>
-                        Hierarkik təşkilat strukturu və səlahiyyət axını
-                      </p>
-                    </div>
+                   
                     <div className={styles.cardContent}>
                       <div className={styles.simpleOrgChart}>
                         <div className={styles.orgLevel}>
                           <div className={styles.orgNode}>
-                            <span>Yeni Filial</span>
+                            <span>Departament Rəhbəri</span>
                           </div>
                           <div className={styles.orgConnector}>↓</div>
                         </div>
 
                         <div className={styles.orgLevel}>
                           <div className={styles.orgNode}>
-                            <span>İdarə Heyyəti</span>
+                            <span>Departament Rəhbəri Müavini</span>
                           </div>
                           <div className={styles.orgConnector}>↓</div>
                         </div>
 
-                        <div className={styles.orgLevel}>
+                        {/* <div className={styles.orgLevel}>
                           <div className={styles.orgNode}>
-                            <span>Komplayens Departamenti</span>
+                            <span>Şöbə Rəisi</span>
                           </div>
                           <div className={styles.orgConnector}>↓</div>
-                        </div>
+                        </div> */}
 
                         <div className={styles.orgLevel}>
                           <div className={styles.orgBranches}>
                             <div className={styles.orgBranch}>
-                              <div className={styles.orgNode}>
-                                <span>ƏL/TMM Şöbəsi</span>
-                              </div>
                               <div className={styles.orgHierarchy}>
                                 <div className={styles.hierarchyItem}>
                                   <span>Şöbə Rəisi</span>
+                                  <div className={styles.hierarchyConnector}>
+                                    ↓
+                                  </div>
+                                </div>
+                                <div className={styles.hierarchyItem}>
+                                  <span>Şöbə Rəis Müavini</span>
                                   <div className={styles.hierarchyConnector}>
                                     ↓
                                   </div>
@@ -1596,62 +1677,16 @@ export default function KPIHomePage() {
                                   </div>
                                 </div>
                                 <div className={styles.hierarchyItem}>
-                                  <span>İntern</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className={styles.orgBranch}>
-                              <div className={styles.orgNode}>
-                                <span>MEŞ / Hesabatlıq şöbəsi</span>
-                              </div>
-                              <div className={styles.orgHierarchy}>
-                                <div className={styles.hierarchyItem}>
-                                  <span>Şöbə Rəisi</span>
-                                  <div className={styles.hierarchyConnector}>
-                                    ↓
-                                  </div>
+                                  <span>1-ci dərəcəli mütəxəssis</span>
                                 </div>
                                 <div className={styles.hierarchyItem}>
-                                  <span>Baş Mütəxəssis</span>
-                                  <div className={styles.hierarchyConnector}>
-                                    ↓
-                                  </div>
+                                  <span>2-ci dərəcəli mütəxəssis</span>
                                 </div>
                                 <div className={styles.hierarchyItem}>
-                                  <span>Aparıcı Mütəxəssis</span>
-                                  <div className={styles.hierarchyConnector}>
-                                    ↓
-                                  </div>
+                                  <span>3-ci dərəcəli mütəxəssis</span>
                                 </div>
                                 <div className={styles.hierarchyItem}>
-                                  <span>İntern</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className={styles.orgBranch}>
-                              <div className={styles.orgNode}>
-                                <span>Komplayens Monitorinq Şöbəsi</span>
-                              </div>
-                              <div className={styles.orgHierarchy}>
-                                <div className={styles.hierarchyItem}>
-                                  <span>Şöbə Rəisi</span>
-                                  <div className={styles.hierarchyConnector}>
-                                    ↓
-                                  </div>
-                                </div>
-                                <div className={styles.hierarchyItem}>
-                                  <span>Baş Mütəxəssis</span>
-                                  <div className={styles.hierarchyConnector}>
-                                    ↓
-                                  </div>
-                                </div>
-                                <div className={styles.hierarchyItem}>
-                                  <span>Aparıcı Mütəxəssis</span>
-                                  <div className={styles.hierarchyConnector}>
-                                    ↓
-                                  </div>
+                                  <span>Kiçik Mütəxəssis</span>
                                 </div>
                                 <div className={styles.hierarchyItem}>
                                   <span>İntern</span>

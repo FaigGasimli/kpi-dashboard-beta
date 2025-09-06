@@ -12,6 +12,8 @@ const ShrPerformance = lazy(() => import("../pages/shr/sheperformance/shrperform
 const NewBranch = lazy(() => import("../pages/shr/newbranch//newbranch"));
 const TaskManagement = lazy(() => import("../pages/taskmanagement/management"));
 const Employees = lazy(() => import("../pages/shr/employees/employees"));
+const Profile = lazy(() => import("../pages/profile/index"));
+const Finance = lazy(() => import("../pages/finance/index"));
 
 // const ProtectedRoute = ({ children }) => {
 //   const { isAuthenticated } = useContext(AuthContext);
@@ -71,6 +73,14 @@ export const router = createBrowserRouter([
       {
         path: "/employees",
         element: <Employees />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
+        path: "/finance",
+        element: <Finance />,
       },
     ],
   },

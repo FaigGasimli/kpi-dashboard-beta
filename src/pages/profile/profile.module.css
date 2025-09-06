@@ -1,0 +1,1280 @@
+.container {
+  font-family: Geist;
+  margin: 0 auto;
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  margin-top: 1rem;
+}
+
+.cardHeader {
+  margin-bottom: 16px;
+}
+
+.cardHeader h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+/* Personal Info Styles */
+.personalInfo {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.profileImageContainer {
+  position: relative;
+}
+
+.profileImage {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.profileImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.editOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  color: white;
+}
+
+.profileImage:hover .editOverlay {
+  opacity: 1;
+}
+
+.personalDetails {
+  flex: 1;
+}
+
+.fullName {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 16px 0;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #6b7280;
+}
+
+.infoIcon {
+  color: #996f29;
+}
+
+.contactInfo {
+  margin: 16px 0;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 12px;
+}
+
+.statusActive {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.statusVacation {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.statusBusinessTrip {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+/* Work Info Styles */
+.workInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.workItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.workItem:last-child {
+  border-bottom: none;
+}
+
+.workLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.workValue {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+/* KPI Styles */
+.tabContainer {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 12px 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 500;
+  color: #6b7280;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.tabActive {
+  color: #996f29;
+  border-bottom-color: #996f29;
+}
+
+.kpiList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.kpiCard {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.kpiHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.kpiHeader h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.menuButton {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: #996f29;
+}
+
+.menuButton:hover {
+  background: #f3f4f6;
+}
+
+.progressContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.progressBar {
+  flex: 1;
+  height: 8px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: #996f29;
+  transition: width 0.3s;
+}
+
+.progressText {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  min-width: 40px;
+}
+
+.kpiStatus {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.statusOnTrack {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.statusRisk {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Assigned KPIs Styles */
+.assignedKpis {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.filterBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.filterSelect {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 6px 12px;
+  background: white;
+}
+
+.kpiTable {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr 120px 120px;
+  gap: 16px;
+  padding: 12px 16px;
+  background: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 120px 120px;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  align-items: center;
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.tableStatus {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.statusCompleted {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/* Timeline Styles */
+.timeline {
+  position: relative;
+  padding-left: 24px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e5e7eb;
+}
+
+.timelineItem {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.timelineMarker {
+  position: absolute;
+  left: -20px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #996f29;
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px #e5e7eb;
+}
+
+.timelineContent {
+  background: #f9fafb;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-left: 3px solid #996f29;
+}
+
+.timelineDate {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.timelineAction {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 2px;
+}
+
+.timelineTarget {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Security Styles */
+.securityContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.passwordButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: fit-content;
+}
+
+.passwordButton:hover {
+  background: #f9fafb;
+  border-color: #996f29;
+}
+
+.editForm {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.formGridTwo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.formGridTwo div{
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formGroup label {
+  font-weight: 500;
+  color: #374151;
+}
+
+.formGroup input {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.formGroup input:disabled {
+  background: #f9fafb;
+  color: #6b7280;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: #996f29;
+  box-shadow: 0 0 0 3px rgba(153, 111, 41, 0.1);
+}
+
+.formActions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.editButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #996f29;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.editButton:hover {
+  background: #7a5520;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 12px;
+}
+
+.saveButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.saveButton:hover {
+  background: #059669;
+}
+
+.cancelButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: transparent;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.cancelButton:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+/* Password Form Styles */
+.passwordForm {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.passwordInput {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordInput input {
+  padding: 10px 40px 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 280px;
+  max-width: 100%;
+}
+
+.eyeButton {
+  position: absolute;
+  right: 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eyeButton:hover {
+  color: #996f29;
+}
+
+.passwordChangeButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #996f29;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+  width: fit-content;
+}
+
+.passwordChangeButton:hover {
+  background: #7a5520;
+}
+
+/* Form Row for Side-by-Side Inputs */
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Profile Image Upload Styles */
+.profileImageUpload {
+  margin-bottom: 24px;
+}
+
+.uploadContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.uploadPreview {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #e5e7eb;
+}
+
+.uploadPreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.uploadButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid #996f29;
+  background: transparent;
+  color: #996f29;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.uploadButton:hover {
+  background: #996f29;
+  color: white;
+}
+
+/* Combined Info Container and Edit Mode Functionality */
+.combinedInfoContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.personalInfoSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.workInfoSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerWithEdit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editModeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: none;
+  background: #f3f4f6;
+  color: #996f29;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.editModeButton:hover {
+  background: #996f29;
+  color: white;
+}
+
+.headerWithClose {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: none;
+  background: #f3f4f6;
+  color: #6b7280;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.closeButton:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+/* Compact Card Styles */
+.compactCard {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+}
+
+.compactCardHeader {
+  margin-bottom: 12px;
+}
+
+.compactCardHeader h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+/* Compact Personal Info Styles */
+.compactPersonalInfo {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.compactProfileImageContainer {
+  position: relative;
+}
+
+.compactProfileImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.compactProfileImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.compactPersonalDetails {
+  flex: 1;
+}
+
+.compactFullName {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.compactInfoItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.compactContactInfo {
+  margin: 8px 0;
+}
+
+.compactStatusBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* Compact Work Info Styles */
+.compactWorkInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.compactWorkItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.compactWorkItem:last-child {
+  border-bottom: none;
+}
+
+.compactWorkLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #6b7280;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.compactWorkValue {
+  color: #1f2937;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* Static Input Width and Back Button Styles */
+.staticInput {
+  width: 280px !important;
+  max-width: 100%;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.backButton {
+  padding: 8px 16px;
+  border: 1px solid #996f29;
+  background: transparent;
+  color: #996f29;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.backButton:hover {
+  background: #996f29;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px 8px;
+    gap: 24px;
+  }
+
+  .combinedInfoContainer {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .personalInfo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .compactPersonalInfo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .staticInput,
+  .passwordInput input {
+    width: 100% !important;
+  }
+
+  .headerActions {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .backButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tableHeader,
+  .tableRow {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .tableHeader {
+    display: none;
+  }
+
+  .tableRow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .compactWorkItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .uploadContainer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .headerWithClose {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .tabContainer {
+    justify-content: center;
+  }
+}
+/* Added new profile card styles to match the provided design */
+.profileCard {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  position: relative;
+  margin-bottom: 32px;
+  display: flex;
+}
+
+.profileCardHeader {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.settingsButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: none;
+  background: #f3f4f6;
+  color: #996f29;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.settingsButton:hover {
+  background: #996f29;
+  color: white;
+}
+
+.profileContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+  margin-top: 16px;
+}
+
+.profileImageSection {
+  flex-shrink: 0;
+}
+
+.profileImageLarge {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #e5e7eb;
+}
+
+.profileImageLarge img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profileInfoSection {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+}
+
+.personalInfoColumn {
+  grid-column: 1;
+}
+
+.workInfoGrid {
+  grid-column: 14;
+}
+
+.personalInfoColumn {
+  flex-shrink: 0;
+  min-width: 280px;
+}
+
+.birthRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6b7280;
+  margin: 4px 0 8px 0;
+}
+
+.birthIcon {
+  color: #996f29;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6b7280;
+}
+
+.contactIcon {
+  color: #996f29;
+}
+
+.profileName {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.profileAge {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.workInfoGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 16px 32px;
+  align-content: start;
+}
+
+.workInfoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.workLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #996f29;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.workValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Updated form input styles for consistent sizing */
+.formInput {
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 320px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.formInput:disabled {
+  background: #f9fafb;
+  color: #6b7280;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #996f29;
+  box-shadow: 0 0 0 3px rgba(153, 111, 41, 0.1);
+}
+
+/* Updated password input container */
+.passwordInput {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+}
+
+.passwordInput input {
+  padding: 12px 48px 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 100%;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.passwordInput input:focus {
+  outline: none;
+  border-color: #996f29;
+  box-shadow: 0 0 0 3px rgba(153, 111, 41, 0.1);
+}
+
+/* Added back button container outside card */
+.editSection {
+  max-width: 720px;
+}
+
+.backButtonContainer {
+  margin-bottom: 12px;
+}
+
+.backButton {
+  padding: 10px 20px;
+  border: 1px solid #996f29;
+  background: transparent;
+  color: #996f29;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.backButton:hover {
+  background: #996f29;
+  color: white;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px 8px;
+    gap: 24px;
+  }
+
+  .profileContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .profileInfoSection {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+  }
+  .personalInfoColumn,
+  .workInfoGrid {
+    grid-column: auto;
+  }
+
+  .workInfoGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .formInput,
+  .passwordInput {
+    max-width: 100%;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .formGridTwo {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .profileCardHeader {
+    position: static;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+  }
+
+  .personalInfoColumn {
+    min-width: auto;
+  }
+
+  .combinedInfoContainer {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .personalInfo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .compactPersonalInfo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .headerActions {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .tableHeader,
+  .tableRow {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .tableHeader {
+    display: none;
+  }
+
+  .tableRow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .compactWorkItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .uploadContainer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .headerWithClose {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .tabContainer {
+    justify-content: center;
+  }
+}

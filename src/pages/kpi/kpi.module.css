@@ -1770,14 +1770,14 @@
 }
 
 .hierarchyItem span {
-  background-color: white;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  padding: 8px 16px;
-  font-size: 12px;
+  background-color: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 500;
   color: #374151;
   text-align: center;
-  min-width: 120px;
+  min-width: 200px;
 }
 
 .hierarchyConnector {

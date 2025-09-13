@@ -79,7 +79,6 @@
   line-height: 1.2;
 }
 
-/* Added compact section styles */
 .sectionCompact {
   background-color: white;
   border-radius: 8px;
@@ -185,10 +184,10 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-/* Replaced two-column layout with three-column layout for new sections */
-.threeColumnLayout {
+/* Two-column layout for Attendance Data and Disciplinary Violations */
+.twoColumnLayout {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 2fr;
   gap: 16px;
   margin-bottom: 16px;
 }
@@ -425,54 +424,61 @@
   color: #ef4444;
 }
 
-/* Best Employees Styles */
-.bestEmployeeList {
+/* Detailed Violations Table Styles */
+.detailedViolations {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.detailedViolationsTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 12px 0;
+}
+
+.violationsTable {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
-.bestEmployeeItem {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px;
+.violationsHeader {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1fr 1.5fr 1fr 0.8fr 0.8fr;
+  gap: 8px;
+  padding: 8px 12px;
   background-color: #f8fafc;
   border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.violationRow {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1fr 1.5fr 1fr 0.8fr 0.8fr;
+  gap: 8px;
+  padding: 12px;
+  background-color: white;
   border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
-.employeeProfileContainer {
-  position: relative;
-  flex-shrink: 0;
+.violationRow:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.employeeProfileImage {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: block;
-  object-fit: cover;
-}
-
-.rankingBadge {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
+.headerCell,
+.violationCell {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  font-size: 10px;
-  font-weight: 700;
-  color: white;
-  border: 2px solid white;
-}
-
-.employeeInfo {
-  flex: 1;
   min-width: 0;
 }
 
@@ -484,26 +490,145 @@
 }
 
 .employeeLocation {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-}
-
-.employeeBranch {
-  font-size: 13px;
+  font-size: 12px;
   color: #64748b;
 }
 
-.employeeDepartment {
-  font-size: 13px;
-  color: #94a3b8;
+.violationType {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+  margin-bottom: 4px;
 }
 
-.employeeScore {
+.severityBadge {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.severityBadge.high {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.severityBadge.medium {
+  background-color: #fffbeb;
+  color: #d97706;
+}
+
+.severityBadge.low {
+  background-color: #f0fdf4;
+  color: #16a34a;
+}
+
+.dateValue {
+  font-size: 14px;
+  color: #475569;
+  font-weight: 500;
+}
+
+.reasonValue {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.statusBadge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  max-width: fit-content;
+}
+
+.statusBadge.aradırılır {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.statusBadge.rəhbərliyəgöndərildi {
+  background-color: #dbeafe;
+  color: #2563eb;
+}
+
+.statusBadge.həllolunub {
+  background-color: #d1fae5;
+  color: #059669;
+}
+
+.repeatCount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.repeatNumber {
   font-size: 16px;
   font-weight: 700;
-  color: #10b981;
+  color: #1e293b;
 }
+
+.repeatLabel {
+  font-size: 11px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.countdownTimer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.countdownTimer.warning {
+  background-color: #fef3c7;
+  border-color: #f59e0b;
+  color: #d97706;
+}
+
+.countdownTimer.urgent {
+  background-color: #fef2f2;
+  border-color: #ef4444;
+  color: #dc2626;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.countdownNumber {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.countdownLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 
 /* Branch Grid */
 .branchGrid {
@@ -629,7 +754,7 @@
     justify-content: space-around;
   }
 
-  .threeColumnLayout {
+  .twoColumnLayout {
     grid-template-columns: 1fr;
   }
 
@@ -662,5 +787,42 @@
 
   .yearFilter {
     align-self: stretch;
+  }
+
+  /* Responsive styles for violations table */
+  .violationsHeader,
+  .violationRow {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .violationRow {
+    padding: 16px;
+  }
+
+  .headerCell,
+  .violationCell {
+    padding: 4px 0;
+  }
+
+  .violationsHeader .headerCell {
+    font-size: 11px;
+    padding: 8px 0 4px 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .violationRow .violationCell:not(:last-child) {
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+  }
+
+  .violationRow .violationCell:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .countdownTimer {
+    align-self: flex-start;
   }
 }

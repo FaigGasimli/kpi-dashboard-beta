@@ -8,12 +8,17 @@ const Performance = lazy(() => import("../pages/peformance/performance"));
 const Layout = lazy(() => import("../layout/index"));
 const Shr = lazy(() => import("../pages/shr/shr"));
 const KPI = lazy(() => import("../pages/kpi/index"));
-const ShrPerformance = lazy(() => import("../pages/shr/sheperformance/shrperformance"));
+const ShrPerformance = lazy(() =>
+  import("../pages/shr/sheperformance/shrperformance")
+);
 const NewBranch = lazy(() => import("../pages/shr/newbranch//newbranch"));
 const TaskManagement = lazy(() => import("../pages/taskmanagement/management"));
 const Employees = lazy(() => import("../pages/shr/employees/employees"));
 const Profile = lazy(() => import("../pages/profile/index"));
 const Finance = lazy(() => import("../pages/finance/index"));
+const TechnicalSupport = lazy(() => import("../pages/technical-support/index"));
+const UserRoles = lazy(() => import("../pages/user-roles/index"));
+const Settings = lazy(() => import("../pages/settings/index"));
 
 // const ProtectedRoute = ({ children }) => {
 //   const { isAuthenticated } = useContext(AuthContext);
@@ -28,15 +33,11 @@ const Finance = lazy(() => import("../pages/finance/index"));
 export const router = createBrowserRouter([
   {
     path: "/loginform",
-    element: (
-        <Login />
-    ),
+    element: <Login />,
   },
   {
     path: "/",
-    element: (
-        <Layout />
-    ),
+    element: <Layout />,
     children: [
       {
         path: "/",
@@ -81,6 +82,18 @@ export const router = createBrowserRouter([
       {
         path: "/finance",
         element: <Finance />,
+      },
+      {
+        path: "/technical-support",
+        element: <TechnicalSupport />,
+      },
+      {
+        path: "/user-roles",
+        element: <UserRoles />,
+      },
+      {
+        path: "/settings",
+        element: <Settings />,
       },
     ],
   },

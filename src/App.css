@@ -3,6 +3,48 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+/* CSS Variables for Dynamic Theming */
+:root {
+  --primary-color: #996f29;
+  --primary-color-hover: #7a5520;
+  --primary-color-light: #f3f0e8;
+  --background-color: #ffffff;
+  --text-color: #1f2937;
+  --text-color-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --card-background: #ffffff;
+  --sidebar-background: #f9fafb;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --background-color: #111827;
+  --text-color: #f9fafb;
+  --text-color-secondary: #d1d5db;
+  --border-color: #374151;
+  --card-background: #1f2937;
+  --sidebar-background: #111827;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Compact Mode */
+.compact-mode {
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+}
+
+.compact-mode .card {
+  padding: var(--spacing-md);
+}
+
+.compact-mode .button {
+  padding: var(--spacing-sm) var(--spacing-md);
+}
 * {
   margin: 0;
   padding: 0;

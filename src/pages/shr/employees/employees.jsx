@@ -7,6 +7,7 @@ import Header from "../../../components/header";
 
 const EmployeeProfile = () => {
   const [activeTab, setActiveTab] = useState("tasks")
+  const [activeDisciplineTab, setActiveDisciplineTab] = useState("bonus")
   const [performanceFilter, setPerformanceFilter] = useState("all")
   const [dateFilter, setDateFilter] = useState("all")
   const [searchTerm, setSearchTerm] = useState("")
@@ -235,34 +236,79 @@ const EmployeeProfile = () => {
     },
   ]
 
-  const disciplineRecords = [
+  const vacationData = [
     {
-      date: "15.11.2024",
-      type: "Bonus",
-      description: "Üstün performansa görə aylıq bonus",
-      status: "Aktiv",
-      category: "positive",
-      entryTime: "08:55",
-      exitTime: "18:10",
+      date: "15.08.2024",
+      reason: "Ailə məzuniyyəti",
+      daysUsed: 14,
+      status: "Tamamlandı"
     },
     {
+      date: "20.12.2024",
+      reason: "Yeni il məzuniyyəti",
+      daysUsed: 7,
+      status: "Planlaşdırılır"
+    },
+    {
+      date: "10.06.2024",
+      reason: "Şəxsi məzuniyyət",
+      daysUsed: 5,
+      status: "Tamamlandı"
+    }
+  ]
+
+  const bonusData = [
+    {
+      type: "Aylıq performans bonusu",
+      amount: "500 AZN",
+      date: "15.12.2024",
+      paymentDate: "20.12.2024",
+      status: "Ödənildi",
+      reason: "KPI hədəflərinin 120% yerinə yetirilməsi",
+      kpiResult: "120%"
+    },
+    {
+      type: "Rüblük bonus",
+      amount: "1000 AZN",
       date: "01.10.2024",
-      type: "Təlim",
-      description: "Komplayens qaydaları üzrə təlim",
-      status: "Tamamlandı",
-      category: "training",
-      entryTime: "09:00",
-      exitTime: "18:00",
+      paymentDate: "05.10.2024",
+      status: "Ödənildi",
+      reason: "Q3 dövrü üçün əla nəticələr",
+      kpiResult: "115%"
     },
     {
+      type: "İllik bonus",
+      amount: "2000 AZN",
+      date: "01.01.2024",
+      paymentDate: "10.01.2024",
+      status: "Ödənildi",
+      reason: "2023-cü il üçün üstün performans",
+      kpiResult: "110%"
+    }
+  ]
+
+  const violationData = [
+    {
+      type: "Gecikməli gəlmə",
       date: "20.09.2024",
-      type: "Şifahi xəbərdarlıq",
-      description: "İşə gecikməyə görə şifahi xəbərdarlıq",
-      status: "Bağlandı",
-      category: "warning",
-      entryTime: "09:15",
-      exitTime: "18:00",
+      status: "Həll olunub",
+      description: "İşə 30 dəqiqə gecikmə",
+      appliedMeasure: "Rəsmi xəbərdarlıq"
     },
+    {
+      type: "İş saatında çıxma",
+      date: "15.08.2024",
+      status: "Araşdırılır",
+      description: "İş saatında icazəsiz çıxış",
+      appliedMeasure: "Şifahi xəbərdarlıq"
+    },
+    {
+      type: "Qaydaları pozma",
+      date: "10.07.2024",
+      status: "Həll olunub",
+      description: "Təhlükəsizlik qaydalarını pozma",
+      appliedMeasure: "Cərimə (50 AZN)"
+    }
   ]
 
   const trainingData = [
@@ -537,23 +583,93 @@ const EmployeeProfile = () => {
     </div>
   )
 
+  const renderBonusTable = () => (
+    <div className="bonus-table-container">
+      <table className="bonus-table">
+        <thead>
+          <tr>
+            <th>Bonus növü</th>
+            <th>Məbləğ</th>
+            <th>Tarix</th>
+            <th>Ödəniş tarixi</th>
+            <th>Status</th>
+            <th>Səbəb</th>
+            <th>KPI nəticəsi</th>
+          </tr>
+        </thead>
+        <tbody>
+          {bonusData.map((bonus, index) => (
+            <tr key={index}>
+              <td className="bonus-type">{bonus.type}</td>
+              <td className="bonus-amount">{bonus.amount}</td>
+              <td>{bonus.date}</td>
+              <td>{bonus.paymentDate}</td>
+              <td>
+                <span className={`status-badge ${bonus.status.toLowerCase().replace(/\s+/g, '')}`}>
+                  {bonus.status}
+                </span>
+              </td>
+              <td className="bonus-reason">{bonus.reason}</td>
+              <td className="kpi-result">{bonus.kpiResult}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+
+  const renderViolationsTable = () => (
+    <div className="violations-table-container">
+      <table className="violations-table">
+        <thead>
+          <tr>
+            <th>Növü</th>
+            <th>Tarix</th>
+            <th>Status</th>
+            <th>Təsviri</th>
+            <th>Tətbiq edilən tədbir / cəza</th>
+          </tr>
+        </thead>
+        <tbody>
+          {violationData.map((violation, index) => (
+            <tr key={index}>
+              <td className="violation-type">{violation.type}</td>
+              <td>{violation.date}</td>
+              <td>
+                <span className={`status-badge ${violation.status.toLowerCase().replace(/\s+/g, '')}`}>
+                  {violation.status}
+                </span>
+              </td>
+              <td className="violation-description">{violation.description}</td>
+              <td className="applied-measure">{violation.appliedMeasure}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+
   const renderDiscipline = () => (
     <div className="tab-content">
-      <div className="discipline-records">
-        {disciplineRecords.map((record, index) => (
-          <div key={index} className={`discipline-item ${record.category}`}>
-            <div className="discipline-header">
-              <h4>{record.type}</h4>
-              <span className="discipline-date">{record.date}</span>
-            </div>
-            <p>{record.description}</p>
-            <div className="time-info">
-              <span className="entry-time">Giriş: {record.entryTime}</span>
-              <span className="exit-time">Çıxış: {record.exitTime}</span>
-            </div>
-            <span className={`status-badge ${record.status.toLowerCase()}`}>{record.status}</span>
-          </div>
-        ))}
+      <div className="discipline-tabs-horizontal">
+        <div className="discipline-tab-nav-horizontal">
+          <button
+            className={activeDisciplineTab === "bonus" ? "discipline-tab-button-horizontal active" : "discipline-tab-button-horizontal"}
+            onClick={() => setActiveDisciplineTab("bonus")}
+          >
+            Bonus siyahısı
+          </button>
+          <button
+            className={activeDisciplineTab === "violations" ? "discipline-tab-button-horizontal active" : "discipline-tab-button-horizontal"}
+            onClick={() => setActiveDisciplineTab("violations")}
+          >
+            İntizam pozuntuları
+          </button>
+        </div>
+        <div className="discipline-tab-content-horizontal">
+          {activeDisciplineTab === "bonus" && renderBonusTable()}
+          {activeDisciplineTab === "violations" && renderViolationsTable()}
+        </div>
       </div>
     </div>
   )
@@ -660,6 +776,33 @@ const EmployeeProfile = () => {
               <span>{employee.branch}</span>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Vacation Summary */}
+      <div className="vacation-summary">
+        <h3>Məzuniyyət günləri</h3>
+        <div className="vacation-stats">
+          <div className="vacation-stat">
+            <span className="stat-label">Ümumi istifadə olunan günlər:</span>
+            <span className="stat-value">{vacationData.reduce((sum, vacation) => sum + vacation.daysUsed, 0)} gün</span>
+          </div>
+          <div className="vacation-stat">
+            <span className="stat-label">Qalan günlər:</span>
+            <span className="stat-value">14 gün</span>
+          </div>
+        </div>
+        <div className="vacation-list">
+          {vacationData.map((vacation, index) => (
+            <div key={index} className="vacation-item">
+              <div className="vacation-date">{vacation.date}</div>
+              <div className="vacation-reason">{vacation.reason}</div>
+              <div className="vacation-days">{vacation.daysUsed} gün</div>
+              <div className={`vacation-status ${vacation.status.toLowerCase().replace(/\s+/g, '')}`}>
+                {vacation.status}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 

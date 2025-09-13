@@ -1040,6 +1040,272 @@
   color: #2c2c2c;
 }
 
+/* Vacation Summary */
+.vacation-summary {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+}
+
+.vacation-summary h3 {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c2c2c;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #996f29;
+}
+
+.vacation-stats {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 20px;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.vacation-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #996f29;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2c2c2c;
+}
+
+.vacation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vacation-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+  align-items: center;
+}
+
+.vacation-date {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c2c2c;
+}
+
+.vacation-reason {
+  font-size: 14px;
+  color: #666;
+}
+
+.vacation-days {
+  font-size: 14px;
+  font-weight: 600;
+  color: #996f29;
+  text-align: center;
+}
+
+.vacation-status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.vacation-status.tamamlandı {
+  background: #d1f6e0;
+  color: #4e9c3a;
+}
+
+.vacation-status.planlaşdırılır {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+/* Discipline Tabs - Horizontal Layout */
+.discipline-tabs-horizontal {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+  overflow: hidden;
+}
+
+.discipline-tab-nav-horizontal {
+  display: flex;
+  gap: 0;
+  background: #f8fafc;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 0;
+}
+
+.discipline-tab-button-horizontal {
+  flex: 1;
+  padding: 16px 24px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+  text-align: center;
+}
+
+.discipline-tab-button-horizontal:hover {
+  background: #f1f5f9;
+  color: #2c2c2c;
+}
+
+.discipline-tab-button-horizontal.active {
+  background: white;
+  color: #996f29;
+  border-bottom-color: #996f29;
+  font-weight: 600;
+}
+
+.discipline-tab-content-horizontal {
+  background: white;
+  overflow: hidden;
+}
+
+/* Bonus Table */
+.bonus-table-container {
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.bonus-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.bonus-table thead {
+  background: #f8f9fa;
+}
+
+.bonus-table th {
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #2c2c2c;
+  border-bottom: 2px solid #e9ecef;
+  white-space: nowrap;
+}
+
+.bonus-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #575959;
+  vertical-align: middle;
+}
+
+.bonus-table tbody tr:hover {
+  background: #fafafa;
+}
+
+.bonus-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.bonus-type {
+  font-weight: 500;
+  color: #2c2c2c !important;
+}
+
+.bonus-amount {
+  font-weight: 600;
+  color: #10b981 !important;
+}
+
+.bonus-reason {
+  max-width: 200px;
+  line-height: 1.4;
+}
+
+.kpi-result {
+  font-weight: 600;
+  color: #996f29 !important;
+}
+
+/* Violations Table */
+.violations-table-container {
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.violations-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.violations-table thead {
+  background: #f8f9fa;
+}
+
+.violations-table th {
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #2c2c2c;
+  border-bottom: 2px solid #e9ecef;
+  white-space: nowrap;
+}
+
+.violations-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #575959;
+  vertical-align: middle;
+}
+
+.violations-table tbody tr:hover {
+  background: #fafafa;
+}
+
+.violations-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.violation-type {
+  font-weight: 500;
+  color: #2c2c2c !important;
+}
+
+.violation-description {
+  max-width: 200px;
+  line-height: 1.4;
+}
+
+.applied-measure {
+  font-weight: 500;
+  color: #ef4444 !important;
+}
+
 /* HR Info Section */
 .hr-info-section {
   background: white;
@@ -1192,5 +1458,52 @@
   .training-details-grid {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  /* Vacation Summary Responsive */
+  .vacation-stats {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .vacation-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .vacation-date,
+  .vacation-reason,
+  .vacation-days,
+  .vacation-status {
+    padding: 4px 0;
+  }
+
+  /* Discipline Tabs Responsive */
+  .discipline-tab-nav-horizontal {
+    flex-direction: column;
+  }
+
+  .discipline-tab-button-horizontal {
+    text-align: left;
+    padding: 12px 16px;
+  }
+
+  /* Tables Responsive */
+  .bonus-table-container,
+  .violations-table-container {
+    padding: 12px;
+  }
+
+  .bonus-table,
+  .violations-table {
+    font-size: 12px;
+  }
+
+  .bonus-table th,
+  .bonus-table td,
+  .violations-table th,
+  .violations-table td {
+    padding: 8px 6px;
   }
 }

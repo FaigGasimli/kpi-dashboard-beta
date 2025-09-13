@@ -86,7 +86,7 @@ export default function Sidebar() {
     {
       name: "Texniki dəstək",
       icon: <HelpCircle size={18} />,
-      href: "/support",
+      href: "/technical-support",
       hasSubmenu: false,
     },
   ];

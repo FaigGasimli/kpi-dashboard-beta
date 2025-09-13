@@ -68,7 +68,7 @@
 /* Summary Cards */
 .summaryCards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   margin-bottom: 32px;
 }
@@ -187,7 +187,7 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
-  min-width: 1400px;
+  min-width: 1200px;
 }
 
 .performanceTable thead {
@@ -302,6 +302,72 @@
   color: #dc2626 !important;
   font-weight: 700;
   font-size: 16px;
+}
+
+/* Quarterly Row Styles */
+.quarterlyRow {
+  background-color: #f0f9ff !important;
+  border-top: 2px solid #0ea5e9 !important;
+  font-weight: 600;
+}
+
+.quarterlyRow:hover {
+  background-color: #e0f2fe !important;
+}
+
+.quarterlyLabel {
+  background-color: #0ea5e9 !important;
+  color: white !important;
+  font-weight: 700;
+  text-align: left !important;
+  padding-left: 16px !important;
+  font-size: 14px;
+}
+
+.quarterlyPaymentValue {
+  background-color: #fef2f2 !important;
+  color: #dc2626 !important;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.quarterlyValue {
+  background-color: #0ea5e9 !important;
+  color: white !important;
+  font-weight: 700;
+}
+
+/* Annual Row Styles */
+.annualRow {
+  background-color: #fef3c7 !important;
+  border-top: 3px solid #f59e0b !important;
+  font-weight: 700;
+}
+
+.annualRow:hover {
+  background-color: #fde68a !important;
+}
+
+.annualLabel {
+  background-color: #f59e0b !important;
+  color: white !important;
+  font-weight: 700;
+  text-align: left !important;
+  padding-left: 16px !important;
+  font-size: 16px;
+}
+
+.annualPaymentValue {
+  background-color: #fef2f2 !important;
+  color: #dc2626 !important;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.annualValue {
+  background-color: #f59e0b !important;
+  color: white !important;
+  font-weight: 700;
 }
 
 /* Criteria Table */
@@ -886,3 +952,4 @@
 .tableContainer::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+

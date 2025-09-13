@@ -83,6 +83,11 @@ const SHR = () => {
       name: "Rəşad Əliyev",
       violation: "Gecikməli gəlmə",
       date: "15.03.2025",
+      discoveryDate: "15.03.2025",
+      reason: "Nəqliyyat problemləri",
+      status: "Araşdırılır",
+      repeatCount: 2,
+      escalationDeadline: "22.03.2025",
       severity: "low",
       branch: "Filial 1",
       department: "Satış departamenti",
@@ -93,6 +98,11 @@ const SHR = () => {
       name: "Leyla Qasımova",
       violation: "İş saatında çıxma",
       date: "12.03.2025",
+      discoveryDate: "12.03.2025",
+      reason: "Şəxsi işlər",
+      status: "Rəhbərliyə göndərildi",
+      repeatCount: 1,
+      escalationDeadline: "19.03.2025",
       severity: "medium",
       branch: "Yeni ofis",
       department: "HR departamenti",
@@ -103,6 +113,11 @@ const SHR = () => {
       name: "Orxan Məmmədov",
       violation: "Qaydaları pozma",
       date: "10.03.2025",
+      discoveryDate: "10.03.2025",
+      reason: "Təhlükəsizlik qaydalarını pozma",
+      status: "Həll olunub",
+      repeatCount: 3,
+      escalationDeadline: "17.03.2025",
       severity: "high",
       branch: "Filial 2",
       department: "IT departamenti",
@@ -113,6 +128,11 @@ const SHR = () => {
       name: "Aynur Rəhimova",
       violation: "Gecikməli gəlmə",
       date: "08.03.2025",
+      discoveryDate: "08.03.2025",
+      reason: "Uşağın xəstəliyi",
+      status: "Araşdırılır",
+      repeatCount: 1,
+      escalationDeadline: "15.03.2025",
       severity: "low",
       branch: "Filial 1",
       department: "Maliyyə departamenti",
@@ -123,6 +143,11 @@ const SHR = () => {
       name: "Kamran Əliyev",
       violation: "İş saatında çıxma",
       date: "05.03.2025",
+      discoveryDate: "05.03.2025",
+      reason: "Həkim yoxlaması",
+      status: "Rəhbərliyə göndərildi",
+      repeatCount: 2,
+      escalationDeadline: "12.03.2025",
       severity: "medium",
       branch: "Yeni ofis",
       department: "Satış departamenti",
@@ -144,40 +169,6 @@ const SHR = () => {
     ],
   });
 
-  const [bestEmployees] = useState([
-    {
-      name: "Səbinə Həsənova",
-      department: "Satış departamenti",
-      branch: "Filial 1",
-      score: 98,
-      rank: 1,
-      profileImage: "/professional-woman-dark-hair.png",
-    },
-    {
-      name: "Elvin Quliyev",
-      department: "Marketing departamenti",
-      branch: "Yeni ofis",
-      score: 95,
-      rank: 2,
-      profileImage: "/professional-bearded-man.png",
-    },
-    {
-      name: "Nigar Əhmədova",
-      department: "HR departamenti",
-      branch: "Filial 2",
-      score: 92,
-      rank: 3,
-      profileImage: "/professional-blonde-woman.png",
-    },
-    {
-      name: "Tural Məmmədov",
-      department: "IT departamenti",
-      branch: "Filial 1",
-      score: 89,
-      rank: 4,
-      profileImage: "/professional-man-glasses.png",
-    },
-  ]);
 
   const [selectedYear, setSelectedYear] = useState("2025");
   const [availableYears] = useState(["2023", "2024", "2025"]);
@@ -209,6 +200,14 @@ const SHR = () => {
       best: sorted[0],
       worst: sorted[sorted.length - 1],
     };
+  };
+
+  const calculateDaysRemaining = (escalationDeadline) => {
+    const today = new Date();
+    const deadline = new Date(escalationDeadline.split('.').reverse().join('-'));
+    const diffTime = deadline - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
   };
 
   const getCategoryIcon = (category) => {
@@ -377,18 +376,6 @@ const SHR = () => {
     </svg>
   );
 
-  const StarIcon = () => (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-    >
-      <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
-    </svg>
-  );
 
   const TrophyIcon = () => (
     <svg
@@ -443,18 +430,6 @@ const SHR = () => {
     </div>
   );
 
-  const getRankingBadgeColor = (rank) => {
-    switch (rank) {
-      case 1:
-        return "#fbbf24"; // Gold
-      case 2:
-        return "#9ca3af"; // Silver
-      case 3:
-        return "#cd7c2f"; // Bronze
-      default:
-        return "#6b7280"; // Gray
-    }
-  };
 
   const { best: bestMonth, worst: worstMonth } = getBestWorstMonths();
 
@@ -504,8 +479,8 @@ const SHR = () => {
           </div>
         </div>
 
-        {/* Three-Column Layout for Attendance Data, Disciplinary Violations, and Best Employees */}
-        <div className={styles.threeColumnLayout}>
+        {/* Two-Column Layout for Attendance Data and Disciplinary Violations */}
+        <div className={styles.twoColumnLayout}>
           {/* Average Attendance */}
           <div className={styles.sectionCompact}>
             <div className={styles.sectionHeader}>
@@ -631,38 +606,6 @@ const SHR = () => {
               </div>
             </div>
 
-            <div className={styles.violationSummary}>
-              <div className={styles.summaryHeader}>
-                <h3>Mart 2025</h3>
-                <div className={styles.totalViolations}>
-                  {violationStats.total} pozuntu
-                </div>
-              </div>
-              <div className={styles.severityBreakdown}>
-                <div className={styles.severityItem}>
-                  <span
-                    className={`${styles.severityDot} ${styles.high}`}
-                  ></span>
-                  <span>{violationStats.high} yüksək</span>
-                </div>
-                <div className={styles.severityItem}>
-                  <span
-                    className={`${styles.severityDot} ${styles.medium}`}
-                  ></span>
-                  <span>{violationStats.medium} orta</span>
-                </div>
-                <div className={styles.severityItem}>
-                  <span
-                    className={`${styles.severityDot} ${styles.low}`}
-                  ></span>
-                  <span>{violationStats.low} aşağı</span>
-                </div>
-              </div>
-              <div className={styles.violationTrend}>
-                <span className={styles.trendLabel}>Son 30 gün trendi:</span>
-                <MiniChart data={violationStats.trend} color="#ef4444" />
-              </div>
-            </div>
 
             <div className={styles.topViolators}>
               <h4 className={styles.topViolatorsTitle}>
@@ -677,48 +620,71 @@ const SHR = () => {
                 </div>
               ))}
             </div>
-          </div>
 
-          {/* Best Employees */}
-          <div className={styles.sectionCompact}>
-            <h2 className={styles.sectionTitleCompact}>
-              <StarIcon />
-              Ən yaxşı işçilər
-            </h2>
-            <div className={styles.bestEmployeeList}>
-              {bestEmployees.map((employee, index) => (
-                <div key={index} className={styles.bestEmployeeItem}>
-                  <div className={styles.employeeProfileContainer}>
-                    <img
-                      src={Photo}
-                      alt={employee.name}
-                      className={styles.employeeProfileImage}
-                    />
-                    <div
-                      className={styles.rankingBadge}
-                      style={{
-                        backgroundColor: getRankingBadgeColor(employee.rank),
-                      }}
-                    >
-                      {employee.rank}
-                    </div>
-                  </div>
-                  <div className={styles.employeeInfo}>
-                    <div className={styles.employeeName}>{employee.name}</div>
-                    <div className={styles.employeeLocation}>
-                      <span className={styles.employeeBranch}>
-                        {employee.branch}
-                      </span>
-                      <span className={styles.employeeDepartment}>
-                        {employee.department}
-                      </span>
-                    </div>
-                  </div>
-                  <div className={styles.employeeScore}>{employee.score}%</div>
+            <div className={styles.detailedViolations}>
+              <h4 className={styles.detailedViolationsTitle}>
+                Detallı pozuntu siyahısı
+              </h4>
+              <div className={styles.violationsTable}>
+                <div className={styles.violationsHeader}>
+                  <div className={styles.headerCell}>İşçi</div>
+                  <div className={styles.headerCell}>Pozuntu</div>
+                  <div className={styles.headerCell}>Aşkar tarixi</div>
+                  <div className={styles.headerCell}>Səbəb</div>
+                  <div className={styles.headerCell}>Status</div>
+                  <div className={styles.headerCell}>Təkrarlanma</div>
+                  <div className={styles.headerCell}>Qalan gün</div>
                 </div>
-              ))}
+                {disciplinaryViolations.map((violation, index) => {
+                  const daysRemaining = calculateDaysRemaining(violation.escalationDeadline);
+                  return (
+                    <div key={index} className={styles.violationRow}>
+                      <div className={styles.violationCell}>
+                        <div className={styles.employeeName}>{violation.name}</div>
+                        <div className={styles.employeeLocation}>
+                          {violation.branch} - {violation.department}
+                        </div>
+                      </div>
+                      <div className={styles.violationCell}>
+                        <div className={styles.violationType}>
+                          {getCategoryIcon(violation.category)}
+                          {violation.violation}
+                        </div>
+                        <div className={`${styles.severityBadge} ${styles[violation.severity]}`}>
+                          {violation.severity === 'high' ? 'Yüksək' : 
+                           violation.severity === 'medium' ? 'Orta' : 'Aşağı'}
+                        </div>
+                      </div>
+                      <div className={styles.violationCell}>
+                        <div className={styles.dateValue}>{violation.discoveryDate}</div>
+                      </div>
+                      <div className={styles.violationCell}>
+                        <div className={styles.reasonValue}>{violation.reason}</div>
+                      </div>
+                      <div className={styles.violationCell}>
+                        <div className={`${styles.statusBadge} ${styles[violation.status.toLowerCase().replace(/\s+/g, '')]}`}>
+                          {violation.status}
+                        </div>
+                      </div>
+                      <div className={styles.violationCell}>
+                        <div className={styles.repeatCount}>
+                          <span className={styles.repeatNumber}>{violation.repeatCount}</span>
+                          <span className={styles.repeatLabel}>dəfə</span>
+                        </div>
+                      </div>
+                      <div className={styles.violationCell}>
+                        <div className={`${styles.countdownTimer} ${daysRemaining <= 2 ? styles.urgent : daysRemaining <= 5 ? styles.warning : ''}`}>
+                          <span className={styles.countdownNumber}>{daysRemaining}</span>
+                          <span className={styles.countdownLabel}>gün</span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
+
         </div>
 
         {/* Branches List */}

@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./branch.module.css";
 import Header from "../../../components/header";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const NewBranch = () => {
   const [selectedDepartment, setSelectedDepartment] = useState(
@@ -16,6 +16,28 @@ const NewBranch = () => {
   const [showBranchModal, setShowBranchModal] = useState(false);
   const [showSectionModal, setShowSectionModal] = useState(false);
   const [showEmployeeModal, setShowEmployeeModal] = useState(false);
+
+  const [searchParams] = useSearchParams();
+
+  // Auto-open modal based on URL parameter
+  useEffect(() => {
+    const modalParam = searchParams.get("modal");
+    if (modalParam) {
+      switch (modalParam) {
+        case "department":
+          setShowDepartmentModal(true);
+          break;
+        case "branch":
+          setShowBranchModal(true);
+          break;
+        case "employee":
+          setShowEmployeeModal(true);
+          break;
+        default:
+          break;
+      }
+    }
+  }, [searchParams]);
 
   const departments = [
     "Komplayens departamenti",
@@ -70,7 +92,7 @@ const NewBranch = () => {
       kpi: "1 il",
     },
     { name: "Günah Həsənova", position: "Kiçik mütəxəssis", kpi: "1 il" },
-    { name: "Sənan Hüseynli", position: "İntern", kpi: "1 il" },
+    { name: "Sənan Hüseynli", position: "Təcrübəçi", kpi: "1 il" },
   ];
 
   const branchManager = "Şaiq Muradzadə";
@@ -294,11 +316,11 @@ const NewBranch = () => {
           </div>
           <div className={styles.formRow}>
             <div className={styles.formGroup}>
-              <label>Aid olduğu şirkət</label>
+              <label>Aid olduğu departament</label>
               <input
                 type="text"
                 className={styles.input}
-                placeholder="Paşa Holding"
+                placeholder="Premium Bank"
               />
             </div>
             <div className={styles.formGroup}>

@@ -116,7 +116,7 @@ const UserRolesPage = () => {
     },
     {
       id: 6,
-      name: "İntern",
+      name: "Təcrübəçi",
       description: "Məhdud KPI məlumatları daxil edilməsi",
       permissions: {
         canEnterKPIData: false,
@@ -193,7 +193,7 @@ const UserRolesPage = () => {
       id: 6,
       name: "Nigar Əhmədova",
       email: "nigar.ahmadova@company.com",
-      role: "İntern",
+      role: "Təcrübəçi",
       department: "ƏL/TMM Şöbəsi",
       status: "active",
       lastLogin: "2 gün əvvəl",
@@ -250,11 +250,13 @@ const UserRolesPage = () => {
 
   const handleSaveEdit = () => {
     if (newRole.name.trim()) {
-      setRoles(roles.map(role => 
-        role.id === selectedRole.id 
-          ? { ...newRole, userCount: role.userCount, status: role.status }
-          : role
-      ));
+      setRoles(
+        roles.map((role) =>
+          role.id === selectedRole.id
+            ? { ...newRole, userCount: role.userCount, status: role.status }
+            : role
+        )
+      );
       setIsEditingRole(false);
       setSelectedRole(null);
       setNewRole({
@@ -275,22 +277,26 @@ const UserRolesPage = () => {
 
   const handleDeleteRole = (roleId) => {
     if (window.confirm("Bu rolu silmək istədiyinizə əminsiniz?")) {
-      setRoles(roles.filter(role => role.id !== roleId));
+      setRoles(roles.filter((role) => role.id !== roleId));
     }
   };
 
-  const filteredRoles = roles.filter(role => {
-    const matchesSearch = role.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         role.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = filterStatus === "all" || role.status === filterStatus;
+  const filteredRoles = roles.filter((role) => {
+    const matchesSearch =
+      role.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      role.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus =
+      filterStatus === "all" || role.status === filterStatus;
     return matchesSearch && matchesStatus;
   });
 
-  const filteredUsers = users.filter(user => {
-    const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.role.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = filterStatus === "all" || user.status === filterStatus;
+  const filteredUsers = users.filter((user) => {
+    const matchesSearch =
+      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.role.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus =
+      filterStatus === "all" || user.status === filterStatus;
     return matchesSearch && matchesStatus;
   });
 
@@ -338,14 +344,18 @@ const UserRolesPage = () => {
       <div className={styles.container}>
         <div className={styles.tabContainer}>
           <button
-            className={`${styles.tab} ${activeTab === "roles" ? styles.tabActive : ""}`}
+            className={`${styles.tab} ${
+              activeTab === "roles" ? styles.tabActive : ""
+            }`}
             onClick={() => setActiveTab("roles")}
           >
             <UserCheck size={18} />
             Rollar
           </button>
           <button
-            className={`${styles.tab} ${activeTab === "users" ? styles.tabActive : ""}`}
+            className={`${styles.tab} ${
+              activeTab === "users" ? styles.tabActive : ""
+            }`}
             onClick={() => setActiveTab("users")}
           >
             <Users size={18} />
@@ -396,7 +406,9 @@ const UserRolesPage = () => {
                       ></div>
                       <div>
                         <h3 className={styles.roleName}>{role.name}</h3>
-                        <p className={styles.roleDescription}>{role.description}</p>
+                        <p className={styles.roleDescription}>
+                          {role.description}
+                        </p>
                       </div>
                     </div>
                     <div className={styles.roleActions}>
@@ -422,7 +434,9 @@ const UserRolesPage = () => {
                     </div>
                     <div className={styles.stat}>
                       <span className={styles.statLabel}>Status:</span>
-                      <span className={`${styles.statusBadge} ${styles.statusActive}`}>
+                      <span
+                        className={`${styles.statusBadge} ${styles.statusActive}`}
+                      >
                         {role.status === "active" ? "Aktiv" : "Qeyri-aktiv"}
                       </span>
                     </div>
@@ -431,24 +445,31 @@ const UserRolesPage = () => {
                   <div className={styles.permissionsList}>
                     <h4 className={styles.permissionsTitle}>İcazələr:</h4>
                     <div className={styles.permissionsGrid}>
-                      {Object.entries(role.permissions).map(([permission, hasPermission]) => (
-                        <div
-                          key={permission}
-                          className={`${styles.permissionItem} ${
-                            hasPermission ? styles.permissionActive : styles.permissionInactive
-                          }`}
-                        >
-                          {getPermissionIcon(permission)}
-                          <span className={styles.permissionLabel}>
-                            {getPermissionLabel(permission)}
-                          </span>
-                          {hasPermission ? (
-                            <CheckCircle size={14} className={styles.checkIcon} />
-                          ) : (
-                            <X size={14} className={styles.xIcon} />
-                          )}
-                        </div>
-                      ))}
+                      {Object.entries(role.permissions).map(
+                        ([permission, hasPermission]) => (
+                          <div
+                            key={permission}
+                            className={`${styles.permissionItem} ${
+                              hasPermission
+                                ? styles.permissionActive
+                                : styles.permissionInactive
+                            }`}
+                          >
+                            {getPermissionIcon(permission)}
+                            <span className={styles.permissionLabel}>
+                              {getPermissionLabel(permission)}
+                            </span>
+                            {hasPermission ? (
+                              <CheckCircle
+                                size={14}
+                                className={styles.checkIcon}
+                              />
+                            ) : (
+                              <X size={14} className={styles.xIcon} />
+                            )}
+                          </div>
+                        )
+                      )}
                     </div>
                   </div>
                 </div>
@@ -501,7 +522,10 @@ const UserRolesPage = () => {
                 <div key={user.id} className={styles.tableRow}>
                   <div className={styles.userInfo}>
                     <div className={styles.userAvatar}>
-                      {user.name.split(" ").map(n => n[0]).join("")}
+                      {user.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
                     </div>
                     <div>
                       <div className={styles.userName}>{user.name}</div>
@@ -509,7 +533,9 @@ const UserRolesPage = () => {
                     </div>
                   </div>
                   <span className={styles.userRole}>{user.role}</span>
-                  <span className={styles.userDepartment}>{user.department}</span>
+                  <span className={styles.userDepartment}>
+                    {user.department}
+                  </span>
                   <span className={styles.kpiDataEntry}>
                     {user.kpiDataEntry ? (
                       <CheckCircle size={16} className={styles.checkIcon} />
@@ -524,7 +550,9 @@ const UserRolesPage = () => {
                       <X size={16} className={styles.xIcon} />
                     )}
                   </span>
-                  <span className={`${styles.statusBadge} ${styles.statusActive}`}>
+                  <span
+                    className={`${styles.statusBadge} ${styles.statusActive}`}
+                  >
                     {user.status === "active" ? "Aktiv" : "Qeyri-aktiv"}
                   </span>
                   <span className={styles.lastLogin}>{user.lastLogin}</span>
@@ -547,7 +575,9 @@ const UserRolesPage = () => {
           <div className={styles.modalOverlay}>
             <div className={styles.modal}>
               <div className={styles.modalHeader}>
-                <h2>{isAddingRole ? "Yeni rol əlavə et" : "Rolu redaktə et"}</h2>
+                <h2>
+                  {isAddingRole ? "Yeni rol əlavə et" : "Rolu redaktə et"}
+                </h2>
                 <button
                   className={styles.closeButton}
                   onClick={() => {
@@ -579,7 +609,9 @@ const UserRolesPage = () => {
                   <input
                     type="text"
                     value={newRole.name}
-                    onChange={(e) => setNewRole({ ...newRole, name: e.target.value })}
+                    onChange={(e) =>
+                      setNewRole({ ...newRole, name: e.target.value })
+                    }
                     placeholder="Rol adını daxil edin"
                     className={styles.formInput}
                   />
@@ -589,7 +621,9 @@ const UserRolesPage = () => {
                   <label>Təsvir</label>
                   <textarea
                     value={newRole.description}
-                    onChange={(e) => setNewRole({ ...newRole, description: e.target.value })}
+                    onChange={(e) =>
+                      setNewRole({ ...newRole, description: e.target.value })
+                    }
                     placeholder="Rol təsvirini daxil edin"
                     className={styles.formTextarea}
                     rows={3}
@@ -599,7 +633,15 @@ const UserRolesPage = () => {
                 <div className={styles.formGroup}>
                   <label>Rol rəngi</label>
                   <div className={styles.colorPicker}>
-                    {["#dc2626", "#ea580c", "#d97706", "#059669", "#0891b2", "#7c3aed", "#6b7280"].map((color) => (
+                    {[
+                      "#dc2626",
+                      "#ea580c",
+                      "#d97706",
+                      "#059669",
+                      "#0891b2",
+                      "#7c3aed",
+                      "#6b7280",
+                    ].map((color) => (
                       <button
                         key={color}
                         className={`${styles.colorOption} ${
@@ -618,29 +660,34 @@ const UserRolesPage = () => {
                     İcazələr
                   </div>
                   <div className={styles.permissionsForm}>
-                    {Object.entries(newRole.permissions).map(([permission, hasPermission]) => (
-                      <div key={permission} className={styles.permissionFormItem}>
-                        <label className={styles.permissionCheckbox}>
-                          <input
-                            type="checkbox"
-                            checked={hasPermission}
-                            onChange={(e) =>
-                              setNewRole({
-                                ...newRole,
-                                permissions: {
-                                  ...newRole.permissions,
-                                  [permission]: e.target.checked,
-                                },
-                              })
-                            }
-                          />
-                          <span className={styles.checkboxLabel}>
-                            {getPermissionIcon(permission)}
-                            {getPermissionLabel(permission)}
-                          </span>
-                        </label>
-                      </div>
-                    ))}
+                    {Object.entries(newRole.permissions).map(
+                      ([permission, hasPermission]) => (
+                        <div
+                          key={permission}
+                          className={styles.permissionFormItem}
+                        >
+                          <label className={styles.permissionCheckbox}>
+                            <input
+                              type="checkbox"
+                              checked={hasPermission}
+                              onChange={(e) =>
+                                setNewRole({
+                                  ...newRole,
+                                  permissions: {
+                                    ...newRole.permissions,
+                                    [permission]: e.target.checked,
+                                  },
+                                })
+                              }
+                            />
+                            <span className={styles.checkboxLabel}>
+                              {getPermissionIcon(permission)}
+                              {getPermissionLabel(permission)}
+                            </span>
+                          </label>
+                        </div>
+                      )
+                    )}
                   </div>
                 </div>
               </div>

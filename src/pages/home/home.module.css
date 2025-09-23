@@ -5,6 +5,49 @@
   font-family: Geist;
 }
 
+/* Section Title Container */
+.sectionTitleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.sectionTitleContainer h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* View All Link */
+.viewAllLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #996f29;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(153, 111, 41, 0.2);
+}
+
+.viewAllLink:hover {
+  background: #7d5a21;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(153, 111, 41, 0.3);
+  color: white;
+  text-decoration: none;
+}
+
+.viewAllLink:active {
+  transform: translateY(0);
+}
+
 /* More compact filter section */
 .filterSection {
   background: white;
@@ -789,6 +832,22 @@
 @media (max-width: 768px) {
   .dashboard {
     padding: 12px;
+  }
+
+  .sectionTitleContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .sectionTitleContainer h2 {
+    font-size: 20px;
+  }
+
+  .viewAllLink {
+    align-self: flex-end;
+    font-size: 13px;
+    padding: 6px 12px;
   }
 
   .overviewCards {

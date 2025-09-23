@@ -127,7 +127,7 @@ const TechnicalSupportPage = () => {
           id: 11,
           question: "Məlumatlar görünmür, səbəbi nədir?",
           answer:
-            "İnternet bağlantınızı yoxlayın və səhifəni yeniləyin. Problem davam edərsə, texniki dəstəklə əlaqə saxlayın.",
+            "Təcrübəçiet bağlantınızı yoxlayın və səhifəni yeniləyin. Problem davam edərsə, texniki dəstəklə əlaqə saxlayın.",
         },
         {
           id: 12,

@@ -447,7 +447,7 @@ const organizationalStructure = {
                   canControl: ["intern"],
                 },
                 {
-                  name: "İntern",
+                  name: "Təcrübəçi",
                   type: "intern",
                   canAssign: false,
                   canControl: [],
@@ -477,7 +477,7 @@ const organizationalStructure = {
                   canControl: ["intern"],
                 },
                 {
-                  name: "İntern",
+                  name: "Təcrübəçi",
                   type: "intern",
                   canAssign: false,
                   canControl: [],
@@ -507,7 +507,7 @@ const organizationalStructure = {
                   canControl: ["intern"],
                 },
                 {
-                  name: "İntern",
+                  name: "Təcrübəçi",
                   type: "intern",
                   canAssign: false,
                   canControl: [],
@@ -968,20 +968,22 @@ export default function KPIHomePage() {
   };
 
   // Determine latest available month key from current data
-  const latestAvailableMonthKey = [
-    "dec",
-    "nov",
-    "oct",
-    "sep",
-    "aug",
-    "jul",
-    "jun",
-    "may",
-    "apr",
-    "mar",
-    "feb",
-    "jan",
-  ].find((key) => heatmapData[0] && heatmapData[0][key] !== undefined) || "jan";
+  const latestAvailableMonthKey =
+    [
+      "dec",
+      "nov",
+      "oct",
+      "sep",
+      "aug",
+      "jul",
+      "jun",
+      "may",
+      "apr",
+      "mar",
+      "feb",
+      "jan",
+    ].find((key) => heatmapData[0] && heatmapData[0][key] !== undefined) ||
+    "jan";
 
   // Columns to show based on period filter
   const displayedColumns = (() => {
@@ -989,7 +991,8 @@ export default function KPIHomePage() {
       return [singleMonth || latestAvailableMonthKey];
     }
     if (periodFilter === "quarterly") {
-      const picked = selectedMonths.length > 0 ? selectedMonths : ["mar", "apr", "may"];
+      const picked =
+        selectedMonths.length > 0 ? selectedMonths : ["mar", "apr", "may"];
       return picked.slice(-3);
     }
     // yearly - always show 12 months
@@ -1196,7 +1199,6 @@ export default function KPIHomePage() {
               {activeTab === "overview" && (
                 <div className={styles.tabContent}>
                   {/* Filters */}
-                  
 
                   {/* Summary Cards */}
                   <div className={styles.summaryCards}>
@@ -1441,8 +1443,11 @@ export default function KPIHomePage() {
                                   <td>{row.branch}</td>
                                   {displayedColumns.map((key) => {
                                     const value = row[key];
-                                    const hasValue = value !== undefined && value !== null;
-                                    const bg = hasValue ? getHeatmapColor(value) : "transparent";
+                                    const hasValue =
+                                      value !== undefined && value !== null;
+                                    const bg = hasValue
+                                      ? getHeatmapColor(value)
+                                      : "transparent";
                                     const style = {
                                       backgroundColor: bg,
                                       color: hasValue ? "black" : "#666",
@@ -1624,7 +1629,6 @@ export default function KPIHomePage() {
               {activeTab === "structure" && (
                 <div className={styles.tabContent}>
                   <div className={styles.card}>
-                   
                     <div className={styles.cardContent}>
                       <div className={styles.simpleOrgChart}>
                         <div className={styles.orgLevel}>
@@ -1689,7 +1693,7 @@ export default function KPIHomePage() {
                                   <span>Kiçik Mütəxəssis</span>
                                 </div>
                                 <div className={styles.hierarchyItem}>
-                                  <span>İntern</span>
+                                  <span>Təcrübəçi</span>
                                 </div>
                               </div>
                             </div>

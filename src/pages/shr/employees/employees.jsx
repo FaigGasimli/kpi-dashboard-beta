@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import "./employees.css"
-import Photo from "../../../assests/qız.jpg"
+import { useState } from "react";
+import "./employees.css";
+import Photo from "../../../assests/qız.jpg";
 import Header from "../../../components/header";
 
 const EmployeeProfile = () => {
-  const [activeTab, setActiveTab] = useState("tasks")
-  const [activeDisciplineTab, setActiveDisciplineTab] = useState("bonus")
-  const [performanceFilter, setPerformanceFilter] = useState("all")
-  const [dateFilter, setDateFilter] = useState("all")
-  const [searchTerm, setSearchTerm] = useState("")
+  const [activeTab, setActiveTab] = useState("tasks");
+  const [activeDisciplineTab, setActiveDisciplineTab] = useState("bonus");
+  const [performanceFilter, setPerformanceFilter] = useState("all");
+  const [dateFilter, setDateFilter] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const employee = {
     name: "Vəfa Vahabova Namiq qızı",
@@ -27,7 +27,7 @@ const EmployeeProfile = () => {
     workSchedule: "09:00-18:00",
     attendanceRate: 96.5,
     medicalInsurance: "Aktiv",
-  }
+  };
 
   const tasks = [
     {
@@ -51,7 +51,8 @@ const EmployeeProfile = () => {
       priority: "Yüksək",
       status: "Davam edir",
       progress: 75,
-      description: "Q4 üçün yeni işçilərin adaptasiya materiallarının hazırlanması",
+      description:
+        "Q4 üçün yeni işçilərin adaptasiya materiallarının hazırlanması",
     },
     {
       id: 2,
@@ -99,7 +100,7 @@ const EmployeeProfile = () => {
       progress: 100,
       description: "Yeni qanunvericiliyə uyğun müqavilə şablonları",
     },
-  ]
+  ];
 
   const performanceData = [
     {
@@ -234,28 +235,28 @@ const EmployeeProfile = () => {
       executionPeriod: "3 ay",
       category: "compliance",
     },
-  ]
+  ];
 
   const vacationData = [
     {
       date: "15.08.2024",
       reason: "Ailə məzuniyyəti",
       daysUsed: 14,
-      status: "Tamamlandı"
+      status: "Tamamlandı",
     },
     {
       date: "20.12.2024",
       reason: "Yeni il məzuniyyəti",
       daysUsed: 7,
-      status: "Planlaşdırılır"
+      status: "Planlaşdırılır",
     },
     {
       date: "10.06.2024",
       reason: "Şəxsi məzuniyyət",
       daysUsed: 5,
-      status: "Tamamlandı"
-    }
-  ]
+      status: "Tamamlandı",
+    },
+  ];
 
   const bonusData = [
     {
@@ -265,7 +266,7 @@ const EmployeeProfile = () => {
       paymentDate: "20.12.2024",
       status: "Ödənildi",
       reason: "KPI hədəflərinin 120% yerinə yetirilməsi",
-      kpiResult: "120%"
+      kpiResult: "120%",
     },
     {
       type: "Rüblük bonus",
@@ -274,7 +275,7 @@ const EmployeeProfile = () => {
       paymentDate: "05.10.2024",
       status: "Ödənildi",
       reason: "Q3 dövrü üçün əla nəticələr",
-      kpiResult: "115%"
+      kpiResult: "115%",
     },
     {
       type: "İllik bonus",
@@ -283,9 +284,9 @@ const EmployeeProfile = () => {
       paymentDate: "10.01.2024",
       status: "Ödənildi",
       reason: "2023-cü il üçün üstün performans",
-      kpiResult: "110%"
-    }
-  ]
+      kpiResult: "110%",
+    },
+  ];
 
   const violationData = [
     {
@@ -293,23 +294,23 @@ const EmployeeProfile = () => {
       date: "20.09.2024",
       status: "Həll olunub",
       description: "İşə 30 dəqiqə gecikmə",
-      appliedMeasure: "Rəsmi xəbərdarlıq"
+      appliedMeasure: "Rəsmi xəbərdarlıq",
     },
     {
       type: "İş saatında çıxma",
       date: "15.08.2024",
       status: "Araşdırılır",
       description: "İş saatında icazəsiz çıxış",
-      appliedMeasure: "Şifahi xəbərdarlıq"
+      appliedMeasure: "Şifahi xəbərdarlıq",
     },
     {
       type: "Qaydaları pozma",
       date: "10.07.2024",
       status: "Həll olunub",
       description: "Təhlükəsizlik qaydalarını pozma",
-      appliedMeasure: "Cərimə (50 AZN)"
-    }
-  ]
+      appliedMeasure: "Cərimə (50 AZN)",
+    },
+  ];
 
   const trainingData = [
     {
@@ -336,40 +337,40 @@ const EmployeeProfile = () => {
       certificate: "Planlaşdırılır",
       score: null,
     },
-  ]
+  ];
 
   const getProgressBarColor = (percentage) => {
-    if (percentage >= 90) return "#10b981"
-    if (percentage >= 70) return "#3b82f6"
-    if (percentage >= 50) return "#f59e0b"
-    return "#ef4444"
-  }
+    if (percentage >= 90) return "#10b981";
+    if (percentage >= 70) return "#3b82f6";
+    if (percentage >= 50) return "#f59e0b";
+    return "#ef4444";
+  };
 
   const getPriorityColor = (priority) => {
     switch (priority) {
       case "Yüksək":
-        return "#ef4444"
+        return "#ef4444";
       case "Orta":
-        return "#f59e0b"
+        return "#f59e0b";
       case "Aşağı":
-        return "#10b981"
+        return "#10b981";
       default:
-        return "#6b7280"
+        return "#6b7280";
     }
-  }
+  };
 
   const getStatusColor = (status) => {
     switch (status) {
       case "Tamamlandı":
-        return "#10b981"
+        return "#10b981";
       case "Davam edir":
-        return "#3b82f6"
+        return "#3b82f6";
       case "Planlaşdırılır":
-        return "#f59e0b"
+        return "#f59e0b";
       default:
-        return "#6b7280"
+        return "#6b7280";
     }
-  }
+  };
 
   const renderTasks = () => (
     <div className="tab-content">
@@ -400,8 +401,12 @@ const EmployeeProfile = () => {
                     <div className="task-title">{task.name}</div>
                     <div className="task-details-row">
                       <span className="task-detail">Task sayı: {task.id}</span>
-                      <span className="task-detail">Yaranma tarixi: {task.creationDate}</span>
-                      <span className="task-detail">Deadline tarixi: {task.deadline}</span>
+                      <span className="task-detail">
+                        Yaranma tarixi: {task.creationDate}
+                      </span>
+                      <span className="task-detail">
+                        Deadline tarixi: {task.deadline}
+                      </span>
                     </div>
                   </div>
                   <div className="task-actions">
@@ -436,8 +441,12 @@ const EmployeeProfile = () => {
                     <div className="task-title">{task.name}</div>
                     <div className="task-details-row">
                       <span className="task-detail">Task sayı: {task.id}</span>
-                      <span className="task-detail">Yaranma tarixi: {task.creationDate}</span>
-                      <span className="task-detail">Deadline tarixi: {task.deadline}</span>
+                      <span className="task-detail">
+                        Yaranma tarixi: {task.creationDate}
+                      </span>
+                      <span className="task-detail">
+                        Deadline tarixi: {task.deadline}
+                      </span>
                     </div>
                   </div>
                   <div className="task-actions">
@@ -472,8 +481,12 @@ const EmployeeProfile = () => {
                     <div className="task-title">{task.name}</div>
                     <div className="task-details-row">
                       <span className="task-detail">Task sayı: {task.id}</span>
-                      <span className="task-detail">Yaranma tarixi: {task.creationDate}</span>
-                      <span className="task-detail">Deadline tarixi: {task.deadline}</span>
+                      <span className="task-detail">
+                        Yaranma tarixi: {task.creationDate}
+                      </span>
+                      <span className="task-detail">
+                        Deadline tarixi: {task.deadline}
+                      </span>
                     </div>
                   </div>
                   <div className="task-actions">
@@ -495,26 +508,29 @@ const EmployeeProfile = () => {
         </div>
       </div>
     </div>
-  )
+  );
 
   const getFilteredPerformanceData = () => {
     return performanceData.filter((item) => {
       const matchesSearch =
         item.kpiModule.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.metric.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.component.toLowerCase().includes(searchTerm.toLowerCase())
+        item.component.toLowerCase().includes(searchTerm.toLowerCase());
 
-      const matchesCategory = performanceFilter === "all" || item.category === performanceFilter
+      const matchesCategory =
+        performanceFilter === "all" || item.category === performanceFilter;
 
       const matchesDate =
         dateFilter === "all" ||
-        (dateFilter === "monthly" && item.executionPeriod.includes("ay") && !item.executionPeriod.includes("12")) ||
+        (dateFilter === "monthly" &&
+          item.executionPeriod.includes("ay") &&
+          !item.executionPeriod.includes("12")) ||
         (dateFilter === "quarterly" && item.executionPeriod === "3 ay") ||
-        (dateFilter === "yearly" && item.executionPeriod === "12 ay")
+        (dateFilter === "yearly" && item.executionPeriod === "12 ay");
 
-      return matchesSearch && matchesCategory && matchesDate
-    })
-  }
+      return matchesSearch && matchesCategory && matchesDate;
+    });
+  };
 
   const renderPerformance = () => (
     <div className="tab-content">
@@ -539,7 +555,11 @@ const EmployeeProfile = () => {
             <option value="procedures">Prosedurlar</option>
             <option value="technical">Texniki</option>
           </select>
-          <select className="filter-select" value={dateFilter} onChange={(e) => setDateFilter(e.target.value)}>
+          <select
+            className="filter-select"
+            value={dateFilter}
+            onChange={(e) => setDateFilter(e.target.value)}
+          >
             <option value="all">Bütün dövrler</option>
             <option value="monthly">Aylıq</option>
             <option value="quarterly">Rüblük</option>
@@ -571,7 +591,9 @@ const EmployeeProfile = () => {
                 <td>{item.component}</td>
                 <td>{item.currentResult || "-"}</td>
                 <td>{item.target || "-"}</td>
-                <td className="kpi-percentage">{item.kpiPercentage ? `${item.kpiPercentage}%` : "-"}</td>
+                <td className="kpi-percentage">
+                  {item.kpiPercentage ? `${item.kpiPercentage}%` : "-"}
+                </td>
                 <td>{item.startDate}</td>
                 <td>{item.endDate}</td>
                 <td>{item.executionPeriod}</td>
@@ -581,7 +603,7 @@ const EmployeeProfile = () => {
         </table>
       </div>
     </div>
-  )
+  );
 
   const renderBonusTable = () => (
     <div className="bonus-table-container">
@@ -605,7 +627,11 @@ const EmployeeProfile = () => {
               <td>{bonus.date}</td>
               <td>{bonus.paymentDate}</td>
               <td>
-                <span className={`status-badge ${bonus.status.toLowerCase().replace(/\s+/g, '')}`}>
+                <span
+                  className={`status-badge ${bonus.status
+                    .toLowerCase()
+                    .replace(/\s+/g, "")}`}
+                >
                   {bonus.status}
                 </span>
               </td>
@@ -616,7 +642,7 @@ const EmployeeProfile = () => {
         </tbody>
       </table>
     </div>
-  )
+  );
 
   const renderViolationsTable = () => (
     <div className="violations-table-container">
@@ -636,7 +662,11 @@ const EmployeeProfile = () => {
               <td className="violation-type">{violation.type}</td>
               <td>{violation.date}</td>
               <td>
-                <span className={`status-badge ${violation.status.toLowerCase().replace(/\s+/g, '')}`}>
+                <span
+                  className={`status-badge ${violation.status
+                    .toLowerCase()
+                    .replace(/\s+/g, "")}`}
+                >
                   {violation.status}
                 </span>
               </td>
@@ -647,20 +677,28 @@ const EmployeeProfile = () => {
         </tbody>
       </table>
     </div>
-  )
+  );
 
   const renderDiscipline = () => (
     <div className="tab-content">
       <div className="discipline-tabs-horizontal">
         <div className="discipline-tab-nav-horizontal">
           <button
-            className={activeDisciplineTab === "bonus" ? "discipline-tab-button-horizontal active" : "discipline-tab-button-horizontal"}
+            className={
+              activeDisciplineTab === "bonus"
+                ? "discipline-tab-button-horizontal active"
+                : "discipline-tab-button-horizontal"
+            }
             onClick={() => setActiveDisciplineTab("bonus")}
           >
             Bonus siyahısı
           </button>
           <button
-            className={activeDisciplineTab === "violations" ? "discipline-tab-button-horizontal active" : "discipline-tab-button-horizontal"}
+            className={
+              activeDisciplineTab === "violations"
+                ? "discipline-tab-button-horizontal active"
+                : "discipline-tab-button-horizontal"
+            }
             onClick={() => setActiveDisciplineTab("violations")}
           >
             İntizam pozuntuları
@@ -672,7 +710,7 @@ const EmployeeProfile = () => {
         </div>
       </div>
     </div>
-  )
+  );
 
   const renderTraining = () => (
     <div className="tab-content">
@@ -703,7 +741,11 @@ const EmployeeProfile = () => {
             <div className="training-item-header">
               <div className="training-title-section">
                 <h4>{training.name}</h4>
-                <span className={`status-badge-new ${training.status.toLowerCase().replace(" ", "-")}`}>
+                <span
+                  className={`status-badge-new ${training.status
+                    .toLowerCase()
+                    .replace(" ", "-")}`}
+                >
                   {training.status}
                 </span>
               </div>
@@ -732,149 +774,166 @@ const EmployeeProfile = () => {
         ))}
       </div>
     </div>
-  )
+  );
 
   return (
-   <> <Header title="Strategic Human Resources - Strateji İnsan Resursları" />
-    <div className="employee-profile">
-      {/* Header Section */}
-      <div className="profile-header">
-        <div className="employee-info">
-          <div className="employee-photo">
-            <img src={Photo} alt={employee.name} />
+    <>
+      {" "}
+      <Header title="Strategic Human Resources - Strateji İnsan Resursları" />
+      <div className="employee-profile">
+        {/* Header Section */}
+        <div className="profile-header">
+          <div className="employee-info">
+            <div className="employee-photo">
+              <img src={Photo} alt={employee.name} />
+            </div>
+            <div className="employee-details">
+              <h1>{employee.name}</h1>
+              <p className="employee-age">{employee.age} yaş</p>
+            </div>
           </div>
-          <div className="employee-details">
-            <h1>{employee.name}</h1>
-            <p className="employee-age">{employee.age} yaş</p>
-          </div>
-        </div>
 
-        <div className="work-info">
-          <div className="info-grid">
-            <div className="info-item">
-              <label>Departament:</label>
-              <span>{employee.department}</span>
-            </div>
-            <div className="info-item">
-              <label>İşə qəbul tarixi:</label>
-              <span>{employee.hireDate}</span>
-            </div>
-            <div className="info-item">
-              <label>Şöbə:</label>
-              <span>{employee.position}</span>
-            </div>
-            <div className="info-item">
-              <label>Əmək haqqı:</label>
-              <span>{employee.salary}</span>
-            </div>
-            <div className="info-item">
-              <label>Vəzifə:</label>
-              <span>{employee.branch}</span>
-            </div>
-            <div className="info-item">
-              <label>Vəzifə:</label>
-              <span>{employee.branch}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Vacation Summary */}
-      <div className="vacation-summary">
-        <h3>Məzuniyyət günləri</h3>
-        <div className="vacation-stats">
-          <div className="vacation-stat">
-            <span className="stat-label">Ümumi istifadə olunan günlər:</span>
-            <span className="stat-value">{vacationData.reduce((sum, vacation) => sum + vacation.daysUsed, 0)} gün</span>
-          </div>
-          <div className="vacation-stat">
-            <span className="stat-label">Qalan günlər:</span>
-            <span className="stat-value">14 gün</span>
-          </div>
-        </div>
-        <div className="vacation-list">
-          {vacationData.map((vacation, index) => (
-            <div key={index} className="vacation-item">
-              <div className="vacation-date">{vacation.date}</div>
-              <div className="vacation-reason">{vacation.reason}</div>
-              <div className="vacation-days">{vacation.daysUsed} gün</div>
-              <div className={`vacation-status ${vacation.status.toLowerCase().replace(/\s+/g, '')}`}>
-                {vacation.status}
+          <div className="work-info">
+            <div className="info-grid">
+              <div className="info-item">
+                <label>Departament:</label>
+                <span>{employee.department}</span>
+              </div>
+              <div className="info-item">
+                <label>Vəzifə:</label>
+                <span>{employee.branch}</span>
+              </div>
+              <div className="info-item">
+                <label>Əmək haqqı:</label>
+                <span>{employee.salary}</span>
+              </div>
+              <div className="info-item">
+                <label>Şöbə:</label>
+                <span>{employee.position}</span>
+              </div>
+              <div className="info-item">
+                <label>İşə qəbul tarixi:</label>
+                <span>{employee.hireDate}</span>
               </div>
             </div>
-          ))}
+          </div>
+        </div>
+
+        {/* Vacation Summary */}
+        <div className="vacation-summary">
+          <h3>Məzuniyyət günləri</h3>
+          <div className="vacation-stats">
+            <div className="vacation-stat">
+              <span className="stat-label">Ümumi istifadə olunan günlər:</span>
+              <span className="stat-value">
+                {vacationData.reduce(
+                  (sum, vacation) => sum + vacation.daysUsed,
+                  0
+                )}{" "}
+                gün
+              </span>
+            </div>
+            <div className="vacation-stat">
+              <span className="stat-label">Qalan günlər:</span>
+              <span className="stat-value">14 gün</span>
+            </div>
+          </div>
+          <div className="vacation-list">
+            {vacationData.map((vacation, index) => (
+              <div key={index} className="vacation-item">
+                <div className="vacation-date">{vacation.date}</div>
+                <div className="vacation-reason">{vacation.reason}</div>
+                <div className="vacation-days">{vacation.daysUsed} gün</div>
+                <div
+                  className={`vacation-status ${vacation.status
+                    .toLowerCase()
+                    .replace(/\s+/g, "")}`}
+                >
+                  {vacation.status}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tabs Navigation */}
+        <div className="tabs-container">
+          <div className="tabs-nav">
+            <button
+              className={
+                activeTab === "tasks" ? "tab-button active" : "tab-button"
+              }
+              onClick={() => setActiveTab("tasks")}
+            >
+              Tapşırıqlar
+            </button>
+            <button
+              className={
+                activeTab === "performance" ? "tab-button active" : "tab-button"
+              }
+              onClick={() => setActiveTab("performance")}
+            >
+              Performans Sistemi
+            </button>
+            <button
+              className={
+                activeTab === "discipline" ? "tab-button active" : "tab-button"
+              }
+              onClick={() => setActiveTab("discipline")}
+            >
+              Nizam İntizam
+            </button>
+            <button
+              className={
+                activeTab === "training" ? "tab-button active" : "tab-button"
+              }
+              onClick={() => setActiveTab("training")}
+            >
+              Təlim və İnkişaf
+            </button>
+          </div>
+
+          <div className="tabs-content">
+            {activeTab === "tasks" && renderTasks()}
+            {activeTab === "performance" && renderPerformance()}
+            {activeTab === "discipline" && renderDiscipline()}
+            {activeTab === "training" && renderTraining()}
+          </div>
+        </div>
+
+        {/* Additional HR Information */}
+        <div className="hr-info-section">
+          <h3>Əlavə əmakdaş məlumatları</h3>
+          <div className="hr-info-grid">
+            <div className="hr-info-item">
+              <label>İş təcrübəsi:</label>
+              <span>{employee.workExperience}</span>
+            </div>
+            <div className="hr-info-item">
+              <label>Müqavilə bitmə tarixi:</label>
+              <span>{employee.contractEndDate}</span>
+            </div>
+            <div className="hr-info-item">
+              <label>Birbaşa rəhbər:</label>
+              <span>{employee.directManager}</span>
+            </div>
+            <div className="hr-info-item">
+              <label>İş qrafiki:</label>
+              <span>{employee.workSchedule}</span>
+            </div>
+            <div className="hr-info-item">
+              <label>İşə davamiyyət:</label>
+              <span>{employee.attendanceRate}%</span>
+            </div>
+            <div className="hr-info-item">
+              <label>Tibbi sığorta:</label>
+              <span>{employee.medicalInsurance}</span>
+            </div>
+          </div>
         </div>
       </div>
+    </>
+  );
+};
 
-      {/* Tabs Navigation */}
-      <div className="tabs-container">
-        <div className="tabs-nav">
-          <button
-            className={activeTab === "tasks" ? "tab-button active" : "tab-button"}
-            onClick={() => setActiveTab("tasks")}
-          >
-            Tapşırıqlar
-          </button>
-          <button
-            className={activeTab === "performance" ? "tab-button active" : "tab-button"}
-            onClick={() => setActiveTab("performance")}
-          >
-            Performans Sistemi
-          </button>
-          <button
-            className={activeTab === "discipline" ? "tab-button active" : "tab-button"}
-            onClick={() => setActiveTab("discipline")}
-          >
-            Nizam İntizam
-          </button>
-          <button
-            className={activeTab === "training" ? "tab-button active" : "tab-button"}
-            onClick={() => setActiveTab("training")}
-          >
-            Təlim və İnkişaf
-          </button>
-        </div>
-
-        <div className="tabs-content">
-          {activeTab === "tasks" && renderTasks()}
-          {activeTab === "performance" && renderPerformance()}
-          {activeTab === "discipline" && renderDiscipline()}
-          {activeTab === "training" && renderTraining()}
-        </div>
-      </div>
-
-      {/* Additional HR Information */}
-      <div className="hr-info-section">
-        <h3>Əlavə əmakdaş məlumatları</h3>
-        <div className="hr-info-grid">
-          <div className="hr-info-item">
-            <label>İş təcrübəsi:</label>
-            <span>{employee.workExperience}</span>
-          </div>
-          <div className="hr-info-item">
-            <label>Müqavilə bitmə tarixi:</label>
-            <span>{employee.contractEndDate}</span>
-          </div>
-          <div className="hr-info-item">
-            <label>Birbaşa rəhbər:</label>
-            <span>{employee.directManager}</span>
-          </div>
-          <div className="hr-info-item">
-            <label>İş qrafiki:</label>
-            <span>{employee.workSchedule}</span>
-          </div>
-          <div className="hr-info-item">
-            <label>İşə davamiyyət:</label>
-            <span>{employee.attendanceRate}%</span>
-          </div>
-          <div className="hr-info-item">
-            <label>Tibbi sığorta:</label>
-            <span>{employee.medicalInsurance}</span>
-          </div>
-        </div>
-      </div>
-    </div></>
-  )
-}
-
-export default EmployeeProfile
+export default EmployeeProfile;

@@ -1,5 +1,6 @@
 import styles from "./home.module.css";
 import Header from "../../components/header";
+import { Link } from "react-router-dom";
 import {
   BarChart3,
   TrendingUp,
@@ -15,6 +16,7 @@ import {
   Award,
   ListTodo,
   Timer,
+  ArrowRight,
 } from "lucide-react";
 import {
   BarChart,
@@ -322,7 +324,13 @@ const Dashboard = () => {
         </div>
 
         <div className={styles.analyticsSection}>
-          <h2>KPI Analitikası</h2>
+          <div className={styles.sectionTitleContainer}>
+            <h2>KPI Analitikası</h2>
+            <Link to="/kpi" className={styles.viewAllLink}>
+              <span>Ümumi bax</span>
+              <ArrowRight size={16} />
+            </Link>
+          </div>
           <div className={styles.analyticsGrid}>
             <div className={styles.trendSection}>
               <div className={styles.sectionHeader}>
@@ -472,7 +480,13 @@ const Dashboard = () => {
         </div>
 
         <div className={styles.hrSection}>
-          <h2>İnsan Resursları Analitikası</h2>
+          <div className={styles.sectionTitleContainer}>
+            <h2>İnsan Resursları Analitikası</h2>
+            <Link to="/shr" className={styles.viewAllLink}>
+              <span>Ümumi bax</span>
+              <ArrowRight size={16} />
+            </Link>
+          </div>
           <div className={styles.hrGrid}>
             <div className={styles.attendanceSection}>
               <div className={styles.sectionHeader}>
@@ -601,7 +615,13 @@ const Dashboard = () => {
         </div>
 
         <div className={styles.taskSection}>
-          <h2>Tapşırıq İdarəetməsi</h2>
+          <div className={styles.sectionTitleContainer}>
+            <h2>Tapşırıq İdarəetməsi</h2>
+            <Link to="/management" className={styles.viewAllLink}>
+              <span>Ümumi bax</span>
+              <ArrowRight size={16} />
+            </Link>
+          </div>
           <div className={styles.taskGrid}>
             <div className={styles.taskDistribution}>
               <div className={styles.sectionHeader}>
@@ -668,7 +688,13 @@ const Dashboard = () => {
         </div>
 
         <div className={styles.kpiPerformanceSection}>
-          <h2>KPI Performans</h2>
+          <div className={styles.sectionTitleContainer}>
+            <h2>KPI Performans</h2>
+            <Link to="/kpi" className={styles.viewAllLink}>
+              <span>Ümumi bax</span>
+              <ArrowRight size={16} />
+            </Link>
+          </div>
           <div className={styles.kpiCards}>
             <div className={styles.kpiCard}>
               <div className={styles.cardHeader}>

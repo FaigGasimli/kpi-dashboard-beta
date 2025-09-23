@@ -45,15 +45,16 @@ export default function Sidebar() {
     },
     { name: "SHR", icon: <Users size={18} />, href: "/shr", hasSubmenu: false },
     {
-      name: "KPI",
-      icon: <BarChart3 size={18} />,
-      href: "/kpi",
-      hasSubmenu: false,
-    },
-    {
       name: "Tapşırıqlar paneli",
       icon: <ClipboardList size={18} />,
       href: "/management",
+      hasSubmenu: false,
+    },
+
+    {
+      name: "KPI",
+      icon: <BarChart3 size={18} />,
+      href: "/kpi",
       hasSubmenu: false,
     },
     {

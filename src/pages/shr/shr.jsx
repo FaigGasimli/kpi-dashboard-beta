@@ -440,7 +440,7 @@ const SHR = () => {
         {/* Action Buttons */}
         <div className={styles.actionButtonsContainer}>
           <div className={styles.actionButtons}>
-            <Link to="/newbranch">
+            <Link to="/newbranch?modal=branch">
               <button
                 className={styles.actionButton}
                 onClick={handleCreateBranch}
@@ -449,7 +449,7 @@ const SHR = () => {
                 <span>Yeni filial yarat</span>
               </button>
             </Link>
-            <Link to="/newbranch">
+            <Link to="/newbranch?modal=department">
               <button
                 className={styles.actionButton}
                 onClick={handleCreateDepartment}
@@ -458,7 +458,7 @@ const SHR = () => {
                 <span>Departament yarat</span>
               </button>
             </Link>
-            <Link to="/newbranch">
+            <Link to="/newbranch?modal=employee">
               <button
                 className={styles.actionButton}
                 onClick={handleAddEmployee}
@@ -478,7 +478,59 @@ const SHR = () => {
             ))}
           </div>
         </div>
-
+ <div className={styles.sectionCompact}>
+          <h2 className={styles.sectionTitleCompact}>Filiallar siyahısı</h2>
+          <div className={styles.branchGrid}>
+            {branches.map((branch, index) => (
+              <Link to="/newbranch">
+                <div key={index} className={styles.branchCard}>
+                  <div className={styles.branchHeader}>
+                    <h3 className={styles.branchName}>{branch.name}</h3>
+                    <button className={styles.menuButton}>
+                      <ThreeDotsIcon />
+                    </button>
+                  </div>
+                  <div className={styles.branchStats}>
+                    <div className={styles.statItem}>
+                      <span className={styles.statLabel}>
+                        Departament sayı:
+                      </span>
+                      <span className={styles.statValue}>
+                        {branch.departments}
+                      </span>
+                    </div>
+                    <div className={styles.statItem}>
+                      <span className={styles.statLabel}>Şöbə sayı:</span>
+                      <span className={styles.statValue}>
+                        {branch.branches}
+                      </span>
+                    </div>
+                    <div className={styles.statItem}>
+                      <span className={styles.statLabel}>İşçi sayı:</span>
+                      <span className={styles.statValue}>
+                        {branch.employees}
+                      </span>
+                    </div>
+                  </div>
+                  <div className={styles.branchPerformance}>
+                    <div className={styles.progressBar}>
+                      <div
+                        className={styles.progressFill}
+                        style={{
+                          width: `${branch.performance}%`,
+                          backgroundColor: branch.color,
+                        }}
+                      ></div>
+                    </div>
+                    <span className={styles.performanceText}>
+                      {branch.performance}%
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
         {/* Two-Column Layout for Attendance Data and Disciplinary Violations */}
         <div className={styles.twoColumnLayout}>
           {/* Average Attendance */}
@@ -688,59 +740,7 @@ const SHR = () => {
         </div>
 
         {/* Branches List */}
-        <div className={styles.sectionCompact}>
-          <h2 className={styles.sectionTitleCompact}>Filiallar siyahısı</h2>
-          <div className={styles.branchGrid}>
-            {branches.map((branch, index) => (
-              <Link to="/newbranch">
-                <div key={index} className={styles.branchCard}>
-                  <div className={styles.branchHeader}>
-                    <h3 className={styles.branchName}>{branch.name}</h3>
-                    <button className={styles.menuButton}>
-                      <ThreeDotsIcon />
-                    </button>
-                  </div>
-                  <div className={styles.branchStats}>
-                    <div className={styles.statItem}>
-                      <span className={styles.statLabel}>
-                        Departament sayı:
-                      </span>
-                      <span className={styles.statValue}>
-                        {branch.departments}
-                      </span>
-                    </div>
-                    <div className={styles.statItem}>
-                      <span className={styles.statLabel}>Şöbə sayı:</span>
-                      <span className={styles.statValue}>
-                        {branch.branches}
-                      </span>
-                    </div>
-                    <div className={styles.statItem}>
-                      <span className={styles.statLabel}>İşçi sayı:</span>
-                      <span className={styles.statValue}>
-                        {branch.employees}
-                      </span>
-                    </div>
-                  </div>
-                  <div className={styles.branchPerformance}>
-                    <div className={styles.progressBar}>
-                      <div
-                        className={styles.progressFill}
-                        style={{
-                          width: `${branch.performance}%`,
-                          backgroundColor: branch.color,
-                        }}
-                      ></div>
-                    </div>
-                    <span className={styles.performanceText}>
-                      {branch.performance}%
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
+       
       </div>
     </>
   );

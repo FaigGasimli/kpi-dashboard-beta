@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import styles from "./performance.module.css"
+import { useState } from "react";
+import styles from "./performance.module.css";
 
 const Performance = () => {
-  const [selectedYear, setSelectedYear] = useState("2025")
-  const [hoveredBar, setHoveredBar] = useState(null)
+  const [selectedYear, setSelectedYear] = useState("2025");
+  const [hoveredBar, setHoveredBar] = useState(null);
 
   const monthlyData = [
     { month: "Jan", value: 50, label: "Yan" },
@@ -20,7 +20,7 @@ const Performance = () => {
     { month: "Oct", value: 55, label: "Okt" },
     { month: "Nov", value: 48, label: "Noy" },
     { month: "Dec", value: 70, label: "Dek" },
-  ]
+  ];
 
   const departmentData = [
     {
@@ -37,7 +37,7 @@ const Performance = () => {
       lastMonth: 2500,
       target: 2500,
       percentage: 80,
-      color: "#10b981",
+      color: "#996F29",
     },
     {
       name: "Kompliyens Monitoring",
@@ -47,9 +47,9 @@ const Performance = () => {
       percentage: 78,
       color: "#f59e0b",
     },
-  ]
+  ];
 
-  const maxValue = Math.max(...monthlyData.map((d) => d.value))
+  const maxValue = Math.max(...monthlyData.map((d) => d.value));
 
   return (
     <div className={styles.container}>
@@ -62,15 +62,23 @@ const Performance = () => {
 
       <div className={styles.chartSection}>
         <div className={styles.chartHeader}>
-          <h2 className={styles.chartTitle}>Aylar üzrə KPI performans (2025)</h2>
+          <h2 className={styles.chartTitle}>
+            Aylar üzrə KPI performans (2025)
+          </h2>
           <div className={styles.chartControls}>
             <div className={styles.legend}>
               <div className={styles.legendItem}>
-                <span className={styles.legendColor} style={{ backgroundColor: "#8b5a3c" }}></span>
+                <span
+                  className={styles.legendColor}
+                  style={{ backgroundColor: "#8b5a3c" }}
+                ></span>
                 <span>Hədəf</span>
               </div>
               <div className={styles.legendItem}>
-                <span className={styles.legendColor} style={{ backgroundColor: "#8b5a3c" }}></span>
+                <span
+                  className={styles.legendColor}
+                  style={{ backgroundColor: "#8b5a3c" }}
+                ></span>
                 <span>Performans</span>
               </div>
             </div>
@@ -115,7 +123,9 @@ const Performance = () => {
                     onMouseEnter={() => setHoveredBar(index)}
                     onMouseLeave={() => setHoveredBar(null)}
                   >
-                    {hoveredBar === index && <div className={styles.tooltip}>{data.value}</div>}
+                    {hoveredBar === index && (
+                      <div className={styles.tooltip}>{data.value}</div>
+                    )}
                   </div>
                   <span className={styles.monthLabel}>{data.label}</span>
                 </div>
@@ -126,7 +136,9 @@ const Performance = () => {
       </div>
 
       <div className={styles.tableSection}>
-        <h2 className={styles.tableTitle}>Şöbələr üzrə aylıq KPI göstəriciləri</h2>
+        <h2 className={styles.tableTitle}>
+          Şöbələr üzrə aylıq KPI göstəriciləri
+        </h2>
 
         <div className={styles.table}>
           <div className={styles.tableHeader}>
@@ -155,7 +167,9 @@ const Performance = () => {
                         }}
                       ></div>
                     </div>
-                    <span className={styles.percentage}>{dept.percentage}%</span>
+                    <span className={styles.percentage}>
+                      {dept.percentage}%
+                    </span>
                   </div>
                 </div>
               </div>
@@ -164,7 +178,7 @@ const Performance = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Performance
+export default Performance;

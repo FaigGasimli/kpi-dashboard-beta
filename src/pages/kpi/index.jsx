@@ -600,6 +600,9 @@ const kpiCatalogData = [
       "(Əvvəlki dövr ərzində sayı - Cari dövr ərzində sayı) ÷ Əvvəlki dövr ərzində sayı × 100",
     weight: "15%",
     department: "Komplayens Monitoring şöbəsi",
+    relatedDepartment: "Risk İdarəetməsi",
+    relatedBranch: "Baş Ofis",
+    relatedPersons: "A.Məmmədov, N.Həsənova",
     dataSource: "MB qərar məktubları, daxili protokollar",
     status: "Aktiv",
     actual: 85,
@@ -615,6 +618,9 @@ const kpiCatalogData = [
       "(Əvvəlki dövr ərzində məbləği - Cari dövr ərzində məbləği) ÷ Əvvəlki dövr ərzində məbləği × 100",
     weight: "20%",
     department: "Maliyyə və Komplayens",
+    relatedDepartment: "Hüquq Şöbəsi",
+    relatedBranch: "Baş Ofis",
+    relatedPersons: "R.Əliyev, S.Quliyeva",
     dataSource: "MB qərarları, maliyyə uçotu",
     status: "Aktiv",
     actual: 78,
@@ -630,6 +636,9 @@ const kpiCatalogData = [
       "Cari dövrdə Mərkəzi bank tərəfindən verilmiş cərimə qərarlarının sayı",
     weight: "15%",
     department: "Komplayens",
+    relatedDepartment: "Hüquq Şöbəsi",
+    relatedBranch: "Baş Ofis",
+    relatedPersons: "A.Məmmədov",
     dataSource: "MB qərarları",
     status: "Aktiv",
     actual: 92,
@@ -645,6 +654,9 @@ const kpiCatalogData = [
       "Təkrar hallar (%) = Təkrar halların sayı ÷ Ümumi pozuntu sayı × 100",
     weight: "15%",
     department: "Komplayens",
+    relatedDepartment: "Nəzarət Departamenti",
+    relatedBranch: "Baş Ofis",
+    relatedPersons: "N.Həsənova, R.Əliyev",
     dataSource: "Nəzarət departamenti hesabatına əsasən protokollar",
     status: "Aktiv",
     actual: 88,
@@ -660,6 +672,9 @@ const kpiCatalogData = [
       "İcra olunmuş tədbirlərin sayı ÷ Planlaşdırılan tədbirlərin sayı × 100",
     weight: "20%",
     department: "Komplayens + Aşkaryat Şöbə",
+    relatedDepartment: "Risk İdarəetməsi",
+    relatedBranch: "Baş Ofis",
+    relatedPersons: "S.Quliyeva, E.Babayev",
     dataSource: "Tədbir planı, daxili aktlar",
     status: "Aktiv",
     actual: 75,
@@ -926,6 +941,9 @@ export default function KPIHomePage() {
   const [activeTab, setActiveTab] = useState("overview");
   const [expandedNodes, setExpandedNodes] = useState({});
   const [isKPIModalOpen, setIsKPIModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editingKPI, setEditingKPI] = useState(null);
+  const [editingIndex, setEditingIndex] = useState(null);
   const [selectedBranch, setSelectedBranch] = useState(null);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [selectedDivision, setSelectedDivision] = useState(null);
@@ -965,6 +983,27 @@ export default function KPIHomePage() {
     oct: "Oktyabr",
     nov: "Noyabr",
     dec: "Dekabr",
+  };
+
+  // Edit KPI functions
+  const handleEditKPI = (kpi, index) => {
+    setEditingKPI(kpi);
+    setEditingIndex(index);
+    setIsEditModalOpen(true);
+  };
+
+  const handleSaveEditKPI = (updatedKPI) => {
+    // Here you would update the KPI in your data source
+    console.log("Updated KPI:", updatedKPI, "at index:", editingIndex);
+    setIsEditModalOpen(false);
+    setEditingKPI(null);
+    setEditingIndex(null);
+  };
+
+  const handleCancelEditKPI = () => {
+    setIsEditModalOpen(false);
+    setEditingKPI(null);
+    setEditingIndex(null);
   };
 
   // Determine latest available month key from current data
@@ -1177,14 +1216,6 @@ export default function KPIHomePage() {
                   onClick={() => setActiveTab("catalog")}
                 >
                   KPI Siyahısı
-                </button>
-                <button
-                  className={`${styles.tabsTrigger} ${
-                    activeTab === "structure" ? styles.active : ""
-                  }`}
-                  onClick={() => setActiveTab("structure")}
-                >
-                  Struktur
                 </button>
                 <button
                   className={`${styles.tabsTrigger} ${
@@ -1598,10 +1629,13 @@ export default function KPIHomePage() {
                               <th>Məqsəd</th>
                               <th>Ölçü Metodu</th>
                               <th>Müddət</th>
-                              <th>Hesablama Formulası</th>
                               <th>Çəki (%)</th>
                               <th>Məsul Şöbə</th>
+                              <th>Əlaqəli Şöbə</th>
+                              <th>Əlaqəli Departament</th>
+                              <th>Əlaqəli Şəxslər</th>
                               <th>Data Mənbə</th>
+                              <th>Əməliyyatlar</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -1612,10 +1646,20 @@ export default function KPIHomePage() {
                                 <td>{kpi.purpose}</td>
                                 <td>{kpi.method}</td>
                                 <td>{kpi.period}</td>
-                                <td>{kpi.formula}</td>
                                 <td>{kpi.weight}</td>
                                 <td>{kpi.department}</td>
+                                <td>{kpi.relatedDepartment}</td>
+                                <td>{kpi.relatedBranch}</td>
+                                <td>{kpi.relatedPersons}</td>
                                 <td>{kpi.dataSource}</td>
+                                <td>
+                                  <button 
+                                    className={styles.editButton}
+                                    onClick={() => handleEditKPI(kpi, index)}
+                                  >
+                                    Edit
+                                  </button>
+                                </td>
                               </tr>
                             ))}
                           </tbody>
@@ -1626,84 +1670,6 @@ export default function KPIHomePage() {
                 </div>
               )}
 
-              {activeTab === "structure" && (
-                <div className={styles.tabContent}>
-                  <div className={styles.card}>
-                    <div className={styles.cardContent}>
-                      <div className={styles.simpleOrgChart}>
-                        <div className={styles.orgLevel}>
-                          <div className={styles.orgNode}>
-                            <span>Departament Rəhbəri</span>
-                          </div>
-                          <div className={styles.orgConnector}>↓</div>
-                        </div>
-
-                        <div className={styles.orgLevel}>
-                          <div className={styles.orgNode}>
-                            <span>Departament Rəhbəri Müavini</span>
-                          </div>
-                          <div className={styles.orgConnector}>↓</div>
-                        </div>
-
-                        {/* <div className={styles.orgLevel}>
-                          <div className={styles.orgNode}>
-                            <span>Şöbə Rəisi</span>
-                          </div>
-                          <div className={styles.orgConnector}>↓</div>
-                        </div> */}
-
-                        <div className={styles.orgLevel}>
-                          <div className={styles.orgBranches}>
-                            <div className={styles.orgBranch}>
-                              <div className={styles.orgHierarchy}>
-                                <div className={styles.hierarchyItem}>
-                                  <span>Şöbə Rəisi</span>
-                                  <div className={styles.hierarchyConnector}>
-                                    ↓
-                                  </div>
-                                </div>
-                                <div className={styles.hierarchyItem}>
-                                  <span>Şöbə Rəis Müavini</span>
-                                  <div className={styles.hierarchyConnector}>
-                                    ↓
-                                  </div>
-                                </div>
-                                <div className={styles.hierarchyItem}>
-                                  <span>Baş Mütəxəssis</span>
-                                  <div className={styles.hierarchyConnector}>
-                                    ↓
-                                  </div>
-                                </div>
-                                <div className={styles.hierarchyItem}>
-                                  <span>Aparıcı Mütəxəssis</span>
-                                  <div className={styles.hierarchyConnector}>
-                                    ↓
-                                  </div>
-                                </div>
-                                <div className={styles.hierarchyItem}>
-                                  <span>1-ci dərəcəli mütəxəssis</span>
-                                </div>
-                                <div className={styles.hierarchyItem}>
-                                  <span>2-ci dərəcəli mütəxəssis</span>
-                                </div>
-                                <div className={styles.hierarchyItem}>
-                                  <span>3-ci dərəcəli mütəxəssis</span>
-                                </div>
-                                <div className={styles.hierarchyItem}>
-                                  <span>Kiçik Mütəxəssis</span>
-                                </div>
-                                <div className={styles.hierarchyItem}>
-                                  <span>Təcrübəçi</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
 
               {activeTab === "employee" && (
                 <div className={styles.tabContent}>
@@ -2116,6 +2082,15 @@ export default function KPIHomePage() {
             <KPICreationModal
               open={isKPIModalOpen}
               onOpenChange={setIsKPIModalOpen}
+            />
+
+            <KPICreationModal
+              open={isEditModalOpen}
+              onOpenChange={setIsEditModalOpen}
+              editMode={true}
+              kpiData={editingKPI}
+              onSave={handleSaveEditKPI}
+              onCancel={handleCancelEditKPI}
             />
           </>
         )}

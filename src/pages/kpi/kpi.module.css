@@ -901,7 +901,7 @@
 }
 
 .divisionNode {
-  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  background: linear-gradient(135deg, #059669 0%, #996f29 100%);
   color: white;
   border-color: #047857;
 }
@@ -1163,6 +1163,29 @@
   font-size: 16px;
   color: #9ca3af;
   font-weight: bold;
+}
+
+/* Edit button styles */
+.editButton {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.editButton:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.editButton:active {
+  transform: translateY(0);
 }
 
 @media (max-width: 768px) {
@@ -1856,7 +1879,7 @@
 
 .departmentNode {
   background-color: #dcfce7;
-  border-color: #10b981;
+  border-color: #996f29;
 }
 
 .divisionNode {

@@ -14,6 +14,7 @@ const ShrPerformance = lazy(() =>
 const NewBranch = lazy(() => import("../pages/shr/newbranch//newbranch"));
 const TaskManagement = lazy(() => import("../pages/taskmanagement/management"));
 const Employees = lazy(() => import("../pages/shr/employees/employees"));
+const Notifications = lazy(() => import("../pages/notifications/index"));
 const Profile = lazy(() => import("../pages/profile/index"));
 const Finance = lazy(() => import("../pages/finance/index"));
 const TechnicalSupport = lazy(() => import("../pages/technical-support/index"));
@@ -74,6 +75,10 @@ export const router = createBrowserRouter([
       {
         path: "/employees",
         element: <Employees />,
+      },
+      {
+        path: "/notifications",
+        element: <Notifications />,
       },
       {
         path: "/profile",

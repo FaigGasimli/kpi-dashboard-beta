@@ -1,0 +1,294 @@
+.employeesContainer {
+  padding: 20px;
+  background: #f8fafc;
+  min-height: 100vh;
+  font-family: Geist;
+}
+
+/* Header Section */
+.headerSection {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.headerContent {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.headerLeft {
+  flex: 1;
+  min-width: 300px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.titleIcon {
+  font-size: 32px;
+  opacity: 0.8;
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 4px 0;
+}
+
+.pageSubtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+  font-weight: 400;
+}
+
+.statsContainer {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 60px;
+}
+
+.statNumber {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.statLabel {
+  font-size: 11px;
+  color: #6b7280;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filtersSection {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.filtersRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  align-items: end;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filterGroup label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+}
+
+.filterSelect,
+.filterInput {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.filterSelect:focus,
+.filterInput:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.tableSection {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+.employeesTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.employeesTable th {
+  background: #f8fafc;
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.employeesTable td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+.employeesTable tr:hover {
+  background: #f8fafc;
+}
+
+.nameCell {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.employeeName {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.statusBadge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statusBadge.aktiv {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.statusBadge.passiv {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 20px;
+  background: #f8fafc;
+}
+
+.paginationBtn {
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  background: white;
+  color: #374151;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.paginationBtn:hover:not(:disabled) {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.paginationBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.paginationBtn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .employeesContainer {
+    padding: 10px;
+  }
+
+  .headerContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .statsContainer {
+    gap: 16px;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .pageTitle {
+    font-size: 20px;
+  }
+
+  .titleIcon {
+    font-size: 28px;
+  }
+
+  .filtersRow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .employeesTable {
+    font-size: 12px;
+  }
+
+  .employeesTable th,
+  .employeesTable td {
+    padding: 12px 8px;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .paginationBtn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .employeesTable th,
+  .employeesTable td {
+    padding: 8px 4px;
+  }
+
+  .filterSelect,
+  .filterInput {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+}

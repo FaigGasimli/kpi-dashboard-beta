@@ -109,7 +109,7 @@ const Dashboard = () => {
       title: "Orta KPI nəticəsi",
       value: "85%",
       icon: TrendingUp,
-      color: "#10b981",
+      color: "#996F29",
       trend: [80, 82, 85, 83, 87, 85],
       change: "+2.4%",
     },
@@ -117,7 +117,7 @@ const Dashboard = () => {
       title: "On-track KPI-lar",
       value: "18",
       icon: CheckCircle,
-      color: "#10b981",
+      color: "#996F29",
       trend: [15, 16, 17, 18, 17, 18],
       change: "+5.9%",
     },
@@ -149,7 +149,7 @@ const Dashboard = () => {
 
   const moduleChartData = [
     { name: "Cərimə və Eskalasiya", value: 35, color: "#996f29" },
-    { name: "Monitorinq və Hesabatlılıq", value: 25, color: "#10b981" },
+    { name: "Monitorinq və Hesabatlılıq", value: 25, color: "#996F29" },
     { name: "AML/ƏL/TMM", value: 20, color: "#f59e0b" },
     { name: "Audit və Uyğunsuzluqlar", value: 20, color: "#ef4444" },
   ];
@@ -221,7 +221,7 @@ const Dashboard = () => {
     distribution: [
       { status: "To Do", count: 45, color: "#64748b", icon: ListTodo },
       { status: "In Progress", count: 32, color: "#3b82f6", icon: Timer },
-      { status: "Completed", count: 128, color: "#10b981", icon: CheckCircle },
+      { status: "Completed", count: 128, color: "#996F29", icon: CheckCircle },
       { status: "Overdue", count: 12, color: "#ef4444", icon: AlertTriangle },
     ],
     overdueTasks: [
@@ -263,7 +263,7 @@ const Dashboard = () => {
   ];
 
   const kpiPerformanceData = [
-    { name: "Hədəf", value: 18, fill: "#10b981" },
+    { name: "Hədəf", value: 18, fill: "#996F29" },
     { name: "Risk", value: 6, fill: "#ef4444" },
   ];
 
@@ -273,7 +273,7 @@ const Dashboard = () => {
   ];
 
   const attendanceChartData = [
-    { name: "İştirakçı", value: 156, fill: "#10b981" },
+    { name: "İştirakçı", value: 156, fill: "#996F29" },
     { name: "Yoxluq", value: 12, fill: "#ef4444" },
     { name: "Gecikmə", value: 8, fill: "#f59e0b" },
   ];
@@ -309,7 +309,7 @@ const Dashboard = () => {
                         className={styles.trendValue}
                         style={{
                           color: card.change.startsWith("+")
-                            ? "#10b981"
+                            ? "#996F29"
                             : "#ef4444",
                         }}
                       >
@@ -362,7 +362,7 @@ const Dashboard = () => {
                     <span className={styles.summaryLabel}>Trend:</span>
                     <span
                       className={styles.summaryValue}
-                      style={{ color: "#10b981" }}
+                      style={{ color: "#996F29" }}
                     >
                       ↗ +2.4%
                     </span>
@@ -396,7 +396,7 @@ const Dashboard = () => {
                                   ? "#ef4444"
                                   : kpi.riskLevel === "medium"
                                   ? "#f59e0b"
-                                  : "#10b981",
+                                  : "#996F29",
                             }}
                           />
                         </div>
@@ -490,7 +490,7 @@ const Dashboard = () => {
           <div className={styles.hrGrid}>
             <div className={styles.attendanceSection}>
               <div className={styles.sectionHeader}>
-                <UserCheck size={18} color="#10b981" />
+                <UserCheck size={18} color="#996F29" />
                 <h3>Davamiyyət</h3>
               </div>
               <div className={styles.attendanceContainer}>
@@ -518,7 +518,7 @@ const Dashboard = () => {
                   <div className={styles.attendanceItem}>
                     <div
                       className={styles.attendanceIcon}
-                      style={{ backgroundColor: "#10b98115", color: "#10b981" }}
+                      style={{ backgroundColor: "#996F2915", color: "#996F29" }}
                     >
                       <UserCheck size={16} />
                     </div>
@@ -726,7 +726,7 @@ const Dashboard = () => {
                   <div className={styles.statItem}>
                     <span
                       className={styles.statDot}
-                      style={{ backgroundColor: "#10b981" }}
+                      style={{ backgroundColor: "#996F29" }}
                     ></span>
                     <span>Hədəf: 18</span>
                   </div>
@@ -744,7 +744,7 @@ const Dashboard = () => {
             <div className={styles.kpiCard}>
               <div className={styles.cardHeader}>
                 <h3>Tapşırıq Performansı</h3>
-                <CheckCircle size={18} color="#10b981" />
+                <CheckCircle size={18} color="#996F29" />
               </div>
               <div className={styles.cardContent}>
                 <div className={styles.chartSection}>

@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import styles from "./shrperformance.module.css"
+import { useState } from "react";
+import styles from "./shrperformance.module.css";
 
 const SHRPerformance = () => {
-  const [selectedYear, setSelectedYear] = useState("2025")
-  const [hoveredBar, setHoveredBar] = useState(null)
+  const [selectedYear, setSelectedYear] = useState("2025");
+  const [hoveredBar, setHoveredBar] = useState(null);
 
   // Monthly performance data
   const monthlyData = [
@@ -21,7 +21,7 @@ const SHRPerformance = () => {
     { month: "Oct", value: 58, label: "Okt" },
     { month: "Nov", value: 48, label: "Noy" },
     { month: "Dec", value: 72, label: "Dek" },
-  ]
+  ];
 
   // Department data
   const departmentData = [
@@ -39,7 +39,7 @@ const SHRPerformance = () => {
       lastMonth: 2500,
       target: 2500,
       percentage: 80,
-      color: "#10b981",
+      color: "#996F29",
     },
     {
       name: "Kompliyens Monitoring",
@@ -57,21 +57,21 @@ const SHRPerformance = () => {
       percentage: 65,
       color: "#ef4444",
     },
-  ]
+  ];
 
-  const maxValue = Math.max(...monthlyData.map((d) => d.value))
+  const maxValue = Math.max(...monthlyData.map((d) => d.value));
 
   const handleCreateDepartment = () => {
-    console.log("Create department clicked")
-  }
+    console.log("Create department clicked");
+  };
 
   const handleAddEmployee = () => {
-    console.log("Add employee clicked")
-  }
+    console.log("Add employee clicked");
+  };
 
   const handleBack = () => {
-    console.log("Back clicked")
-  }
+    console.log("Back clicked");
+  };
 
   return (
     <div className={styles.container}>
@@ -98,12 +98,43 @@ const SHRPerformance = () => {
 
       {/* Action Buttons */}
       <div className={styles.actionButtons}>
-        <button className={styles.actionButton} onClick={handleCreateDepartment}>
+        <button
+          className={styles.actionButton}
+          onClick={handleCreateDepartment}
+        >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <rect x="3" y="3" width="7" height="7" stroke="currentColor" strokeWidth="2" />
-            <rect x="14" y="3" width="7" height="7" stroke="currentColor" strokeWidth="2" />
-            <rect x="14" y="14" width="7" height="7" stroke="currentColor" strokeWidth="2" />
-            <rect x="3" y="14" width="7" height="7" stroke="currentColor" strokeWidth="2" />
+            <rect
+              x="3"
+              y="3"
+              width="7"
+              height="7"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <rect
+              x="14"
+              y="3"
+              width="7"
+              height="7"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <rect
+              x="14"
+              y="14"
+              width="7"
+              height="7"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <rect
+              x="3"
+              y="14"
+              width="7"
+              height="7"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
           </svg>
           Şöbə yarat
         </button>
@@ -116,9 +147,31 @@ const SHRPerformance = () => {
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            <circle cx="8.5" cy="7" r="4" stroke="currentColor" strokeWidth="2" />
-            <line x1="20" y1="8" x2="20" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            <line x1="17" y1="11" x2="23" y2="11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <circle
+              cx="8.5"
+              cy="7"
+              r="4"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <line
+              x1="20"
+              y1="8"
+              x2="20"
+              y2="14"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            <line
+              x1="17"
+              y1="11"
+              x2="23"
+              y2="11"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
           </svg>
           Yeni işçi əlavə et
         </button>
@@ -131,11 +184,17 @@ const SHRPerformance = () => {
           <div className={styles.chartControls}>
             <div className={styles.legend}>
               <div className={styles.legendItem}>
-                <span className={styles.legendColor} style={{ backgroundColor: "#e5e7eb" }}></span>
+                <span
+                  className={styles.legendColor}
+                  style={{ backgroundColor: "#e5e7eb" }}
+                ></span>
                 Hədəf
               </div>
               <div className={styles.legendItem}>
-                <span className={styles.legendColor} style={{ backgroundColor: "#92400e" }}></span>
+                <span
+                  className={styles.legendColor}
+                  style={{ backgroundColor: "#92400e" }}
+                ></span>
                 Performans
               </div>
             </div>
@@ -170,7 +229,9 @@ const SHRPerformance = () => {
                   onMouseEnter={() => setHoveredBar(index)}
                   onMouseLeave={() => setHoveredBar(null)}
                 >
-                  {hoveredBar === index && <div className={styles.tooltip}>{data.value}</div>}
+                  {hoveredBar === index && (
+                    <div className={styles.tooltip}>{data.value}</div>
+                  )}
                 </div>
                 <span className={styles.monthLabel}>{data.label}</span>
               </div>
@@ -216,7 +277,7 @@ const SHRPerformance = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SHRPerformance
+export default SHRPerformance;

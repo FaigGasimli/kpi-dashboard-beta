@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styles from "./kpimodal.module.css"
 
-export default function KPICreationModal({ open, onOpenChange }) {
+export default function KPICreationModal({ open, onOpenChange, editMode = false, kpiData = null, onSave, onCancel }) {
   const [kpiCode, setKpiCode] = useState("")
   const [module, setModule] = useState("")
   const [kpiName, setKpiName] = useState("")
@@ -13,25 +13,74 @@ export default function KPICreationModal({ open, onOpenChange }) {
   const [calculationFormula, setCalculationFormula] = useState("")
   const [weight, setWeight] = useState("")
   const [responsibleDepartment, setResponsibleDepartment] = useState("")
+  const [relatedDepartments, setRelatedDepartments] = useState([])
+  const [relatedBranches, setRelatedBranches] = useState([])
+  const [relatedPersons, setRelatedPersons] = useState([])
   const [dataSource, setDataSource] = useState("")
 
+  // Load KPI data when in edit mode
+  useEffect(() => {
+    if (editMode && kpiData && open) {
+      setKpiCode(kpiData.code || "")
+      setModule(kpiData.module || "")
+      setKpiName(kpiData.name || "")
+      setPurpose(kpiData.purpose || "")
+      setMeasurementMethod(kpiData.method || "")
+      setDuration(kpiData.period || "")
+      setCalculationFormula(kpiData.formula || "")
+      setWeight(kpiData.weight || "")
+      setResponsibleDepartment(kpiData.department || "")
+      setRelatedDepartments(kpiData.relatedDepartment ? kpiData.relatedDepartment.split(", ") : [])
+      setRelatedBranches(kpiData.relatedBranch ? kpiData.relatedBranch.split(", ") : [])
+      setRelatedPersons(kpiData.relatedPersons ? kpiData.relatedPersons.split(", ") : [])
+      setDataSource(kpiData.dataSource || "")
+    } else if (!editMode && open) {
+      // Clear all fields when creating new KPI
+      setKpiCode("")
+      setModule("")
+      setKpiName("")
+      setPurpose("")
+      setMeasurementMethod("")
+      setDuration("")
+      setCalculationFormula("")
+      setWeight("")
+      setResponsibleDepartment("")
+      setRelatedDepartments([])
+      setRelatedBranches([])
+      setRelatedPersons([])
+      setDataSource("")
+    }
+  }, [editMode, kpiData, open])
+
   const handleSave = () => {
-    console.log("Saving KPI:", {
-      kpiCode,
+    const kpiPayload = {
+      code: kpiCode,
       module,
-      kpiName,
+      name: kpiName,
       purpose,
-      measurementMethod,
-      duration,
-      calculationFormula,
+      method: measurementMethod,
+      period: duration,
+      formula: calculationFormula,
       weight,
-      responsibleDepartment,
+      department: responsibleDepartment,
+      relatedDepartment: relatedDepartments.join(", "),
+      relatedBranch: relatedBranches.join(", "),
+      relatedPersons: relatedPersons.join(", "),
       dataSource,
-    })
+    }
+    
+    if (editMode && onSave) {
+      onSave(kpiPayload)
+    } else {
+      console.log("Creating new KPI:", kpiPayload)
     onOpenChange(false)
+    }
   }
 
   const handleCancel = () => {
+    if (editMode && onCancel) {
+      onCancel()
+    } else {
     setKpiCode("")
     setModule("")
     setKpiName("")
@@ -41,8 +90,12 @@ export default function KPICreationModal({ open, onOpenChange }) {
     setCalculationFormula("")
     setWeight("")
     setResponsibleDepartment("")
+      setRelatedDepartments([])
+      setRelatedBranches([])
+      setRelatedPersons([])
     setDataSource("")
     onOpenChange(false)
+    }
   }
 
   if (!open) return null
@@ -57,7 +110,7 @@ export default function KPICreationModal({ open, onOpenChange }) {
         {/* Header */}
         <div className={styles.modalHeader}>
           <div className={styles.modalTitle}>
-            <h2>Yeni KPI Əlavə Et</h2>
+            <h2>{editMode ? "KPI-nı Redaktə Et" : "Yeni KPI Əlavə Et"}</h2>
           </div>
           <button onClick={() => onOpenChange(false)} className={styles.closeBtn}>
             ×
@@ -184,7 +237,109 @@ export default function KPICreationModal({ open, onOpenChange }) {
                 </div>
               </div>
 
-              {/* Row 7 - Data Source (Full Width) */}
+              {/* Row 7 - Related Departments */}
+              <div className={styles.formRowFull}>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Əlaqəli Şöbələr</label>
+                  <div className={styles.multiSelectContainer}>
+                    <div className={styles.selectedItems}>
+                      {relatedDepartments.map((dept, index) => (
+                        <span key={index} className={styles.selectedItem}>
+                          {dept}
+                          <button
+                            type="button"
+                            onClick={() => setRelatedDepartments(relatedDepartments.filter((_, i) => i !== index))}
+                            className={styles.removeButton}
+                          >
+                            ×
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Şöbə adını daxil edin və Enter basın"
+                      className={styles.formInput}
+                      onKeyPress={(e) => {
+                        if (e.key === 'Enter' && e.target.value.trim()) {
+                          setRelatedDepartments([...relatedDepartments, e.target.value.trim()])
+                          e.target.value = ''
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Row 8 - Related Branches */}
+              <div className={styles.formRowFull}>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Əlaqəli Filiallar</label>
+                  <div className={styles.multiSelectContainer}>
+                    <div className={styles.selectedItems}>
+                      {relatedBranches.map((branch, index) => (
+                        <span key={index} className={styles.selectedItem}>
+                          {branch}
+                          <button
+                            type="button"
+                            onClick={() => setRelatedBranches(relatedBranches.filter((_, i) => i !== index))}
+                            className={styles.removeButton}
+                          >
+                            ×
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Filial adını daxil edin və Enter basın"
+                      className={styles.formInput}
+                      onKeyPress={(e) => {
+                        if (e.key === 'Enter' && e.target.value.trim()) {
+                          setRelatedBranches([...relatedBranches, e.target.value.trim()])
+                          e.target.value = ''
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Row 9 - Related Persons */}
+              <div className={styles.formRowFull}>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Əlaqəli Şəxslər</label>
+                  <div className={styles.multiSelectContainer}>
+                    <div className={styles.selectedItems}>
+                      {relatedPersons.map((person, index) => (
+                        <span key={index} className={styles.selectedItem}>
+                          {person}
+                          <button
+                            type="button"
+                            onClick={() => setRelatedPersons(relatedPersons.filter((_, i) => i !== index))}
+                            className={styles.removeButton}
+                          >
+                            ×
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Şəxs adını daxil edin və Enter basın"
+                      className={styles.formInput}
+                      onKeyPress={(e) => {
+                        if (e.key === 'Enter' && e.target.value.trim()) {
+                          setRelatedPersons([...relatedPersons, e.target.value.trim()])
+                          e.target.value = ''
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Row 10 - Data Source (Full Width) */}
               <div className={styles.formRowFull}>
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>Data Mənbə</label>

@@ -17,6 +17,7 @@ import {
   Settings,
   HelpCircle,
   AlertCircle,
+  Bell,
 } from "lucide-react";
 import styles from "./sidebar.module.css";
 
@@ -44,6 +45,12 @@ export default function Sidebar() {
       hasSubmenu: false,
     },
     { name: "SHR", icon: <Users size={18} />, href: "/shr", hasSubmenu: false },
+    {
+      name: "Bildirişlər",
+      icon: <Bell size={18} />,
+      href: "/notifications",
+      hasSubmenu: false,
+    },
     {
       name: "Tapşırıqlar paneli",
       icon: <ClipboardList size={18} />,

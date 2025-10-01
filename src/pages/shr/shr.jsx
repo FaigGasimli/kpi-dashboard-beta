@@ -5,8 +5,12 @@ import styles from "./shr.module.css";
 import Photo from "../../assests/qız.jpg";
 import { Link } from "react-router-dom";
 import Header from "../../components/header";
+import Employees from "./employees/employees";
+import EmployeesTable from "./employees/EmployeesTable";
 
 const SHR = () => {
+  const [activeTab, setActiveTab] = useState("analytics");
+  
   const [branches] = useState([
     {
       name: "Yeni ofis",
@@ -52,7 +56,7 @@ const SHR = () => {
     {
       label: "Aktiv filiallar",
       value: "12",
-      color: "#10b981",
+      color: "#996F29",
       chartData: [12, 11, 10, 12, 12],
     },
     {
@@ -169,7 +173,6 @@ const SHR = () => {
     ],
   });
 
-
   const [selectedYear, setSelectedYear] = useState("2025");
   const [availableYears] = useState(["2023", "2024", "2025"]);
   const [selectedBranch, setSelectedBranch] = useState("Hamısı");
@@ -204,7 +207,9 @@ const SHR = () => {
 
   const calculateDaysRemaining = (escalationDeadline) => {
     const today = new Date();
-    const deadline = new Date(escalationDeadline.split('.').reverse().join('-'));
+    const deadline = new Date(
+      escalationDeadline.split(".").reverse().join("-")
+    );
     const diffTime = deadline - today;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays;
@@ -376,7 +381,6 @@ const SHR = () => {
     </svg>
   );
 
-
   const TrophyIcon = () => (
     <svg
       width="16"
@@ -430,13 +434,31 @@ const SHR = () => {
     </div>
   );
 
-
   const { best: bestMonth, worst: worstMonth } = getBestWorstMonths();
 
   return (
     <>
       <Header title="Strategic Human Resources - Strateji İnsan Resursları" />
       <div className={styles.container}>
+        {/* Tab Navigation */}
+        <div className={styles.tabContainer}>
+          <button
+            className={`${styles.tab} ${activeTab === "analytics" ? styles.activeTab : ""}`}
+            onClick={() => setActiveTab("analytics")}
+          >
+            Analitika
+          </button>
+          <button
+            className={`${styles.tab} ${activeTab === "employees" ? styles.activeTab : ""}`}
+            onClick={() => setActiveTab("employees")}
+          >
+            Əməkdaşlar
+          </button>
+        </div>
+
+        {/* Analytics Tab Content */}
+        {activeTab === "analytics" && (
+          <>
         {/* Action Buttons */}
         <div className={styles.actionButtonsContainer}>
           <div className={styles.actionButtons}>
@@ -478,7 +500,7 @@ const SHR = () => {
             ))}
           </div>
         </div>
- <div className={styles.sectionCompact}>
+        <div className={styles.sectionCompact}>
           <h2 className={styles.sectionTitleCompact}>Filiallar siyahısı</h2>
           <div className={styles.branchGrid}>
             {branches.map((branch, index) => (
@@ -658,7 +680,6 @@ const SHR = () => {
               </div>
             </div>
 
-
             <div className={styles.topViolators}>
               <h4 className={styles.topViolatorsTitle}>
                 Ən çox pozuntu edənlər (TOP-3)
@@ -688,11 +709,15 @@ const SHR = () => {
                   <div className={styles.headerCell}>Qalan gün</div>
                 </div>
                 {disciplinaryViolations.map((violation, index) => {
-                  const daysRemaining = calculateDaysRemaining(violation.escalationDeadline);
+                  const daysRemaining = calculateDaysRemaining(
+                    violation.escalationDeadline
+                  );
                   return (
                     <div key={index} className={styles.violationRow}>
                       <div className={styles.violationCell}>
-                        <div className={styles.employeeName}>{violation.name}</div>
+                        <div className={styles.employeeName}>
+                          {violation.name}
+                        </div>
                         <div className={styles.employeeLocation}>
                           {violation.branch} - {violation.department}
                         </div>
@@ -702,31 +727,60 @@ const SHR = () => {
                           {getCategoryIcon(violation.category)}
                           {violation.violation}
                         </div>
-                        <div className={`${styles.severityBadge} ${styles[violation.severity]}`}>
-                          {violation.severity === 'high' ? 'Yüksək' : 
-                           violation.severity === 'medium' ? 'Orta' : 'Aşağı'}
+                        <div
+                          className={`${styles.severityBadge} ${
+                            styles[violation.severity]
+                          }`}
+                        >
+                          {violation.severity === "high"
+                            ? "Yüksək"
+                            : violation.severity === "medium"
+                            ? "Orta"
+                            : "Aşağı"}
                         </div>
                       </div>
                       <div className={styles.violationCell}>
-                        <div className={styles.dateValue}>{violation.discoveryDate}</div>
+                        <div className={styles.dateValue}>
+                          {violation.discoveryDate}
+                        </div>
                       </div>
                       <div className={styles.violationCell}>
-                        <div className={styles.reasonValue}>{violation.reason}</div>
+                        <div className={styles.reasonValue}>
+                          {violation.reason}
+                        </div>
                       </div>
                       <div className={styles.violationCell}>
-                        <div className={`${styles.statusBadge} ${styles[violation.status.toLowerCase().replace(/\s+/g, '')]}`}>
+                        <div
+                          className={`${styles.statusBadge} ${
+                            styles[
+                              violation.status.toLowerCase().replace(/\s+/g, "")
+                            ]
+                          }`}
+                        >
                           {violation.status}
                         </div>
                       </div>
                       <div className={styles.violationCell}>
                         <div className={styles.repeatCount}>
-                          <span className={styles.repeatNumber}>{violation.repeatCount}</span>
+                          <span className={styles.repeatNumber}>
+                            {violation.repeatCount}
+                          </span>
                           <span className={styles.repeatLabel}>dəfə</span>
                         </div>
                       </div>
                       <div className={styles.violationCell}>
-                        <div className={`${styles.countdownTimer} ${daysRemaining <= 2 ? styles.urgent : daysRemaining <= 5 ? styles.warning : ''}`}>
-                          <span className={styles.countdownNumber}>{daysRemaining}</span>
+                        <div
+                          className={`${styles.countdownTimer} ${
+                            daysRemaining <= 2
+                              ? styles.urgent
+                              : daysRemaining <= 5
+                              ? styles.warning
+                              : ""
+                          }`}
+                        >
+                          <span className={styles.countdownNumber}>
+                            {daysRemaining}
+                          </span>
                           <span className={styles.countdownLabel}>gün</span>
                         </div>
                       </div>
@@ -736,11 +790,16 @@ const SHR = () => {
               </div>
             </div>
           </div>
-
         </div>
 
         {/* Branches List */}
-       
+          </>
+        )}
+
+        {/* Employees Tab Content */}
+        {activeTab === "employees" && (
+          <EmployeesTable />
+        )}
       </div>
     </>
   );

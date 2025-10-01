@@ -8,7 +8,7 @@ import KanbanFilters from "./components/KanbanFilters";
 import TaskModal from "./components/TaskModal";
 
 const TaskManagement = () => {
-  const [activeTab, setActiveTab] = useState("KPI-lar");
+  const [activeTab, setActiveTab] = useState("KPİ Tapşırıqları");
   const [showModal, setShowModal] = useState(false);
   const [showTaskModal, setShowTaskModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
@@ -618,11 +618,11 @@ const TaskManagement = () => {
         <div className={styles.tabContainer}>
           <button
             className={`${styles.tab} ${
-              activeTab === "KPI-lar" ? styles.activeTab : ""
+              activeTab === "KPİ Tapşırıqları" ? styles.activeTab : ""
             }`}
-            onClick={() => setActiveTab("KPI-lar")}
+            onClick={() => setActiveTab("KPİ Tapşırıqları")}
           >
-            Tapşırıqlar
+            KPİ Tapşırıqları
           </button>
 
           <button
@@ -635,8 +635,7 @@ const TaskManagement = () => {
           </button>
         </div>
 
-        <div className={styles.mainSection}>
-          {/* Task Statistics Cards */}
+        {/* <div className={styles.mainSection}>
           <div className={styles.statsGrid}>
             <div className={styles.statCard}>
               <div className={styles.statNumber}>6</div>
@@ -656,7 +655,6 @@ const TaskManagement = () => {
             </div>
           </div>
 
-          {/* Task Execution Chart */}
 
           <div className={styles.chartContainer}>
             <h3 className={styles.chartTitle}>Tapşırıqların icrası</h3>
@@ -679,7 +677,7 @@ const TaskManagement = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {activeTab === "Kanban" && (
           <div className={styles.kanbanContainer}>
@@ -723,10 +721,11 @@ const TaskManagement = () => {
           </div>
         )}
 
-        {activeTab === "KPI-lar" && (
+
+        {activeTab === "KPİ Tapşırıqları" && (
           <div className={styles.tableSection}>
             <div className={styles.tableHeader}>
-              <h3 className={styles.sectionTitle}>Tapşırıqların icrası</h3>
+              <h3 className={styles.sectionTitle}>KPİ Tapşırıqlarının İcrası</h3>
               <div className={styles.tableActions}>
                 <div className={styles.searchContainer}>
                   <input
@@ -740,6 +739,15 @@ const TaskManagement = () => {
                 <select className={styles.selectButton}>
                   <option>Bütün</option>
                 </select>
+                <button 
+                  className={styles.addButton}
+                  onClick={() => {
+                    setSelectedTask(null);
+                    setShowTaskModal(true);
+                  }}
+                >
+                  Yeni tapşırıq
+                </button>
               </div>
             </div>
 

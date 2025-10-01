@@ -2,8 +2,41 @@
   padding: 24px;
   min-height: 100vh;
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-  font-family: Geist,
-    sans-serif;
+  font-family: Geist, sans-serif;
+}
+
+/* Tab Navigation */
+.tabContainer {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0;
+}
+
+.tab {
+  padding: 12px 24px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 16px;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  bottom: -2px;
+}
+
+.tab:hover {
+  color: #334155;
+  background: rgba(153, 111, 41, 0.05);
+}
+
+.activeTab {
+  color: #996F29;
+  border-bottom-color: #996F29;
+  font-weight: 600;
 }
 
 /* Updated action buttons container to include stats on the right */
@@ -223,7 +256,7 @@
 
 .attendanceFill {
   height: 100%;
-  background-color: #10b981;
+  background-color: #996f29;
   border-radius: 4px;
   transition: width 0.3s ease;
 }
@@ -311,7 +344,7 @@
 }
 
 .bestMonth .highlightValue {
-  color: #10b981;
+  color: #996f29;
 }
 
 .worstMonth .highlightValue {
@@ -376,7 +409,7 @@
 }
 
 .severityDot.low {
-  background-color: #10b981;
+  background-color: #996f29;
 }
 
 .violationTrend {
@@ -610,7 +643,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -628,7 +662,6 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
-
 
 /* Branch Grid */
 .branchGrid {

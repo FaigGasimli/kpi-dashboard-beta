@@ -154,6 +154,235 @@
   font-weight: 500;
 }
 
+/* Current Tasks Section */
+.currentTasksSection {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1px solid #f0f0f0;
+}
+
+.currentTasksHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #fafafa;
+}
+
+.currentTasksActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Current Tasks Table */
+.currentTasksTable {
+  background: white;
+}
+
+.currentTasksTableHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr 1.2fr 1fr 1fr;
+  gap: 12px;
+  padding: 16px 24px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #f0f0f0;
+  font-weight: 600;
+  color: #666;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.currentTasksTableRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr 1.2fr 1fr 1fr;
+  gap: 12px;
+  padding: 16px 24px;
+  border-bottom: 1px solid #f8f9fa;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.currentTasksTableRow:hover {
+  background-color: #f5f1eb;
+  transform: translateX(4px);
+}
+
+.currentTasksTableCell {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Task Info */
+.taskInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.taskId {
+  font-size: 12px;
+  font-weight: 600;
+  color: #996f29;
+  background-color: #f0e6d6;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.taskTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.taskDescription {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Priority Badges */
+.priorityBadge {
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  display: inline-block;
+}
+
+.priorityHigh {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.priorityMedium {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.priorityLow {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+/* Assignee Info */
+.assigneeInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.assigneeAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #996f29;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: white;
+  font-weight: 600;
+}
+
+.assigneeName {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Deadline Info */
+.deadlineInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.deadlineDate {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.deadlineStatus {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Progress Info */
+.progressInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.progressText {
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+}
+
+/* Task Actions */
+.taskActions {
+  display: flex;
+  gap: 4px;
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+  opacity: 0.8;
+}
+
+.actionButton:hover {
+  background-color: #f0f0f0;
+  opacity: 1;
+}
+
+/* Weight Badge Styles */
+.weightBadge {
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  display: inline-block;
+}
+
+.weight15 {
+  background-color: #e8f5e8;
+  color: #2d5a2d;
+}
+
+.weight20 {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.weight25 {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.weight30 {
+  background-color: #dc2626;
+  color: white;
+  font-weight: 600;
+}
+
 /* Table Section */
 .tableSection {
   background: white;
@@ -1852,4 +2081,323 @@
   .kanbanColumnContent {
     min-height: 200px;
   }
+
+  /* Mobile responsive Current Tasks */
+  .currentTasksTableHeader,
+  .currentTasksTableRow {
+    display: block;
+    padding: 12px 16px;
+  }
+
+  .currentTasksTableCell {
+    display: block;
+    padding: 4px 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 8px;
+  }
+
+  .currentTasksTableCell:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .currentTasksTableCell::before {
+    content: attr(data-label) ": ";
+    font-weight: 600;
+    color: #666;
+    display: inline-block;
+    width: 120px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .currentTasksTableHeader .currentTasksTableCell::before {
+    display: none;
+  }
+}
+
+/* Inline Editing Styles for Kanban Cards */
+.attachmentsList {
+  max-height: 120px;
+  overflow-y: auto;
+  margin-bottom: 8px;
+  border: 1px solid #f0f0f0;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #fafafa;
+}
+
+.attachmentItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  border-left: 3px solid #996f29;
+}
+
+.attachmentItem:last-child {
+  margin-bottom: 0;
+}
+
+.attachmentInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.attachmentName {
+  font-weight: 600;
+  color: #333;
+  font-size: 11px;
+}
+
+.attachmentSize {
+  font-size: 10px;
+  color: #666;
+}
+
+.deleteAttachmentButton {
+  background: #999;
+  color: white;
+  border: none;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.deleteAttachmentButton:hover {
+  background: #777;
+}
+
+.fileUploadArea {
+  border: 2px dashed #ddd;
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+  transition: border-color 0.2s ease;
+}
+
+.fileUploadArea:hover {
+  border-color: #996f29;
+}
+
+.fileInput {
+  display: none;
+}
+
+.fileUploadLabel {
+  background: #996f29;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: inline-block;
+}
+
+.fileUploadLabel:hover {
+  background: #7d5a21;
+}
+
+.tagsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+  min-height: 30px;
+  padding: 6px;
+  border: 1px solid #f0f0f0;
+  border-radius: 6px;
+  background-color: #fafafa;
+}
+
+.tagItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #333;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tagName {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.deleteTagButton {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.deleteTagButton:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.addTagForm {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.tagInput {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.tagInput:focus {
+  border-color: #996f29;
+}
+
+.addTagButton {
+  background: #996f29;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.addTagButton:hover:not(:disabled) {
+  background: #7d5a21;
+}
+
+.addTagButton:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.taggedUsersList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+  min-height: 30px;
+  padding: 6px;
+  border: 1px solid #f0f0f0;
+  border-radius: 6px;
+  background-color: #fafafa;
+}
+
+.taggedUserItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background-color: #f0e6d6;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #996f29;
+  border: 1px solid #e0d0b0;
+}
+
+.userAvatar {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #996f29;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: white;
+  font-weight: 600;
+}
+
+.userName {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.deleteTaggedUserButton {
+  background: none;
+  border: none;
+  color: #996f29;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.deleteTaggedUserButton:hover {
+  background-color: rgba(153, 111, 41, 0.1);
+}
+
+.addTaggedUserForm {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.taggedUserInput {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.taggedUserInput:focus {
+  border-color: #996f29;
+}
+
+.addTaggedUserButton {
+  background: #996f29;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.addTaggedUserButton:hover:not(:disabled) {
+  background: #7d5a21;
+}
+
+.addTaggedUserButton:disabled {
+  background: #999;
+  cursor: not-allowed;
 }

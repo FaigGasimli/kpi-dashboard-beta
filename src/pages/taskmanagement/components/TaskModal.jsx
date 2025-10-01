@@ -198,6 +198,7 @@ const TaskModal = ({ task, isOpen, onClose, onSave, onDelete, departments, execu
                       placeholder="KPI-nın məqsədini daxil edin"
                     />
                   </div>
+
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>Ölçü Metodu *</label>
                     <select
@@ -467,3 +468,4 @@ const TaskModal = ({ task, isOpen, onClose, onSave, onDelete, departments, execu
 };
 
 export default TaskModal;
+

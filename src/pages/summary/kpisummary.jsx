@@ -113,7 +113,7 @@ const KpiSummary = () => {
       name: "Şaiq Muradzadə",
       avatar: "👨‍💻",
       performance: 80,
-      color: "#10b981",
+      color: "#996F29",
     },
     {
       id: 3,
@@ -146,7 +146,7 @@ const KpiSummary = () => {
       lastMonth: 2500,
       target: 2500,
       performance: 80,
-      color: "#10b981",
+      color: "#996F29",
     },
     {
       department: "Kompliyens Monitoring",

@@ -11,7 +11,12 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, onAddComment }) => {
     weightDegree: task.weightDegree,
     executor: task.executor,
     deadline: task.deadline,
+    attachments: task.attachments || [],
+    tags: task.tags || [],
+    taggedUsers: task.taggedUsers || [],
   });
+  const [newTag, setNewTag] = useState("");
+  const [newTaggedUser, setNewTaggedUser] = useState("");
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -30,8 +35,94 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, onAddComment }) => {
       weightDegree: task.weightDegree,
       executor: task.executor,
       deadline: task.deadline,
+      attachments: task.attachments || [],
+      tags: task.tags || [],
+      taggedUsers: task.taggedUsers || [],
     });
     setIsEditing(false);
+  };
+
+  const handleFileUpload = (e) => {
+    const files = Array.from(e.target.files);
+    const newAttachments = files.map(file => ({
+      id: Date.now() + Math.random(),
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      uploadDate: new Date().toISOString(),
+    }));
+    setEditForm(prev => ({
+      ...prev,
+      attachments: [...prev.attachments, ...newAttachments]
+    }));
+  };
+
+  const handleDeleteAttachment = (attachmentId) => {
+    setEditForm(prev => ({
+      ...prev,
+      attachments: prev.attachments.filter(attachment => attachment.id !== attachmentId)
+    }));
+  };
+
+  const handleAddTag = () => {
+    if (newTag.trim()) {
+      const tag = {
+        id: Date.now(),
+        name: newTag.trim(),
+        color: getRandomColor(),
+      };
+      setEditForm(prev => ({
+        ...prev,
+        tags: [...prev.tags, tag]
+      }));
+      setNewTag("");
+    }
+  };
+
+  const handleDeleteTag = (tagId) => {
+    setEditForm(prev => ({
+      ...prev,
+      tags: prev.tags.filter(tag => tag.id !== tagId)
+    }));
+  };
+
+  const handleAddTaggedUser = () => {
+    if (newTaggedUser.trim()) {
+      const taggedUser = {
+        id: Date.now(),
+        name: newTaggedUser.trim(),
+        avatar: getInitials(newTaggedUser.trim()),
+      };
+      setEditForm(prev => ({
+        ...prev,
+        taggedUsers: [...prev.taggedUsers, taggedUser]
+      }));
+      setNewTaggedUser("");
+    }
+  };
+
+  const handleDeleteTaggedUser = (userId) => {
+    setEditForm(prev => ({
+      ...prev,
+      taggedUsers: prev.taggedUsers.filter(user => user.id !== userId)
+    }));
+  };
+
+  const getRandomColor = () => {
+    const colors = ['#e3f2fd', '#f3e5f5', '#e8f5e8', '#fff3e0', '#fce4ec', '#f1f8e9'];
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
+
+  const getInitials = (name) => {
+    return name.split(' ').map(word => word[0]).join('').toUpperCase();
+  };
+
+  const formatFileSize = (bytes) => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
   const getPriorityColor = (weight) => {
@@ -192,6 +283,110 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, onAddComment }) => {
                   className={styles.editInput}
                 />
               </div>
+              {/* File Upload Section */}
+              <div className={styles.editRow}>
+                <label>Fayllar:</label>
+                <div className={styles.attachmentsList}>
+                  {editForm.attachments.map((attachment) => (
+                    <div key={attachment.id} className={styles.attachmentItem}>
+                      <div className={styles.attachmentInfo}>
+                        <span className={styles.attachmentName}>{attachment.name}</span>
+                        <span className={styles.attachmentSize}>{formatFileSize(attachment.size)}</span>
+                      </div>
+                      <button
+                        className={styles.deleteAttachmentButton}
+                        onClick={() => handleDeleteAttachment(attachment.id)}
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <div className={styles.fileUploadArea}>
+                  <input
+                    type="file"
+                    id={`fileUpload-${task.id}`}
+                    multiple
+                    onChange={handleFileUpload}
+                    className={styles.fileInput}
+                  />
+                  <label htmlFor={`fileUpload-${task.id}`} className={styles.fileUploadLabel}>
+                    Fayl əlavə et
+                  </label>
+                </div>
+              </div>
+
+              {/* Tags Section */}
+              <div className={styles.editRow}>
+                <label>Etiketlər:</label>
+                <div className={styles.tagsList}>
+                  {editForm.tags.map((tag) => (
+                    <div key={tag.id} className={styles.tagItem} style={{ backgroundColor: tag.color }}>
+                      <span className={styles.tagName}>{tag.name}</span>
+                      <button
+                        className={styles.deleteTagButton}
+                        onClick={() => handleDeleteTag(tag.id)}
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <div className={styles.addTagForm}>
+                  <input
+                    type="text"
+                    value={newTag}
+                    onChange={(e) => setNewTag(e.target.value)}
+                    className={styles.tagInput}
+                    placeholder="Etiket adını daxil edin..."
+                    onKeyPress={(e) => e.key === 'Enter' && handleAddTag()}
+                  />
+                  <button
+                    className={styles.addTagButton}
+                    onClick={handleAddTag}
+                    disabled={!newTag.trim()}
+                  >
+                    Etiket əlavə et
+                  </button>
+                </div>
+              </div>
+
+              {/* Tagged Users Section */}
+              <div className={styles.editRow}>
+                <label>Tag Edilmiş İstifadəçilər:</label>
+                <div className={styles.taggedUsersList}>
+                  {editForm.taggedUsers.map((user) => (
+                    <div key={user.id} className={styles.taggedUserItem}>
+                      <div className={styles.userAvatar}>{user.avatar}</div>
+                      <span className={styles.userName}>{user.name}</span>
+                      <button
+                        className={styles.deleteTaggedUserButton}
+                        onClick={() => handleDeleteTaggedUser(user.id)}
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <div className={styles.addTaggedUserForm}>
+                  <input
+                    type="text"
+                    value={newTaggedUser}
+                    onChange={(e) => setNewTaggedUser(e.target.value)}
+                    className={styles.taggedUserInput}
+                    placeholder="İstifadəçi adını daxil edin..."
+                    onKeyPress={(e) => e.key === 'Enter' && handleAddTaggedUser()}
+                  />
+                  <button
+                    className={styles.addTaggedUserButton}
+                    onClick={handleAddTaggedUser}
+                    disabled={!newTaggedUser.trim()}
+                  >
+                    İstifadəçi tag et
+                  </button>
+                </div>
+              </div>
+
               <div className={styles.editActions}>
                 <button className={styles.saveEditButton} onClick={handleSave}>
                   Saxla

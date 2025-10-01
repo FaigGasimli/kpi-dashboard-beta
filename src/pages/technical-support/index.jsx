@@ -206,7 +206,7 @@ const TechnicalSupportPage = () => {
   const getStatusBadge = (status) => {
     const statusConfig = {
       Açıq: { className: styles.statusOpen, color: "#ef4444" },
-      "Həll edildi": { className: styles.statusResolved, color: "#10b981" },
+      "Həll edildi": { className: styles.statusResolved, color: "#996F29" },
       Gözləyir: { className: styles.statusPending, color: "#f59e0b" },
     };
     return statusConfig[status] || statusConfig["Açıq"];
@@ -216,7 +216,7 @@ const TechnicalSupportPage = () => {
     const priorityConfig = {
       Yüksək: { className: styles.priorityHigh, color: "#ef4444" },
       Orta: { className: styles.priorityMedium, color: "#f59e0b" },
-      Aşağı: { className: styles.priorityLow, color: "#10b981" },
+      Aşağı: { className: styles.priorityLow, color: "#996F29" },
     };
     return priorityConfig[priority] || priorityConfig["Orta"];
   };

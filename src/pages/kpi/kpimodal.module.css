@@ -268,3 +268,44 @@
     padding: 20px;
   }
 }
+
+/* Multi-select styles */
+.multiSelectContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.selectedItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 20px;
+}
+
+.selectedItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+  margin-left: 4px;
+}
+
+.removeButton:hover {
+  color: #ef4444;
+}

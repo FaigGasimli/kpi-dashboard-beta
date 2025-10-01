@@ -1,0 +1,218 @@
+.employeesContainer {
+  padding: 20px;
+  background: #f8fafc;
+  min-height: 100vh;
+  font-family: Geist;
+}
+
+.filtersSection {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.filtersRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  align-items: end;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filterGroup label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+}
+
+.filterGroup select,
+.filterGroup input {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.filterGroup select:focus,
+.filterGroup input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.resultsSummary {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.resultsSummary p {
+  margin: 0;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.employeesTableContainer {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.employeesTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.employeesTable thead {
+  background: #f8fafc;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.employeesTable th {
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.employeesTable td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.employeesTable tbody tr:hover {
+  background: #f9fafb;
+}
+
+.employeeName {
+  font-weight: 600;
+  color: #111827;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.statusBadge.aktiv {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.statusBadge.inaktiv {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.paginationContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.paginationBtn {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  background: white;
+  color: #374151;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.paginationBtn:hover:not(:disabled) {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.paginationBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.paginationBtn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.paginationInfo {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .employeesContainer {
+    padding: 10px;
+  }
+  
+  .filtersRow {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .employeesTableContainer {
+    overflow-x: auto;
+  }
+  
+  .employeesTable {
+    min-width: 800px;
+  }
+  
+  .paginationContainer {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+  
+  .pagination {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .employeesTable th,
+  .employeesTable td {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+  
+  .paginationBtn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}

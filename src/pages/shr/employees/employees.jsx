@@ -4,13 +4,19 @@ import { useState } from "react";
 import "./employees.css";
 import Photo from "../../../assests/qız.jpg";
 import Header from "../../../components/header";
+import PerformanceCalculator from "./PerformanceCalculator";
 
 const EmployeeProfile = () => {
-  const [activeTab, setActiveTab] = useState("tasks");
-  const [activeDisciplineTab, setActiveDisciplineTab] = useState("bonus");
+  const [activeTab, setActiveTab] = useState("bonus");
   const [performanceFilter, setPerformanceFilter] = useState("all");
   const [dateFilter, setDateFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
+  const [savedCalculations, setSavedCalculations] = useState([]);
+
+  const handleSaveCalculation = (calculationData) => {
+    setSavedCalculations((prev) => [...prev, calculationData]);
+  };
 
   const employee = {
     name: "Vəfa Vahabova Namiq qızı",
@@ -290,25 +296,132 @@ const EmployeeProfile = () => {
 
   const violationData = [
     {
-      type: "Gecikməli gəlmə",
+      type: "İş saatlarında iş yerində olmamaq",
       date: "20.09.2024",
       status: "Həll olunub",
-      description: "İşə 30 dəqiqə gecikmə",
+      description: "İş saatında iş yerində olmamaq",
       appliedMeasure: "Rəsmi xəbərdarlıq",
     },
     {
-      type: "İş saatında çıxma",
+      type: "İşə gecikmə",
       date: "15.08.2024",
       status: "Araşdırılır",
-      description: "İş saatında icazəsiz çıxış",
+      description: "İşə 30 dəqiqə gecikmə",
       appliedMeasure: "Şifahi xəbərdarlıq",
     },
     {
-      type: "Qaydaları pozma",
+      type: "İcazə limitinin aşılması",
       date: "10.07.2024",
       status: "Həll olunub",
-      description: "Təhlükəsizlik qaydalarını pozma",
+      description: "İcazə limitinin aşılması",
       appliedMeasure: "Cərimə (50 AZN)",
+    },
+    {
+      type: "Dress-kod qaydalarının pozulması",
+      date: "05.06.2024",
+      status: "Həll olunub",
+      description: "Dress-kod qaydalarının pozulması",
+      appliedMeasure: "Şifahi xəbərdarlıq",
+    },
+    {
+      type: "Daxili ünsiyyət qaydalarının pozulması",
+      date: "01.05.2024",
+      status: "Həll olunub",
+      description: "Daxili ünsiyyət qaydalarının pozulması",
+      appliedMeasure: "Rəsmi xəbərdarlıq",
+    },
+    {
+      type: "Etik davranış qaydalarının pozulması",
+      date: "15.04.2024",
+      status: "Araşdırılır",
+      description: "Etik davranış qaydalarının pozulması",
+      appliedMeasure: "Araşdırılır",
+    },
+    {
+      type: "Məlumatların məxfiliyinin pozulması",
+      date: "10.03.2024",
+      status: "Həll olunub",
+      description: "Məlumatların məxfiliyinin pozulması",
+      appliedMeasure: "Cərimə (100 AZN)",
+    },
+    {
+      type: "Şirkətin imicinə zərər verən davranış",
+      date: "25.02.2024",
+      status: "Həll olunub",
+      description: "Şirkətin imicinə zərər verən davranış",
+      appliedMeasure: "Rəsmi xəbərdarlıq",
+    },
+    {
+      type: "Subordinasiyaya əməl etməmək",
+      date: "20.01.2024",
+      status: "Həll olunub",
+      description: "Subordinasiyaya əməl etməmək",
+      appliedMeasure: "Şifahi xəbərdarlıq",
+    },
+    {
+      type: "Təhlükəsizlik qaydalarının pozulması",
+      date: "15.12.2023",
+      status: "Həll olunub",
+      description: "Təhlükəsizlik qaydalarının pozulması",
+      appliedMeasure: "Cərimə (75 AZN)",
+    },
+    {
+      type: "Peşəkar etikaya zidd hallar",
+      date: "10.11.2023",
+      status: "Həll olunub",
+      description: "Peşəkar etikaya zidd hallar",
+      appliedMeasure: "Rəsmi xəbərdarlıq",
+    },
+    {
+      type: "Müştəri ilə ünsiyyət qaydalarının pozulması",
+      date: "05.10.2023",
+      status: "Həll olunub",
+      description: "Müştəri ilə ünsiyyət qaydalarının pozulması",
+      appliedMeasure: "Şifahi xəbərdarlıq",
+    },
+    {
+      type: "Daxili yazışma qaydalarını pozmaq",
+      date: "01.09.2023",
+      status: "Həll olunub",
+      description: "Daxili yazışma qaydalarını pozmaq",
+      appliedMeasure: "Rəsmi xəbərdarlıq",
+    },
+    {
+      type: "İş yerində şəxsi cihazlardan həddən artıq istifadə",
+      date: "15.08.2023",
+      status: "Həll olunub",
+      description: "İş yerində şəxsi cihazlardan həddən artıq istifadə",
+      appliedMeasure: "Şifahi xəbərdarlıq",
+    },
+    {
+      type: "Siqaret və ya elektron siqaretin icazəsiz yerlərdə istifadəsi",
+      date: "10.07.2023",
+      status: "Həll olunub",
+      description:
+        "Siqaret və ya elektron siqaretin icazəsiz yerlərdə istifadəsi",
+      appliedMeasure: "Cərimə (25 AZN)",
+    },
+    {
+      type: "Alkoqollu içkilərin təsiri altında işə gəlmək",
+      date: "05.06.2023",
+      status: "Həll olunub",
+      description: "Alkoqollu içkilərin təsiri altında işə gəlmək",
+      appliedMeasure: "Cərimə (200 AZN)",
+    },
+    {
+      type: "Bank əmlakına zərər vurmaq (avadanlıq, inventar və s.)",
+      date: "01.05.2023",
+      status: "Həll olunub",
+      description: "Bank əmlakına zərər vurmaq (avadanlıq, inventar və s.)",
+      appliedMeasure: "Cərimə (150 AZN)",
+    },
+    {
+      type: "Müştəri və ya həmkarlarla mübahisə (emosional, aqressiv davranış)",
+      date: "15.04.2023",
+      status: "Həll olunub",
+      description:
+        "Müştəri və ya həmkarlarla mübahisə (emosional, aqressiv davranış)",
+      appliedMeasure: "Rəsmi xəbərdarlıq",
     },
   ];
 
@@ -340,7 +453,7 @@ const EmployeeProfile = () => {
   ];
 
   const getProgressBarColor = (percentage) => {
-    if (percentage >= 90) return "#10b981";
+    if (percentage >= 90) return "#996F29";
     if (percentage >= 70) return "#3b82f6";
     if (percentage >= 50) return "#f59e0b";
     return "#ef4444";
@@ -353,7 +466,7 @@ const EmployeeProfile = () => {
       case "Orta":
         return "#f59e0b";
       case "Aşağı":
-        return "#10b981";
+        return "#996F29";
       default:
         return "#6b7280";
     }
@@ -362,7 +475,7 @@ const EmployeeProfile = () => {
   const getStatusColor = (status) => {
     switch (status) {
       case "Tamamlandı":
-        return "#10b981";
+        return "#996F29";
       case "Davam edir":
         return "#3b82f6";
       case "Planlaşdırılır":
@@ -371,6 +484,23 @@ const EmployeeProfile = () => {
         return "#6b7280";
     }
   };
+
+  const renderBonus = () => (
+    <div className="tab-content">
+      <div className="bonus-header">
+        <h2>Bonus Siyahısı</h2>
+        <div className="bonus-controls">
+          <div className="search-input">
+            <input type="text" placeholder="Axtar..." />
+          </div>
+          <button className="control-btn">Yeni bonus əlavə et</button>
+          <button className="control-btn">Tarixə görə filter</button>
+          <button className="control-btn active">Bütün</button>
+        </div>
+      </div>
+      {renderBonusTable()}
+    </div>
+  );
 
   const renderTasks = () => (
     <div className="tab-content">
@@ -535,70 +665,151 @@ const EmployeeProfile = () => {
   const renderPerformance = () => (
     <div className="tab-content">
       <div className="performance-header">
-        <h2>Performans sistemi nəticələri</h2>
-        <div className="performance-controls">
-          <div className="search-input">
-            <input
-              type="text"
-              placeholder="Axtar..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-          <select
-            className="filter-select"
-            value={performanceFilter}
-            onChange={(e) => setPerformanceFilter(e.target.value)}
+        <div className="performance-title-section">
+          <h2>Bonus Kalkulyatoru - KPI əsaslı Mükafat UI (az)</h2>
+          <button
+            className="calculator-btn"
+            onClick={() => setIsCalculatorOpen(true)}
           >
-            <option value="all">Bütün KPI kateqoriyaları</option>
-            <option value="compliance">Komplayens</option>
-            <option value="procedures">Prosedurlar</option>
-            <option value="technical">Texniki</option>
-          </select>
-          <select
-            className="filter-select"
-            value={dateFilter}
-            onChange={(e) => setDateFilter(e.target.value)}
-          >
-            <option value="all">Bütün dövrler</option>
-            <option value="monthly">Aylıq</option>
-            <option value="quarterly">Rüblük</option>
-            <option value="yearly">İllik</option>
-          </select>
+            Tam Kalkulyator
+          </button>
         </div>
+        <p className="performance-description">
+          Aylıq KPI nəticələrinə və baza faizinə görə mükafat məbləğini
+          hesablayın.
+        </p>
       </div>
 
-      <div className="performance-table-container">
-        <table className="performance-table-new">
+      <div className="bonus-calculator-container">
+        <table className="bonus-calculator-table">
           <thead>
             <tr>
-              <th>Təyin olunan KPI modulu</th>
-              <th>Metrika</th>
-              <th>Komponent</th>
-              <th>Nəticə</th>
-              <th>Gözlənti</th>
-              <th>KPI nəticəsi %</th>
-              <th>Başlama Tarixi</th>
-              <th>Bitmə Tarixi</th>
-              <th>İcra Müddəti</th>
+              <th>Ay</th>
+              <th>Super Gross (AZN)</th>
+              <th>Baza %</th>
+              <th>Baza (AZN)</th>
+              <th>Faktiki KPI, %</th>
+              <th>Band</th>
+              <th>Koef.</th>
+              <th>Mükafat faizi</th>
+              <th>Mükafat (AZN)</th>
             </tr>
           </thead>
           <tbody>
-            {getFilteredPerformanceData().map((item, index) => (
-              <tr key={index}>
-                <td className="kpi-module">{item.kpiModule}</td>
-                <td>{item.metric}</td>
-                <td>{item.component}</td>
-                <td>{item.currentResult || "-"}</td>
-                <td>{item.target || "-"}</td>
-                <td className="kpi-percentage">
-                  {item.kpiPercentage ? `${item.kpiPercentage}%` : "-"}
-                </td>
-                <td>{item.startDate}</td>
-                <td>{item.endDate}</td>
-                <td>{item.executionPeriod}</td>
-              </tr>
-            ))}
+            {[
+              {
+                month: "Yan",
+                superGross: 2000,
+                basePercent: 60,
+                actualKPI: 100,
+              },
+              {
+                month: "Fev",
+                superGross: 2000,
+                basePercent: 60,
+                actualKPI: 100,
+              },
+              {
+                month: "Mar",
+                superGross: 2000,
+                basePercent: 60,
+                actualKPI: 100,
+              },
+              {
+                month: "Apr",
+                superGross: 2000,
+                basePercent: 60,
+                actualKPI: 100,
+              },
+              {
+                month: "May",
+                superGross: 2000,
+                basePercent: 60,
+                actualKPI: 100,
+              },
+              {
+                month: "İyun",
+                superGross: 2000,
+                basePercent: 60,
+                actualKPI: 100,
+              },
+              {
+                month: "İyul",
+                superGross: 2000,
+                basePercent: 60,
+                actualKPI: 100,
+              },
+              {
+                month: "Avq",
+                superGross: 2000,
+                basePercent: 60,
+                actualKPI: 100,
+              },
+              {
+                month: "Sen",
+                superGross: 2000,
+                basePercent: 60,
+                actualKPI: 100,
+              },
+              {
+                month: "Okt",
+                superGross: 2000,
+                basePercent: 60,
+                actualKPI: 100,
+              },
+              {
+                month: "Noy",
+                superGross: 2000,
+                basePercent: 60,
+                actualKPI: 100,
+              },
+              {
+                month: "Dek",
+                superGross: 2000,
+                basePercent: 60,
+                actualKPI: 100,
+              },
+            ].map((row, index) => {
+              const baseAmount = (row.superGross * row.basePercent) / 100;
+              const band = "A";
+              const coefficient = 1;
+              const bonusPercent = "15%";
+              const bonusAmount = (baseAmount * 15) / 100;
+
+              return (
+                <tr key={index}>
+                  <td className="month-cell">{row.month}</td>
+                  <td className="data-cell">{row.superGross}</td>
+                  <td className="data-cell">{row.basePercent}</td>
+                  <td className="calculated-cell">
+                    {baseAmount.toLocaleString("az-AZ", {
+                      minimumFractionDigits: 2,
+                    })}{" "}
+                    ₼
+                  </td>
+                  <td className="data-cell">{row.actualKPI}</td>
+                  <td className="calculated-cell">{band}</td>
+                  <td className="calculated-cell">{coefficient}</td>
+                  <td className="calculated-cell">{bonusPercent}</td>
+                  <td className="calculated-cell">
+                    {bonusAmount.toLocaleString("az-AZ", {
+                      minimumFractionDigits: 2,
+                    })}{" "}
+                    ₼
+                  </td>
+                </tr>
+              );
+            })}
+            <tr className="summary-row">
+              <td className="summary-label">Orta KPI</td>
+              <td colSpan="7"></td>
+              <td className="summary-value">100.0%</td>
+            </tr>
+            <tr className="summary-row">
+              <td className="summary-label">İllik cəm mükafat</td>
+              <td colSpan="7"></td>
+              <td className="summary-value">2.160,00 ₼</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -637,6 +848,23 @@ const EmployeeProfile = () => {
               </td>
               <td className="bonus-reason">{bonus.reason}</td>
               <td className="kpi-result">{bonus.kpiResult}</td>
+            </tr>
+          ))}
+          {savedCalculations.map((calc, index) => (
+            <tr key={`calc-${index}`} className="saved-calculation-row">
+              <td className="bonus-type">Kalkulyator hesablaması</td>
+              <td className="bonus-amount">
+                {calc.monthlyReward.toFixed(2)} AZN
+              </td>
+              <td>{calc.date}</td>
+              <td>-</td>
+              <td>
+                <span className="status-badge pending">Gözləyir</span>
+              </td>
+              <td className="bonus-reason">
+                KPI: {calc.kpi}%, Band: {calc.band}, Koef: {calc.coefficient}
+              </td>
+              <td className="kpi-result">{calc.kpi}%</td>
             </tr>
           ))}
         </tbody>
@@ -681,34 +909,18 @@ const EmployeeProfile = () => {
 
   const renderDiscipline = () => (
     <div className="tab-content">
-      <div className="discipline-tabs-horizontal">
-        <div className="discipline-tab-nav-horizontal">
-          <button
-            className={
-              activeDisciplineTab === "bonus"
-                ? "discipline-tab-button-horizontal active"
-                : "discipline-tab-button-horizontal"
-            }
-            onClick={() => setActiveDisciplineTab("bonus")}
-          >
-            Bonus siyahısı
-          </button>
-          <button
-            className={
-              activeDisciplineTab === "violations"
-                ? "discipline-tab-button-horizontal active"
-                : "discipline-tab-button-horizontal"
-            }
-            onClick={() => setActiveDisciplineTab("violations")}
-          >
-            İntizam pozuntuları
-          </button>
-        </div>
-        <div className="discipline-tab-content-horizontal">
-          {activeDisciplineTab === "bonus" && renderBonusTable()}
-          {activeDisciplineTab === "violations" && renderViolationsTable()}
+      <div className="discipline-header">
+        <h2>İntizam Pozuntuları</h2>
+        <div className="discipline-controls">
+          <div className="search-input">
+            <input type="text" placeholder="Axtar..." />
+          </div>
+          <button className="control-btn">Yeni pozuntu əlavə et</button>
+          <button className="control-btn">Tarixə görə filter</button>
+          <button className="control-btn active">Bütün</button>
         </div>
       </div>
+      {renderViolationsTable()}
     </div>
   );
 
@@ -778,8 +990,6 @@ const EmployeeProfile = () => {
 
   return (
     <>
-      {" "}
-      <Header title="Strategic Human Resources - Strateji İnsan Resursları" />
       <div className="employee-profile">
         {/* Header Section */}
         <div className="profile-header">
@@ -861,6 +1071,14 @@ const EmployeeProfile = () => {
           <div className="tabs-nav">
             <button
               className={
+                activeTab === "bonus" ? "tab-button active" : "tab-button"
+              }
+              onClick={() => setActiveTab("bonus")}
+            >
+              Bonus Siyahısı
+            </button>
+            <button
+              className={
                 activeTab === "tasks" ? "tab-button active" : "tab-button"
               }
               onClick={() => setActiveTab("tasks")}
@@ -894,6 +1112,7 @@ const EmployeeProfile = () => {
           </div>
 
           <div className="tabs-content">
+            {activeTab === "bonus" && renderBonus()}
             {activeTab === "tasks" && renderTasks()}
             {activeTab === "performance" && renderPerformance()}
             {activeTab === "discipline" && renderDiscipline()}
@@ -932,6 +1151,12 @@ const EmployeeProfile = () => {
           </div>
         </div>
       </div>
+      {/* Performance Calculator Modal */}
+      <PerformanceCalculator
+        isOpen={isCalculatorOpen}
+        onClose={() => setIsCalculatorOpen(false)}
+        onSave={handleSaveCalculation}
+      />
     </>
   );
 };

@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 import {
   ArrowLeft,
   User,
@@ -16,7 +16,7 @@ import {
   Edit3,
   Filter,
   ChevronDown,
-} from "lucide-react"
+} from "lucide-react";
 import {
   LineChart,
   Line,
@@ -30,15 +30,15 @@ import {
   PieChart,
   Pie,
   Cell,
-} from "recharts"
-import styles from "./EmployeeProfile.module.css"
+} from "recharts";
+import styles from "./EmployeeProfile.module.css";
 
 const EmployeeKPIProfile = ({ employee, onBack }) => {
-  const [selectedYear, setSelectedYear] = useState("2024")
-  const [selectedPeriod, setSelectedPeriod] = useState("aylıq")
-  const [selectedModule, setSelectedModule] = useState("Hamısı")
-  const [searchTerm, setSearchTerm] = useState("")
-  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false)
+  const [selectedYear, setSelectedYear] = useState("2024");
+  const [selectedPeriod, setSelectedPeriod] = useState("aylıq");
+  const [selectedModule, setSelectedModule] = useState("Hamısı");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
 
   // Sample trend data
   const trendData = [
@@ -48,29 +48,29 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
     { month: "Apr", fakt: 87, hedef: 90 },
     { month: "May", fakt: 94, hedef: 90 },
     { month: "İyn", fakt: 91, hedef: 90 },
-  ]
+  ];
 
   // Strong KPIs data
   const strongKPIs = [
     { name: "Müştəri Məmnuniyyəti", value: 95 },
     { name: "Vaxt İdarəetməsi", value: 92 },
     { name: "Komanda İşi", value: 89 },
-  ]
+  ];
 
   // Weak KPIs data
   const weakKPIs = [
     { name: "Risk İdarəetməsi", value: 65 },
     { name: "İnnovasiya", value: 68 },
     { name: "Texniki Bilik", value: 72 },
-  ]
+  ];
 
   // Module distribution data
   const moduleData = [
     { name: "CE", value: 35, color: "#3b82f6" },
-    { name: "MH", value: 25, color: "#10b981" },
+    { name: "MH", value: 25, color: "#996F29" },
     { name: "AML", value: 25, color: "#f59e0b" },
     { name: "AU", value: 15, color: "#ef4444" },
-  ]
+  ];
 
   // KPI Results Table Data
   const kpiResults = [
@@ -82,7 +82,8 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
       icraTezliyi: "Aylıq",
       vazifeMesuliyyeti: "Şöbə rəisi, Direktor, CRO",
       isProseduralari: "Planlaşdırma → Monitoring → Hesabat → Geri dönüş",
-      isProseduru: "Bankdaxili proses və analitikalarla əsasən və monitorinqlərin aparılması qaydaları",
+      isProseduru:
+        "Bankdaxili proses və analitikalarla əsasən və monitorinqlərin aparılması qaydaları",
       agirDereceleri: "100%",
       digerSobe: "85%",
       digerSobe2: "90%",
@@ -178,21 +179,21 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
       fakt: null,
       isEmpty: true,
     },
-  ]
+  ];
 
   const getStatusBadge = (score) => {
-    if (score >= 85) return { text: "On-track", color: "#10b981", icon: "🟢" }
-    if (score >= 70) return { text: "Risk", color: "#f59e0b", icon: "🟡" }
-    return { text: "Off", color: "#ef4444", icon: "🔴" }
-  }
+    if (score >= 85) return { text: "On-track", color: "#996F29", icon: "🟢" };
+    if (score >= 70) return { text: "Risk", color: "#f59e0b", icon: "🟡" };
+    return { text: "Off", color: "#ef4444", icon: "🔴" };
+  };
 
   const handleAddResult = (kpiId) => {
-    console.log("Adding result for KPI:", kpiId)
-  }
+    console.log("Adding result for KPI:", kpiId);
+  };
 
   const handleEditResult = (kpiId) => {
-    console.log("Editing result for KPI:", kpiId)
-  }
+    console.log("Editing result for KPI:", kpiId);
+  };
 
   return (
     <div className={styles.profileContainer}>
@@ -208,7 +209,11 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
       {/* Personal Information */}
       <div className={styles.personalInfo}>
         <div className={styles.employeeCard}>
-          <img src={employee.photo || "/placeholder.svg"} alt={employee.name} className={styles.employeePhoto} />
+          <img
+            src={employee.photo || "/placeholder.svg"}
+            alt={employee.name}
+            className={styles.employeePhoto}
+          />
           <div className={styles.employeeDetails}>
             <h2 className={styles.employeeName}>{employee.name}</h2>
             <div className={styles.employeeMeta}>
@@ -241,8 +246,11 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
           </div>
         </div>
         <div className={styles.summaryCard}>
-          <div className={styles.cardIcon} style={{ backgroundColor: "#dcfce7" }}>
-            <CheckCircle size={24} color="#10b981" />
+          <div
+            className={styles.cardIcon}
+            style={{ backgroundColor: "#dcfce7" }}
+          >
+            <CheckCircle size={24} color="#996F29" />
           </div>
           <div className={styles.cardContent}>
             <h3>On-track Sayı</h3>
@@ -250,7 +258,10 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
           </div>
         </div>
         <div className={styles.summaryCard}>
-          <div className={styles.cardIcon} style={{ backgroundColor: "#fef3c7" }}>
+          <div
+            className={styles.cardIcon}
+            style={{ backgroundColor: "#fef3c7" }}
+          >
             <AlertTriangle size={24} color="#f59e0b" />
           </div>
           <div className={styles.cardContent}>
@@ -259,7 +270,10 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
           </div>
         </div>
         <div className={styles.summaryCard}>
-          <div className={styles.cardIcon} style={{ backgroundColor: "#e0e7ff" }}>
+          <div
+            className={styles.cardIcon}
+            style={{ backgroundColor: "#e0e7ff" }}
+          >
             <Award size={24} color="#6366f1" />
           </div>
           <div className={styles.cardContent}>
@@ -273,14 +287,20 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
       <div className={styles.filtersSection}>
         <div className={styles.filterGroup}>
           <label>İl:</label>
-          <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
+          <select
+            value={selectedYear}
+            onChange={(e) => setSelectedYear(e.target.value)}
+          >
             <option value="2024">2024</option>
             <option value="2023">2023</option>
           </select>
         </div>
         <div className={styles.filterGroup}>
           <label>Dövr:</label>
-          <select value={selectedPeriod} onChange={(e) => setSelectedPeriod(e.target.value)}>
+          <select
+            value={selectedPeriod}
+            onChange={(e) => setSelectedPeriod(e.target.value)}
+          >
             <option value="aylıq">Aylıq</option>
             <option value="rüblük">Rüblük</option>
             <option value="illik">İllik</option>
@@ -288,7 +308,10 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
         </div>
         <div className={styles.filterGroup}>
           <label>Modul:</label>
-          <select value={selectedModule} onChange={(e) => setSelectedModule(e.target.value)}>
+          <select
+            value={selectedModule}
+            onChange={(e) => setSelectedModule(e.target.value)}
+          >
             <option value="Hamısı">Hamısı</option>
             <option value="CE">CE</option>
             <option value="MH">MH</option>
@@ -300,14 +323,16 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
 
       {/* KPI Analytics */}
       <div className={styles.analyticsSection}>
-        <div 
+        <div
           className={styles.analyticsHeader}
           onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)}
         >
           <h2 className={styles.sectionTitle}>KPI Analitika</h2>
-          <ChevronDown 
-            size={20} 
-            className={`${styles.chevronIcon} ${isAnalyticsOpen ? styles.rotated : ''}`}
+          <ChevronDown
+            size={20}
+            className={`${styles.chevronIcon} ${
+              isAnalyticsOpen ? styles.rotated : ""
+            }`}
           />
         </div>
 
@@ -323,8 +348,20 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
                     <XAxis dataKey="month" />
                     <YAxis />
                     <Tooltip />
-                    <Line type="monotone" dataKey="fakt" stroke="#3b82f6" name="Fakt" strokeWidth={2} />
-                    <Line type="monotone" dataKey="hedef" stroke="#ef4444" name="Hədəf" strokeWidth={2} />
+                    <Line
+                      type="monotone"
+                      dataKey="fakt"
+                      stroke="#3b82f6"
+                      name="Fakt"
+                      strokeWidth={2}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="hedef"
+                      stroke="#ef4444"
+                      name="Hədəf"
+                      strokeWidth={2}
+                    />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
@@ -338,7 +375,7 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
-                    <Bar dataKey="value" fill="#10b981" />
+                    <Bar dataKey="value" fill="#996F29" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -362,7 +399,14 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
                 <h3>Modullar üzrə Pay</h3>
                 <ResponsiveContainer width="100%" height={250}>
                   <PieChart>
-                    <Pie data={moduleData} cx="50%" cy="50%" innerRadius={60} outerRadius={100} dataKey="value">
+                    <Pie
+                      data={moduleData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={60}
+                      outerRadius={100}
+                      dataKey="value"
+                    >
                       {moduleData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
@@ -379,7 +423,9 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
               <div className={styles.comparisonContent}>
                 <div className={styles.comparisonItem}>
                   <span>İşçi Nəticəsi:</span>
-                  <span className={styles.comparisonValue}>{employee.kpiScore}%</span>
+                  <span className={styles.comparisonValue}>
+                    {employee.kpiScore}%
+                  </span>
                 </div>
                 <div className={styles.comparisonItem}>
                   <span>Departament Ortalaması:</span>
@@ -388,7 +434,8 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
                 <div className={styles.comparisonItem}>
                   <span>Fərq:</span>
                   <span className={styles.comparisonDiff}>
-                    <TrendingUp size={16} color="#10b981" />+{employee.kpiScore - 82}%
+                    <TrendingUp size={16} color="#996F29" />+
+                    {employee.kpiScore - 82}%
                   </span>
                 </div>
               </div>
@@ -420,26 +467,26 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
 
         <div className={styles.tableContainer}>
           <table className={styles.kpiTable}>
-                         <thead>
-               <tr>
-                 <th>Vəzifə Təlimatları</th>
-                 <th>Təyinat</th>
-                 <th>Status</th>
-                 <th>İcra təzliyi</th>
-                 <th>Vəzifə Məsuliyyəti</th>
-                 <th>İş Prosedurları</th>
-                 <th>İş Proseduru</th>
-                 <th>Ağır Dərəcəsi</th>
-                 <th>Digər şöbə 1</th>
-                 <th>Digər şöbə 2</th>
-                 <th>Digər şöbə 3</th>
-                 <th>Filial 1</th>
-                 <th>Filial 2</th>
-                 <th>Filial 3</th>
-                 <th>Nəticə</th>
-                 <th>Əməliyyat</th>
-               </tr>
-             </thead>
+            <thead>
+              <tr>
+                <th>Vəzifə Təlimatları</th>
+                <th>Təyinat</th>
+                <th>Status</th>
+                <th>İcra təzliyi</th>
+                <th>Vəzifə Məsuliyyəti</th>
+                <th>İş Prosedurları</th>
+                <th>İş Proseduru</th>
+                <th>Ağır Dərəcəsi</th>
+                <th>Digər şöbə 1</th>
+                <th>Digər şöbə 2</th>
+                <th>Digər şöbə 3</th>
+                <th>Filial 1</th>
+                <th>Filial 2</th>
+                <th>Filial 3</th>
+                <th>Nəticə</th>
+                <th>Əməliyyat</th>
+              </tr>
+            </thead>
             <tbody>
               {kpiResults.map((kpi) => (
                 <tr key={kpi.id} className={styles.tableRow}>
@@ -448,14 +495,19 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
                   <td>{kpi.status}</td>
                   <td>{kpi.icraTezliyi}</td>
                   <td>{kpi.vazifeMesuliyyeti}</td>
-                  <td className={styles.procedureCell}>{kpi.isProseduralari}</td>
+                  <td className={styles.procedureCell}>
+                    {kpi.isProseduralari}
+                  </td>
                   <td className={styles.procedureCell}>{kpi.isProseduru}</td>
                   <td>{kpi.agirDereceleri}</td>
                   <td>
                     {kpi.digerSobe ? (
                       kpi.digerSobe
                     ) : (
-                      <button className={styles.addButton} onClick={() => handleAddResult(kpi.id)}>
+                      <button
+                        className={styles.addButton}
+                        onClick={() => handleAddResult(kpi.id)}
+                      >
                         <Plus size={14} />
                         Əlavə et
                       </button>
@@ -465,7 +517,10 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
                     {kpi.digerSobe2 ? (
                       kpi.digerSobe2
                     ) : (
-                      <button className={styles.addButton} onClick={() => handleAddResult(kpi.id)}>
+                      <button
+                        className={styles.addButton}
+                        onClick={() => handleAddResult(kpi.id)}
+                      >
                         <Plus size={14} />
                         Əlavə et
                       </button>
@@ -475,42 +530,54 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
                     {kpi.digerSobe3 ? (
                       kpi.digerSobe3
                     ) : (
-                      <button className={styles.addButton} onClick={() => handleAddResult(kpi.id)}>
+                      <button
+                        className={styles.addButton}
+                        onClick={() => handleAddResult(kpi.id)}
+                      >
                         <Plus size={14} />
                         Əlavə et
                       </button>
                     )}
                   </td>
-                                     <td>
-                     {kpi.filial ? (
-                       kpi.filial
-                     ) : (
-                       <button className={styles.addButton} onClick={() => handleAddResult(kpi.id)}>
-                         <Plus size={14} />
-                         Əlavə et
-                       </button>
-                     )}
-                   </td>
-                   <td>
-                     {kpi.filial2 ? (
-                       kpi.filial2
-                     ) : (
-                       <button className={styles.addButton} onClick={() => handleAddResult(kpi.id)}>
-                         <Plus size={14} />
-                         Əlavə et
-                       </button>
-                     )}
-                   </td>
-                   <td>
-                     {kpi.filial3 ? (
-                       kpi.filial3
-                     ) : (
-                       <button className={styles.addButton} onClick={() => handleAddResult(kpi.id)}>
-                         <Plus size={14} />
-                         Əlavə et
-                       </button>
-                     )}
-                   </td>
+                  <td>
+                    {kpi.filial ? (
+                      kpi.filial
+                    ) : (
+                      <button
+                        className={styles.addButton}
+                        onClick={() => handleAddResult(kpi.id)}
+                      >
+                        <Plus size={14} />
+                        Əlavə et
+                      </button>
+                    )}
+                  </td>
+                  <td>
+                    {kpi.filial2 ? (
+                      kpi.filial2
+                    ) : (
+                      <button
+                        className={styles.addButton}
+                        onClick={() => handleAddResult(kpi.id)}
+                      >
+                        <Plus size={14} />
+                        Əlavə et
+                      </button>
+                    )}
+                  </td>
+                  <td>
+                    {kpi.filial3 ? (
+                      kpi.filial3
+                    ) : (
+                      <button
+                        className={styles.addButton}
+                        onClick={() => handleAddResult(kpi.id)}
+                      >
+                        <Plus size={14} />
+                        Əlavə et
+                      </button>
+                    )}
+                  </td>
                   <td className={styles.resultCell}>
                     {kpi.netice ? (
                       <span className={styles.resultValue}>{kpi.netice}</span>
@@ -519,7 +586,10 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
                     )}
                   </td>
                   <td className={styles.actionCell}>
-                    <button className={styles.editButton} onClick={() => handleEditResult(kpi.id)}>
+                    <button
+                      className={styles.editButton}
+                      onClick={() => handleEditResult(kpi.id)}
+                    >
                       <Edit3 size={14} />
                       Düzənlə
                     </button>
@@ -531,7 +601,7 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default EmployeeKPIProfile
+export default EmployeeKPIProfile;

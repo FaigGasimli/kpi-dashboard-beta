@@ -781,9 +781,6 @@ const TaskManagement = () => {
                       <div className={styles.tableHeaderCell}>Məqsəd</div>
                       <div className={styles.tableHeaderCell}>Ölçü Metodu</div>
                       <div className={styles.tableHeaderCell}>Müddət</div>
-                      <div className={styles.tableHeaderCell}>
-                        Hesablama Formulası
-                      </div>
                       <div className={styles.tableHeaderCell}>Çəki (%)</div>
                       <div className={styles.tableHeaderCell}>Məsul Şöbə</div>
                       <div className={styles.tableHeaderCell}>Data Mənbə</div>
@@ -814,12 +811,6 @@ const TaskManagement = () => {
                         </div>
                         <div className={styles.tableCell} data-label="Müddət">
                           {task.period}
-                        </div>
-                        <div
-                          className={styles.tableCell}
-                          data-label="Hesablama Formulası"
-                        >
-                          {task.calculationFormula}
                         </div>
                         <div className={styles.tableCell} data-label="Çəki (%)">
                           <span

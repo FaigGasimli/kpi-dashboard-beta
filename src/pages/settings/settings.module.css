@@ -41,7 +41,7 @@
 .sidebarHeader h2 {
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
   margin: 0;
 }
 
@@ -110,7 +110,7 @@
 .contentHeader h1 {
   font-size: 24px;
   font-weight: 700;
-  color: #1f2937;
+  color: #996f29;
   margin: 0;
 }
 
@@ -201,7 +201,7 @@
 .settingGroup h3 {
   font-size: 16px;
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
   margin: 0;
   padding-bottom: 8px;
   border-bottom: 1px solid #f3f4f6;

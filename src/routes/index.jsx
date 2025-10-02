@@ -11,7 +11,6 @@ const KPI = lazy(() => import("../pages/kpi/index"));
 const ShrPerformance = lazy(() =>
   import("../pages/shr/sheperformance/shrperformance")
 );
-const NewBranch = lazy(() => import("../pages/shr/newbranch//newbranch"));
 const TaskManagement = lazy(() => import("../pages/taskmanagement/management"));
 const Employees = lazy(() => import("../pages/shr/employees/employees"));
 const Notifications = lazy(() => import("../pages/notifications/index"));
@@ -69,11 +68,11 @@ export const router = createBrowserRouter([
         element: <TaskManagement />,
       },
       {
-        path: "/newbranch",
-        element: <NewBranch />,
+        path: "/employees",
+        element: <Employees />,
       },
       {
-        path: "/employees",
+        path: "/employees/:id",
         element: <Employees />,
       },
       {

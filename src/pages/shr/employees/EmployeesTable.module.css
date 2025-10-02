@@ -41,7 +41,7 @@
 .pageTitle {
   font-size: 24px;
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
   margin: 0 0 4px 0;
 }
 
@@ -69,7 +69,7 @@
 .statNumber {
   font-size: 20px;
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
   line-height: 1;
   margin-bottom: 4px;
 }
@@ -163,13 +163,24 @@
   background: #f8fafc;
 }
 
+.clickableRow {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clickableRow:hover {
+  background: #f1f5f9 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 .nameCell {
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
 }
 
 .employeeName {
-  color: #1f2937;
+  color: #996f29;
   font-weight: 600;
 }
 

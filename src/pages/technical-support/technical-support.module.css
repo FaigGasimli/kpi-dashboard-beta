@@ -35,7 +35,7 @@
   border: none;
   outline: none;
   font-size: 16px;
-  color: #1f2937;
+  color: #996f29;
   background: transparent;
 }
 
@@ -99,7 +99,7 @@
 .contactCard h3 {
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
   margin: 0 0 8px 0;
 }
 
@@ -172,7 +172,7 @@
 .categoryTitle {
   font-size: 20px;
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
   margin: 0 0 16px 0;
   padding-bottom: 8px;
   border-bottom: 2px solid #996f29;
@@ -202,7 +202,7 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
-  color: #1f2937;
+  color: #996f29;
   text-align: left;
   transition: background 0.2s;
 }
@@ -301,7 +301,7 @@
 .ticketSubject {
   font-size: 16px;
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
   margin: 0 0 4px 0;
 }
 
@@ -441,7 +441,7 @@
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 14px;
-  color: #1f2937;
+  color: #996f29;
   background: white;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -537,7 +537,7 @@
 .helpResources h3 {
   font-size: 20px;
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
   margin: 0 0 20px 0;
 }
 
@@ -569,7 +569,7 @@
 .resourceCard h4 {
   font-size: 16px;
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
   margin: 0 0 8px 0;
 }
 

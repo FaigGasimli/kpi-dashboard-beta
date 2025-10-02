@@ -1,18 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "./employees.css";
 import Photo from "../../../assests/qız.jpg";
 import Header from "../../../components/header";
 import PerformanceCalculator from "./PerformanceCalculator";
 
 const EmployeeProfile = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("bonus");
   const [performanceFilter, setPerformanceFilter] = useState("all");
   const [dateFilter, setDateFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
   const [savedCalculations, setSavedCalculations] = useState([]);
+  const [selectedYear, setSelectedYear] = useState("2024");
+  const [selectedMonth, setSelectedMonth] = useState("Yanvar");
 
   const handleSaveCalculation = (calculationData) => {
     setSavedCalculations((prev) => [...prev, calculationData]);
@@ -671,7 +676,7 @@ const EmployeeProfile = () => {
             className="calculator-btn"
             onClick={() => setIsCalculatorOpen(true)}
           >
-            Tam Kalkulyator
+            Mükafatlandırma Kalkulyatoru
           </button>
         </div>
         <p className="performance-description">
@@ -988,11 +993,44 @@ const EmployeeProfile = () => {
     </div>
   );
 
+  // If no ID is provided, show a message or redirect
+  if (!id) {
+    return (
+      <div className="employee-profile">
+        <div style={{ padding: "20px", textAlign: "center" }}>
+          <h2>İşçi seçilməyib</h2>
+          <p>Əməkdaşlar siyahısından bir işçi seçin.</p>
+          <button 
+            onClick={() => navigate('/shr')}
+            style={{
+              padding: "10px 20px",
+              backgroundColor: "#3b82f6",
+              color: "white",
+              border: "none",
+              borderRadius: "6px",
+              cursor: "pointer"
+            }}
+          >
+            Əməkdaşlar siyahısına qayıt
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="employee-profile">
         {/* Header Section */}
         <div className="profile-header">
+          <div className="back-button-container">
+            <button 
+              onClick={() => navigate('/shr')}
+              className="back-button"
+            >
+              ← Əməkdaşlar siyahısına qayıt
+            </button>
+          </div>
           <div className="employee-info">
             <div className="employee-photo">
               <img src={Photo} alt={employee.name} />
@@ -1156,6 +1194,10 @@ const EmployeeProfile = () => {
         isOpen={isCalculatorOpen}
         onClose={() => setIsCalculatorOpen(false)}
         onSave={handleSaveCalculation}
+        selectedYear={selectedYear}
+        selectedMonth={selectedMonth}
+        onYearChange={setSelectedYear}
+        onMonthChange={setSelectedMonth}
       />
     </>
   );

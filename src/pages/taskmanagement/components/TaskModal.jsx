@@ -8,7 +8,6 @@ const TaskModal = ({ task, isOpen, onClose, onSave, onDelete, departments, execu
     purpose: "",
     measurementMethod: "",
     period: "",
-    calculationFormula: "",
     weight: "15",
     responsibleDepartment: "",
     dataSource: "",
@@ -33,7 +32,6 @@ const TaskModal = ({ task, isOpen, onClose, onSave, onDelete, departments, execu
         purpose: task.purpose || "",
         measurementMethod: task.measurementMethod || "",
         period: task.period || "",
-        calculationFormula: task.calculationFormula || "",
         weight: task.weight || "15",
         responsibleDepartment: task.responsibleDepartment || "",
         dataSource: task.dataSource || "",
@@ -244,16 +242,6 @@ const TaskModal = ({ task, isOpen, onClose, onSave, onDelete, departments, execu
                   </div>
                 </div>
 
-                <div className={styles.formGroup}>
-                  <label className={styles.formLabel}>Hesablama Formulası *</label>
-                  <textarea
-                    value={formData.calculationFormula}
-                    onChange={(e) => handleInputChange("calculationFormula", e.target.value)}
-                    className={styles.formTextarea}
-                    rows="3"
-                    placeholder="Hesablama formulasını daxil edin"
-                  />
-                </div>
 
                 <div className={styles.formRow}>
                   <div className={styles.formGroup}>

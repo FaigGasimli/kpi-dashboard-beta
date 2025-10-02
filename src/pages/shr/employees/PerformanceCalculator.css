@@ -546,3 +546,88 @@
     width: 100%;
   }
 }
+
+/* Date Selection Styles */
+.date-selection {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.date-controls {
+  display: flex;
+  gap: 24px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+
+.date-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.date-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+}
+
+.date-select {
+  padding: 10px 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #374151;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.date-select:focus {
+  outline: none;
+  border-color: #996f29;
+  box-shadow: 0 0 0 3px rgba(153, 111, 41, 0.1);
+}
+
+.date-select:hover {
+  border-color: #d1d5db;
+}
+
+.selected-period {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  background: #fef3c7;
+  border: 1px solid #fbbf24;
+  border-radius: 6px;
+}
+
+.period-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #996f29;
+}
+
+/* Responsive Design for Date Selection */
+@media (max-width: 768px) {
+  .date-controls {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  
+  .date-group {
+    min-width: auto;
+  }
+  
+  .selected-period {
+    text-align: center;
+  }
+}

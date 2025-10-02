@@ -17,6 +17,34 @@
   gap: 40px;
   align-items: center;
   border: 1px solid #f0f0f0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.back-button-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-button:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #334155;
 }
 
 .employee-info {
@@ -1068,7 +1096,7 @@
   margin: 0;
   font-size: 20px;
   font-weight: 700;
-  color: #1f2937;
+  color: #996f29;
   flex: 1;
   line-height: 1.3;
 }

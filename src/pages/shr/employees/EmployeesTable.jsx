@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./EmployeesTable.module.css";
 
 const EmployeesTable = () => {
+  const navigate = useNavigate();
   const [employees, setEmployees] = useState([]);
   const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -12,7 +14,7 @@ const EmployeesTable = () => {
     branch: "",
     department: "",
     division: "",
-    search: ""
+    search: "",
   });
 
   // Sample employee data
@@ -27,7 +29,7 @@ const EmployeesTable = () => {
       email: "vefa.vahabova@bank.az",
       phone: "+994 50 123 45 67",
       hireDate: "21.02.2012",
-      status: "Aktiv"
+      status: "Aktiv",
     },
     {
       id: 2,
@@ -39,7 +41,7 @@ const EmployeesTable = () => {
       email: "rashad.mammadov@bank.az",
       phone: "+994 50 234 56 78",
       hireDate: "15.03.2015",
-      status: "Aktiv"
+      status: "Aktiv",
     },
     {
       id: 3,
@@ -51,7 +53,7 @@ const EmployeesTable = () => {
       email: "jale.huseynova@bank.az",
       phone: "+994 50 345 67 89",
       hireDate: "10.06.2018",
-      status: "Aktiv"
+      status: "Aktiv",
     },
     {
       id: 4,
@@ -63,7 +65,7 @@ const EmployeesTable = () => {
       email: "nigar.aliyeva@bank.az",
       phone: "+994 50 456 78 90",
       hireDate: "05.09.2019",
-      status: "Aktiv"
+      status: "Aktiv",
     },
     {
       id: 5,
@@ -75,7 +77,7 @@ const EmployeesTable = () => {
       email: "elcin.babayev@bank.az",
       phone: "+994 50 567 89 01",
       hireDate: "12.01.2020",
-      status: "Aktiv"
+      status: "Aktiv",
     },
     {
       id: 6,
@@ -87,7 +89,7 @@ const EmployeesTable = () => {
       email: "aygun.mammadova@bank.az",
       phone: "+994 50 678 90 12",
       hireDate: "20.03.2021",
-      status: "Aktiv"
+      status: "Aktiv",
     },
     {
       id: 7,
@@ -99,7 +101,7 @@ const EmployeesTable = () => {
       email: "tural.aliyev@bank.az",
       phone: "+994 50 789 01 23",
       hireDate: "08.07.2022",
-      status: "Aktiv"
+      status: "Aktiv",
     },
     {
       id: 8,
@@ -111,7 +113,7 @@ const EmployeesTable = () => {
       email: "gunel.hasanova@bank.az",
       phone: "+994 50 890 12 34",
       hireDate: "15.11.2022",
-      status: "Aktiv"
+      status: "Aktiv",
     },
     {
       id: 9,
@@ -123,7 +125,7 @@ const EmployeesTable = () => {
       email: "revan.quliyev@bank.az",
       phone: "+994 50 901 23 45",
       hireDate: "03.02.2023",
-      status: "Aktiv"
+      status: "Aktiv",
     },
     {
       id: 10,
@@ -135,8 +137,8 @@ const EmployeesTable = () => {
       email: "leyla.mammadova@bank.az",
       phone: "+994 50 012 34 56",
       hireDate: "18.05.2023",
-      status: "Aktiv"
-    }
+      status: "Aktiv",
+    },
   ];
 
   useEffect(() => {
@@ -152,28 +154,33 @@ const EmployeesTable = () => {
     let filtered = sampleEmployees;
 
     if (newFilters.branch) {
-      filtered = filtered.filter(emp => 
+      filtered = filtered.filter((emp) =>
         emp.branch.toLowerCase().includes(newFilters.branch.toLowerCase())
       );
     }
 
     if (newFilters.department) {
-      filtered = filtered.filter(emp => 
-        emp.department.toLowerCase().includes(newFilters.department.toLowerCase())
+      filtered = filtered.filter((emp) =>
+        emp.department
+          .toLowerCase()
+          .includes(newFilters.department.toLowerCase())
       );
     }
 
     if (newFilters.division) {
-      filtered = filtered.filter(emp => 
+      filtered = filtered.filter((emp) =>
         emp.division.toLowerCase().includes(newFilters.division.toLowerCase())
       );
     }
 
     if (newFilters.search) {
-      filtered = filtered.filter(emp => 
-        emp.name.toLowerCase().includes(newFilters.search.toLowerCase()) ||
-        emp.position.toLowerCase().includes(newFilters.search.toLowerCase()) ||
-        emp.email.toLowerCase().includes(newFilters.search.toLowerCase())
+      filtered = filtered.filter(
+        (emp) =>
+          emp.name.toLowerCase().includes(newFilters.search.toLowerCase()) ||
+          emp.position
+            .toLowerCase()
+            .includes(newFilters.search.toLowerCase()) ||
+          emp.email.toLowerCase().includes(newFilters.search.toLowerCase())
       );
     }
 
@@ -182,6 +189,10 @@ const EmployeesTable = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+  };
+
+  const handleEmployeeClick = (employeeId) => {
+    navigate(`/employees/${employeeId}`);
   };
 
   const totalPages = Math.ceil(filteredEmployees.length / itemsPerPage);
@@ -198,26 +209,10 @@ const EmployeesTable = () => {
             <div className={styles.titleRow}>
               <div>
                 <h1 className={styles.pageTitle}>Əməkdaşlar</h1>
-                <p className={styles.pageSubtitle}>Bütün əməkdaşların siyahısı və idarəetməsi</p>
+                <p className={styles.pageSubtitle}>
+                  Bütün əməkdaşların siyahısı və idarəetməsi
+                </p>
               </div>
-            </div>
-          </div>
-          <div className={styles.statsContainer}>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>{employees.length}</span>
-              <span className={styles.statLabel}>Ümumi İşçi</span>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>{employees.filter(emp => emp.status === 'Aktiv').length}</span>
-              <span className={styles.statLabel}>Aktiv İşçi</span>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>{new Set(employees.map(emp => emp.branch)).size}</span>
-              <span className={styles.statLabel}>Filial</span>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>{new Set(employees.map(emp => emp.department)).size}</span>
-              <span className={styles.statLabel}>Departament</span>
             </div>
           </div>
         </div>
@@ -227,43 +222,16 @@ const EmployeesTable = () => {
       <div className={styles.filtersSection}>
         <div className={styles.filtersRow}>
           <div className={styles.filterGroup}>
-            <label>Filial</label>
-            <select
-              value={filters.branch}
-              onChange={(e) => handleFilterChange('branch', e.target.value)}
-              className={styles.filterSelect}
-            >
-              <option value="">Bütün filiallar</option>
-              <option value="KMS şöbəsi">KMS şöbəsi</option>
-              <option value="Baş Ofis">Baş Ofis</option>
-              <option value="Filial 1">Filial 1</option>
-              <option value="Filial 2">Filial 2</option>
-            </select>
-          </div>
-
-          <div className={styles.filterGroup}>
-            <label>Departament</label>
-            <select
-              value={filters.department}
-              onChange={(e) => handleFilterChange('department', e.target.value)}
-              className={styles.filterSelect}
-            >
-              <option value="">Bütün departamentlər</option>
-              <option value="İnsan Resursları">İnsan Resursları</option>
-              <option value="Maliyyə">Maliyyə</option>
-              <option value="Komplayens">Komplayens</option>
-            </select>
-          </div>
-
-          <div className={styles.filterGroup}>
             <label>Şöbə</label>
             <select
               value={filters.division}
-              onChange={(e) => handleFilterChange('division', e.target.value)}
+              onChange={(e) => handleFilterChange("division", e.target.value)}
               className={styles.filterSelect}
             >
               <option value="">Bütün şöbələr</option>
-              <option value="Komplayens departamenti">Komplayens departamenti</option>
+              <option value="Komplayens departamenti">
+                Komplayens departamenti
+              </option>
               <option value="Risk İdarəetməsi">Risk İdarəetməsi</option>
               <option value="Hüquq Şöbəsi">Hüquq Şöbəsi</option>
             </select>
@@ -275,7 +243,7 @@ const EmployeesTable = () => {
               type="text"
               placeholder="Ad, vəzifə və ya email ilə axtar"
               value={filters.search}
-              onChange={(e) => handleFilterChange('search', e.target.value)}
+              onChange={(e) => handleFilterChange("search", e.target.value)}
               className={styles.filterInput}
             />
           </div>
@@ -301,11 +269,13 @@ const EmployeesTable = () => {
             </thead>
             <tbody>
               {currentEmployees.map((employee) => (
-                <tr key={employee.id}>
+                <tr
+                  key={employee.id}
+                  className={styles.clickableRow}
+                  onClick={() => handleEmployeeClick(employee.id)}
+                >
                   <td className={styles.nameCell}>
-                    <div className={styles.employeeName}>
-                      {employee.name}
-                    </div>
+                    <div className={styles.employeeName}>{employee.name}</div>
                   </td>
                   <td>{employee.position}</td>
                   <td>{employee.department}</td>
@@ -315,7 +285,11 @@ const EmployeesTable = () => {
                   <td>{employee.phone}</td>
                   <td>{employee.hireDate}</td>
                   <td>
-                    <span className={`${styles.statusBadge} ${styles[employee.status.toLowerCase()]}`}>
+                    <span
+                      className={`${styles.statusBadge} ${
+                        styles[employee.status.toLowerCase()]
+                      }`}
+                    >
                       {employee.status}
                     </span>
                   </td>
@@ -334,17 +308,19 @@ const EmployeesTable = () => {
           >
             Əvvəlki
           </button>
-          
+
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
             <button
               key={page}
-              className={`${styles.paginationBtn} ${currentPage === page ? styles.active : ''}`}
+              className={`${styles.paginationBtn} ${
+                currentPage === page ? styles.active : ""
+              }`}
               onClick={() => handlePageChange(page)}
             >
               {page}
             </button>
           ))}
-          
+
           <button
             className={styles.paginationBtn}
             onClick={() => handlePageChange(currentPage + 1)}

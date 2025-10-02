@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import './PerformanceCalculator.css';
 
-const PerformanceCalculator = ({ isOpen, onClose, onSave }) => {
+const PerformanceCalculator = ({ isOpen, onClose, onSave, selectedYear, selectedMonth, onYearChange, onMonthChange }) => {
   const [superGross, setSuperGross] = useState(2000);
   const [kpi, setKpi] = useState(100);
   const [basePct, setBasePct] = useState(60);
@@ -68,6 +68,49 @@ const PerformanceCalculator = ({ isOpen, onClose, onSave }) => {
         </div>
 
         <div className="calculator-content">
+          {/* Year and Month Selection */}
+          <div className="date-selection">
+            <div className="date-controls">
+              <div className="date-group">
+                <label>İl</label>
+                <select 
+                  value={selectedYear} 
+                  onChange={(e) => onYearChange && onYearChange(e.target.value)}
+                  className="date-select"
+                >
+                  <option value="2024">2024</option>
+                  <option value="2023">2023</option>
+                  <option value="2022">2022</option>
+                  <option value="2021">2021</option>
+                </select>
+              </div>
+              <div className="date-group">
+                <label>Ay</label>
+                <select 
+                  value={selectedMonth} 
+                  onChange={(e) => onMonthChange && onMonthChange(e.target.value)}
+                  className="date-select"
+                >
+                  <option value="Yanvar">Yanvar</option>
+                  <option value="Fevral">Fevral</option>
+                  <option value="Mart">Mart</option>
+                  <option value="Aprel">Aprel</option>
+                  <option value="May">May</option>
+                  <option value="İyun">İyun</option>
+                  <option value="İyul">İyul</option>
+                  <option value="Avqust">Avqust</option>
+                  <option value="Sentyabr">Sentyabr</option>
+                  <option value="Oktyabr">Oktyabr</option>
+                  <option value="Noyabr">Noyabr</option>
+                  <option value="Dekabr">Dekabr</option>
+                </select>
+              </div>
+            </div>
+            <div className="selected-period">
+              <span className="period-text">Seçilmiş dövr: {selectedYear} - {selectedMonth}</span>
+            </div>
+          </div>
+
           {/* Formula Description */}
           <div className="formula-description">
             <p>KPI-yə əsasən mükafat məbləğini hesablamaq üçün dəyərləri daxil edin.</p>

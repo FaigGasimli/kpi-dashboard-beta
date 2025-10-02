@@ -23,7 +23,7 @@
 .cardHeader h2 {
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
   margin: 0;
 }
 
@@ -79,7 +79,7 @@
 .fullName {
   font-size: 24px;
   font-weight: 700;
-  color: #1f2937;
+  color: #996f29;
   margin: 0 0 16px 0;
 }
 
@@ -151,7 +151,7 @@
 }
 
 .workValue {
-  color: #1f2937;
+  color: #996f29;
   font-weight: 600;
 }
 
@@ -201,7 +201,7 @@
   margin: 0;
   font-size: 16px;
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
 }
 
 .menuButton {
@@ -241,7 +241,7 @@
 .progressText {
   font-size: 14px;
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
   min-width: 40px;
 }
 
@@ -378,7 +378,7 @@
 
 .timelineAction {
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
   margin-bottom: 2px;
 }
 
@@ -715,7 +715,7 @@
 .compactCardHeader h3 {
   font-size: 16px;
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
   margin: 0;
 }
 
@@ -751,7 +751,7 @@
 .compactFullName {
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
   margin: 0 0 8px 0;
 }
 
@@ -806,7 +806,7 @@
 }
 
 .compactWorkValue {
-  color: #1f2937;
+  color: #996f29;
   font-weight: 600;
   font-size: 13px;
 }
@@ -1035,7 +1035,7 @@
 .profileName {
   font-size: 24px;
   font-weight: 700;
-  color: #1f2937;
+  color: #996f29;
   margin: 0 0 8px 0;
   line-height: 1.2;
 }
@@ -1071,7 +1071,7 @@
 .workValue {
   font-size: 14px;
   font-weight: 600;
-  color: #1f2937;
+  color: #996f29;
 }
 
 /* Updated form input styles for consistent sizing */

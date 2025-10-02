@@ -44,7 +44,12 @@ export default function Sidebar() {
       href: "/",
       hasSubmenu: false,
     },
-    { name: "SHR", icon: <Users size={18} />, href: "/shr", hasSubmenu: false },
+    {
+      name: "Əməkdaşlar",
+      icon: <Users size={18} />,
+      href: "/shr",
+      hasSubmenu: false,
+    },
     {
       name: "Bildirişlər",
       icon: <Bell size={18} />,

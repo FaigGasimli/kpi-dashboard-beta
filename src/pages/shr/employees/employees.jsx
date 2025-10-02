@@ -671,7 +671,7 @@ const EmployeeProfile = () => {
     <div className="tab-content">
       <div className="performance-header">
         <div className="performance-title-section">
-          <h2>Bonus Kalkulyatoru - KPI əsaslı Mükafat UI (az)</h2>
+          <h2>Bonus Kalkulyatoru - KPI əsaslı Mükafat</h2>
           <button
             className="calculator-btn"
             onClick={() => setIsCalculatorOpen(true)}

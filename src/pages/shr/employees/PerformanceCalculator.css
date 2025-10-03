@@ -558,9 +558,10 @@
 
 .date-controls {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   align-items: end;
   margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
 .date-group {
@@ -629,5 +630,15 @@
   
   .selected-period {
     text-align: center;
+  }
+}
+
+@media (max-width: 1024px) {
+  .date-controls {
+    gap: 16px;
+  }
+  
+  .date-group {
+    min-width: 100px;
   }
 }

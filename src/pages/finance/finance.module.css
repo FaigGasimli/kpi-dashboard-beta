@@ -953,3 +953,305 @@
   background: #94a3b8;
 }
 
+/* Performance System Styles */
+.performanceSection {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.performanceHeader {
+  padding: 24px;
+  border-bottom: 1px solid #f1f5f9;
+  background-color: #f8fafc;
+}
+
+.performanceTitleSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.performanceTitleSection h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.calculatorBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background-color: #996f29;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calculatorBtn:hover {
+  background-color: #7c5a1f;
+  transform: translateY(-1px);
+}
+
+.performanceDescription {
+  color: #64748b;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.bonusCalculatorContainer {
+  padding: 24px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+  position: relative;
+}
+
+.bonusCalculatorContainer::after {
+  content: "← Kaydırın →";
+  position: absolute;
+  bottom: 8px;
+  right: 24px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+@media (min-width: 769px) {
+  .bonusCalculatorContainer::after {
+    display: none;
+  }
+}
+
+.bonusCalculatorContainer::-webkit-scrollbar {
+  height: 8px;
+}
+
+.bonusCalculatorContainer::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.bonusCalculatorContainer::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.bonusCalculatorContainer::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.bonusCalculatorTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 1000px;
+  table-layout: fixed;
+}
+
+.bonusCalculatorTable thead {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: white;
+}
+
+.bonusCalculatorTable th {
+  padding: 12px 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  border-right: 1px solid #475569;
+  white-space: nowrap;
+}
+
+.bonusCalculatorTable th:first-child {
+  width: 60px; /* Ay column */
+}
+
+.bonusCalculatorTable th:nth-child(2) {
+  width: 100px; /* Super Gross column */
+}
+
+.bonusCalculatorTable th:nth-child(3) {
+  width: 70px; /* Baza % column */
+}
+
+.bonusCalculatorTable th:nth-child(4) {
+  width: 100px; /* Baza (AZN) column */
+}
+
+.bonusCalculatorTable th:nth-child(5) {
+  width: 100px; /* Faktiki KPI column */
+}
+
+.bonusCalculatorTable th:nth-child(6) {
+  width: 60px; /* Band column */
+}
+
+.bonusCalculatorTable th:nth-child(7) {
+  width: 60px; /* Koef column */
+}
+
+.bonusCalculatorTable th:nth-child(8) {
+  width: 100px; /* Mükafat faizi column */
+}
+
+.bonusCalculatorTable th:nth-child(9) {
+  width: 120px; /* Mükafat (AZN) column */
+}
+
+.bonusCalculatorTable th:last-child {
+  border-right: none;
+}
+
+.bonusCalculatorTable td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #f1f5f9;
+  border-right: 1px solid #f1f5f9;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.4;
+  font-size: 13px;
+}
+
+.bonusCalculatorTable td:last-child {
+  border-right: none;
+}
+
+.bonusCalculatorTable tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.bonusCalculatorTable tbody tr:nth-child(even) {
+  background-color: #fafbfc;
+}
+
+.bonusCalculatorTable tbody tr:nth-child(even):hover {
+  background-color: #f1f5f9;
+}
+
+.monthCell {
+  background-color: #f8fafc;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.dataCell {
+  color: #374151;
+  font-weight: 500;
+}
+
+.calculatedCell {
+  background-color: #dcfce7;
+  color: #166534;
+  font-weight: 600;
+}
+
+.summaryRow {
+  background-color: #f8fafc !important;
+  border-top: 2px solid #e2e8f0;
+  font-weight: 600;
+}
+
+.summaryRow:hover {
+  background-color: #f1f5f9 !important;
+}
+
+.summaryLabel {
+  background-color: #e2e8f0 !important;
+  color: #374151 !important;
+  font-weight: 700;
+  text-align: left !important;
+  padding-left: 16px !important;
+}
+
+.summaryValue {
+  background-color: #dcfce7 !important;
+  color: #166534 !important;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Mobile Responsive Styles for Bonus Calculator Table */
+@media (max-width: 768px) {
+  .bonusCalculatorContainer {
+    padding: 16px;
+    margin: 0 -16px;
+  }
+  
+  .bonusCalculatorTable {
+    min-width: 900px;
+    font-size: 12px;
+  }
+  
+  .bonusCalculatorTable th {
+    padding: 8px 6px;
+    font-size: 11px;
+  }
+  
+  .bonusCalculatorTable td {
+    padding: 8px 6px;
+    font-size: 11px;
+  }
+  
+  .performanceHeader {
+    padding: 16px;
+  }
+  
+  .performanceTitleSection {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .performanceTitleSection h2 {
+    font-size: 18px;
+  }
+  
+  .calculatorBtn {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bonusCalculatorTable {
+    min-width: 800px;
+    font-size: 11px;
+  }
+  
+  .bonusCalculatorTable th {
+    padding: 6px 4px;
+    font-size: 10px;
+  }
+  
+  .bonusCalculatorTable td {
+    padding: 6px 4px;
+    font-size: 10px;
+  }
+  
+  .performanceTitleSection h2 {
+    font-size: 16px;
+  }
+  
+  .calculatorBtn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+

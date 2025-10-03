@@ -165,28 +165,28 @@ const Dashboard = () => {
 
   const riskyKPIs = [
     {
-      name: "Müştəri məmnuniyyəti",
+      name: "Cərimə və Eskalasiya",
       current: 65,
       target: 85,
       risk: "Yüksək",
       riskLevel: "high",
     },
     {
-      name: "Kredit portfeli keyfiyyəti",
+      name: "Monitorinq və Hesabatlılıq",
       current: 72,
       target: 90,
       risk: "Orta",
       riskLevel: "medium",
     },
     {
-      name: "Əməliyyat səmərəliliyi",
+      name: "AML / ƏL / TMM Uyğunluğu",
       current: 78,
       target: 95,
       risk: "Orta",
       riskLevel: "medium",
     },
     {
-      name: "Rəqəmsal xidmət istifadəsi",
+      name: "Audit və Uyğunsuzluqların İdarə olunması",
       current: 45,
       target: 70,
       risk: "Yüksək",

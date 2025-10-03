@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import './PerformanceCalculator.css';
 
-const PerformanceCalculator = ({ isOpen, onClose, onSave, selectedYear, selectedMonth, onYearChange, onMonthChange }) => {
+const PerformanceCalculator = ({ isOpen, onClose, onSave, selectedYear, selectedMonth, selectedDepartment, onYearChange, onMonthChange, onDepartmentChange }) => {
   const [superGross, setSuperGross] = useState(2000);
   const [kpi, setKpi] = useState(100);
   const [basePct, setBasePct] = useState(60);
@@ -68,7 +68,7 @@ const PerformanceCalculator = ({ isOpen, onClose, onSave, selectedYear, selected
         </div>
 
         <div className="calculator-content">
-          {/* Year and Month Selection */}
+          {/* Year, Month and Department Selection */}
           <div className="date-selection">
             <div className="date-controls">
               <div className="date-group">
@@ -105,9 +105,31 @@ const PerformanceCalculator = ({ isOpen, onClose, onSave, selectedYear, selected
                   <option value="Dekabr">Dekabr</option>
                 </select>
               </div>
+              <div className="date-group">
+                <label>Şöbə</label>
+                <select 
+                  value={selectedDepartment || ""} 
+                  onChange={(e) => onDepartmentChange && onDepartmentChange(e.target.value)}
+                  className="date-select"
+                >
+                  <option value="">Bütün şöbələr</option>
+                  <option value="İnsan Resursları">İnsan Resursları</option>
+                  <option value="Maliyyə">Maliyyə</option>
+                  <option value="Texniki Dəstək">Texniki Dəstək</option>
+                  <option value="KPI">KPI</option>
+                  <option value="Tapşırıq İdarəetmə">Tapşırıq İdarəetmə</option>
+                  <option value="İstifadəçi Rolları">İstifadəçi Rolları</option>
+                  <option value="Risk İdarəetmə">Risk İdarəetmə</option>
+                  <option value="Müştəri Xidmətləri">Müştəri Xidmətləri</option>
+                  <option value="Hüquq">Hüquq</option>
+                </select>
+              </div>
             </div>
             <div className="selected-period">
-              <span className="period-text">Seçilmiş dövr: {selectedYear} - {selectedMonth}</span>
+              <span className="period-text">
+                Seçilmiş dövr: {selectedYear} - {selectedMonth}
+                {selectedDepartment && ` - ${selectedDepartment}`}
+              </span>
             </div>
           </div>
 

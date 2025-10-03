@@ -22,7 +22,7 @@ const SHR = () => {
       color: "#996F29",
       chartData: [12, 11, 10, 12, 12],
     },
-  
+
     {
       label: "Bu ay işə qəbul",
       value: "23",
@@ -301,19 +301,16 @@ const SHR = () => {
                 <div className={styles.modernFormGroup}>
                   <label>Departament</label>
                   <select className={styles.modernSelect}>
-                    <option>Departament seç</option>
-                    <option>İnformasiya texnologiyası</option>
-                    <option>Maliyyə</option>
-                    <option>İnsan resursları</option>
+                    <option>Komplayens Departament</option>
                   </select>
                 </div>
                 <div className={styles.modernFormGroup}>
                   <label>Şöbə</label>
                   <select className={styles.modernSelect}>
                     <option>Şöbə seç</option>
-                    <option>KMS şöbəsi</option>
-                    <option>IT şöbəsi</option>
-                    <option>HR şöbəsi</option>
+                    <option>ƏL / TMM üzrə Analitika şöbəsi</option>
+                    <option>Məlumatların emalı və Hesabatlıq şöbəsi</option>
+                    <option>Komplayens monitorinq şöbəsi</option>
                   </select>
                 </div>
               </div>
@@ -414,9 +411,9 @@ const SHR = () => {
                 <label>Aid olduğu şöbə</label>
                 <select className={styles.modernSelect}>
                   <option>Şöbə seç</option>
-                  <option>KMS şöbəsi</option>
-                  <option>IT şöbəsi</option>
-                  <option>HR şöbəsi</option>
+                  <option>ƏL / TMM üzrə Analitika şöbəsi</option>
+                  <option>Məlumatların emalı və Hesabatlıq şöbəsi</option>
+                  <option>Komplayens monitorinq şöbəsi</option>
                 </select>
               </div>
               <div className={styles.modernFormGroup}>
@@ -444,10 +441,7 @@ const SHR = () => {
               <div className={styles.modernFormGroup}>
                 <label>Aid olduğu departament</label>
                 <select className={styles.modernSelect}>
-                  <option>Departament seç</option>
-                  <option>İnformasiya texnologiyası</option>
-                  <option>Maliyyə</option>
-                  <option>İnsan resursları</option>
+                  <option>Komplayens Departament</option>
                 </select>
               </div>
               <div className={styles.modernFormRow}>

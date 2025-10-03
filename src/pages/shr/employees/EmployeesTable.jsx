@@ -23,9 +23,9 @@ const EmployeesTable = () => {
       id: 1,
       name: "Vəfa Vahabova Namiq qızı",
       position: "KMS şöbəsi rəisi",
-      department: "İnsan Resursları",
+      department: "Komplayens Departamenti",
       branch: "KMS şöbəsi",
-      division: "Komplayens departamenti",
+      division: "Məlumatların emalı və Hesabatlıq şöbəsi",
       email: "vefa.vahabova@bank.az",
       phone: "+994 50 123 45 67",
       hireDate: "21.02.2012",
@@ -35,9 +35,9 @@ const EmployeesTable = () => {
       id: 2,
       name: "Rəşad Məmmədov",
       position: "HR məsləhətçisi",
-      department: "İnsan Resursları",
+      department: "Komplayens Departamenti",
       branch: "KMS şöbəsi",
-      division: "Komplayens departamenti",
+      division: "Məlumatların emalı və Hesabatlıq şöbəsi",
       email: "rashad.mammadov@bank.az",
       phone: "+994 50 234 56 78",
       hireDate: "15.03.2015",
@@ -47,9 +47,9 @@ const EmployeesTable = () => {
       id: 3,
       name: "Jalə Hüseynova",
       position: "HR məsləhətçisi",
-      department: "İnsan Resursları",
+      department: "Komplayens Departamenti",
       branch: "KMS şöbəsi",
-      division: "Komplayens departamenti",
+      division: "Məlumatların emalı və Hesabatlıq şöbəsi",
       email: "jale.huseynova@bank.az",
       phone: "+994 50 345 67 89",
       hireDate: "10.06.2018",
@@ -59,9 +59,9 @@ const EmployeesTable = () => {
       id: 4,
       name: "Nigar Əliyeva",
       position: "HR məsləhətçisi",
-      department: "İnsan Resursları",
+      department: "Komplayens Departamenti",
       branch: "KMS şöbəsi",
-      division: "Komplayens departamenti",
+      division: "Məlumatların emalı və Hesabatlıq şöbəsi",
       email: "nigar.aliyeva@bank.az",
       phone: "+994 50 456 78 90",
       hireDate: "05.09.2019",
@@ -71,9 +71,9 @@ const EmployeesTable = () => {
       id: 5,
       name: "Elçin Babayev",
       position: "HR məsləhətçisi",
-      department: "İnsan Resursları",
+      department: "Komplayens Departamenti",
       branch: "KMS şöbəsi",
-      division: "Komplayens departamenti",
+      division: "Məlumatların emalı və Hesabatlıq şöbəsi",
       email: "elcin.babayev@bank.az",
       phone: "+994 50 567 89 01",
       hireDate: "12.01.2020",
@@ -83,9 +83,9 @@ const EmployeesTable = () => {
       id: 6,
       name: "Aygün Məmmədova",
       position: "HR məsləhətçisi",
-      department: "İnsan Resursları",
+      department: "Komplayens Departamenti",
       branch: "KMS şöbəsi",
-      division: "Komplayens departamenti",
+      division: "Məlumatların emalı və Hesabatlıq şöbəsi",
       email: "aygun.mammadova@bank.az",
       phone: "+994 50 678 90 12",
       hireDate: "20.03.2021",
@@ -95,9 +95,9 @@ const EmployeesTable = () => {
       id: 7,
       name: "Tural Əliyev",
       position: "HR məsləhətçisi",
-      department: "İnsan Resursları",
+      department: "Komplayens Departamenti",
       branch: "KMS şöbəsi",
-      division: "Komplayens departamenti",
+      division: "Məlumatların emalı və Hesabatlıq şöbəsi",
       email: "tural.aliyev@bank.az",
       phone: "+994 50 789 01 23",
       hireDate: "08.07.2022",
@@ -107,9 +107,9 @@ const EmployeesTable = () => {
       id: 8,
       name: "Günel Həsənova",
       position: "HR məsləhətçisi",
-      department: "İnsan Resursları",
+      department: "Komplayens Departamenti",
       branch: "KMS şöbəsi",
-      division: "Komplayens departamenti",
+      division: "Məlumatların emalı və Hesabatlıq şöbəsi",
       email: "gunel.hasanova@bank.az",
       phone: "+994 50 890 12 34",
       hireDate: "15.11.2022",
@@ -119,9 +119,9 @@ const EmployeesTable = () => {
       id: 9,
       name: "Rəvan Quliyev",
       position: "HR məsləhətçisi",
-      department: "İnsan Resursları",
+      department: "Komplayens Departamenti",
       branch: "KMS şöbəsi",
-      division: "Komplayens departamenti",
+      division: "Məlumatların emalı və Hesabatlıq şöbəsi",
       email: "revan.quliyev@bank.az",
       phone: "+994 50 901 23 45",
       hireDate: "03.02.2023",
@@ -131,9 +131,9 @@ const EmployeesTable = () => {
       id: 10,
       name: "Leyla Məmmədova",
       position: "HR məsləhətçisi",
-      department: "İnsan Resursları",
+      department: "Komplayens Departamenti",
       branch: "KMS şöbəsi",
-      division: "Komplayens departamenti",
+      division: "Məlumatların emalı və Hesabatlıq şöbəsi",
       email: "leyla.mammadova@bank.az",
       phone: "+994 50 012 34 56",
       hireDate: "18.05.2023",
@@ -230,10 +230,10 @@ const EmployeesTable = () => {
             >
               <option value="">Bütün şöbələr</option>
               <option value="Komplayens departamenti">
-                Komplayens departamenti
+                ƏL / TMM üzrə Analitika şöbəsi
               </option>
-              <option value="Risk İdarəetməsi">Risk İdarəetməsi</option>
-              <option value="Hüquq Şöbəsi">Hüquq Şöbəsi</option>
+              <option value="Risk İdarəetməsi">Məlumatların emalı və Hesabatlıq şöbəsi</option>
+              <option value="Hüquq Şöbəsi">Komplayens monitorinq şöbəsi</option>
             </select>
           </div>
 
@@ -259,7 +259,6 @@ const EmployeesTable = () => {
                 <th>Ad Soyad</th>
                 <th>Vəzifə</th>
                 <th>Departament</th>
-                <th>Filial</th>
                 <th>Şöbə</th>
                 <th>Email</th>
                 <th>Telefon</th>

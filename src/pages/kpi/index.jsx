@@ -1217,14 +1217,14 @@ export default function KPIHomePage() {
                 >
                   KPI Siyahısı
                 </button>
-                <button
+                {/* <button
                   className={`${styles.tabsTrigger} ${
                     activeTab === "employee" ? styles.active : ""
                   }`}
                   onClick={() => setActiveTab("employee")}
                 >
                   KPI Nəticələri
-                </button>
+                </button> */}
               </div>
 
               {activeTab === "overview" && (

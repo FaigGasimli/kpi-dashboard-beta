@@ -522,13 +522,13 @@ const EmployeeProfile = () => {
       </div>
 
       <div className="tasks-sections">
-        {/* Completed Tasks */}
-        <div className="task-section completed">
+        {/* Overdue Tasks */}
+        <div className="task-section waiting">
           <div className="section-header">
-            <h3>Tamamlanmış</h3>
+            <h3>Gecikmiş</h3>
           </div>
           {tasks
-            .filter((task) => task.status === "Tamamlandı")
+            .filter((task) => task.status === "Planlaşdırılır")
             .map((task) => (
               <div key={task.id} className="task-card">
                 <div className="task-card-header">
@@ -545,7 +545,7 @@ const EmployeeProfile = () => {
                     </div>
                   </div>
                   <div className="task-actions">
-                    <span className="status-badge completed">Tamamlandı</span>
+                    <span className="status-badge waiting">Gecikmiş</span>
                     <div className="responsible-avatars">
                       {task.executors.slice(0, 3).map((executor, index) => (
                         <div key={index} className="avatar" title={executor}>
@@ -602,13 +602,13 @@ const EmployeeProfile = () => {
             ))}
         </div>
 
-        {/* Waiting Tasks */}
-        <div className="task-section waiting">
+        {/* Completed Tasks */}
+        <div className="task-section completed">
           <div className="section-header">
-            <h3>Gözləyən</h3>
+            <h3>Tamamlanmış</h3>
           </div>
           {tasks
-            .filter((task) => task.status === "Planlaşdırılır")
+            .filter((task) => task.status === "Tamamlandı")
             .map((task) => (
               <div key={task.id} className="task-card">
                 <div className="task-card-header">
@@ -625,7 +625,7 @@ const EmployeeProfile = () => {
                     </div>
                   </div>
                   <div className="task-actions">
-                    <span className="status-badge waiting">Gözləyən</span>
+                    <span className="status-badge completed">Tamamlandı</span>
                     <div className="responsible-avatars">
                       {task.executors.slice(0, 3).map((executor, index) => (
                         <div key={index} className="avatar" title={executor}>
@@ -684,6 +684,49 @@ const EmployeeProfile = () => {
           hesablayın.
         </p>
       </div>
+
+      {/* Filter Section */}
+      <div className="performance-filters">
+        <div className="filter-row">
+          <div className="filter-group">
+            <label>İl</label>
+            <select className="filter-select">
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+            </select>
+          </div>
+          <div className="filter-group">
+            <label>Ay</label>
+            <select className="filter-select">
+              <option value="all">Bütün aylar</option>
+              <option value="1">Yanvar</option>
+              <option value="2">Fevral</option>
+              <option value="3">Mart</option>
+              <option value="4">Aprel</option>
+              <option value="5">May</option>
+              <option value="6">İyun</option>
+              <option value="7">İyul</option>
+              <option value="8">Avqust</option>
+              <option value="9">Sentyabr</option>
+              <option value="10">Oktyabr</option>
+              <option value="11">Noyabr</option>
+              <option value="12">Dekabr</option>
+            </select>
+          </div>
+          <div className="filter-group">
+            <label>Rüb</label>
+            <select className="filter-select">
+              <option value="all">Bütün rüblər</option>
+              <option value="1">I Rüb (Yan-Fev-Mar)</option>
+              <option value="2">II Rüb (Apr-May-İyun)</option>
+              <option value="3">III Rüb (İyul-Avq-Sen)</option>
+              <option value="4">IV Rüb (Okt-Noy-Dek)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
 
       <div className="bonus-calculator-container">
         <table className="bonus-calculator-table">
@@ -1107,14 +1150,14 @@ const EmployeeProfile = () => {
         {/* Tabs Navigation */}
         <div className="tabs-container">
           <div className="tabs-nav">
-            <button
+            {/* <button
               className={
                 activeTab === "bonus" ? "tab-button active" : "tab-button"
               }
               onClick={() => setActiveTab("bonus")}
             >
               Bonus Siyahısı
-            </button>
+            </button> */}
             <button
               className={
                 activeTab === "tasks" ? "tab-button active" : "tab-button"
@@ -1123,14 +1166,7 @@ const EmployeeProfile = () => {
             >
               Tapşırıqlar
             </button>
-            <button
-              className={
-                activeTab === "performance" ? "tab-button active" : "tab-button"
-              }
-              onClick={() => setActiveTab("performance")}
-            >
-              Performans Sistemi
-            </button>
+            
             <button
               className={
                 activeTab === "discipline" ? "tab-button active" : "tab-button"
@@ -1146,6 +1182,14 @@ const EmployeeProfile = () => {
               onClick={() => setActiveTab("training")}
             >
               Təlim və İnkişaf
+            </button>
+            <button
+              className={
+                activeTab === "performance" ? "tab-button active" : "tab-button"
+              }
+              onClick={() => setActiveTab("performance")}
+            >
+              Performans Sistemi
             </button>
           </div>
 

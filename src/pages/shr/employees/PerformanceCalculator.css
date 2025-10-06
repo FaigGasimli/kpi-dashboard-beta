@@ -557,11 +557,11 @@
 }
 
 .date-controls {
-  display: flex;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
   align-items: end;
   margin-bottom: 16px;
-  flex-wrap: wrap;
 }
 
 .date-group {
@@ -619,9 +619,8 @@
 /* Responsive Design for Date Selection */
 @media (max-width: 768px) {
   .date-controls {
-    flex-direction: column;
-    gap: 16px;
-    align-items: stretch;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
   
   .date-group {
@@ -633,9 +632,17 @@
   }
 }
 
+@media (max-width: 480px) {
+  .date-controls {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
 @media (max-width: 1024px) {
   .date-controls {
-    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
   }
   
   .date-group {

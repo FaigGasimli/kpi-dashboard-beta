@@ -141,6 +141,7 @@ const EmployeeView = () => {
       {/* Filters */}
       <div className={styles.filters}>
         <select className={styles.filterSelect}>
+          <option>2025</option>
           <option>2024</option>
           <option>2023</option>
         </select>

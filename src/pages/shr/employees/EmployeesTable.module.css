@@ -203,6 +203,16 @@
   color: #991b1b;
 }
 
+.percentageCell {
+  text-align: center;
+  font-weight: 600;
+}
+
+.percentageValue {
+  font-weight: 600;
+  color: #374151;
+}
+
 .pagination {
   display: flex;
   justify-content: center;

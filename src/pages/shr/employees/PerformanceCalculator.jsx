@@ -68,9 +68,44 @@ const PerformanceCalculator = ({ isOpen, onClose, onSave, selectedYear, selected
         </div>
 
         <div className="calculator-content">
-          {/* Year, Month and Department Selection */}
+          {/* Filters Selection */}
           <div className="date-selection">
             <div className="date-controls">
+              <div className="date-group">
+                <label>Filial</label>
+                <select className="date-select">
+                  <option value="all">Bütün filiallar</option>
+                  <option value="baku">Bakı filialı</option>
+                  <option value="ganja">Gəncə filialı</option>
+                  <option value="sumgayit">Sumqayıt filialı</option>
+                  <option value="shirvan">Şirvan filialı</option>
+                  <option value="lankaran">Lənkəran filialı</option>
+                </select>
+              </div>
+              <div className="date-group">
+                <label>Departament</label>
+                <select className="date-select">
+                  <option value="all">Bütün departamentlər</option>
+                  <option value="compliance">Komplayens Departamenti</option>
+                  <option value="hr">İnsan Resursları Departamenti</option>
+                  <option value="finance">Maliyyə Departamenti</option>
+                  <option value="risk">Risk İdarəetməsi Departamenti</option>
+                  <option value="legal">Hüquq Departamenti</option>
+                </select>
+              </div>
+              <div className="date-group">
+                <label>Şöbə</label>
+                <select 
+                  value={selectedDepartment || ""} 
+                  onChange={(e) => onDepartmentChange && onDepartmentChange(e.target.value)}
+                  className="date-select"
+                >
+                  <option value="">Bütün şöbələr</option>
+                  <option value="ƏL/TMM üzrə Analitika şöbəsi">ƏL/TMM üzrə Analitika şöbəsi</option>
+                  <option value="Məlumatların emalı və Hesabatlıq şöbəsi">Məlumatların emalı və Hesabatlıq şöbəsi</option>
+                  <option value="Komplayens monitorinq şöbəsi">Komplayens monitorinq şöbəsi</option>
+                </select>
+              </div>
               <div className="date-group">
                 <label>İl</label>
                 <select 
@@ -106,22 +141,13 @@ const PerformanceCalculator = ({ isOpen, onClose, onSave, selectedYear, selected
                 </select>
               </div>
               <div className="date-group">
-                <label>Şöbə</label>
-                <select 
-                  value={selectedDepartment || ""} 
-                  onChange={(e) => onDepartmentChange && onDepartmentChange(e.target.value)}
-                  className="date-select"
-                >
-                  <option value="">Bütün şöbələr</option>
-                  <option value="İnsan Resursları">İnsan Resursları</option>
-                  <option value="Maliyyə">Maliyyə</option>
-                  <option value="Texniki Dəstək">Texniki Dəstək</option>
-                  <option value="KPI">KPI</option>
-                  <option value="Tapşırıq İdarəetmə">Tapşırıq İdarəetmə</option>
-                  <option value="İstifadəçi Rolları">İstifadəçi Rolları</option>
-                  <option value="Risk İdarəetmə">Risk İdarəetmə</option>
-                  <option value="Müştəri Xidmətləri">Müştəri Xidmətləri</option>
-                  <option value="Hüquq">Hüquq</option>
+                <label>Rüb</label>
+                <select className="date-select">
+                  <option value="all">Bütün rüblər</option>
+                  <option value="1">I Rüb (Yan-Fev-Mar)</option>
+                  <option value="2">II Rüb (Apr-May-İyun)</option>
+                  <option value="3">III Rüb (İyul-Avq-Sen)</option>
+                  <option value="4">IV Rüb (Okt-Noy-Dek)</option>
                 </select>
               </div>
             </div>

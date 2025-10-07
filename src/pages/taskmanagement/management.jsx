@@ -618,20 +618,19 @@ const TaskManagement = () => {
         <div className={styles.tabContainer}>
           <button
             className={`${styles.tab} ${
-              activeTab === "KPİ Tapşırıqları" ? styles.activeTab : ""
-            }`}
-            onClick={() => setActiveTab("KPİ Tapşırıqları")}
-          >
-            KPİ Tapşırıqları
-          </button>
-
-          <button
-            className={`${styles.tab} ${
               activeTab === "Kanban" ? styles.activeTab : ""
             }`}
             onClick={() => setActiveTab("Kanban")}
           >
             Tapşırıqlar lövhəsi
+          </button>
+          <button
+            className={`${styles.tab} ${
+              activeTab === "KPİ Tapşırıqları" ? styles.activeTab : ""
+            }`}
+            onClick={() => setActiveTab("KPİ Tapşırıqları")}
+          >
+            KPİ Tapşırıqları
           </button>
         </div>
 
@@ -721,11 +720,12 @@ const TaskManagement = () => {
           </div>
         )}
 
-
         {activeTab === "KPİ Tapşırıqları" && (
           <div className={styles.tableSection}>
             <div className={styles.tableHeader}>
-              <h3 className={styles.sectionTitle}>KPİ Tapşırıqlarının İcrası</h3>
+              <h3 className={styles.sectionTitle}>
+                KPİ Tapşırıqlarının İcrası
+              </h3>
               <div className={styles.tableActions}>
                 <div className={styles.searchContainer}>
                   <input
@@ -739,7 +739,7 @@ const TaskManagement = () => {
                 <select className={styles.selectButton}>
                   <option>Bütün</option>
                 </select>
-                <button 
+                <button
                   className={styles.addButton}
                   onClick={() => {
                     setSelectedTask(null);

@@ -430,6 +430,60 @@ const EmployeeProfile = () => {
     },
   ];
 
+  // Helpers: classify applied action into measure vs penalty
+  const classifyDiscipline = (appliedMeasure) => {
+    if (!appliedMeasure) {
+      return { measure: "-", penaltyType: "-", penaltyDetail: "-" };
+    }
+    const text = appliedMeasure.toLowerCase();
+    if (text.includes("cərimə")) {
+      return { measure: "-", penaltyType: "Maddi", penaltyDetail: appliedMeasure };
+    }
+    if (text.includes("protokol")) {
+      return { measure: "-", penaltyType: "Protokol", penaltyDetail: appliedMeasure };
+    }
+    // otherwise treat as organizational measure (xəbərdarlıq və s.)
+    return { measure: appliedMeasure, penaltyType: "-", penaltyDetail: "-" };
+  };
+
+  const disciplineCounts = (() => {
+    let measures = 0;
+    let penalties = 0;
+    violationData.forEach(v => {
+      const c = classifyDiscipline(v.appliedMeasure);
+      if (c.penaltyType !== "-") penalties += 1;
+      if (c.measure !== "-") measures += 1;
+    });
+    return { measures, penalties };
+  })();
+
+  // Frequency of each penalty kind/detail to show per-row counts
+  const penaltyCounts = (() => {
+    const map = {};
+    violationData.forEach(v => {
+      const c = classifyDiscipline(v.appliedMeasure);
+      if (c.penaltyType !== "-") {
+        const keyRaw = c.penaltyDetail && c.penaltyDetail !== '-' ? c.penaltyDetail : c.penaltyType;
+        const key = String(keyRaw).toLowerCase();
+        map[key] = (map[key] || 0) + 1;
+      }
+    });
+    return map;
+  })();
+
+  // Frequency of each applied measure to show per-row counts
+  const measureCounts = (() => {
+    const map = {};
+    violationData.forEach(v => {
+      const c = classifyDiscipline(v.appliedMeasure);
+      if (c.measure !== "-") {
+        const key = String(c.measure).toLowerCase();
+        map[key] = (map[key] || 0) + 1;
+      }
+    });
+    return map;
+  })();
+
   const trainingData = [
     {
       name: "Komplayens və Risk İdarəetməsi",
@@ -929,7 +983,8 @@ const EmployeeProfile = () => {
             <th>Tarix</th>
             <th>Status</th>
             <th>Təsviri</th>
-            <th>Tətbiq edilən tədbir / cəza</th>
+            <th>Tətbiq edilən tədbir</th>
+            <th>Cəza (növü)</th>
           </tr>
         </thead>
         <tbody>
@@ -947,9 +1002,30 @@ const EmployeeProfile = () => {
                 </span>
               </td>
               <td className="violation-description">{violation.description}</td>
-              <td className="applied-measure">{violation.appliedMeasure}</td>
+              <td className="applied-measure">{
+                (() => {
+                  const c = classifyDiscipline(violation.appliedMeasure);
+                  if (c.measure === "-") return "-";
+                  const count = measureCounts[String(c.measure).toLowerCase()] || 0;
+                  return `${c.measure} (x${count})`;
+                })()
+              }</td>
+              <td className="applied-measure">{
+                (() => {
+                  const c = classifyDiscipline(violation.appliedMeasure);
+                  if (c.penaltyType === "-") return "-";
+                  const keyRaw = c.penaltyDetail && c.penaltyDetail !== '-' ? c.penaltyDetail : c.penaltyType;
+                  const count = penaltyCounts[String(keyRaw).toLowerCase()] || 0;
+                  return `${c.penaltyType}${c.penaltyDetail && c.penaltyDetail !== '-' ? ` — ${c.penaltyDetail}` : ''} (x${count})`;
+                })()
+              }</td>
             </tr>
           ))}
+          <tr className="summary-row">
+            <td colSpan="4" className="summary-label">Cəmi</td>
+            <td className="summary-value">{disciplineCounts.measures}</td>
+            <td className="summary-value">{disciplineCounts.penalties}</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -966,6 +1042,14 @@ const EmployeeProfile = () => {
           <button className="control-btn">Yeni pozuntu əlavə et</button>
           <button className="control-btn">Tarixə görə filter</button>
           <button className="control-btn active">Bütün</button>
+        </div>
+      </div>
+      <div className="discipline-summary" style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
+        <div className="summary-chip" style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: '8px 12px' }}>
+          Tətbiq edilən tədbir sayı: <strong>{disciplineCounts.measures}</strong>
+        </div>
+        <div className="summary-chip" style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: '8px 12px' }}>
+          Cəza sayı: <strong>{disciplineCounts.penalties}</strong>
         </div>
       </div>
       {renderViolationsTable()}

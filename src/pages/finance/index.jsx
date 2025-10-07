@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import styles from "./finance.module.css";
 import Header from "../../components/header";
 import PerformanceCalculator from "../shr/employees/PerformanceCalculator";
@@ -34,6 +34,49 @@ const CalculatorIcon = () => (
   </svg>
 );
 
+const TrendingUpIcon = () => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <polyline points="22,7 13.5,15.5 8.5,10.5 2,17"></polyline>
+    <polyline points="16,7 22,7 22,13"></polyline>
+  </svg>
+);
+
+const DollarSignIcon = () => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <line x1="12" x2="12" y1="1" y2="23"></line>
+    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+  </svg>
+);
+
+const TargetIcon = () => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <circle cx="12" cy="12" r="10"></circle>
+    <circle cx="12" cy="12" r="6"></circle>
+    <circle cx="12" cy="12" r="2"></circle>
+  </svg>
+);
+
 export default function FinancePage() {
   const [selectedYear, setSelectedYear] = useState("2024");
   const [selectedMonth, setSelectedMonth] = useState("Yanvar");
@@ -43,6 +86,54 @@ export default function FinancePage() {
   const [calculatorMonth, setCalculatorMonth] = useState("Yanvar");
   const [calculatorDepartment, setCalculatorDepartment] = useState("");
   const [savedCalculations, setSavedCalculations] = useState([]);
+  const showPerformance = false; // hide Komplayens table and calculator for now
+
+  // Monthly data used across the page (table + statistics)
+  const monthlyData = useMemo(
+    () => [
+      { month: "Yan", superGross: 2000, basePercent: 60, actualKPI: 100 },
+      { month: "Fev", superGross: 2000, basePercent: 60, actualKPI: 100 },
+      { month: "Mar", superGross: 2000, basePercent: 60, actualKPI: 100 },
+      { month: "Apr", superGross: 2000, basePercent: 60, actualKPI: 100 },
+      { month: "May", superGross: 2000, basePercent: 60, actualKPI: 100 },
+      { month: "İyun", superGross: 2000, basePercent: 60, actualKPI: 100 },
+      { month: "İyul", superGross: 2000, basePercent: 60, actualKPI: 100 },
+      { month: "Avq", superGross: 2000, basePercent: 60, actualKPI: 100 },
+      { month: "Sen", superGross: 2000, basePercent: 60, actualKPI: 100 },
+      { month: "Okt", superGross: 2000, basePercent: 60, actualKPI: 100 },
+      { month: "Noy", superGross: 2000, basePercent: 60, actualKPI: 100 },
+      { month: "Dek", superGross: 2000, basePercent: 60, actualKPI: 100 },
+    ],
+    []
+  );
+
+  // Top statistics calculations
+  const stats = useMemo(() => {
+    const totalSuperGross = monthlyData.reduce((sum, r) => sum + r.superGross, 0);
+    const totalBase = monthlyData.reduce(
+      (sum, r) => sum + (r.superGross * r.basePercent) / 100,
+      0
+    );
+    const totalBonus = monthlyData.reduce(
+      (sum, r) => sum + ((r.superGross * r.basePercent) / 100) * 0.15,
+      0
+    );
+    const avgKpi =
+      monthlyData.reduce((sum, r) => sum + r.actualKPI, 0) / monthlyData.length;
+    const totalPayment = totalBase + totalBonus;
+
+    const formatCurrency = (v) =>
+      `${v.toLocaleString("az-AZ", { minimumFractionDigits: 0 })} AZN`;
+
+    return {
+      totalSuperGross,
+      totalBase,
+      totalBonus,
+      avgKpi,
+      totalPayment,
+      formatCurrency,
+    };
+  }, [monthlyData]);
 
   // Sample departments data
   const departments = [
@@ -96,80 +187,7 @@ export default function FinancePage() {
             </tr>
           </thead>
           <tbody>
-            {[
-              {
-                month: "Yan",
-                superGross: 2000,
-                basePercent: 60,
-                actualKPI: 100,
-              },
-              {
-                month: "Fev",
-                superGross: 2000,
-                basePercent: 60,
-                actualKPI: 100,
-              },
-              {
-                month: "Mar",
-                superGross: 2000,
-                basePercent: 60,
-                actualKPI: 100,
-              },
-              {
-                month: "Apr",
-                superGross: 2000,
-                basePercent: 60,
-                actualKPI: 100,
-              },
-              {
-                month: "May",
-                superGross: 2000,
-                basePercent: 60,
-                actualKPI: 100,
-              },
-              {
-                month: "İyun",
-                superGross: 2000,
-                basePercent: 60,
-                actualKPI: 100,
-              },
-              {
-                month: "İyul",
-                superGross: 2000,
-                basePercent: 60,
-                actualKPI: 100,
-              },
-              {
-                month: "Avq",
-                superGross: 2000,
-                basePercent: 60,
-                actualKPI: 100,
-              },
-              {
-                month: "Sen",
-                superGross: 2000,
-                basePercent: 60,
-                actualKPI: 100,
-              },
-              {
-                month: "Okt",
-                superGross: 2000,
-                basePercent: 60,
-                actualKPI: 100,
-              },
-              {
-                month: "Noy",
-                superGross: 2000,
-                basePercent: 60,
-                actualKPI: 100,
-              },
-              {
-                month: "Dek",
-                superGross: 2000,
-                basePercent: 60,
-                actualKPI: 100,
-              },
-            ].map((row, index) => {
+            {monthlyData.map((row, index) => {
               const baseAmount = (row.superGross * row.basePercent) / 100;
               const band = "A";
               const coefficient = 1;
@@ -220,7 +238,7 @@ export default function FinancePage() {
     <>
       <Header title="Maliyyə İdarəetmə Sistemi" />
       <div className={styles.container}>
-        {/* Filters */}
+        {/* Filters (moved to top) */}
         <div className={styles.filters}>
           <div className={styles.filterGroup}>
             <FilterIcon />
@@ -271,21 +289,92 @@ export default function FinancePage() {
           </div>
         </div>
 
-        {/* Performance System Section */}
-        {renderPerformance()}
+        {/* Summary Cards */}
+        <div className={styles.summaryCards}>
+          <div className={styles.summaryCard}>
+            <div className={styles.cardHeader}>
+              <h3 className={styles.cardTitle}>Ümumi NET Məbləğ</h3>
+              <div className={styles.cardIcon}><DollarSignIcon /></div>
+            </div>
+            <div className={styles.cardContent}>
+              <div className={styles.cardValue}>{stats.formatCurrency(stats.totalSuperGross)}</div>
+              <div className={styles.cardSubtext}>{selectedYear} Aylıq</div>
+            </div>
+          </div>
 
-        {/* Performance Calculator Modal */}
-        <PerformanceCalculator
-          isOpen={isCalculatorOpen}
-          onClose={() => setIsCalculatorOpen(false)}
-          onSave={handleCalculatorSave}
-          selectedYear={calculatorYear}
-          selectedMonth={calculatorMonth}
-          selectedDepartment={calculatorDepartment}
-          onYearChange={setCalculatorYear}
-          onMonthChange={setCalculatorMonth}
-          onDepartmentChange={setCalculatorDepartment}
-        />
+          <div className={styles.summaryCard}>
+            <div className={styles.cardHeader}>
+              <h3 className={styles.cardTitle}>60% Hesablaması</h3>
+              <div className={styles.cardIcon}><TrendingUpIcon /></div>
+            </div>
+            <div className={styles.cardContent}>
+              <div className={styles.cardValue}>{stats.formatCurrency(stats.totalBase)}</div>
+              <div className={styles.cardSubtext}>SUPER GROSS × 60%</div>
+            </div>
+          </div>
+
+          <div className={styles.summaryCard}>
+            <div className={styles.cardHeader}>
+              <h3 className={styles.cardTitle}>15% Hesablaması</h3>
+              <div className={styles.cardIcon}><TargetIcon /></div>
+            </div>
+            <div className={styles.cardContent}>
+              <div className={styles.cardValue}>{stats.formatCurrency(stats.totalBonus)}</div>
+              <div className={styles.cardSubtext}>SUPER GROSS × 15%</div>
+            </div>
+          </div>
+
+          <div className={styles.summaryCard}>
+            <div className={styles.cardHeader}>
+              <h3 className={styles.cardTitle}>Ümumi Bonus</h3>
+              <div className={styles.cardIcon}><CalculatorIcon /></div>
+            </div>
+            <div className={styles.cardContent}>
+              <div className={styles.cardValue}>{stats.formatCurrency(stats.totalBonus)}</div>
+              <div className={styles.cardSubtext}>KPI əsaslı hesablanmış</div>
+            </div>
+          </div>
+
+          <div className={styles.summaryCard}>
+            <div className={styles.cardHeader}>
+              <h3 className={styles.cardTitle}>Orta KPI Nəticəsi</h3>
+              <div className={styles.cardIcon}><TargetIcon /></div>
+            </div>
+            <div className={styles.cardContent}>
+              <div className={styles.cardValue}>{`${stats.avgKpi.toFixed(0)}%`}</div>
+              <div className={styles.cardSubtext}>Hədəf: 100%</div>
+            </div>
+          </div>
+
+          <div className={styles.summaryCard}>
+            <div className={styles.cardHeader}>
+              <h3 className={styles.cardTitle}>Ümumi Ödəniş</h3>
+              <div className={styles.cardIcon}><CalculatorIcon /></div>
+            </div>
+            <div className={styles.cardContent}>
+              <div className={styles.cardValue}>{stats.formatCurrency(stats.totalPayment)}</div>
+              <div className={styles.cardSubtext}>NET + Bonus</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Performance System Section (hidden) */}
+        {showPerformance && renderPerformance()}
+
+        {/* Performance Calculator Modal (hidden) */}
+        {showPerformance && (
+          <PerformanceCalculator
+            isOpen={isCalculatorOpen}
+            onClose={() => setIsCalculatorOpen(false)}
+            onSave={handleCalculatorSave}
+            selectedYear={calculatorYear}
+            selectedMonth={calculatorMonth}
+            selectedDepartment={calculatorDepartment}
+            onYearChange={setCalculatorYear}
+            onMonthChange={setCalculatorMonth}
+            onDepartmentChange={setCalculatorDepartment}
+          />
+        )}
       </div>
     </>
   );

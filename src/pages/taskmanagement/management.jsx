@@ -974,7 +974,7 @@ const TaskManagement = () => {
                 <div className={styles.formActions}>
                   <div className={styles.attachmentActions}>
                     <button className={styles.attachButton}>
-                      📎 File əlavə et
+                       File əlavə et
                     </button>
                     <button className={styles.attachButton}>
                       🔗 KPI əlaqələndir

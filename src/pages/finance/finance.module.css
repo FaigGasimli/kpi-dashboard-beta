@@ -73,6 +73,54 @@
   margin-bottom: 32px;
 }
 
+/* Charts Section */
+.chartsSection {
+  margin-bottom: 32px;
+}
+
+.chartsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 24px;
+}
+
+.chartCard {
+  background-color: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.chartCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.chartHeader {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.chartTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+}
+
+.chartSubtitle {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+}
+
+.chartContainer {
+  width: 100%;
+  height: 300px;
+}
+
 .summaryCard {
   background-color: white;
   border-radius: 12px;
@@ -80,11 +128,13 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border: 1px solid #e2e8f0;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .summaryCard:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
+  border-color: #996f29;
 }
 
 .cardHeader {
@@ -613,6 +663,166 @@
   animation: slideIn 0.3s ease-out;
 }
 
+/* Summary Modal Styles */
+.summaryModal {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  width: 95%;
+  max-width: 1000px;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: slideIn 0.3s ease-out;
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.modalDescription {
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  border-left: 4px solid #996f29;
+}
+
+.modalDescription p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Summary Statistics */
+.summaryStats {
+  margin-bottom: 24px;
+}
+
+.summaryStats h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #996f29;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.statItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  border-left: 4px solid #996f29;
+}
+
+.statLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.statValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* Detailed Table */
+.detailedTable {
+  margin-top: 24px;
+}
+
+.detailedTable h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #996f29;
+}
+
+.detailsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.detailsTable thead {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: white;
+}
+
+.detailsTable th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  border-right: 1px solid #475569;
+}
+
+.detailsTable th:last-child {
+  border-right: none;
+}
+
+.detailsTable td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  border-right: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.detailsTable td:last-child {
+  border-right: none;
+}
+
+.detailsTable tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.detailsTable tbody tr:nth-child(even) {
+  background-color: #fafbfc;
+}
+
+.detailsTable tbody tr:nth-child(even):hover {
+  background-color: #f1f5f9;
+}
+
+/* Performance Badge */
+.performanceBadge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.performanceBadge.good {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.performanceBadge.poor {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
 .modalHeader {
   display: flex;
   justify-content: space-between;
@@ -797,6 +1007,19 @@
     grid-template-columns: 1fr;
   }
 
+  .chartsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .chartCard {
+    padding: 16px;
+  }
+
+  .chartContainer {
+    height: 250px;
+  }
+
   .performanceTable {
     min-width: 1000px;
     font-size: 12px;
@@ -827,6 +1050,12 @@
     margin: 20px;
   }
 
+  .summaryModal {
+    width: 98%;
+    max-width: 95vw;
+    margin: 10px;
+  }
+
   .modalContent {
     padding: 16px;
   }
@@ -834,6 +1063,24 @@
   .modalHeader,
   .modalFooter {
     padding: 16px;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .statItem {
+    padding: 10px 12px;
+  }
+
+  .detailsTable {
+    font-size: 12px;
+  }
+
+  .detailsTable th,
+  .detailsTable td {
+    padding: 8px 12px;
   }
 
   .modalFooter {
@@ -883,6 +1130,50 @@
 
   .infoCard {
     padding: 16px;
+  }
+
+  .chartCard {
+    padding: 12px;
+  }
+
+  .chartContainer {
+    height: 200px;
+  }
+
+  .chartTitle {
+    font-size: 16px;
+  }
+
+  .chartSubtitle {
+    font-size: 12px;
+  }
+
+  .summaryModal {
+    width: 98%;
+    max-width: 98vw;
+    margin: 5px;
+  }
+
+  .modalTitle {
+    font-size: 16px;
+  }
+
+  .detailsTable {
+    font-size: 11px;
+  }
+
+  .detailsTable th,
+  .detailsTable td {
+    padding: 6px 8px;
+  }
+
+  .statItem {
+    padding: 8px 10px;
+  }
+
+  .statLabel,
+  .statValue {
+    font-size: 12px;
   }
 
   .calculationPreview {

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import Logo from "../../assests/logo.png";
+import Logo from "../../assests/logo.PNG";
 import {
   ChevronRight,
   X,
@@ -170,18 +170,12 @@ export default function Sidebar() {
   }, [showLogoutConfirm]);
 
   const toggleMenu = (menuName, e) => {
-    if (
-      e.target.closest(`.${styles.chevronContainer}`) ||
-      e.target.closest(`.${styles.chevronBox}`) ||
-      e.target.closest(`.${styles.chevron}`)
-    ) {
-      e.preventDefault();
-      e.stopPropagation();
-      setExpandedMenus((prev) => ({
-        ...prev,
-        [menuName]: !prev[menuName],
-      }));
-    }
+    e.preventDefault();
+    e.stopPropagation();
+    setExpandedMenus((prev) => ({
+      ...prev,
+      [menuName]: !prev[menuName],
+    }));
   };
 
   const toggleSidebar = () => {
@@ -192,21 +186,6 @@ export default function Sidebar() {
 
   const handleMenuItemClick = (item, e) => {
     setActiveItem(item.name);
-    if (
-      e.target.closest(`.${styles.chevronContainer}`) ||
-      e.target.closest(`.${styles.chevronBox}`) ||
-      e.target.closest(`.${styles.chevron}`)
-    ) {
-      e.preventDefault();
-      e.stopPropagation();
-      if (item.hasSubmenu) {
-        setExpandedMenus((prev) => ({
-          ...prev,
-          [item.name]: !prev[item.name],
-        }));
-      }
-      return;
-    }
     if (isMobile && !item.hasSubmenu) {
       setSidebarOpen(false);
     }

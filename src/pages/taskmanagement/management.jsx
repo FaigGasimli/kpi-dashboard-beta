@@ -334,7 +334,7 @@ const TaskManagement = () => {
     // Apply filters
     if (filters.department) {
       allTasks = allTasks.filter(
-        (task) => task.department === filters.department
+        (task) => task.department === filters.department,
       );
     }
     if (filters.executor) {
@@ -345,8 +345,8 @@ const TaskManagement = () => {
         filters.priority === "high"
           ? "8"
           : filters.priority === "medium"
-          ? "5"
-          : "1"
+            ? "5"
+            : "1",
       );
       allTasks = allTasks.filter((task) => {
         const taskWeight = parseInt(task.weightDegree);
@@ -368,19 +368,19 @@ const TaskManagement = () => {
             return deadline.toDateString() === today.toDateString();
           case "week":
             const weekFromNow = new Date(
-              today.getTime() + 7 * 24 * 60 * 60 * 1000
+              today.getTime() + 7 * 24 * 60 * 60 * 1000,
             );
             return deadline <= weekFromNow;
           case "month":
             const monthFromNow = new Date(
-              today.getTime() + 30 * 24 * 60 * 60 * 1000
+              today.getTime() + 30 * 24 * 60 * 60 * 1000,
             );
             return deadline <= monthFromNow;
           case "overdue":
             return deadline < today && task.status !== "Tamamlanmış";
           case "upcoming":
             const upcoming = new Date(
-              today.getTime() + 7 * 24 * 60 * 60 * 1000
+              today.getTime() + 7 * 24 * 60 * 60 * 1000,
             );
             return deadline <= upcoming && deadline >= today;
           default:
@@ -394,7 +394,7 @@ const TaskManagement = () => {
           task.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
           task.executor.toLowerCase().includes(searchTerm.toLowerCase()) ||
           task.workProcess.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          task.workProcedure.toLowerCase().includes(searchTerm.toLowerCase())
+          task.workProcedure.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     }
 
@@ -463,7 +463,7 @@ const TaskManagement = () => {
       const updatedTasks = { ...prevTasks };
       Object.keys(updatedTasks).forEach((department) => {
         const taskIndex = updatedTasks[department].findIndex(
-          (t) => t.id === taskId
+          (t) => t.id === taskId,
         );
         if (taskIndex !== -1) {
           updatedTasks[department][taskIndex] = {
@@ -481,7 +481,7 @@ const TaskManagement = () => {
       const updatedTasks = { ...prevTasks };
       Object.keys(updatedTasks).forEach((department) => {
         const taskIndex = updatedTasks[department].findIndex(
-          (t) => t.id === taskId
+          (t) => t.id === taskId,
         );
         if (taskIndex !== -1) {
           updatedTasks[department][taskIndex] = {
@@ -499,7 +499,7 @@ const TaskManagement = () => {
       const updatedTasks = { ...prevTasks };
       Object.keys(updatedTasks).forEach((department) => {
         updatedTasks[department] = updatedTasks[department].filter(
-          (t) => t.id !== taskId
+          (t) => t.id !== taskId,
         );
       });
       return updatedTasks;
@@ -511,7 +511,7 @@ const TaskManagement = () => {
       Math.max(
         ...Object.values(tasks)
           .flat()
-          .map((t) => t.id)
+          .map((t) => t.id),
       ) + 1;
     const taskWithId = { ...newTask, id: taskId };
 
@@ -595,7 +595,7 @@ const TaskManagement = () => {
             cy="60"
             r={radius}
             fill="none"
-            stroke="#996F29"
+            stroke="#4b5563"
             strokeWidth="8"
             strokeDasharray={strokeDasharray}
             strokeDashoffset={strokeDashoffset}
@@ -661,7 +661,7 @@ const TaskManagement = () => {
               <CircularProgress percentage={75} />
               <div className={styles.chartLegend}>
                 {[
-                  { label: "Tamamlanmış", color: "#996F29" },
+                  { label: "Tamamlanmış", color: "#4b5563" },
                   { label: "Davam Edən", color: "#D4B896" },
                   { label: "Gözləyən", color: "#F5E6D3" },
                 ].map((item, index) => (
@@ -836,7 +836,7 @@ const TaskManagement = () => {
                         <div className={styles.tableCell} data-label="Status">
                           <span
                             className={`${styles.statusBadge} ${getStatusClass(
-                              task.status
+                              task.status,
                             )}`}
                           >
                             {task.status}

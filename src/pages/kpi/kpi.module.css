@@ -101,7 +101,7 @@
 
 .filterSelect:focus {
   outline: none;
-  border-color: #996f29;
+  border-color: #4b5563;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
@@ -154,7 +154,7 @@
 }
 
 .cardIcon {
-  color: #996f29;
+  color: #4b5563;
 }
 
 .chartsSection {
@@ -332,7 +332,7 @@
 
 .searchInput:focus {
   outline: none;
-  border-color: #996f29;
+  border-color: #4b5563;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
@@ -556,7 +556,7 @@
 }
 
 .controlIcon {
-  color: #996f29;
+  color: #4b5563;
 }
 
 .modernOrgChart {
@@ -647,7 +647,7 @@
 }
 
 .chiefLevel {
-  background: linear-gradient(135deg, #996f29 0%, #60a5fa 100%);
+  background: linear-gradient(135deg, #4b5563 0%, #60a5fa 100%);
   box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
 }
 
@@ -729,7 +729,7 @@
 
 .primaryButton {
   padding: 8px 16px;
-  background-color: #996f29 !important;
+  background-color: #4b5563 !important;
   color: white;
   border: none;
   border-radius: 6px;
@@ -816,7 +816,7 @@
 .nodeIcon {
   display: flex;
   align-items: center;
-  color: #996f29;
+  color: #4b5563;
 }
 
 .nodeName {
@@ -901,7 +901,7 @@
 }
 
 .divisionNode {
-  background: linear-gradient(135deg, #059669 0%, #996f29 100%);
+  background: linear-gradient(135deg, #059669 0%, #4b5563 100%);
   color: white;
   border-color: #047857;
 }
@@ -930,7 +930,7 @@
 
 .chiefNode {
   background-color: #dbeafe;
-  border-color: #996f29;
+  border-color: #4b5563;
   color: #1e40af;
 }
 
@@ -939,7 +939,7 @@
 }
 
 .chiefNode .nodeIcon {
-  color: #996f29;
+  color: #4b5563;
 }
 
 .leadingNode {
@@ -1018,7 +1018,7 @@
 
 .chiefColor {
   background-color: #dbeafe;
-  border-color: #996f29;
+  border-color: #4b5563;
 }
 
 .leadingColor {
@@ -1336,8 +1336,8 @@
 }
 
 .tabsTrigger.active {
-  color: #996f29;
-  border-bottom-color: #996f29;
+  color: #4b5563;
+  border-bottom-color: #4b5563;
   background-color: #f8fafc;
 }
 
@@ -1376,7 +1376,7 @@
 
 .filterSelect:focus {
   outline: none;
-  border-color: #996f29;
+  border-color: #4b5563;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
@@ -1410,7 +1410,7 @@
 }
 
 .cardIcon {
-  color: #996f29;
+  color: #4b5563;
 }
 
 .cardContent {
@@ -1648,13 +1648,13 @@
 
 .searchInput:focus {
   outline: none;
-  border-color: #996f29;
+  border-color: #4b5563;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .primaryButton {
   padding: 8px 16px;
-  background-color: #996f29;
+  background-color: #4b5563;
   color: white;
   border: none;
   border-radius: 6px;
@@ -1830,7 +1830,7 @@
 }
 
 .nodeIcon {
-  color: #996f29;
+  color: #4b5563;
 }
 
 .nodeName {
@@ -1874,12 +1874,12 @@
 
 .managementNode {
   background-color: #dbeafe;
-  border-color: #996f29;
+  border-color: #4b5563;
 }
 
 .departmentNode {
   background-color: #dcfce7;
-  border-color: #996f29;
+  border-color: #4b5563;
 }
 
 .divisionNode {
@@ -1972,7 +1972,7 @@
 .breadcrumbItem {
   background: none;
   border: none;
-  color: #996f29;
+  color: #4b5563;
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
@@ -2029,7 +2029,7 @@
 }
 
 .branchCard:hover {
-  border-color: #996f29;
+  border-color: #4b5563;
   box-shadow: 0 4px 12px rgba(153, 111, 41, 0.1);
   transform: translateY(-2px);
 }
@@ -2134,7 +2134,7 @@
 .breadcrumbItem {
   background: none;
   border: none;
-  color: #996f29;
+  color: #4b5563;
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
@@ -2191,7 +2191,7 @@
 }
 
 .branchCard:hover {
-  border-color: #996f29;
+  border-color: #4b5563;
   box-shadow: 0 4px 12px rgba(153, 111, 41, 0.1);
   transform: translateY(-2px);
 }
@@ -2317,7 +2317,7 @@
 
 .employeeRow:hover {
   background-color: #f8fafc;
-  border-color: #996f29;
+  border-color: #4b5563;
 }
 
 .employeeRow:last-child {
@@ -2352,7 +2352,7 @@
 .employeeName {
   background: none;
   border: none;
-  color: #996f29;
+  color: #4b5563;
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
@@ -2406,7 +2406,7 @@
 
 .kpiProgressFill {
   height: 100%;
-  background-color: #996f29;
+  background-color: #4b5563;
   border-radius: 3px;
   transition: width 0.3s ease;
 }
@@ -2462,7 +2462,7 @@
 }
 
 .detailButton {
-  background-color: #996f29;
+  background-color: #4b5563;
   border: none;
   border-radius: 6px;
   color: white;

@@ -19,7 +19,7 @@ const SHR = () => {
     {
       label: "Şöbə sayı",
       value: "12",
-      color: "#996F29",
+      color: "#4b5563",
       chartData: [12, 11, 10, 12, 12],
     },
 

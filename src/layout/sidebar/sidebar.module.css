@@ -59,7 +59,7 @@
   left: 0;
   width: 3px;
   height: 100%;
-  background-color: #996f29;
+  background-color: #4b5563;
   box-shadow: 0 0 10px rgba(184, 134, 11, 0.3);
 }
 
@@ -70,7 +70,7 @@
   transform: translateY(-50%);
   width: 24px;
   height: 40px;
-  background-color: #996f29;
+  background-color: #4b5563;
   border-radius: 0 6px 6px 0;
   display: flex;
   align-items: center;
@@ -254,13 +254,13 @@
 }
 
 .menuLink:hover {
-  color: #996f29;
+  color: #4b5563;
   background-color: rgba(184, 134, 11, 0.05);
 }
 
 /* Updated active link styling with golden colors */
 .activeLink {
-  color: #996f29;
+  color: #4b5563;
   background-color: rgba(184, 134, 11, 0.1);
   border-radius: 8px;
   font-weight: 500;
@@ -291,7 +291,7 @@
 }
 
 .activeLink .menuIcon {
-  background-color: #996f29;
+  background-color: #4b5563;
   color: white;
   box-shadow: 0 2px 8px rgba(184, 134, 11, 0.3);
 }
@@ -406,7 +406,7 @@
   justify-content: center;
   min-width: 20px;
   height: 20px;
-  background-color: #996f29;
+  background-color: #4b5563;
   color: white;
   border-radius: 5px;
   font-size: 11px;
@@ -466,7 +466,7 @@
   height: 100%;
   background: linear-gradient(
     to bottom,
-    #996f29 0%,
+    #4b5563 0%,
     rgba(184, 134, 11, 0.2) 100%
   );
   border-radius: 2px;
@@ -495,12 +495,12 @@
 }
 
 .submenuLink:hover {
-  color: #996f29;
+  color: #4b5563;
   background-color: rgba(184, 134, 11, 0.05);
 }
 
 .activeSubmenuLink {
-  color: #996f29;
+  color: #4b5563;
   background-color: rgba(184, 134, 11, 0.08);
   font-weight: 600;
 }
@@ -509,7 +509,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: #996f29;
+  background-color: #4b5563;
   margin-right: 10px;
   position: relative;
 }
@@ -554,12 +554,12 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #996f29;
+  color: #4b5563;
   transition: all 0.2s ease;
 }
 
 .closeButton:hover {
-  background-color: #996f29;
+  background-color: #4b5563;
   color: white;
   transform: rotate(90deg);
 }
@@ -623,7 +623,7 @@ main {
 }
 
 .logoutPopupIcon {
-  color: #996f29;
+  color: #4b5563;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -681,7 +681,7 @@ main {
 
 .logoutPopupConfirmButton {
   padding: 9px 18px;
-  background-color: #996f29;
+  background-color: #4b5563;
   border: none;
   border-radius: 8px;
   font-size: 14px;

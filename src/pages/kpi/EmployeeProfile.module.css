@@ -231,7 +231,7 @@
   gap: 4px;
   font-size: 16px;
   font-weight: 600;
-  color: #996f29;
+  color: #4b5563;
 }
 
 .tableSection {
@@ -302,7 +302,7 @@
 }
 
 .kpiTable th {
-  background: #996f29;
+  background: #4b5563;
   color: white;
   padding: 12px 8px;
   text-align: left;

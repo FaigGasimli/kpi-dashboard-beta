@@ -44,23 +44,25 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, onAddComment }) => {
 
   const handleFileUpload = (e) => {
     const files = Array.from(e.target.files);
-    const newAttachments = files.map(file => ({
+    const newAttachments = files.map((file) => ({
       id: Date.now() + Math.random(),
       name: file.name,
       size: file.size,
       type: file.type,
       uploadDate: new Date().toISOString(),
     }));
-    setEditForm(prev => ({
+    setEditForm((prev) => ({
       ...prev,
-      attachments: [...prev.attachments, ...newAttachments]
+      attachments: [...prev.attachments, ...newAttachments],
     }));
   };
 
   const handleDeleteAttachment = (attachmentId) => {
-    setEditForm(prev => ({
+    setEditForm((prev) => ({
       ...prev,
-      attachments: prev.attachments.filter(attachment => attachment.id !== attachmentId)
+      attachments: prev.attachments.filter(
+        (attachment) => attachment.id !== attachmentId,
+      ),
     }));
   };
 
@@ -71,18 +73,18 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, onAddComment }) => {
         name: newTag.trim(),
         color: getRandomColor(),
       };
-      setEditForm(prev => ({
+      setEditForm((prev) => ({
         ...prev,
-        tags: [...prev.tags, tag]
+        tags: [...prev.tags, tag],
       }));
       setNewTag("");
     }
   };
 
   const handleDeleteTag = (tagId) => {
-    setEditForm(prev => ({
+    setEditForm((prev) => ({
       ...prev,
-      tags: prev.tags.filter(tag => tag.id !== tagId)
+      tags: prev.tags.filter((tag) => tag.id !== tagId),
     }));
   };
 
@@ -93,43 +95,54 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, onAddComment }) => {
         name: newTaggedUser.trim(),
         avatar: getInitials(newTaggedUser.trim()),
       };
-      setEditForm(prev => ({
+      setEditForm((prev) => ({
         ...prev,
-        taggedUsers: [...prev.taggedUsers, taggedUser]
+        taggedUsers: [...prev.taggedUsers, taggedUser],
       }));
       setNewTaggedUser("");
     }
   };
 
   const handleDeleteTaggedUser = (userId) => {
-    setEditForm(prev => ({
+    setEditForm((prev) => ({
       ...prev,
-      taggedUsers: prev.taggedUsers.filter(user => user.id !== userId)
+      taggedUsers: prev.taggedUsers.filter((user) => user.id !== userId),
     }));
   };
 
   const getRandomColor = () => {
-    const colors = ['#e3f2fd', '#f3e5f5', '#e8f5e8', '#fff3e0', '#fce4ec', '#f1f8e9'];
+    const colors = [
+      "#e3f2fd",
+      "#f3e5f5",
+      "#e8f5e8",
+      "#fff3e0",
+      "#fce4ec",
+      "#f1f8e9",
+    ];
     return colors[Math.floor(Math.random() * colors.length)];
   };
 
   const getInitials = (name) => {
-    return name.split(' ').map(word => word[0]).join('').toUpperCase();
+    return name
+      .split(" ")
+      .map((word) => word[0])
+      .join("")
+      .toUpperCase();
   };
 
   const formatFileSize = (bytes) => {
-    if (bytes === 0) return '0 Bytes';
+    if (bytes === 0) return "0 Bytes";
     const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const sizes = ["Bytes", "KB", "MB", "GB"];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
   const getPriorityColor = (weight) => {
     const weightNum = parseInt(weight);
-    if (weightNum >= 8) return "#996f29"; // High priority - main color
-    if (weightNum >= 5) return "#996f29"; // Medium priority - main color
-    return "#996f29"; // Low priority - main color
+    if (weightNum >= 8) return "#4b5563"; // High priority - main color
+    if (weightNum >= 5) return "#4b5563"; // Medium priority - main color
+    return "#4b5563"; // Low priority - main color
   };
 
   const getStatusText = (status) => {
@@ -173,7 +186,9 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, onAddComment }) => {
       <div className={styles.kanbanCardHeader}>
         <div className={styles.cardHeaderLeft}>
           <span className={styles.kanbanCardNumber}>#{task.id}</span>
-          <span className={styles.statusText}>{getStatusText(task.status)}</span>
+          <span className={styles.statusText}>
+            {getStatusText(task.status)}
+          </span>
         </div>
         <div className={styles.cardHeaderRight}>
           <span
@@ -290,8 +305,12 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, onAddComment }) => {
                   {editForm.attachments.map((attachment) => (
                     <div key={attachment.id} className={styles.attachmentItem}>
                       <div className={styles.attachmentInfo}>
-                        <span className={styles.attachmentName}>{attachment.name}</span>
-                        <span className={styles.attachmentSize}>{formatFileSize(attachment.size)}</span>
+                        <span className={styles.attachmentName}>
+                          {attachment.name}
+                        </span>
+                        <span className={styles.attachmentSize}>
+                          {formatFileSize(attachment.size)}
+                        </span>
                       </div>
                       <button
                         className={styles.deleteAttachmentButton}
@@ -310,7 +329,10 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, onAddComment }) => {
                     onChange={handleFileUpload}
                     className={styles.fileInput}
                   />
-                  <label htmlFor={`fileUpload-${task.id}`} className={styles.fileUploadLabel}>
+                  <label
+                    htmlFor={`fileUpload-${task.id}`}
+                    className={styles.fileUploadLabel}
+                  >
                     Fayl əlavə et
                   </label>
                 </div>
@@ -321,7 +343,11 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, onAddComment }) => {
                 <label>Etiketlər:</label>
                 <div className={styles.tagsList}>
                   {editForm.tags.map((tag) => (
-                    <div key={tag.id} className={styles.tagItem} style={{ backgroundColor: tag.color }}>
+                    <div
+                      key={tag.id}
+                      className={styles.tagItem}
+                      style={{ backgroundColor: tag.color }}
+                    >
                       <span className={styles.tagName}>{tag.name}</span>
                       <button
                         className={styles.deleteTagButton}
@@ -339,7 +365,7 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, onAddComment }) => {
                     onChange={(e) => setNewTag(e.target.value)}
                     className={styles.tagInput}
                     placeholder="Etiket adını daxil edin..."
-                    onKeyPress={(e) => e.key === 'Enter' && handleAddTag()}
+                    onKeyPress={(e) => e.key === "Enter" && handleAddTag()}
                   />
                   <button
                     className={styles.addTagButton}
@@ -375,7 +401,9 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, onAddComment }) => {
                     onChange={(e) => setNewTaggedUser(e.target.value)}
                     className={styles.taggedUserInput}
                     placeholder="İstifadəçi adını daxil edin..."
-                    onKeyPress={(e) => e.key === 'Enter' && handleAddTaggedUser()}
+                    onKeyPress={(e) =>
+                      e.key === "Enter" && handleAddTaggedUser()
+                    }
                   />
                   <button
                     className={styles.addTaggedUserButton}
@@ -391,7 +419,10 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, onAddComment }) => {
                 <button className={styles.saveEditButton} onClick={handleSave}>
                   Saxla
                 </button>
-                <button className={styles.cancelEditButton} onClick={handleCancel}>
+                <button
+                  className={styles.cancelEditButton}
+                  onClick={handleCancel}
+                >
                   Ləğv et
                 </button>
               </div>
@@ -417,7 +448,9 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, onAddComment }) => {
                 </div>
                 <div className={styles.metadataItem}>
                   <span className={styles.metadataLabel}>Departament:</span>
-                  <span className={styles.metadataValue}>{task.department}</span>
+                  <span className={styles.metadataValue}>
+                    {task.department}
+                  </span>
                 </div>
               </div>
             </>
@@ -463,8 +496,8 @@ const TaskCard = ({ task, onEdit, onDelete, onStatusChange, onAddComment }) => {
               task.status === "Tamamlanmış"
                 ? 100
                 : task.status === "Davam Edən"
-                ? 50
-                : 0
+                  ? 50
+                  : 0
             }%`,
           }}
         ></div>

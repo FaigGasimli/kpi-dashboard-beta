@@ -26,7 +26,7 @@
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background: #996f29;
+  background: #4b5563;
   color: white;
   text-decoration: none;
   border-radius: 8px;
@@ -94,7 +94,7 @@
 
 .filterSelect:focus {
   outline: none;
-  border-color: #996f29;
+  border-color: #4b5563;
   box-shadow: 0 0 0 2px rgba(153, 111, 41, 0.1);
 }
 
@@ -571,7 +571,7 @@
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #996f29, #b8832f);
+  background: linear-gradient(135deg, #4b5563, #b8832f);
   color: white;
   display: flex;
   align-items: center;
@@ -599,7 +599,7 @@
 
 .performerScore {
   font-weight: 700;
-  color: #996f29;
+  color: #4b5563;
   font-size: 16px;
 }
 

@@ -1179,7 +1179,7 @@ export default function KPIHomePage() {
         {hasChildren && isExpanded && (
           <div className={styles.childNodes}>
             {node.children.map((child, childIndex) =>
-              renderOrgNode(child, level + 1, nodeId, childIndex)
+              renderOrgNode(child, level + 1, nodeId, childIndex),
             )}
           </div>
         )}
@@ -1653,7 +1653,7 @@ export default function KPIHomePage() {
                                 <td>{kpi.relatedPersons}</td>
                                 <td>{kpi.dataSource}</td>
                                 <td>
-                                  <button 
+                                  <button
                                     className={styles.editButton}
                                     onClick={() => handleEditKPI(kpi, index)}
                                   >
@@ -1669,7 +1669,6 @@ export default function KPIHomePage() {
                   </div>
                 </div>
               )}
-
 
               {activeTab === "employee" && (
                 <div className={styles.tabContent}>
@@ -1854,7 +1853,7 @@ export default function KPIHomePage() {
                                         className={styles.progressFill}
                                         style={{
                                           width: `${department.performance}%`,
-                                          backgroundColor: "#996f29",
+                                          backgroundColor: "#4b5563",
                                         }}
                                       ></div>
                                     </div>
@@ -1863,7 +1862,7 @@ export default function KPIHomePage() {
                                     </span>
                                   </div>
                                 </div>
-                              )
+                              ),
                             )}
                           </div>
                         </div>
@@ -1917,7 +1916,7 @@ export default function KPIHomePage() {
                                         className={styles.progressFill}
                                         style={{
                                           width: `${division.performance}%`,
-                                          backgroundColor: "#996f29",
+                                          backgroundColor: "#4b5563",
                                         }}
                                       ></div>
                                     </div>
@@ -1926,7 +1925,7 @@ export default function KPIHomePage() {
                                     </span>
                                   </div>
                                 </div>
-                              )
+                              ),
                             )}
                           </div>
                         </div>
@@ -1971,7 +1970,7 @@ export default function KPIHomePage() {
                             {employeesData[selectedDivision.name]?.map(
                               (employee, index) => {
                                 const statusBadge = getStatusBadge(
-                                  employee.status
+                                  employee.status,
                                 );
                                 return (
                                   <div
@@ -2068,7 +2067,7 @@ export default function KPIHomePage() {
                                     </div>
                                   </div>
                                 );
-                              }
+                              },
                             )}
                           </div>
                         </div>

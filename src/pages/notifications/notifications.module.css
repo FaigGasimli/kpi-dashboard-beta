@@ -38,7 +38,7 @@
 }
 
 .filterIcon.active {
-  background: #996f29;
+  background: #4b5563;
   color: white;
 }
 
@@ -65,9 +65,9 @@
 }
 
 .filterTab.active {
-  background: #996f29;
+  background: #4b5563;
   color: white;
-  border-color: #996f29;
+  border-color: #4b5563;
 }
 
 .notificationsList {
@@ -91,7 +91,7 @@
   right: 20px;
   width: 8px;
   height: 8px;
-  background: #996f29;
+  background: #4b5563;
   border-radius: 50%;
 }
 
@@ -105,7 +105,7 @@
 .statusIcon {
   width: 20px;
   height: 20px;
-  background: #996f29;
+  background: #4b5563;
   border-radius: 50%;
   display: flex;
   align-items: center;

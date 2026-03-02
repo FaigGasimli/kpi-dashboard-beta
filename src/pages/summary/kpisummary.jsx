@@ -44,7 +44,7 @@ const CircularProgress = ({ percentage, size = 120, strokeWidth = 8 }) => {
 // Bar Chart Component
 const BarChart = ({ data, height = 200 }) => {
   const maxValue = Math.max(
-    ...data.map((item) => Math.max(item.actual, item.target))
+    ...data.map((item) => Math.max(item.actual, item.target)),
   );
 
   return (
@@ -113,7 +113,7 @@ const KpiSummary = () => {
       name: "Şaiq Muradzadə",
       avatar: "👨‍💻",
       performance: 80,
-      color: "#996F29",
+      color: "#4b5563",
     },
     {
       id: 3,
@@ -146,7 +146,7 @@ const KpiSummary = () => {
       lastMonth: 2500,
       target: 2500,
       performance: 80,
-      color: "#996F29",
+      color: "#4b5563",
     },
     {
       department: "Kompliyens Monitoring",

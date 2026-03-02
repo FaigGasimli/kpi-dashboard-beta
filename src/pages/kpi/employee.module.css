@@ -12,7 +12,7 @@
 }
 
 .backButton {
-  background: #996f29;
+  background: #4b5563;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -57,7 +57,7 @@
 }
 
 .branchCard:hover {
-  border-color: #996f29;
+  border-color: #4b5563;
   transform: translateY(-4px);
   box-shadow: 0 8px 25px rgba(153, 111, 41, 0.15);
 }
@@ -101,7 +101,7 @@
 .avatar {
   width: 80px;
   height: 80px;
-  background: #996f29;
+  background: #4b5563;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -139,7 +139,7 @@
 .cardValue {
   font-size: 28px;
   font-weight: 700;
-  color: #996f29;
+  color: #4b5563;
   margin-bottom: 4px;
 }
 
@@ -169,7 +169,7 @@
 
 .filterSelect:focus {
   outline: none;
-  border-color: #996f29;
+  border-color: #4b5563;
   box-shadow: 0 0 0 3px rgba(153, 111, 41, 0.1);
 }
 
@@ -220,7 +220,7 @@
 }
 
 .weightBadge {
-  background: #996f29;
+  background: #4b5563;
   color: white;
   padding: 4px 8px;
   border-radius: 4px;

@@ -437,10 +437,18 @@ const EmployeeProfile = () => {
     }
     const text = appliedMeasure.toLowerCase();
     if (text.includes("cərimə")) {
-      return { measure: "-", penaltyType: "Maddi", penaltyDetail: appliedMeasure };
+      return {
+        measure: "-",
+        penaltyType: "Maddi",
+        penaltyDetail: appliedMeasure,
+      };
     }
     if (text.includes("protokol")) {
-      return { measure: "-", penaltyType: "Protokol", penaltyDetail: appliedMeasure };
+      return {
+        measure: "-",
+        penaltyType: "Protokol",
+        penaltyDetail: appliedMeasure,
+      };
     }
     // otherwise treat as organizational measure (xəbərdarlıq və s.)
     return { measure: appliedMeasure, penaltyType: "-", penaltyDetail: "-" };
@@ -449,7 +457,7 @@ const EmployeeProfile = () => {
   const disciplineCounts = (() => {
     let measures = 0;
     let penalties = 0;
-    violationData.forEach(v => {
+    violationData.forEach((v) => {
       const c = classifyDiscipline(v.appliedMeasure);
       if (c.penaltyType !== "-") penalties += 1;
       if (c.measure !== "-") measures += 1;
@@ -460,10 +468,13 @@ const EmployeeProfile = () => {
   // Frequency of each penalty kind/detail to show per-row counts
   const penaltyCounts = (() => {
     const map = {};
-    violationData.forEach(v => {
+    violationData.forEach((v) => {
       const c = classifyDiscipline(v.appliedMeasure);
       if (c.penaltyType !== "-") {
-        const keyRaw = c.penaltyDetail && c.penaltyDetail !== '-' ? c.penaltyDetail : c.penaltyType;
+        const keyRaw =
+          c.penaltyDetail && c.penaltyDetail !== "-"
+            ? c.penaltyDetail
+            : c.penaltyType;
         const key = String(keyRaw).toLowerCase();
         map[key] = (map[key] || 0) + 1;
       }
@@ -474,7 +485,7 @@ const EmployeeProfile = () => {
   // Frequency of each applied measure to show per-row counts
   const measureCounts = (() => {
     const map = {};
-    violationData.forEach(v => {
+    violationData.forEach((v) => {
       const c = classifyDiscipline(v.appliedMeasure);
       if (c.measure !== "-") {
         const key = String(c.measure).toLowerCase();
@@ -512,7 +523,7 @@ const EmployeeProfile = () => {
   ];
 
   const getProgressBarColor = (percentage) => {
-    if (percentage >= 90) return "#996F29";
+    if (percentage >= 90) return "#4b5563";
     if (percentage >= 70) return "#3b82f6";
     if (percentage >= 50) return "#f59e0b";
     return "#ef4444";
@@ -525,7 +536,7 @@ const EmployeeProfile = () => {
       case "Orta":
         return "#f59e0b";
       case "Aşağı":
-        return "#996F29";
+        return "#4b5563";
       default:
         return "#6b7280";
     }
@@ -534,7 +545,7 @@ const EmployeeProfile = () => {
   const getStatusColor = (status) => {
     switch (status) {
       case "Tamamlandı":
-        return "#996F29";
+        return "#4b5563";
       case "Davam edir":
         return "#3b82f6";
       case "Planlaşdırılır":
@@ -781,7 +792,6 @@ const EmployeeProfile = () => {
         </div>
       </div>
 
-
       <div className="bonus-calculator-container">
         <table className="bonus-calculator-table">
           <thead>
@@ -1002,27 +1012,34 @@ const EmployeeProfile = () => {
                 </span>
               </td>
               <td className="violation-description">{violation.description}</td>
-              <td className="applied-measure">{
-                (() => {
+              <td className="applied-measure">
+                {(() => {
                   const c = classifyDiscipline(violation.appliedMeasure);
                   if (c.measure === "-") return "-";
-                  const count = measureCounts[String(c.measure).toLowerCase()] || 0;
+                  const count =
+                    measureCounts[String(c.measure).toLowerCase()] || 0;
                   return `${c.measure} (x${count})`;
-                })()
-              }</td>
-              <td className="applied-measure">{
-                (() => {
+                })()}
+              </td>
+              <td className="applied-measure">
+                {(() => {
                   const c = classifyDiscipline(violation.appliedMeasure);
                   if (c.penaltyType === "-") return "-";
-                  const keyRaw = c.penaltyDetail && c.penaltyDetail !== '-' ? c.penaltyDetail : c.penaltyType;
-                  const count = penaltyCounts[String(keyRaw).toLowerCase()] || 0;
-                  return `${c.penaltyType}${c.penaltyDetail && c.penaltyDetail !== '-' ? ` — ${c.penaltyDetail}` : ''} (x${count})`;
-                })()
-              }</td>
+                  const keyRaw =
+                    c.penaltyDetail && c.penaltyDetail !== "-"
+                      ? c.penaltyDetail
+                      : c.penaltyType;
+                  const count =
+                    penaltyCounts[String(keyRaw).toLowerCase()] || 0;
+                  return `${c.penaltyType}${c.penaltyDetail && c.penaltyDetail !== "-" ? ` — ${c.penaltyDetail}` : ""} (x${count})`;
+                })()}
+              </td>
             </tr>
           ))}
           <tr className="summary-row">
-            <td colSpan="4" className="summary-label">Cəmi</td>
+            <td colSpan="4" className="summary-label">
+              Cəmi
+            </td>
             <td className="summary-value">{disciplineCounts.measures}</td>
             <td className="summary-value">{disciplineCounts.penalties}</td>
           </tr>
@@ -1044,11 +1061,31 @@ const EmployeeProfile = () => {
           <button className="control-btn active">Bütün</button>
         </div>
       </div>
-      <div className="discipline-summary" style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
-        <div className="summary-chip" style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: '8px 12px' }}>
-          Tətbiq edilən tədbir sayı: <strong>{disciplineCounts.measures}</strong>
+      <div
+        className="discipline-summary"
+        style={{ display: "flex", gap: 12, marginBottom: 12 }}
+      >
+        <div
+          className="summary-chip"
+          style={{
+            background: "#f8fafc",
+            border: "1px solid #e5e7eb",
+            borderRadius: 8,
+            padding: "8px 12px",
+          }}
+        >
+          Tətbiq edilən tədbir sayı:{" "}
+          <strong>{disciplineCounts.measures}</strong>
         </div>
-        <div className="summary-chip" style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: '8px 12px' }}>
+        <div
+          className="summary-chip"
+          style={{
+            background: "#f8fafc",
+            border: "1px solid #e5e7eb",
+            borderRadius: 8,
+            padding: "8px 12px",
+          }}
+        >
           Cəza sayı: <strong>{disciplineCounts.penalties}</strong>
         </div>
       </div>
@@ -1127,15 +1164,15 @@ const EmployeeProfile = () => {
         <div style={{ padding: "20px", textAlign: "center" }}>
           <h2>İşçi seçilməyib</h2>
           <p>Əməkdaşlar siyahısından bir işçi seçin.</p>
-          <button 
-            onClick={() => navigate('/shr')}
+          <button
+            onClick={() => navigate("/shr")}
             style={{
               padding: "10px 20px",
               backgroundColor: "#3b82f6",
               color: "white",
               border: "none",
               borderRadius: "6px",
-              cursor: "pointer"
+              cursor: "pointer",
             }}
           >
             Əməkdaşlar siyahısına qayıt
@@ -1151,10 +1188,7 @@ const EmployeeProfile = () => {
         {/* Header Section */}
         <div className="profile-header">
           <div className="back-button-container">
-            <button 
-              onClick={() => navigate('/shr')}
-              className="back-button"
-            >
+            <button onClick={() => navigate("/shr")} className="back-button">
               ← Əməkdaşlar siyahısına qayıt
             </button>
           </div>
@@ -1203,7 +1237,7 @@ const EmployeeProfile = () => {
               <span className="stat-value">
                 {vacationData.reduce(
                   (sum, vacation) => sum + vacation.daysUsed,
-                  0
+                  0,
                 )}{" "}
                 gün
               </span>
@@ -1250,7 +1284,7 @@ const EmployeeProfile = () => {
             >
               Tapşırıqlar
             </button>
-            
+
             <button
               className={
                 activeTab === "discipline" ? "tab-button active" : "tab-button"

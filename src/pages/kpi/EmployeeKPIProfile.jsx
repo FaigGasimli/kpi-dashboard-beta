@@ -67,7 +67,7 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
   // Module distribution data
   const moduleData = [
     { name: "CE", value: 35, color: "#3b82f6" },
-    { name: "MH", value: 25, color: "#996F29" },
+    { name: "MH", value: 25, color: "#4b5563" },
     { name: "AML", value: 25, color: "#f59e0b" },
     { name: "AU", value: 15, color: "#ef4444" },
   ];
@@ -182,7 +182,7 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
   ];
 
   const getStatusBadge = (score) => {
-    if (score >= 85) return { text: "On-track", color: "#996F29", icon: "🟢" };
+    if (score >= 85) return { text: "On-track", color: "#4b5563", icon: "🟢" };
     if (score >= 70) return { text: "Risk", color: "#f59e0b", icon: "🟡" };
     return { text: "Off", color: "#ef4444", icon: "🔴" };
   };
@@ -250,7 +250,7 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
             className={styles.cardIcon}
             style={{ backgroundColor: "#dcfce7" }}
           >
-            <CheckCircle size={24} color="#996F29" />
+            <CheckCircle size={24} color="#4b5563" />
           </div>
           <div className={styles.cardContent}>
             <h3>On-track Sayı</h3>
@@ -375,7 +375,7 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
-                    <Bar dataKey="value" fill="#996F29" />
+                    <Bar dataKey="value" fill="#4b5563" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -434,7 +434,7 @@ const EmployeeKPIProfile = ({ employee, onBack }) => {
                 <div className={styles.comparisonItem}>
                   <span>Fərq:</span>
                   <span className={styles.comparisonDiff}>
-                    <TrendingUp size={16} color="#996F29" />+
+                    <TrendingUp size={16} color="#4b5563" />+
                     {employee.kpiScore - 82}%
                   </span>
                 </div>

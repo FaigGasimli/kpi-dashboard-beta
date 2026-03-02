@@ -592,7 +592,7 @@
 
 .date-select:focus {
   outline: none;
-  border-color: #996f29;
+  border-color: #4b5563;
   box-shadow: 0 0 0 3px rgba(153, 111, 41, 0.1);
 }
 
@@ -613,7 +613,7 @@
 .period-text {
   font-size: 14px;
   font-weight: 600;
-  color: #996f29;
+  color: #4b5563;
 }
 
 /* Responsive Design for Date Selection */
@@ -622,11 +622,11 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
-  
+
   .date-group {
     min-width: auto;
   }
-  
+
   .selected-period {
     text-align: center;
   }
@@ -644,7 +644,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
   }
-  
+
   .date-group {
     min-width: 100px;
   }

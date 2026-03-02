@@ -101,7 +101,7 @@ const Dashboard = () => {
       title: "Ümumi KPI-lar sayı",
       value: "24",
       icon: BarChart3,
-      color: "#996f29",
+      color: "#4b5563",
       trend: [20, 22, 21, 24, 23, 24],
       change: "+8.3%",
     },
@@ -109,7 +109,7 @@ const Dashboard = () => {
       title: "Orta KPI nəticəsi",
       value: "85%",
       icon: TrendingUp,
-      color: "#996F29",
+      color: "#4b5563",
       trend: [80, 82, 85, 83, 87, 85],
       change: "+2.4%",
     },
@@ -117,7 +117,7 @@ const Dashboard = () => {
       title: "On-track KPI-lar",
       value: "18",
       icon: CheckCircle,
-      color: "#996F29",
+      color: "#4b5563",
       trend: [15, 16, 17, 18, 17, 18],
       change: "+5.9%",
     },
@@ -148,8 +148,8 @@ const Dashboard = () => {
   ];
 
   const moduleChartData = [
-    { name: "Cərimə və Eskalasiya", value: 35, color: "#996f29" },
-    { name: "Monitorinq və Hesabatlılıq", value: 25, color: "#996F29" },
+    { name: "Cərimə və Eskalasiya", value: 35, color: "#4b5563" },
+    { name: "Monitorinq və Hesabatlılıq", value: 25, color: "#4b5563" },
     { name: "AML/ƏL/TMM", value: 20, color: "#f59e0b" },
     { name: "Audit və Uyğunsuzluqlar", value: 20, color: "#ef4444" },
   ];
@@ -221,7 +221,7 @@ const Dashboard = () => {
     distribution: [
       { status: "To Do", count: 45, color: "#64748b", icon: ListTodo },
       { status: "In Progress", count: 32, color: "#3b82f6", icon: Timer },
-      { status: "Completed", count: 128, color: "#996F29", icon: CheckCircle },
+      { status: "Completed", count: 128, color: "#4b5563", icon: CheckCircle },
       { status: "Overdue", count: 12, color: "#ef4444", icon: AlertTriangle },
     ],
     overdueTasks: [
@@ -263,7 +263,7 @@ const Dashboard = () => {
   ];
 
   const kpiPerformanceData = [
-    { name: "Hədəf", value: 18, fill: "#996F29" },
+    { name: "Hədəf", value: 18, fill: "#4b5563" },
     { name: "Risk", value: 6, fill: "#ef4444" },
   ];
 
@@ -273,7 +273,7 @@ const Dashboard = () => {
   ];
 
   const attendanceChartData = [
-    { name: "İştirakçı", value: 156, fill: "#996F29" },
+    { name: "İştirakçı", value: 156, fill: "#4b5563" },
     { name: "Yoxluq", value: 12, fill: "#ef4444" },
     { name: "Gecikmə", value: 8, fill: "#f59e0b" },
   ];
@@ -309,7 +309,7 @@ const Dashboard = () => {
                         className={styles.trendValue}
                         style={{
                           color: card.change.startsWith("+")
-                            ? "#996F29"
+                            ? "#4b5563"
                             : "#ef4444",
                         }}
                       >
@@ -334,7 +334,7 @@ const Dashboard = () => {
           <div className={styles.analyticsGrid}>
             <div className={styles.trendSection}>
               <div className={styles.sectionHeader}>
-                <TrendingUp size={18} color="#996f29" />
+                <TrendingUp size={18} color="#4b5563" />
                 <h3>KPI Trend Analizi</h3>
               </div>
               <div className={styles.chartContainer}>
@@ -347,9 +347,9 @@ const Dashboard = () => {
                     <Line
                       type="monotone"
                       dataKey="value"
-                      stroke="#996f29"
+                      stroke="#4b5563"
                       strokeWidth={3}
-                      dot={{ fill: "#996f29", r: 4 }}
+                      dot={{ fill: "#4b5563", r: 4 }}
                     />
                   </LineChart>
                 </ResponsiveContainer>
@@ -362,7 +362,7 @@ const Dashboard = () => {
                     <span className={styles.summaryLabel}>Trend:</span>
                     <span
                       className={styles.summaryValue}
-                      style={{ color: "#996F29" }}
+                      style={{ color: "#4b5563" }}
                     >
                       ↗ +2.4%
                     </span>
@@ -395,8 +395,8 @@ const Dashboard = () => {
                                 kpi.riskLevel === "high"
                                   ? "#ef4444"
                                   : kpi.riskLevel === "medium"
-                                  ? "#f59e0b"
-                                  : "#996F29",
+                                    ? "#f59e0b"
+                                    : "#4b5563",
                             }}
                           />
                         </div>
@@ -457,7 +457,7 @@ const Dashboard = () => {
 
             <div className={styles.departmentChart}>
               <div className={styles.sectionHeader}>
-                <Building size={18} color="#996f29" />
+                <Building size={18} color="#4b5563" />
                 <h3>Şöbə Performansı</h3>
               </div>
               <div className={styles.chartContainer}>
@@ -469,7 +469,7 @@ const Dashboard = () => {
                     <Tooltip />
                     <Bar
                       dataKey="performance"
-                      fill="#996f29"
+                      fill="#4b5563"
                       radius={[4, 4, 0, 0]}
                     />
                   </BarChart>
@@ -490,7 +490,7 @@ const Dashboard = () => {
           <div className={styles.hrGrid}>
             <div className={styles.attendanceSection}>
               <div className={styles.sectionHeader}>
-                <UserCheck size={18} color="#996F29" />
+                <UserCheck size={18} color="#4b5563" />
                 <h3>Davamiyyət</h3>
               </div>
               <div className={styles.attendanceContainer}>
@@ -518,7 +518,7 @@ const Dashboard = () => {
                   <div className={styles.attendanceItem}>
                     <div
                       className={styles.attendanceIcon}
-                      style={{ backgroundColor: "#996F2915", color: "#996F29" }}
+                      style={{ backgroundColor: "#4b556315", color: "#4b5563" }}
                     >
                       <UserCheck size={16} />
                     </div>
@@ -585,7 +585,7 @@ const Dashboard = () => {
 
             <div className={styles.topPerformersSection}>
               <div className={styles.sectionHeader}>
-                <Award size={18} color="#996f29" />
+                <Award size={18} color="#4b5563" />
                 <h3>Top Performans</h3>
               </div>
               <div className={styles.performersList}>
@@ -650,10 +650,10 @@ const Dashboard = () => {
                           {status.status === "To Do"
                             ? "Gözləyən"
                             : status.status === "In Progress"
-                            ? "Davam edən"
-                            : status.status === "Completed"
-                            ? "Tamamlanmış"
-                            : "Gecikmiş"}
+                              ? "Davam edən"
+                              : status.status === "Completed"
+                                ? "Tamamlanmış"
+                                : "Gecikmiş"}
                         </div>
                       </div>
                     </div>
@@ -699,7 +699,7 @@ const Dashboard = () => {
             <div className={styles.kpiCard}>
               <div className={styles.cardHeader}>
                 <h3>KPI Statusu</h3>
-                <Target size={18} color="#996f29" />
+                <Target size={18} color="#4b5563" />
               </div>
               <div className={styles.cardContent}>
                 <div className={styles.chartSection}>
@@ -726,7 +726,7 @@ const Dashboard = () => {
                   <div className={styles.statItem}>
                     <span
                       className={styles.statDot}
-                      style={{ backgroundColor: "#996F29" }}
+                      style={{ backgroundColor: "#4b5563" }}
                     ></span>
                     <span>Hədəf: 18</span>
                   </div>
@@ -744,7 +744,7 @@ const Dashboard = () => {
             <div className={styles.kpiCard}>
               <div className={styles.cardHeader}>
                 <h3>Tapşırıq Performansı</h3>
-                <CheckCircle size={18} color="#996F29" />
+                <CheckCircle size={18} color="#4b5563" />
               </div>
               <div className={styles.cardContent}>
                 <div className={styles.chartSection}>

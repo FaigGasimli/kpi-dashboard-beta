@@ -37,7 +37,7 @@ const Performance = () => {
       lastMonth: 2500,
       target: 2500,
       percentage: 80,
-      color: "#996F29",
+      color: "#4b5563",
     },
     {
       name: "Kompliyens Monitoring",

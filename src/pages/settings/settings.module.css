@@ -41,12 +41,12 @@
 .sidebarHeader h2 {
   font-size: 18px;
   font-weight: 600;
-  color: #996f29;
+  color: #4b5563;
   margin: 0;
 }
 
 .sidebarHeader svg {
-  color: #996f29;
+  color: #4b5563;
 }
 
 .tabNavigation {
@@ -82,7 +82,7 @@
 }
 
 .tabActive {
-  background: #996f29;
+  background: #4b5563;
   color: white;
 }
 
@@ -110,7 +110,7 @@
 .contentHeader h1 {
   font-size: 24px;
   font-weight: 700;
-  color: #996f29;
+  color: #4b5563;
   margin: 0;
 }
 
@@ -137,7 +137,7 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  background: #996f29;
+  background: #4b5563;
   color: white;
   border: none;
   border-radius: 6px;
@@ -201,7 +201,7 @@
 .settingGroup h3 {
   font-size: 16px;
   font-weight: 600;
-  color: #996f29;
+  color: #4b5563;
   margin: 0;
   padding-bottom: 8px;
   border-bottom: 1px solid #f3f4f6;
@@ -227,13 +227,15 @@
   font-size: 14px;
   background: white;
   cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
   max-width: 300px;
 }
 
 .selectInput:focus {
   outline: none;
-  border-color: #996f29;
+  border-color: #4b5563;
   box-shadow: 0 0 0 3px rgba(153, 111, 41, 0.1);
 }
 
@@ -254,7 +256,7 @@
 
 .radioLabel input[type="radio"] {
   margin: 0;
-  accent-color: #996f29;
+  accent-color: #4b5563;
 }
 
 /* Theme Selector */
@@ -278,11 +280,11 @@
 }
 
 .themeButton:hover {
-  border-color: #996f29;
+  border-color: #4b5563;
 }
 
 .themeActive {
-  border-color: #996f29;
+  border-color: #4b5563;
   background: #fef3c7;
 }
 
@@ -291,7 +293,7 @@
 }
 
 .themeActive svg {
-  color: #996f29;
+  color: #4b5563;
 }
 
 .themeButton span {
@@ -372,7 +374,7 @@
 }
 
 .switchInput:checked + .switchSlider {
-  background: #996f29;
+  background: #4b5563;
 }
 
 .switchInput:checked + .switchSlider::before {
@@ -393,7 +395,7 @@
   align-items: center;
   gap: 12px;
   padding: 16px 20px;
-  background: #996f29;
+  background: #4b5563;
   color: white;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);

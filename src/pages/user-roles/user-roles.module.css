@@ -36,13 +36,13 @@
 }
 
 .tabActive {
-  background: #996f29;
+  background: #4b5563;
   color: white;
   box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
 }
 
 .tabActive:hover {
-  background: #996f29;
+  background: #4b5563;
   color: white;
 }
 
@@ -104,7 +104,7 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  background: #996f29;
+  background: #4b5563;
   color: white;
   border: none;
   border-radius: 8px;
@@ -114,7 +114,7 @@
 }
 
 .addButton:hover {
-  background: #996f29;
+  background: #4b5563;
   transform: translateY(-1px);
 }
 
@@ -359,7 +359,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #996f29;
+  background: #4b5563;
   color: white;
   display: flex;
   align-items: center;
@@ -485,7 +485,7 @@
 }
 
 .permissionsSectionTitle svg {
-  color: #996f29;
+  color: #4b5563;
 }
 
 .formInput,
@@ -501,7 +501,7 @@
 .formInput:focus,
 .formTextarea:focus {
   outline: none;
-  border-color: #996f29;
+  border-color: #4b5563;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
@@ -554,7 +554,7 @@
 }
 
 .permissionFormItem:hover {
-  border-color: #996f29;
+  border-color: #4b5563;
   box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
 }
 
@@ -571,7 +571,7 @@
 .permissionCheckbox input[type="checkbox"] {
   width: 20px;
   height: 20px;
-  accent-color: #996f29;
+  accent-color: #4b5563;
   cursor: pointer;
 }
 
@@ -589,11 +589,11 @@
 }
 
 .permissionCheckbox:has(input:checked) .checkboxLabel svg {
-  color: #996f29;
+  color: #4b5563;
 }
 
 .permissionCheckbox:has(input:checked) .permissionFormItem {
-  border-color: #996f29;
+  border-color: #4b5563;
   background: #f0f9ff;
 }
 
@@ -626,7 +626,7 @@
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  background: #996f29;
+  background: #4b5563;
   color: white;
   border: none;
   border-radius: 8px;
@@ -636,7 +636,7 @@
 }
 
 .saveButton:hover {
-  background: #996f29;
+  background: #4b5563;
 }
 
 /* Responsive Design */

@@ -206,7 +206,7 @@ const TechnicalSupportPage = () => {
   const getStatusBadge = (status) => {
     const statusConfig = {
       Açıq: { className: styles.statusOpen, color: "#ef4444" },
-      "Həll edildi": { className: styles.statusResolved, color: "#996F29" },
+      "Həll edildi": { className: styles.statusResolved, color: "#4b5563" },
       Gözləyir: { className: styles.statusPending, color: "#f59e0b" },
     };
     return statusConfig[status] || statusConfig["Açıq"];
@@ -216,7 +216,7 @@ const TechnicalSupportPage = () => {
     const priorityConfig = {
       Yüksək: { className: styles.priorityHigh, color: "#ef4444" },
       Orta: { className: styles.priorityMedium, color: "#f59e0b" },
-      Aşağı: { className: styles.priorityLow, color: "#996F29" },
+      Aşağı: { className: styles.priorityLow, color: "#4b5563" },
     };
     return priorityConfig[priority] || priorityConfig["Orta"];
   };
@@ -227,7 +227,7 @@ const TechnicalSupportPage = () => {
       questions: category.questions.filter(
         (q) =>
           q.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          q.answer.toLowerCase().includes(searchQuery.toLowerCase())
+          q.answer.toLowerCase().includes(searchQuery.toLowerCase()),
       ),
     }))
     .filter((category) => category.questions.length > 0);

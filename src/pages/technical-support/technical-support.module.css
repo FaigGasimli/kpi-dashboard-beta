@@ -35,7 +35,7 @@
   border: none;
   outline: none;
   font-size: 16px;
-  color: #996f29;
+  color: #4b5563;
   background: transparent;
 }
 
@@ -54,7 +54,7 @@
   align-items: center;
   gap: 8px;
   padding: 12px 20px;
-  background: #996f29;
+  background: #4b5563;
   color: white;
   border: none;
   border-radius: 8px;
@@ -83,7 +83,9 @@
   align-items: flex-start;
   gap: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .contactCard:hover {
@@ -92,14 +94,14 @@
 }
 
 .contactIcon {
-  color: #996f29;
+  color: #4b5563;
   flex-shrink: 0;
 }
 
 .contactCard h3 {
   font-size: 18px;
   font-weight: 600;
-  color: #996f29;
+  color: #4b5563;
   margin: 0 0 8px 0;
 }
 
@@ -150,13 +152,13 @@
 }
 
 .tabActive {
-  color: #996f29;
-  border-bottom-color: #996f29;
+  color: #4b5563;
+  border-bottom-color: #4b5563;
   background: white;
 }
 
 .tab:hover {
-  color: #996f29;
+  color: #4b5563;
   background: #f9fafb;
 }
 
@@ -172,10 +174,10 @@
 .categoryTitle {
   font-size: 20px;
   font-weight: 600;
-  color: #996f29;
+  color: #4b5563;
   margin: 0 0 16px 0;
   padding-bottom: 8px;
-  border-bottom: 2px solid #996f29;
+  border-bottom: 2px solid #4b5563;
 }
 
 .faqList {
@@ -202,7 +204,7 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
-  color: #996f29;
+  color: #4b5563;
   text-align: left;
   transition: background 0.2s;
 }
@@ -301,7 +303,7 @@
 .ticketSubject {
   font-size: 16px;
   font-weight: 600;
-  color: #996f29;
+  color: #4b5563;
   margin: 0 0 4px 0;
 }
 
@@ -441,16 +443,18 @@
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 14px;
-  color: #996f29;
+  color: #4b5563;
   background: white;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .formInput:focus,
 .formSelect:focus,
 .formTextarea:focus {
   outline: none;
-  border-color: #996f29;
+  border-color: #4b5563;
   box-shadow: 0 0 0 3px rgba(153, 111, 41, 0.1);
 }
 
@@ -475,9 +479,9 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  border: 1px solid #996f29;
+  border: 1px solid #4b5563;
   background: transparent;
-  color: #996f29;
+  color: #4b5563;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 500;
@@ -485,7 +489,7 @@
 }
 
 .fileUploadButton:hover {
-  background: #996f29;
+  background: #4b5563;
   color: white;
 }
 
@@ -506,7 +510,7 @@
   align-items: center;
   gap: 8px;
   padding: 12px 24px;
-  background: #996f29;
+  background: #4b5563;
   color: white;
   border: none;
   border-radius: 8px;
@@ -537,7 +541,7 @@
 .helpResources h3 {
   font-size: 20px;
   font-weight: 600;
-  color: #996f29;
+  color: #4b5563;
   margin: 0 0 20px 0;
 }
 
@@ -553,7 +557,9 @@
   padding: 20px;
   text-align: center;
   background: #f9fafb;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .resourceCard:hover {
@@ -562,14 +568,14 @@
 }
 
 .resourceIcon {
-  color: #996f29;
+  color: #4b5563;
   margin-bottom: 12px;
 }
 
 .resourceCard h4 {
   font-size: 16px;
   font-weight: 600;
-  color: #996f29;
+  color: #4b5563;
   margin: 0 0 8px 0;
 }
 
@@ -585,7 +591,7 @@
   align-items: center;
   gap: 6px;
   padding: 8px 16px;
-  background: #996f29;
+  background: #4b5563;
   color: white;
   border: none;
   border-radius: 6px;
@@ -639,7 +645,7 @@
 
   .tabActive {
     border-bottom: none;
-    border-right-color: #996f29;
+    border-right-color: #4b5563;
   }
 
   .faqContent,

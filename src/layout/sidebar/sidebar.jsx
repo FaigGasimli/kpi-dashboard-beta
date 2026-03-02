@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import Logo from "../../assests/logo.PNG";
+import Logo from "../../assests/logo.png";
 import {
   ChevronRight,
   X,

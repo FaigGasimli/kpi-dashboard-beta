@@ -1,93 +1,69 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
 
-/* CSS Variables for Dynamic Theming */
+/* Global design system – HR Dynamics */
 :root {
+  /* Brand */
   --primary-color: #4b5563;
-  --primary-color-hover: #4b5563;
-  --primary-color-light: #f3f0e8;
-  --background-color: #ffffff;
-  --text-color: #4b5563;
-  --text-color-secondary: #6b7280;
-  --border-color: #e5e7eb;
-  --card-background: #ffffff;
-  --sidebar-background: #f9fafb;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --primary-color-hover: #374151;
+  --accent-color: #0ea5e9;
+  --danger-color: #ef4444;
+
+  /* Surfaces */
+  --bg-page: #f3f4f6;
+  --bg-shell: #f9fafb;
+  --bg-card: #ffffff;
+
+  /* Text */
+  --text-color: #111827;
+  --text-muted: #6b7280;
+
+  /* Borders & shadows */
+  --border-subtle: #e5e7eb;
+  --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
 }
 
-/* Dark Theme */
-[data-theme="dark"] {
-  --background-color: #111827;
-  --text-color: #f9fafb;
-  --text-color-secondary: #d1d5db;
-  --border-color: #374151;
-  --card-background: #4b5563;
-  --sidebar-background: #111827;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* Compact Mode */
-.compact-mode {
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 12px;
-  --spacing-lg: 16px;
-  --spacing-xl: 20px;
-}
-
-.compact-mode .card {
-  padding: var(--spacing-md);
-}
-
-.compact-mode .button {
-  padding: var(--spacing-sm) var(--spacing-md);
-}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  list-style: none;
-  text-decoration: none;
-  text-transform: none;
-}
-
-a {
-  text-decoration: none !important;
 }
 
 html {
   -webkit-text-size-adjust: 100%;
 }
 
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #ffffff 0, #f3f4f6 30%, #e5e7eb 100%);
+  color: var(--text-color);
+  font-family: "Geist", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .container {
-  width: 90%;
+  width: 92%;
   margin: 0 auto;
 }
 
 @media (max-width: 1200px) {
   .container {
-    width: 80%;
+    width: 88%;
   }
 }
 
 @media (max-width: 992px) {
   .container {
-    width: 85%;
+    width: 92%;
   }
 }
 
 @media (max-width: 768px) {
   .container {
-    width: 95%;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    width: 95%;
-    padding: 0 15px;
+    width: 96%;
   }
 }

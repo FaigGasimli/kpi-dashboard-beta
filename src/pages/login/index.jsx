@@ -1,24 +1,40 @@
 "use client"
 
-import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { Eye, EyeOff } from "lucide-react"
 import styles from "./login.module.css"
+
+const STATIC_EMAIL = "tahira.akhundova@gmail.com"
+const STATIC_PASSWORD = "123456"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState("")
+  const navigate = useNavigate()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/", { replace: true })
+    }
+  }, [navigate])
+
+  const handleSubmit = (e) => {
     e.preventDefault()
     if (!email || !password) {
       setError("Zəhmət olmasa, bütün xanaları doldurun.")
       return
     }
+    const emailTrimmed = email.trim().toLowerCase()
+    if (emailTrimmed !== STATIC_EMAIL || password !== STATIC_PASSWORD) {
+      setError("Email və ya şifrə yanlışdır. Yalnız icazəli istifadəçi daxil ola bilər.")
+      return
+    }
     setError("")
-    alert("Daxil oldunuz!")
+    localStorage.setItem("token", "logged_in")
+    navigate("/", { replace: true })
   }
 
   return (
@@ -63,9 +79,9 @@ export default function LoginPage() {
               </button>
             </div>
             <div className={styles.forgotPassword}>
-              <a href="#" className={styles.forgotPasswordLink}>
+              <button type="button" className={styles.forgotPasswordLink} onClick={() => setError("")}>
                 Şifrənizi unutmusunuz?
-              </a>
+              </button>
             </div>
           </div>
 

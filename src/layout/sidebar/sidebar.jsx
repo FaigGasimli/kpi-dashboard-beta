@@ -14,6 +14,7 @@ import {
   DollarSign,
   UserCheck,
   User,
+  BookOpen,
   Settings,
   HelpCircle,
   AlertCircle,
@@ -67,6 +68,12 @@ export default function Sidebar() {
       name: "KPI",
       icon: <BarChart3 size={18} />,
       href: "/kpi",
+      hasSubmenu: false,
+    },
+    {
+      name: "Təlimlər & seminarlar",
+      icon: <BookOpen size={18} />,
+      href: "/dashboard/trainings",
       hasSubmenu: false,
     },
     {

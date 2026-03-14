@@ -15,6 +15,7 @@ import {
   UserCheck,
   User,
   BookOpen,
+  Gift,
   Settings,
   HelpCircle,
   AlertCircle,
@@ -74,6 +75,12 @@ export default function Sidebar() {
       name: "Təlimlər & seminarlar",
       icon: <BookOpen size={18} />,
       href: "/dashboard/trainings",
+      hasSubmenu: false,
+    },
+    {
+      name: "Güzəştlər",
+      icon: <Gift size={18} />,
+      href: "/dashboard/benefits",
       hasSubmenu: false,
     },
     {

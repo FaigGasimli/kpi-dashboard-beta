@@ -20,6 +20,7 @@ const TechnicalSupport = lazy(() => import("../pages/technical-support/index"));
 const UserRoles = lazy(() => import("../pages/user-roles/index"));
 const Settings = lazy(() => import("../pages/settings/index"));
 const Trainings = lazy(() => import("../pages/trainings"));
+const Benefits = lazy(() => import("../pages/benefits"));
 
 function ProtectedRoute() {
   const token = localStorage.getItem("token");
@@ -59,6 +60,7 @@ export const router = createBrowserRouter([
           { path: "settings", element: <Settings /> },
           { path: "dashboard/trainings", element: <Trainings /> },
           { path: "dashboard/trainings/:trainingId", element: <Trainings /> },
+          { path: "dashboard/benefits", element: <Benefits /> },
         ],
       },
     ],
